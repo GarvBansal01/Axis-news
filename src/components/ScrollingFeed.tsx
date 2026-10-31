@@ -79,21 +79,26 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
               {/* Headline */}
               <h2
                 onClick={() => onOpenDeepDive(article)}
-                className="text-base md:text-lg font-editorial font-bold text-zinc-900 dark:text-zinc-100 leading-snug hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                className="text-lg md:text-xl font-editorial font-bold text-stone-900 dark:text-stone-100 leading-snug tracking-tight hover:text-amber-700 dark:hover:text-amber-400 transition-colors cursor-pointer"
               >
                 {article.title}
               </h2>
 
-              {/* 1-Sentence Takeaway */}
-              <div className="p-3 rounded-lg bg-zinc-100/70 dark:bg-zinc-900/60 border-l-2 border-zinc-900 dark:border-zinc-100 text-xs md:text-sm text-zinc-800 dark:text-zinc-200 font-editorial italic leading-relaxed">
-                "{article.takeaway}"
+              {/* Editorial Synthesis Takeaway (Quoted Text) */}
+              <div className="relative pl-4 pr-3 py-2.5 rounded-r-lg border-l-2 border-amber-600/80 dark:border-amber-400/80 bg-amber-500/5 dark:bg-amber-400/5 text-xs md:text-sm text-stone-800 dark:text-stone-200 font-editorial leading-relaxed">
+                <span className="block text-[10px] font-mono font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-0.5">
+                  Core Takeaway
+                </span>
+                <p className="italic font-normal text-stone-900 dark:text-stone-100 text-sm md:text-[15px]">
+                  “{article.takeaway}”
+                </p>
               </div>
 
               {/* 3 Synthesized Bullets */}
-              <ul className="space-y-1.5 text-xs md:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed pt-0.5">
+              <ul className="space-y-1.5 text-xs md:text-sm text-stone-700 dark:text-stone-300 leading-relaxed pt-0.5 font-sans">
                 {article.bullets.map((bullet, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600 mt-2 shrink-0" />
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-stone-400 dark:bg-stone-600 mt-2 shrink-0" />
                     <span>{bullet}</span>
                   </li>
                 ))}

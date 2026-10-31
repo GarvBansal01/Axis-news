@@ -139,17 +139,22 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
         {article.deepDive.keyQuotes.length > 0 && (
           <div className="space-y-2 pt-1">
             <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-500">
-              Key Statements
+              Key Statements & Direct Testimony
             </h3>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {article.deepDive.keyQuotes.map((q, idx) => (
                 <blockquote
                   key={idx}
-                  className="p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/40 text-xs text-zinc-800 dark:text-zinc-200 italic"
+                  className="relative pl-4 pr-3 py-3 rounded-r-xl border-l-2 border-stone-700 dark:border-stone-300 bg-stone-50/80 dark:bg-zinc-900/60 text-stone-900 dark:text-stone-100 font-editorial text-sm md:text-base leading-relaxed"
                 >
-                  "{q.quote}"
-                  <footer className="mt-1 not-italic font-mono text-[11px] text-zinc-500">
-                    — {q.speaker}, <span className="font-normal">{q.role}</span>
+                  <p className="italic font-normal">
+                    “{q.quote}”
+                  </p>
+                  <footer className="mt-2 not-italic font-mono text-[11px] text-zinc-500 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-600 dark:bg-amber-400" />
+                    <span className="font-semibold text-zinc-900 dark:text-zinc-100">{q.speaker}</span>
+                    <span aria-hidden="true">·</span>
+                    <span className="text-zinc-500">{q.role}</span>
                   </footer>
                 </blockquote>
               ))}
