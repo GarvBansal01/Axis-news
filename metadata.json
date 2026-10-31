@@ -1,0 +1,6 @@
+{
+  "name": "AXIS — 24H Global & Regional Intelligence",
+  "description": "Zero-clutter real-time news radar. High-signal 60-second synthesized dispatches covering World, AI Frontier, Gaming, and Siliguri without social media noise.",
+  "requestFramePermissions": ["notifications"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
