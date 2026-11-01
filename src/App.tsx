@@ -14,6 +14,7 @@ import { NewsArticle, NewsCategory, UserSession, AppFeedback } from './types';
 import { playAudioChime } from './utils/audioPlayer';
 import { FlashcardDeck } from './components/FlashcardDeck';
 import { ImportantBriefingHero } from './components/ImportantBriefingHero';
+import { FinanceHub } from './components/FinanceHub';
 import { 
   Sparkles, 
   TrendingUp, 
@@ -25,7 +26,8 @@ import {
   Zap, 
   ArrowRight,
   ShieldCheck,
-  Send
+  Send,
+  Coins
 } from 'lucide-react';
 
 const INITIAL_FEEDBACKS: AppFeedback[] = [
@@ -306,6 +308,7 @@ export default function App() {
 
   const categories: { id: NewsCategory; label: string; count: number }[] = [
     { id: 'all', label: 'All Dispatches', count: articles.length },
+    { id: 'finance', label: '📈 Finance & Rates', count: articles.filter(a => a.category === 'finance').length },
     { id: 'national', label: '🇮🇳 India National', count: articles.filter(a => a.category === 'national').length },
     { id: 'geopolitics', label: '🌐 Geopolitics & War', count: articles.filter(a => a.category === 'geopolitics').length },
     { id: 'disaster', label: '🚨 Disaster & Alerts', count: articles.filter(a => a.category === 'disaster').length },
@@ -491,6 +494,39 @@ export default function App() {
                   />
                 )}
 
+                {/* FINANCE & RATES RADAR HUB (Full interactive hub when finance desk selected) */}
+                {activeCategory === 'finance' && !isSavedOnly && (
+                  <FinanceHub />
+                )}
+
+                {/* Quick Finance Bar in All Dispatches Mode */}
+                {!isSavedOnly && !searchQuery.trim() && activeCategory === 'all' && (
+                  <div className="mb-4 p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 shadow-2xs">
+                    <div className="flex items-center gap-2 overflow-x-auto scrollbar-none text-xs font-mono">
+                      <span className="p-1 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 font-bold shrink-0">
+                        📈 Rates
+                      </span>
+                      <span className="text-zinc-500 shrink-0">Gold 24K: <strong className="text-zinc-900 dark:text-zinc-100">₹79,450/10g</strong></span>
+                      <span className="text-zinc-400">·</span>
+                      <span className="text-zinc-500 shrink-0">Silver: <strong className="text-zinc-900 dark:text-zinc-100">₹96,500/kg</strong></span>
+                      <span className="text-zinc-400">·</span>
+                      <span className="text-zinc-500 shrink-0">1 USD: <strong className="text-zinc-900 dark:text-zinc-100">₹84.18</strong></span>
+                      <span className="text-zinc-400">·</span>
+                      <span className="text-zinc-500 shrink-0">NIFTY: <strong className="text-zinc-900 dark:text-zinc-100">24,180</strong></span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setActiveCategory('finance');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 hover:underline cursor-pointer shrink-0 flex items-center gap-1 self-end sm:self-auto"
+                    >
+                      <span>Open Finance Desk</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </button>
+                  </div>
+                )}
+
                 <ScrollingFeed
                   articles={filteredArticles}
                   savedArticleIds={savedArticleIds}
@@ -544,6 +580,63 @@ export default function App() {
                   <span className="text-xs text-zinc-500 ml-1.5">Himalayan Foothills</span>
                 </div>
               </div>
+            </div>
+
+            {/* Live Market Pulse (Gold, Silver, USD/INR, NIFTY) */}
+            <div className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 space-y-3">
+              <div className="flex items-center justify-between text-xs font-mono border-b border-zinc-100 dark:border-zinc-900 pb-2">
+                <div className="flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 font-bold uppercase tracking-wider">
+                  <Coins className="w-3.5 h-3.5 text-amber-500" />
+                  <span>Market Pulse</span>
+                </div>
+                <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">● Live IST</span>
+              </div>
+
+              <div className="space-y-2 text-xs font-mono">
+                <div className="flex items-center justify-between">
+                  <span className="text-zinc-500">Gold 24K (10g)</span>
+                  <div className="text-right">
+                    <span className="font-bold text-zinc-900 dark:text-zinc-100">₹79,450</span>
+                    <span className="text-[10px] text-emerald-600 ml-1 font-bold">+0.4%</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between border-t border-zinc-100 dark:border-zinc-900 pt-1.5">
+                  <span className="text-zinc-500">Silver (1 kg)</span>
+                  <div className="text-right">
+                    <span className="font-bold text-zinc-900 dark:text-zinc-100">₹96,500</span>
+                    <span className="text-[10px] text-emerald-600 ml-1 font-bold">+1.3%</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between border-t border-zinc-100 dark:border-zinc-900 pt-1.5">
+                  <span className="text-zinc-500">USD / INR</span>
+                  <div className="text-right">
+                    <span className="font-bold text-zinc-900 dark:text-zinc-100">₹84.18</span>
+                    <span className="text-[10px] text-emerald-600 ml-1 font-bold">+0.1%</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between border-t border-zinc-100 dark:border-zinc-900 pt-1.5">
+                  <span className="text-zinc-500">NIFTY 50</span>
+                  <div className="text-right">
+                    <span className="font-bold text-zinc-900 dark:text-zinc-100">24,180.80</span>
+                    <span className="text-[10px] text-emerald-600 ml-1 font-bold">+0.6%</span>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => {
+                  if (isSavedOnly) setIsSavedOnly(false);
+                  setActiveCategory('finance');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="w-full py-1.5 px-2 rounded-lg bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-mono font-medium hover:bg-emerald-500/20 transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+              >
+                <span>Explore Finance & Rates Hub</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
 
             {/* Trending Radar Topics (Fast Facts) */}

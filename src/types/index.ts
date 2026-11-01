@@ -1,4 +1,4 @@
-export type NewsCategory = 'all' | 'world' | 'ai' | 'local' | 'national' | 'gaming' | 'personal' | 'geopolitics' | 'disaster';
+export type NewsCategory = 'all' | 'world' | 'ai' | 'local' | 'national' | 'finance' | 'gaming' | 'personal' | 'geopolitics' | 'disaster';
 
 export type VerificationStatus = 'govt_verified' | 'reputable_media' | 'trending_unverified' | 'emergency_alert';
 
@@ -114,4 +114,58 @@ export interface ContactRequest {
   adminNotes?: string;
 }
 
+// ================= FINANCE DESK DATA STRUCTURES =================
+export interface StockQuote {
+  symbol: string;
+  name: string;
+  price: number;
+  currency: string;
+  change: number;
+  changePercent: number;
+  market: 'NSE' | 'BSE' | 'NASDAQ' | 'NYSE';
+  dayHigh: number;
+  dayLow: number;
+  volume: string;
+  category: 'Indian Bluechips' | 'Global Tech' | 'Key Index';
+  sparkline: number[]; // mini trend visual
+}
+
+export interface CommodityRate {
+  id: string;
+  name: string;
+  unit: string;
+  priceINR: number;
+  change: number;
+  changePercent: number;
+  purityOrSpec?: string;
+  cityBenchmark: string;
+  trend: 'up' | 'down' | 'flat';
+  description: string;
+}
+
+export interface CurrencyRate {
+  code: string;
+  name: string;
+  symbol: string;
+  flag: string;
+  rateToINR: number; // e.g. 1 USD = 84.18 INR
+  change24h: number;
+  changePercent: number;
+  studentTip: string;
+}
+
+export interface IPOItem {
+  id: string;
+  companyName: string;
+  sector: string;
+  priceBand: string;
+  issueSize: string;
+  gmpPercent: number; // e.g. +42%
+  gmpPrice: number; // e.g. ₹125
+  dates: string;
+  status: 'Open Now' | 'Upcoming' | 'Listing Soon' | 'Recently Listed';
+  minInvestment: string;
+  lotSize: number;
+  rating: 'Strong Demand' | 'Moderate' | 'Cautious';
+}
 

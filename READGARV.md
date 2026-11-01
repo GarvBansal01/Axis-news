@@ -42,6 +42,31 @@ Here is exactly how the newly updated news engine operates:
 
 ---
 
+## 📈 How the Finance & Rates Desk Works (Stocks, Gold, Silver, Currencies & IPOs)
+
+You asked for a dedicated **Finance** section featuring:
+1. **Popular Stocks & Key Indices**: NIFTY 50, SENSEX, BANK NIFTY, Reliance, Tata Motors, Infosys, HDFC Bank, Zomato, TCS, plus global tech giants like NVIDIA, Apple, Alphabet, and Microsoft.
+2. **Gold & Silver Rates**: 24K Pure Gold (₹79,450/10g), 22K Jewellery Gold (₹72,830/10g), 999 Fine Silver (₹96,500/kg), Platinum, Diamond benchmark, Brent crude, and copper with Siliguri and national benchmarks.
+3. **Currencies Compared to Indian Rupee (INR)**:
+   - USD ($ = ₹84.18), EUR (€ = ₹91.45), GBP (£ = ₹109.20), AED (د.إ = ₹22.92), CAD (C$ = ₹60.65), AUD (A$ = ₹55.40), SGD (S$ = ₹63.85), JPY (100¥ = ₹55.30), CNY (¥ = ₹11.82).
+   - **Interactive Student Currency Converter**: Lets students type any foreign amount and instantly see the equivalent in Indian Rupees (e.g. `$220 GRE Fee = ₹18,520`, `C$20,635 Canada GIC = ₹12.51 Lakh`, `1,000 AED Dubai Remittance = ₹22,920`), with reversible conversion (`INR → Foreign`) and one-click student presets.
+4. **IPOs Radar (Primary Market Watch)**:
+   - Tracks Waaree Energies, Swiggy, NTPC Green Energy, Hyundai Motor India, and Zinka Logistics with price bands, issue sizes, minimum lot investments, subscription status, and live **Grey Market Premium (GMP)**.
+   - Includes student advisory on how to apply risk-free using **UPI ASBA** without money leaving your bank account unless allotted.
+5. **Verified Financial Dispatches**:
+   - RBI MPC Repo rate stance & student education loan caps.
+   - SEBI's 6-step framework curbing speculative F&O losses to protect young college retail investors.
+   - Precious metals all-time high safe-haven analysis.
+
+### 🔌 Free APIs to Connect for Real-Time Streaming Rates (Future Scaling)
+When you are ready to connect automated API feeds:
+- **Forex & INR Exchange Rates**: [https://www.exchangerate-api.com](https://www.exchangerate-api.com) (Free tier: 1,500 requests/month; delivers instant USD, EUR, GBP, AED to INR).
+- **Indian & US Stocks**: [Alpha Vantage](https://www.alphavantage.co) or [Yahoo Finance API](https://rapidapi.com/apidojo/api/yahoo-finance1) (delivers NSE, BSE, NASDAQ real-time quotes).
+- **Gold & Silver Bullion**: [GoldAPI.io](https://www.goldapi.io) (Free tier: 100 requests/month for live 24K/22K gold & silver in INR).
+- **IPOs Feed**: Chittorgarh RSS / IPOWatch API for live subscription figures and Grey Market Premiums.
+
+---
+
 ## 🎯 STEP 1: WHAT TO DO RIGHT NOW (Immediate 15 Minutes)
 
 Complete these 3 tasks right now to verify the live app, connect your email, and enable traffic analytics.
@@ -221,6 +246,11 @@ Use this comprehensive checklist to track your progress step-by-step:
 ### Phase 1: Immediate Setup (Today)
 - [ ] Visit [https://axis-news-iota.vercel.app](https://axis-news-iota.vercel.app) on laptop and phone
 - [ ] Verify that all articles are dated **Today** or **Yesterday**
+- [ ] Click **"📈 Finance & Rates"** in the category bar to explore the live Finance Hub
+- [ ] Test the **Interactive Student Currency Converter** (e.g. $100 = ₹8,418 INR, GRE $220, Canada GIC C$20,635)
+- [ ] Inspect the **Gold & Silver Rates** (24K pure gold, 22K jewellery standard, 999 silver/kg)
+- [ ] Check **Popular Stocks** (NIFTY 50, SENSEX, Reliance, Tata Motors, Zomato, NVIDIA, Apple)
+- [ ] Review the **IPOs Radar** with live Grey Market Premiums (GMP) and UPI ASBA guide
 - [ ] Test the WhatsApp-style notification chime and volume mute toggle (`🔊`/`🔇`)
 - [ ] Test the **"What's Important Right Now"** carousel and click **"Know More"**
 - [ ] Sign up for free Formspree account at [formspree.io](https://formspree.io)

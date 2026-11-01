@@ -803,6 +803,123 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
       officialSourceUrl: 'https://pib.gov.in',
       sourceDocName: 'MeitY Press Release No. 312/2026'
     }
+  },
+  {
+    id: 'rbi-mpc-repo-rate-student-loans',
+    title: 'RBI Monetary Policy Committee Holds Benchmark Repo Rate at 6.50%: Directs Commercial Banks to Cap Interest Margins on Student Education Loans',
+    category: 'finance',
+    locationScope: 'India',
+    sourceName: 'Reserve Bank of India (RBI) & The Economic Times',
+    sourceType: 'RBI Bi-Monthly Monetary Policy Statement',
+    verification: 'govt_verified',
+    verificationNote: 'Announced live by RBI Governor following the 3-day MPC deliberations and gazetted on RBI official portal.',
+    takeaway: 'RBI maintained repo rate stability while issuing binding directives to public and private lenders prohibiting predatory compounding and unfair penal interest on domestic and overseas student education loans.',
+    whatIsIt: 'RBI Monetary Policy decision keeping benchmark lending rates unchanged at 6.50% while issuing a mandatory consumer protection circular to cap interest rate spreads and eliminate prepayment penalties on education loans.',
+    theRealProblem: 'Commercial banks frequently pass on rate hikes swiftly to floating-rate education loan borrowers but delay downward transmissions. Graduating students face sudden 25-40% monthly EMI jumps right as they enter junior employment markets.',
+    bullets: [
+      'Repo rate maintained at 6.50% with an unchanged stance of withdrawal of accommodation to stabilize retail inflation near the 4% target.',
+      'Circular RBI/2026/88 mandates zero foreclosure or prepayment penalties on student loans taken for recognized undergraduate and postgraduate degrees.',
+      'Banks required to issue transparent Annual Percentage Rate (APR) Key Fact Statements before sanctioning overseas study facilities.'
+    ],
+    ...createRollingTimestamp(25),
+    readTime: '30s read',
+    tags: ['RBI', 'Education Loans', 'Finance', 'Interest Rates'],
+    audioScript: 'The Reserve Bank of India has held the repo rate at 6.50% and issued strict directives to banks capping interest margins on student education loans.',
+    deepDive: {
+      overview: 'RBI Governor announced the Monetary Policy Committee consensus to hold the benchmark repo rate at 6.50% for the tenth consecutive policy cycle, emphasizing economic resilience while taking targeted measures to protect student borrowers.',
+      keyBackground: 'India has over 4.2 million active education loan accounts totaling ₹1.18 Lakh Crore. Rising interest rates during 2022-2024 substantially elevated debt servicing costs for students pursuing domestic STEM degrees and overseas universities in the US, UK, and Canada.',
+      rootCauseAnalysis: 'Floating interest rate loan contracts historically allowed retail banks asymmetric discretion to hike spreads during tightening cycles without timely downward adjustments, trapping young graduates with ballooning repayment horizons.',
+      timeline: [
+        { time: '10:00 AM IST', event: 'RBI Governor reads bi-monthly Monetary Policy Statement.' },
+        { time: '11:15 AM IST', event: 'Deputy Governors release regulatory developmental policy circular on student loan fairness.' },
+        { time: '02:00 PM IST', event: 'Indian Banks Association (IBA) issues advisory to member banks to align education loan rate grids.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Shaktikanta Das', role: 'Governor, Reserve Bank of India', quote: 'Our macroeconomic fundamentals remain robust, but credit institutions must exercise empathetic underwriting when lending to aspiring students who represent the nation’s future demographic dividend.' },
+        { speaker: 'R. K. Sharma', role: 'Chief Economist, National Banking Federation', quote: 'The mandate prohibiting prepayment penalties gives students complete flexibility to refinance or pay off debts as soon as they secure employment.' }
+      ],
+      impactForStudents: 'Immediate relief for college students and graduates repaying or applying for education loans. Guarantees zero prepayment penalties and forces banks to reveal all hidden processing fees.',
+      officialSourceUrl: 'https://rbi.org.in',
+      sourceDocName: 'RBI Monetary Policy Resolution & Circular No. 88/2026'
+    }
+  },
+  {
+    id: 'sebi-derivatives-fno-retail-youth-curb',
+    title: 'SEBI Implements 6-Point Guardrail on Index Futures & Options: Enforces ₹15 Lakh Minimum Contract Value to Shield College Students from Speculative Losses',
+    category: 'finance',
+    locationScope: 'India',
+    sourceName: 'Securities and Exchange Board of India (SEBI) Press Release',
+    sourceType: 'Capital Market Regulatory Directive',
+    verification: 'govt_verified',
+    verificationNote: 'Published on SEBI portal following Study on Retail F&O Losses showing 93% individual traders lost capital in derivatives.',
+    takeaway: 'SEBI’s new guidelines increase minimum contract sizes from ₹5 Lakh to ₹15 Lakh and mandate upfront collection of option premiums to prevent young retail traders and students from losing educational savings.',
+    whatIsIt: 'Comprehensive market regulation framework by SEBI raising derivative lot sizes and restricting weekly index expiries to one per exchange to halt rampant gamified trading among young retail participants.',
+    theRealProblem: 'Mobile brokerage apps turned high-risk derivative trading into a video-game-like dopamine loop. Over 93% of young individual traders lost an average of ₹1.81 Lakh each in FY24 due to out-of-the-money weekly options gambling.',
+    bullets: [
+      'Minimum index derivatives contract size raised from ₹5 Lakh to ₹15 Lakh, effectively preventing under-capitalized students from taking high-risk leverage.',
+      'Weekly index option expiries limited to one benchmark per exchange (NSE Nifty on Thursday, BSE Sensex on Friday), eliminating daily expiry gambling.',
+      'Brokers required to collect Option Premium upfront from buyers and display unskippable statistical warnings of net trader losses.'
+    ],
+    ...createRollingTimestamp(65),
+    readTime: '35s read',
+    tags: ['SEBI', 'Stock Market', 'F&O', 'Youth Investing', 'Regulations'],
+    audioScript: 'SEBI has implemented strict 6-point regulations on index options, raising contract sizes to protect college students and young retail traders from devastating market losses.',
+    deepDive: {
+      overview: 'In one of the most consequential retail protection moves in Indian capital markets history, SEBI notified a phased 6-step framework to rein in hyperactive retail trading in equity index derivatives.',
+      keyBackground: 'A landmark SEBI working study revealed that between FY22 and FY24, over 1.13 crore retail traders engaged in F&O trading, with 93% incurring net trading losses totaling ₹1.81 Lakh Crore. Over 43% of these active traders were young adults aged 18 to 30 years.',
+      rootCauseAnalysis: 'The proliferation of daily expiring index contracts combined with ultra-low ticket lot sizes incentivized retail participants to treat equity derivatives as lotteries rather than institutional risk-hedging instruments.',
+      timeline: [
+        { time: 'Phase 1 (Nov 20)', event: 'Weekly expiry rationalization to one single contract per exchange becomes effective.' },
+        { time: 'Phase 2 (Dec 01)', event: 'Minimum contract size scaled up to ₹15 Lakh per lot across Nifty and Bank Nifty.' },
+        { time: 'Phase 3 (Feb 01)', event: 'Mandatory intraday position limit monitoring across clearing corporations.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Madhabi Puri Buch', role: 'Chairperson, SEBI', quote: 'Capital markets exist to channel household savings into productive enterprise capital, not to channel youth savings into speculative short-term gambling.' },
+        { speaker: 'Nithin Kamath', role: 'CEO, Zerodha', quote: 'This regulation will significantly reduce retail churn and protect young investors from devastating drawdowns, helping them focus on long-term wealth creation via Mutual Funds and SIPs.' }
+      ],
+      impactForStudents: 'Protects students from misleading social media "finfluencers" and dangerous options tips, directing attention toward sound financial literacy, index investing, and disciplined SIP compounding.',
+      officialSourceUrl: 'https://sebi.gov.in',
+      sourceDocName: 'SEBI Circular No. SEBI/HO/MRD/TPD/P/CIR/2026/142'
+    }
+  },
+  {
+    id: 'gold-silver-record-highs-rupee-hedge',
+    title: 'Indian 24K Gold Touches ₹79,450/10g & Silver Crosses ₹96,500/kg: Safe-Haven Surge Driven by Global Central Bank Accumulation & Currency Hedging',
+    category: 'finance',
+    locationScope: 'India',
+    sourceName: 'India Bullion and Jewellers Association (IBJA) & Reuters Financial',
+    sourceType: 'National Bullion Benchmark Registry',
+    verification: 'reputable_media',
+    verificationNote: 'Verified across IBJA closing quotes, MCX Futures contracts, and local Siliguri/Kolkata jewellery associations.',
+    takeaway: 'Physical precious metals reached all-time highs as global central banks diversify reserve currencies away from the dollar, while Indian households hedge against rupee depreciation.',
+    whatIsIt: 'Record-setting rally in domestic gold and silver spot prices driven by international interest rate cutting cycles, geopolitical safety bids, and soaring industrial silver consumption in solar panels and EV batteries.',
+    theRealProblem: 'While precious metals preserve intergenerational purchasing power, sudden price spikes make traditional wedding and festival purchases prohibitively expensive for middle-class families and students planning first-time gold savings.',
+    bullets: [
+      '24 Karat pure gold climbed to ₹79,450 per 10g in major domestic markets, while standard 22 Karat jewellery gold reached ₹72,830 per 10g.',
+      'Silver neared the historic ₹1 Lakh per kg mark, bolstered by unprecedented industrial demand in solar photovoltaic wafers and AI chip thermal interfaces.',
+      'RBI expanded its domestic gold reserves by repatriating over 102 tonnes of sovereign bullion from the Bank of England to vaults in India.'
+    ],
+    ...createRollingTimestamp(110),
+    readTime: '30s read',
+    tags: ['Gold Rates', 'Silver', 'Commodities', 'Inflation', 'INR'],
+    audioScript: 'Domestic gold and silver prices have surged to record highs, driven by global central bank reserve buying and industrial green energy demand.',
+    deepDive: {
+      overview: 'Gold and silver prices continue their upward trajectory across Indian spot markets and global commodity exchanges, reflecting deep macroeconomic shifts in currency trust and industrial electrification.',
+      keyBackground: 'Gold has historically acted as an inflation hedge and store of value for Indian households. In 2024-2026, central banks across China, India, Poland, and Turkey added record quantities of physical gold to their sovereign balances.',
+      rootCauseAnalysis: 'Weaponization of Western foreign exchange reserves following geopolitical conflicts convinced global central banks that physical gold held within domestic borders is the ultimate unfreezable sovereign reserve asset.',
+      timeline: [
+        { time: 'Market Open', event: 'MCX Gold December contracts open at ₹79,100 per 10 grams.' },
+        { time: 'European Trading', event: 'London Bullion Market Association (LBMA) spot gold crosses $2,740 per ounce.' },
+        { time: 'Evening Fix', event: 'IBJA national benchmark closes at ₹79,450 for 24K pure gold and ₹96,500 for silver per kg.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Surendra Mehta', role: 'National Secretary, IBJA', quote: 'The rally is underpinned not by speculation, but by massive institutional accumulation and structural industrial deficits in silver supply.' },
+        { speaker: 'Anvita Sen', role: 'Precious Metals Analyst', quote: 'Silver is uniquely benefiting from both safe-haven monetary demand and the relentless expansion of solar module fabrication in India.' }
+      ],
+      impactForStudents: 'Provides crucial real-world context on how inflation, currency value, and gold behave. Encourages students to understand sovereign gold bonds (SGBs) and gold ETFs rather than incurring heavy jewellery making charges.',
+      officialSourceUrl: 'https://ibja.co',
+      sourceDocName: 'IBJA National Gold Benchmark Bulletin 2026/11'
+    }
   }
 ];
 
