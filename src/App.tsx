@@ -307,9 +307,30 @@ export default function App() {
   }, [activeCategory]);
 
   // Manual Feed Sync Button Handler
-  const handleRefreshFeed = () => {
+  const handleRefreshFeed = async () => {
     setIsRefreshing(true);
     setSecondsToNextRefresh(60);
+    
+    try {
+      const liveItems = await fetchLiveRealTimeNews(activeCategory);
+      if (liveItems && liveItems.length > 0) {
+        setArticles((prev) => {
+          const existingTitles = new Set(prev.map((a) => a.title.toLowerCase().trim()));
+          const novelItems = liveItems.filter(
+            (item) => !existingTitles.has(item.title.toLowerCase().trim())
+          );
+          if (novelItems.length > 0) {
+            setNewDispatchAlert(`⚡ Wire Synced: ${novelItems.length} fresh breaking reports loaded`);
+            setTimeout(() => setNewDispatchAlert(null), 4000);
+            return [...novelItems, ...prev];
+          }
+          return prev;
+        });
+      }
+    } catch (e) {
+      console.debug('Refresh feed wire note:', e);
+    }
+
     triggerLiveMinuteUpdate();
     setArticles((prev) => {
       return prev.map((art) => {
@@ -368,14 +389,27 @@ export default function App() {
     });
   }, [articles, activeCategory, isSavedOnly, savedArticleIds, searchQuery]);
 
-  // Top Critical Spotlight Articles (Pilot emergency landing, Russia-Ukraine war, Cyclone alert, AI Leaks)
+  // Top Critical Spotlight Articles (Dynamically prioritized from real live dispatches)
   const topCriticalArticles = useMemo(() => {
-    return [
-      articles.find((a) => a.id === 'pilot-attacked-safe-emergency-landing') || articles[0],
-      articles.find((a) => a.id === 'russia-ukraine-high-tech-frontline-grain-pact') || articles[1],
-      articles.find((a) => a.id === 'bay-of-bengal-supercyclone-evacuation-zero-casualties') || articles[2],
-      articles.find((a) => a.id === 'frontier-ai-researcher-x-leak-verified') || articles[3]
-    ].filter(Boolean) as NewsArticle[];
+    const disaster = articles.find((a) => a.category === 'disaster');
+    const national = articles.find((a) => a.category === 'national');
+    const geopolitics = articles.find((a) => a.category === 'geopolitics');
+    const ai = articles.find((a) => a.category === 'ai');
+
+    const topList: NewsArticle[] = [];
+    if (disaster) topList.push(disaster);
+    if (national) topList.push(national);
+    if (geopolitics) topList.push(geopolitics);
+    if (ai) topList.push(ai);
+
+    for (const art of articles) {
+      if (!topList.some((t) => t.id === art.id)) {
+        topList.push(art);
+      }
+      if (topList.length >= 4) break;
+    }
+
+    return topList.slice(0, 4);
   }, [articles]);
 
   const categories: { id: NewsCategory; label: string; count: number }[] = [
