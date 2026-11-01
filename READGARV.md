@@ -274,6 +274,100 @@ Set up an Instagram page and publish 3 daily carousels using content straight fr
 
 ---
 
+## 📡 STEP 6: HOW TO CONNECT TWITTER/X & REAL-TIME NEWS APIS
+
+You asked:
+> *"news are not being updates you can keep checking twitter or x so that you know the news and for adding that tell me what to do and how to give you what apis and all"*
+
+Here is the complete, honest truth about how Twitter/X and real-time news APIs work today, what is 100% free vs paid, and the exact step-by-step instructions on what to do.
+
+---
+
+### 1. The Reality of Twitter/X API in 2026
+
+When Elon Musk acquired Twitter (X), they completely changed the developer API pricing:
+- **Free Tier on X**: Only allows **writing/posting** tweets (0 read requests per month). You cannot search tweets or fetch timelines for free.
+- **Basic Tier on X**: Costs **$100 / month (~₹8,400/month)** to read tweets or search keywords.
+- For an independent student project, paying ₹8,400 every month is unnecessary!
+
+Because of this, we designed AXIS with a **smart multi-tiered news pipeline**:
+
+| News Source | Cost | Setup Time | What It Gives You | Status in AXIS |
+| :--- | :--- | :--- | :--- | :--- |
+| **Google News RSS Wire** | **100% Free** | 0 seconds (Already active!) | Real-time breaking headlines for India, Siliguri, Tech/AI, Russia-Ukraine, and Disasters | **Active right now out of the box** |
+| **GNews.io API** | **Free** (100 calls/day) | 60 seconds | Clean JSON breaking news from top verified journalistic wires | **Supported & Ready** |
+| **NewsData.io API** | **Free** (200 credits/day) | 2 minutes | Multi-language breaking news across 150+ countries | **Supported & Ready** |
+| **Apify Twitter/X Scraper** | **Free Tier** ($5/mo credit) | 3 minutes | Pulls live tweets from handles like `@ANI`, `@NDTV`, `@OpenAI` without paying $100 to X | **Supported via Webhook** |
+| **Official X API v2** | **$100 / month** | 10 minutes | Official X developer bearer token for search & timelines | **Supported if you have a key** |
+
+---
+
+### 2. How to Get Your Free News API Keys (Step-by-Step)
+
+#### Option A: GNews.io (Recommended — Free & Takes 60 Seconds)
+1. Go to [https://gnews.io](https://gnews.io) and click **"Get API Key Free"**.
+2. Sign up with your Google account or email.
+3. Once logged in, you will see your **API Key** on the dashboard (looks like `a1b2c3d4e5f6...`).
+4. Copy this key. It gives you **100 free requests per day** of curated breaking news headlines.
+
+#### Option B: NewsData.io (Alternative Free Source)
+1. Visit [https://newsdata.io](https://newsdata.io) and register for a free account.
+2. In your dashboard, copy your **API Key** (e.g. `pub_...`).
+3. NewsData gives you 200 credits per day across Indian and global news.
+
+#### Option C: Official Twitter/X Developer Bearer Token (If You Have One)
+1. Go to [https://developer.x.com/en/portal/dashboard](https://developer.x.com/en/portal/dashboard).
+2. Create a Project named `AXIS-News-Intelligence`.
+3. Under **User Authentication Settings**, generate your **Bearer Token** (`AAAAAAAAAAAAAAAAAAAAA...`).
+4. Copy the Bearer Token.
+
+---
+
+### 3. How to Give the API Keys to AXIS (3 Easy Ways)
+
+You can choose whichever way is easiest for you:
+
+#### Method 1: Directly in the Web App (Fastest & Zero Coding!)
+1. Open [https://axis-news-iota.vercel.app](https://axis-news-iota.vercel.app) on your laptop or phone.
+2. In the stream filter bar (top right, next to the green 1-Min Radar badge), click the blue **`📡 Live APIs`** button.
+3. An in-app settings modal will open:
+   - Paste your **GNews API Key** into the GNews field.
+   - Or paste your **Twitter (X) Bearer Token** into the X field.
+4. Click **"Save API Keys"**.
+5. Done! The keys are saved directly into your browser's secure `localStorage`, and AXIS will immediately begin streaming live headlines from your provider!
+
+#### Method 2: In Vercel (For All Users Visiting Your Site Globally)
+If you want every student who visits `axis-news-iota.vercel.app` to see live news without needing their own key:
+1. Log in to [https://vercel.com/dashboard](https://vercel.com/dashboard).
+2. Click on your project: **`axis-news`**.
+3. Go to **Settings** → **Environment Variables** (left sidebar).
+4. Add the following variables:
+   - **Key**: `VITE_GNEWS_API_KEY`  
+     **Value**: `your_gnews_api_key_here`
+   - **Key**: `VITE_X_BEARER_TOKEN` (optional)  
+     **Value**: `your_x_bearer_token_here`
+5. Click **Save**.
+6. Go to **Deployments** → Click **"Redeploy"** on the latest deployment.
+7. Now all visitors globally will automatically receive live news streaming from your keys!
+
+#### Method 3: In `.env.local` on Your Laptop (For Local Development)
+1. In your `Axis-news` folder on your laptop, create a file named `.env.local`:
+   ```bash
+   VITE_GNEWS_API_KEY=your_actual_key_here
+   VITE_X_BEARER_TOKEN=your_token_here
+   ```
+2. Restart your local dev server (`npm run dev`).
+
+---
+
+### 4. What Happens Out of the Box Without Any Keys?
+- You **do NOT need to worry** if you don't have keys right now.
+- AXIS has a built-in **Google News Real-Time RSS Wire** running via `rss2json` that operates **100% free with zero configuration**.
+- Every 60 seconds, the 1-Minute Radar checks the live wires. If fresh headlines are detected, AXIS automatically synthesizes them into structured dispatches with a 30s takeaway, incident timestamp, and 5W+1H factsheet, triggers the gentle notification chime, and shows a `#LiveRadar` banner.
+- If network connection drops or no new remote headline is available, it smoothly rotates through the verified high-priority student dispatches so the app never shows a blank screen or error.
+
+---
+
 ## 📋 MASTER TO-DO CHECKLIST (Check Off as You Complete!)
 
 Use this comprehensive checklist to track your progress step-by-step:
@@ -288,6 +382,7 @@ Use this comprehensive checklist to track your progress step-by-step:
 - [ ] Review the **IPOs Radar** with live Grey Market Premiums (GMP) and UPI ASBA guide
 - [ ] Test the WhatsApp-style notification chime and volume mute toggle (`🔊`/`🔇`)
 - [ ] Test the **"What's Important Right Now"** carousel and click **"Know More"**
+- [ ] Click **"📡 Live APIs"** in the stream bar to test the Live News & Twitter settings modal
 - [ ] Sign up for free Formspree account at [formspree.io](https://formspree.io)
 - [ ] Insert Formspree Form ID in `src/components/ContactModal.tsx`
 - [ ] Enable free Web Analytics in your Vercel Dashboard

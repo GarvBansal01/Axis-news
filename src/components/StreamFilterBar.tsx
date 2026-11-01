@@ -13,6 +13,7 @@ interface StreamFilterBarProps {
   viewMode: 'stream' | 'flashcards';
   setViewMode: (mode: 'stream' | 'flashcards') => void;
   secondsToNextRefresh: number;
+  onOpenApiConfig?: () => void;
 }
 
 export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
@@ -24,7 +25,8 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
   lastUpdatedText,
   viewMode,
   setViewMode,
-  secondsToNextRefresh
+  secondsToNextRefresh,
+  onOpenApiConfig
 }) => {
   const [isMuted, setIsMuted] = useState<boolean>(() => isAudioChimeMuted());
 
@@ -129,6 +131,17 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
             <span className="hidden md:inline font-semibold">1-Min Radar:</span>
             <span>{secondsToNextRefresh}s</span>
           </div>
+
+          {/* Live APIs & Twitter/X Config Action */}
+          {onOpenApiConfig && (
+            <button
+              onClick={onOpenApiConfig}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-md border border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/20 text-[10px] font-mono font-semibold text-blue-700 dark:text-blue-400 transition-colors cursor-pointer"
+              title="Configure live Twitter (X) & News APIs"
+            >
+              <span>📡 Live APIs</span>
+            </button>
+          )}
         </div>
       </div>
 
@@ -139,6 +152,10 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 px-2 py-0.5 rounded-md bg-zinc-200/80 dark:bg-zinc-800 border border-zinc-300/60 dark:border-zinc-700/60">
             {categories.find((c) => c.id === activeCategory)?.label || 'All Dispatches'}
           </span>
+        </div>
+        <div className="flex items-center gap-2 text-[11px] text-zinc-400">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          <span>Real-Time Stream Active</span>
           <span className="text-zinc-400 text-[11px]">({totalCount} briefs)</span>
           <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[10px] font-mono border border-emerald-500/20 font-medium" title="News is strictly from Today & Yesterday. Anything older than 24 hours is automatically purged.">
             🕒 Strictly Today & Yesterday (24H Auto-Purge)

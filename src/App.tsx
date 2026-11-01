@@ -15,6 +15,8 @@ import { playAudioChime } from './utils/audioPlayer';
 import { FlashcardDeck } from './components/FlashcardDeck';
 import { ImportantBriefingHero } from './components/ImportantBriefingHero';
 import { FinanceHub } from './components/FinanceHub';
+import { ApiConfigModal } from './components/ApiConfigModal';
+import { fetchLiveRealTimeNews, getLiveApiStatus } from './services/liveNewsService';
 import { 
   Sparkles, 
   TrendingUp, 
@@ -73,6 +75,7 @@ export default function App() {
   const [isNotificationDrawerOpen, setIsNotificationDrawerOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isApiModalOpen, setIsApiModalOpen] = useState(false);
   const [unreadAlertsCount, setUnreadAlertsCount] = useState<number>(3);
 
   const [viewMode, setViewMode] = useState<'stream' | 'flashcards'>('stream');
@@ -186,8 +189,77 @@ export default function App() {
     setFeedbacks((prev) => [fb, ...prev]);
   };
 
-  // Automated 60-Second Live Radar Auto-Update Engine
-  const triggerLiveMinuteUpdate = () => {
+  // Initial mount: Fetch fresh real-time RSS / GNews dispatches to prepend to feed
+  useEffect(() => {
+    let isMounted = true;
+    fetchLiveRealTimeNews('all')
+      .then((liveItems) => {
+        if (!isMounted || !liveItems || liveItems.length === 0) return;
+        setArticles((prev) => {
+          const existingTitles = new Set(prev.map((a) => a.title.toLowerCase().trim()));
+          const novelItems = liveItems.filter(
+            (item) => !existingTitles.has(item.title.toLowerCase().trim())
+          );
+          if (novelItems.length > 0) {
+            return [...novelItems, ...prev];
+          }
+          return prev;
+        });
+      })
+      .catch((err) => {
+        console.debug('Initial live news wire fetch note:', err);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Automated 60-Second Live Radar Auto-Update Engine (Pulls genuine live RSS/API news or rolls queue)
+  const triggerLiveMinuteUpdate = async () => {
+    try {
+      // 1. Attempt to fetch genuine live breaking news from Google News RSS Wire / GNews / X
+      const liveItems = await fetchLiveRealTimeNews(activeCategory);
+      if (liveItems && liveItems.length > 0) {
+        let addedArticle: NewsArticle | null = null;
+        setArticles((prev) => {
+          const existingTitles = new Set(prev.map((a) => a.title.toLowerCase().trim()));
+          const novel = liveItems.find(
+            (item) => !existingTitles.has(item.title.toLowerCase().trim())
+          );
+          if (novel) {
+            addedArticle = novel;
+            return [novel, ...prev];
+          }
+          return prev;
+        });
+
+        if (addedArticle) {
+          const titleSummary = (addedArticle as NewsArticle).title.slice(0, 52);
+          setNewDispatchAlert(`⚡ Live Wire Alert: ${titleSummary}...`);
+          setUnreadAlertsCount((prev) => prev + 1);
+          playAudioChime();
+
+          if ('Notification' in window && Notification.permission === 'granted') {
+            try {
+              new Notification(`⚡ AXIS ALERT: ${(addedArticle as NewsArticle).locationScope}`, {
+                body: `${(addedArticle as NewsArticle).title}\n\n${(addedArticle as NewsArticle).takeaway}`,
+                icon: '/favicon.ico'
+              });
+            } catch (e) {
+              console.debug('Notification push note:', e);
+            }
+          }
+
+          setTimeout(() => setNewDispatchAlert(null), 5000);
+          return;
+        }
+      }
+    } catch (e) {
+      console.debug('Live wire fetch notice:', e);
+    }
+
+    // 2. Seamless Fallback: Roll the upcoming curated dispatches queue
     const template = UPCOMING_LIVE_DISPATCHES[incomingIndexRef.current % UPCOMING_LIVE_DISPATCHES.length];
     incomingIndexRef.current += 1;
 
@@ -232,7 +304,7 @@ export default function App() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [activeCategory]);
 
   // Manual Feed Sync Button Handler
   const handleRefreshFeed = () => {
@@ -445,6 +517,7 @@ export default function App() {
               viewMode={viewMode}
               setViewMode={setViewMode}
               secondsToNextRefresh={secondsToNextRefresh}
+              onOpenApiConfig={() => setIsApiModalOpen(true)}
             />
 
             {/* Live Incoming Dispatch Banner */}
@@ -779,6 +852,14 @@ export default function App() {
         feedbacks={feedbacks}
         onSubmitFeedback={handleSubmitFeedback}
         currentUserEmail={currentUser?.email}
+      />
+
+      <ApiConfigModal
+        isOpen={isApiModalOpen}
+        onClose={() => setIsApiModalOpen(false)}
+        onKeysUpdated={() => {
+          triggerLiveMinuteUpdate();
+        }}
       />
     </div>
   );
