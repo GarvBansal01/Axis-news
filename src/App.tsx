@@ -8,10 +8,11 @@ import { NotificationDrawer } from './components/NotificationDrawer';
 import { AuthModal } from './components/AuthModal';
 import { ContactModal } from './components/ContactModal';
 
-import { mockNewsArticles } from './data/mockNews';
+import { mockNewsArticles, UPCOMING_LIVE_DISPATCHES } from './data/mockNews';
 import { wisdomCollection } from './data/wisdomData';
 import { NewsArticle, NewsCategory, UserSession, AppFeedback } from './types';
 import { playAudioChime } from './utils/audioPlayer';
+import { FlashcardDeck } from './components/FlashcardDeck';
 import { 
   Sparkles, 
   TrendingUp, 
@@ -70,6 +71,10 @@ export default function App() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [unreadAlertsCount, setUnreadAlertsCount] = useState<number>(3);
+
+  const [viewMode, setViewMode] = useState<'stream' | 'flashcards'>('stream');
+  const [secondsToNextRefresh, setSecondsToNextRefresh] = useState<number>(60);
+  const incomingIndexRef = useRef<number>(0);
 
   // References
   const shlokaSectionRef = useRef<HTMLDivElement>(null);
@@ -178,55 +183,59 @@ export default function App() {
     setFeedbacks((prev) => [fb, ...prev]);
   };
 
-  // Live Refresh / Sync Feed simulation: brings in a fresh breaking dispatch
-  const handleRefreshFeed = () => {
-    setIsRefreshing(true);
+  // Automated 60-Second Live Radar Auto-Update Engine
+  const triggerLiveMinuteUpdate = () => {
+    const template = UPCOMING_LIVE_DISPATCHES[incomingIndexRef.current % UPCOMING_LIVE_DISPATCHES.length];
+    incomingIndexRef.current += 1;
+
+    const freshDispatch: NewsArticle = {
+      ...template,
+      id: `${template.id}-${Date.now()}`,
+      publishedAt: 'Just now (1-Min Radar)'
+    };
+
+    setArticles((prev) => [freshDispatch, ...prev]);
+    setNewDispatchAlert(`⚡ 1-Min Radar Alert: ${freshDispatch.title.slice(0, 52)}...`);
+    setUnreadAlertsCount((prev) => prev + 1);
     playAudioChime();
 
+    // Native browser push notification if enabled
+    if ('Notification' in window && Notification.permission === 'granted') {
+      try {
+        new Notification(`⚡ AXIS ALERT: ${freshDispatch.locationScope}`, {
+          body: `${freshDispatch.title}\n\n${freshDispatch.takeaway}`,
+          icon: '/favicon.ico'
+        });
+      } catch (e) {
+        console.debug('Notification error:', e);
+      }
+    }
+
+    setTimeout(() => setNewDispatchAlert(null), 5000);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSecondsToNextRefresh((prev) => {
+        if (prev <= 1) {
+          triggerLiveMinuteUpdate();
+          return 60;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Manual Feed Sync Button Handler
+  const handleRefreshFeed = () => {
+    setIsRefreshing(true);
+    setSecondsToNextRefresh(60);
+    triggerLiveMinuteUpdate();
     setTimeout(() => {
       setIsRefreshing(false);
-      const newLiveDispatch: NewsArticle = {
-        id: `live-${Date.now()}`,
-        title: 'Anthropic & Frontier Labs Release Open Safety Benchmark: Autonomous Agent Containment Tested',
-        category: 'ai',
-        locationScope: 'Global',
-        sourceName: 'AI Safety Institute & Nature Tech',
-        sourceType: 'Global Research Dispatch',
-        verification: 'reputable_media',
-        verificationNote: 'Peer-reviewed benchmark published in Nature Machine Intelligence.',
-        takeaway: 'Standardized automated containment evaluations now open for student researchers to test agent security without proprietary API access.',
-        bullets: [
-          'Evaluates multi-agent coding swarms against runaway loops and unauthorized shell execution.',
-          'Adopted by universities across 28 nations as standard capstone project grading criteria.',
-          'Provides free access to automated red-teaming datasets for engineering students.'
-        ],
-        publishedAt: 'Just now (Live)',
-        readTime: '30s read',
-        tags: ['AI Security', 'Open Benchmarks', 'Global'],
-        audioScript: '',
-        deepDive: {
-          overview: 'The new benchmark provides a transparent framework for measuring AI safety in autonomous coding environments.',
-          keyBackground: 'Previous safety metrics were proprietary and held behind closed corporate doors.',
-          timeline: [
-            { time: 'Just now', event: 'Mainline dataset opened on HuggingFace and ArXiv.' }
-          ],
-          keyQuotes: [
-            { speaker: 'Dr. Sarah Chen', role: 'Lead Benchmark Author', quote: 'True safety requires global open-source visibility.' }
-          ],
-          impactForStudents: 'Provides direct capstone project material for software students focusing on agent security.',
-          officialSourceUrl: 'https://nature.com',
-          sourceDocName: 'Nature Benchmark Release 2026.10'
-        }
-      };
-
-      setArticles((prev) => {
-        if (prev.some((a) => a.title.includes('Open Safety Benchmark'))) return prev;
-        return [newLiveDispatch, ...prev];
-      });
-
-      setNewDispatchAlert('⚡ New incoming dispatch received at top of stream.');
-      setTimeout(() => setNewDispatchAlert(null), 4000);
-    }, 700);
+    }, 600);
   };
 
   const scrollToContact = () => {
@@ -261,11 +270,14 @@ export default function App() {
 
   const categories: { id: NewsCategory; label: string; count: number }[] = [
     { id: 'all', label: 'All Dispatches', count: articles.length },
-    { id: 'ai', label: 'AI Frontier', count: articles.filter(a => a.category === 'ai').length },
-    { id: 'world', label: 'World Affairs', count: articles.filter(a => a.category === 'world').length },
-    { id: 'personal', label: 'Tech & Systems', count: articles.filter(a => a.category === 'personal').length },
-    { id: 'local', label: 'Siliguri & Regional', count: articles.filter(a => a.category === 'local').length },
-    { id: 'gaming', label: 'Gaming & Hardware', count: articles.filter(a => a.category === 'gaming').length }
+    { id: 'national', label: '🇮🇳 India National', count: articles.filter(a => a.category === 'national').length },
+    { id: 'geopolitics', label: '🌐 Geopolitics & War', count: articles.filter(a => a.category === 'geopolitics').length },
+    { id: 'disaster', label: '🚨 Disaster & Alerts', count: articles.filter(a => a.category === 'disaster').length },
+    { id: 'ai', label: '🤖 AI Frontier', count: articles.filter(a => a.category === 'ai').length },
+    { id: 'world', label: '🌍 World Affairs', count: articles.filter(a => a.category === 'world').length },
+    { id: 'local', label: '📍 Siliguri & Regional', count: articles.filter(a => a.category === 'local').length },
+    { id: 'personal', label: '💻 Tech & Systems', count: articles.filter(a => a.category === 'personal').length },
+    { id: 'gaming', label: '🎮 Gaming & Hardware', count: articles.filter(a => a.category === 'gaming').length }
   ];
 
   return (
@@ -359,7 +371,7 @@ export default function App() {
 
           {/* ================= CENTER COLUMN (MAIN STREAM) ================= */}
           <main className="flex-1 min-w-0 max-w-2xl">
-            {/* Stream Filter Bar (Search + Categories) */}
+            {/* Stream Filter Bar (Search + Categories + View Mode Switcher) */}
             <StreamFilterBar
               activeCategory={activeCategory}
               setActiveCategory={(cat) => {
@@ -369,14 +381,17 @@ export default function App() {
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
               totalCount={filteredArticles.length}
-              lastUpdatedText="12m ago"
+              lastUpdatedText={secondsToNextRefresh === 60 ? 'Just now' : `${60 - secondsToNextRefresh}s ago`}
+              viewMode={viewMode}
+              setViewMode={setViewMode}
+              secondsToNextRefresh={secondsToNextRefresh}
             />
 
             {/* Live Incoming Dispatch Banner */}
             {newDispatchAlert && (
-              <div className="my-3 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-800 dark:text-emerald-300 flex items-center justify-between animate-fade-in">
-                <span>{newDispatchAlert}</span>
-                <span className="text-[10px] text-emerald-600 dark:text-emerald-400">#Latest</span>
+              <div className="my-3 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-800 dark:text-emerald-300 flex items-center justify-between animate-fade-in shadow-2xs">
+                <span className="font-medium">{newDispatchAlert}</span>
+                <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold uppercase">#LiveRadar</span>
               </div>
             )}
 
@@ -393,13 +408,28 @@ export default function App() {
               </div>
             )}
 
-            {/* Continuous Scrolling Feed */}
-            <ScrollingFeed
-              articles={filteredArticles}
-              savedArticleIds={savedArticleIds}
-              onToggleSave={handleToggleSave}
-              onOpenDeepDive={(art) => setActiveDeepDiveArticle(art)}
-            />
+            {/* Dynamic View: ⚡ 30-Second Flashcards Deck vs Stream Feed */}
+            {viewMode === 'flashcards' ? (
+              <div className="py-2">
+                <div className="mb-2 p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs font-mono text-amber-800 dark:text-amber-300 flex items-center justify-between">
+                  <span className="font-bold">⚡ 30-Second Student Card Mode Active</span>
+                  <span className="text-[10px]">Navigate with ← / → keys or buttons</span>
+                </div>
+                <FlashcardDeck
+                  articles={filteredArticles}
+                  savedArticleIds={savedArticleIds}
+                  onToggleSave={handleToggleSave}
+                  onOpenDeepDive={(art) => setActiveDeepDiveArticle(art)}
+                />
+              </div>
+            ) : (
+              <ScrollingFeed
+                articles={filteredArticles}
+                savedArticleIds={savedArticleIds}
+                onToggleSave={handleToggleSave}
+                onOpenDeepDive={(art) => setActiveDeepDiveArticle(art)}
+              />
+            )}
 
             {/* BHAGAVAD GITA SHLOKA (PLACED AT THE LAST AS REQUESTED) */}
             <div ref={shlokaSectionRef} className="pt-8">
@@ -456,32 +486,42 @@ export default function App() {
 
               <div className="space-y-3 text-xs">
                 <div 
-                  onClick={() => setActiveDeepDiveArticle(articles[0])}
+                  onClick={() => setActiveDeepDiveArticle(articles.find(a => a.id === 'pilot-attacked-safe-emergency-landing') || articles[0])}
                   className="space-y-0.5 cursor-pointer hover:opacity-80 transition-opacity"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase">1 · Global AI</span>
+                  <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400 font-bold uppercase">1 · Aviation Emergency</span>
                   <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug">
-                    Google Next-Gen AI crosses 600M weekly active users
+                    IndiGo pilot attacked mid-flight; safe emergency landing executed
                   </h4>
                 </div>
 
                 <div 
-                  onClick={() => setActiveDeepDiveArticle(articles[1])}
+                  onClick={() => setActiveDeepDiveArticle(articles.find(a => a.id === 'russia-ukraine-high-tech-frontline-grain-pact') || articles[1])}
                   className="space-y-0.5 cursor-pointer hover:opacity-80 transition-opacity border-t border-zinc-100 dark:border-zinc-900 pt-2"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase">2 · Siliguri Infra</span>
+                  <span className="text-[10px] font-mono text-blue-600 dark:text-blue-400 font-bold uppercase">2 · Geopolitics & War</span>
                   <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug">
-                    Bagdogra Airport Terminal hits 45% completion ahead of schedule
+                    Russia-Ukraine drone frontline & Black Sea grain safety accord
                   </h4>
                 </div>
 
                 <div 
-                  onClick={() => setActiveDeepDiveArticle(articles[3] || articles[2])}
+                  onClick={() => setActiveDeepDiveArticle(articles.find(a => a.id === 'bay-of-bengal-supercyclone-evacuation-zero-casualties') || articles[2])}
                   className="space-y-0.5 cursor-pointer hover:opacity-80 transition-opacity border-t border-zinc-100 dark:border-zinc-900 pt-2"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase">3 · Global Gaming</span>
+                  <span className="text-[10px] font-mono text-red-600 dark:text-red-400 font-bold uppercase">3 · Disaster Alert</span>
                   <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug">
-                    GTA VI global launch window reaffirmed by Take-Two
+                    Bay of Bengal cyclone alert: 450,000 sheltered with zero casualties
+                  </h4>
+                </div>
+
+                <div 
+                  onClick={() => setActiveDeepDiveArticle(articles.find(a => a.id === 'frontier-ai-researcher-x-leak-verified') || articles[3])}
+                  className="space-y-0.5 cursor-pointer hover:opacity-80 transition-opacity border-t border-zinc-100 dark:border-zinc-900 pt-2"
+                >
+                  <span className="text-[10px] font-mono text-purple-600 dark:text-purple-400 font-bold uppercase">4 · AI Leaks</span>
+                  <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug">
+                    Viral X (Twitter) researcher leaks verified: open reasoning models
                   </h4>
                 </div>
               </div>

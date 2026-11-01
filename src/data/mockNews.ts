@@ -2,6 +2,186 @@ import { NewsArticle } from '../types';
 
 export const mockNewsArticles: NewsArticle[] = [
   {
+    id: 'pilot-attacked-safe-emergency-landing',
+    title: 'IndiGo Captain Physically Assaulted Mid-Flight by Unruly Passenger: Crew De-Escalates, Safe Emergency Landing Executed with Ministry Commendation',
+    category: 'national',
+    locationScope: 'India',
+    sourceName: 'DGCA Flight Safety Directorate & The Hindu / ANI',
+    sourceType: 'Official Civil Aviation Incident Report',
+    verification: 'govt_verified',
+    verificationNote: 'Officially documented in DGCA Flight Safety Occurrence Report FSO-2026-IND-891.',
+    takeaway: 'Flight captain maintained absolute composure under physical assault during approach descent, coordinating with cabin crew to secure the assailant and land 186 passengers safely without injury.',
+    bullets: [
+      'The assault occurred at 11,000 feet during turbulent approach; cabin crew and passengers restrained the offender within 14 seconds.',
+      'Ministry of Civil Aviation placed the passenger on the national Lifetime No-Fly List and initiated non-bailable civil aviation criminal charges.',
+      'DGCA issued an urgent safety circular mandating reinforced cockpit transition barriers and accelerated de-escalation drills across all Indian air carriers.'
+    ],
+    publishedAt: '8 mins ago',
+    readTime: '30s read',
+    tags: ['Aviation', 'DGCA', 'Flight Safety', 'National'],
+    audioScript: 'An IndiGo flight captain was physically assaulted mid-flight by an unruly passenger. Despite the attack during descent, the pilot maintained complete calm, the crew restrained the offender, and the aircraft landed safely with zero passenger injuries.',
+    deepDive: {
+      overview: 'Flight 6E-2175 en route to Delhi encountered an acute in-flight security breach when an agitated passenger breached the forward galley and assaulted the pilot during descent preparations.',
+      keyBackground: 'India enacted stringent anti-unruly passenger regulations in 2017 with a 3-tier severity index. Physical violence against flight crew constitutes Level-3, carrying mandatory lifetime travel bans and criminal prosecution.',
+      timeline: [
+        { time: '14:20 IST', event: 'Aircraft begins descent toward runway 28; seatbelt sign illuminated.' },
+        { time: '14:26 IST', event: 'Unruly passenger rushes forward galley; pilot assaulted while assisting co-pilot with approach checklist.' },
+        { time: '14:27 IST', event: 'Senior cabin crew deploys restraint protocol; assailant secured with passenger assistance.' },
+        { time: '14:41 IST', event: 'Textbook smooth emergency landing executed; CISF security board aircraft on taxiway.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Capt. Arvind Varma', role: 'Pilot in Command', quote: 'Our first and only duty is the 186 souls behind us. Professional flight simulator training ensures emotion never supersedes aircraft control.' },
+        { speaker: 'Ram Mohan Naidu', role: 'Union Minister of Civil Aviation', quote: 'The extraordinary composure shown by this flight crew honors Indian aviation. Violent behavior at 30,000 feet will meet maximum legal severity.' }
+      ],
+      impactForStudents: 'A masterclass in high-pressure decision making: panic kills, protocol saves lives. Relevant for aspiring pilots, aerospace engineers, and crisis management leaders.',
+      officialSourceUrl: 'https://dgca.gov.in',
+      sourceDocName: 'DGCA Flight Safety Incident Brief 2026/891'
+    }
+  },
+  {
+    id: 'russia-ukraine-high-tech-frontline-grain-pact',
+    title: 'Russia-Ukraine Frontline Shifts to Autonomous Fiber-Optic Drone Warfare: Black Sea Grain Corridor Protected in Fresh Multilateral Accord',
+    category: 'geopolitics',
+    locationScope: 'Eastern Europe',
+    sourceName: 'Reuters International, BBC World & ISW Defense Radar',
+    sourceType: 'Verified Geopolitical & Defense Intelligence',
+    verification: 'reputable_media',
+    verificationNote: 'Corroborated by UN Maritime Security Council and Institute for the Study of War (ISW) daily theater assessment.',
+    takeaway: 'Frontline combat has fundamentally shifted from traditional armor to unjammable fiber-optic autonomous drones, while multilateral Black Sea safety agreements prevent global wheat price shocks for student and youth economies in the Global South.',
+    bullets: [
+      'Both armed forces deployed lightweight micro-fiber tethered drones that bypass heavy electronic jamming across the 1,000-kilometer eastern line.',
+      'UN and Turkey broker renewed Black Sea maritime transit corridor, ensuring steady agricultural exports and stabilizing global food grain inflation.',
+      'Geopolitical analysts highlight India\'s continuing diplomatic posture advocating dialogue, de-escalation, and national sovereignty under the UN Charter.'
+    ],
+    publishedAt: '22 mins ago',
+    readTime: '40s read',
+    tags: ['Russia-Ukraine', 'Geopolitics', 'Drone Warfare', 'Global Economy'],
+    audioScript: 'The Russia-Ukraine conflict has entered an advanced technological phase with unjammable fiber-optic drones altering frontline tactics, while a renewed Black Sea agreement safeguards world grain supply and food security.',
+    deepDive: {
+      overview: 'Over two and a half years into the conflict, the battlefield has become the world’s most intense proving ground for autonomous robotic systems, machine vision guidance, and electromagnetic spectrum dominance.',
+      keyBackground: 'Since late 2023, intensive electronic warfare (EW) had neutralized over 70% of standard radio-controlled drones. The recent introduction of micro-spool fiber-optic lines transmitting 4K video with zero RF emissions has transformed close-contact reconnaissance.',
+      timeline: [
+        { time: 'Early 2024', event: 'Mass electronic warfare saturation renders commercial RF drone links obsolete.' },
+        { time: 'Mid 2026', event: 'Tethered fiber-optic and AI-guided edge compute drones achieve frontline scale.' },
+        { time: 'October 2026', event: 'Geneva-Istanbul diplomatic working group solidifies commercial maritime safe passage.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Dr. George Barros', role: 'Russia & Geopolitics Lead, ISW', quote: 'We are witnessing the fastest tactical military evolution since the invention of radar. Autonomous systems are dictating frontline survivability.' },
+        { speaker: 'António Guterres', role: 'UN Secretary-General', quote: 'Preserving maritime food transit through the Black Sea is non-negotiable for human survival in vulnerable developing nations.' }
+      ],
+      impactForStudents: 'Crucial for students of international relations, geopolitical economics, robotics, and cyber defense studying how technological innovation outpaces legacy military doctrine.',
+      officialSourceUrl: 'https://reuters.com/world/europe',
+      sourceDocName: 'UN Maritime Security Briefing SG/SM/22419'
+    }
+  },
+  {
+    id: 'bay-of-bengal-supercyclone-evacuation-zero-casualties',
+    title: 'Bay of Bengal Severe Storm Alert: ISRO Satellite Telemetry & Rapid NDRF Action Evacuate 450,000 to Safety with Zero Casualties Reported',
+    category: 'disaster',
+    locationScope: 'Bay of Bengal',
+    sourceName: 'India Meteorological Department (IMD) & NDMA Delhi',
+    sourceType: 'Govt. Emergency Meteorological Bulletin',
+    verification: 'emergency_alert',
+    verificationNote: 'Verified via IMD National Cyclone Warning Centre Special Bulletin No. 18 and NDMA Control Room.',
+    takeaway: 'Super-computing meteorological algorithms combined with real-time INSAT-3DS infrared imaging provided 96-hour precision landfall tracking, allowing state disaster teams to execute total zero-casualty coastal evacuation.',
+    bullets: [
+      'Over 450,000 vulnerable coastal residents shifted to 800 reinforced multipurpose cyclone shelters within 36 hours.',
+      'National Disaster Response Force (NDRF) deployed 56 specialized battalions equipped with satellite phones and flood-rescue cutters.',
+      'Direct mobile Cell-Broadcast emergency alerts sent warning signals in Odia, Bengali, and Hindi to 12 million mobile devices without cellular congestion.'
+    ],
+    publishedAt: '35 mins ago',
+    readTime: '35s read',
+    tags: ['Cyclone Alert', 'Disaster Management', 'NDRF', 'ISRO Satellites'],
+    audioScript: 'A severe Bay of Bengal cyclone threat was effectively neutralized through precision ISRO satellite telemetry and early NDRF evacuations. Four hundred fifty thousand residents were safely relocated with zero reported casualties.',
+    deepDive: {
+      overview: 'The successful handling of the deep depression in the Bay of Bengal represents a historic milestone in India’s disaster risk reduction architecture, converting potential devastation into a textbook evacuation drill.',
+      keyBackground: 'In 1999, the Odisha Super Cyclone claimed nearly 10,000 lives due to rudimentary warning times. In 2026, indigenous INSAT-3DS Doppler radars and supercomputing numerical forecasts predict landfall coordinates to within 12 kilometers.',
+      timeline: [
+        { time: 'T-96 Hours', event: 'IMD supercomputer detects tropical cyclogenesis east of Andaman islands.' },
+        { time: 'T-48 Hours', event: 'NDMA triggers automated Red Alert SMS to 12 million coastal mobile devices.' },
+        { time: 'T-12 Hours', event: '450,000 citizens accommodated in cyclone shelters with medical backup.' },
+        { time: 'Landfall', event: 'Storm crosses coastline at 115 km/h; zero casualties reported due to comprehensive preemptive clearance.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Dr. Mrutyunjay Mohapatra', role: 'Director General of Meteorology, IMD', quote: 'Early warning is only effective when paired with zero-lag administrative execution. Technology has eliminated blind spots.' },
+        { speaker: 'Atul Karwal', role: 'Director General, NDRF', quote: 'Our teams trained specifically for night operations and communications blackouts. Every life saved validates our mission.' }
+      ],
+      impactForStudents: 'Demonstrates the power of meteorological data science, satellite telemetry, and disaster civil engineering in preserving human lives against extreme climate events.',
+      officialSourceUrl: 'https://mausam.imd.gov.in',
+      sourceDocName: 'IMD Special Tropical Weather Advisory No. 18'
+    }
+  },
+  {
+    id: 'imec-subsea-fiber-green-corridor',
+    title: 'India-Middle East-Europe Economic Corridor (IMEC) Activates High-Speed Digital Fiber & Clean Hydrogen Transit Pact',
+    category: 'geopolitics',
+    locationScope: 'Global',
+    sourceName: 'Ministry of External Affairs (MEA) & Financial Times',
+    sourceType: 'Multilateral Accord & Strategic Trade Bulletin',
+    verification: 'govt_verified',
+    verificationNote: 'Officially verified in MEA Joint Communiqué following New Delhi Multilateral Working Group.',
+    takeaway: 'Strategic multilateral corridor accelerates subsea data cables and green maritime logistics connecting Mumbai ports to Mediterranean gateways, creating direct bypass around geopolitical naval choke points.',
+    bullets: [
+      'Ultra-low-latency 400 Gbps subsea fiber optic cable laying commences between Gujarat coast, Fujairah, and Haifa.',
+      'Standardized clean hydrogen bunkering agreements signed between Adani Ports, DP World, and European terminal operators.',
+      'Reduces end-to-end cargo transit times from India to Europe by 40% while shielding supply chains from Red Sea vulnerabilities.'
+    ],
+    publishedAt: '48 mins ago',
+    readTime: '35s read',
+    tags: ['IMEC', 'Geopolitics', 'Trade Corridor', 'Clean Energy'],
+    audioScript: 'The India-Middle East-Europe Economic Corridor has activated its digital fiber and clean hydrogen transit working group, connecting Indian ports directly to European gateways and shielding global supply chains.',
+    deepDive: {
+      overview: 'IMEC was unveiled during the G20 New Delhi summit to forge a resilient multimodal economic bridge between South Asia, the Arabian Gulf, and Europe.',
+      keyBackground: 'Recent maritime security disruptions in the Red Sea and Bab-el-Mandeb strait highlighted the urgent necessity of alternative overland railway and coastal shipping redundancy.',
+      timeline: [
+        { time: 'Sept 2023', event: 'IMEC Partnership MoU signed at G20 New Delhi.' },
+        { time: 'Early 2026', event: 'Digital subsea cable feasibility study approved.' },
+        { time: 'Late 2026', event: 'Joint working groups launch first physical cable laying and green logistics hub.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Dr. S. Jaishankar', role: 'External Affairs Minister of India', quote: 'IMEC is not merely an infrastructure corridor; it is a green, digital, and geopolitical anchor for the 21st century.' }
+      ],
+      impactForStudents: 'Opens immense future career frontiers in international trade law, subsea telecommunications engineering, green maritime logistics, and strategic diplomacy.',
+      officialSourceUrl: 'https://mea.gov.in',
+      sourceDocName: 'MEA Press Release IMEC-WG-04'
+    }
+  },
+  {
+    id: 'frontier-ai-researcher-x-leak-verified',
+    title: 'Frontier AI Labs Publish Open Reasoning Verification Protocol Following Viral Researcher Leaks on X (Twitter)',
+    category: 'ai',
+    locationScope: 'Global',
+    sourceName: 'AI Safety Institute, Hugging Face & Tech Community Trackers',
+    sourceType: 'Open Source Community Benchmark',
+    verification: 'reputable_media',
+    verificationNote: 'Community replication verified across 40 independent academic labs on Hugging Face and GitHub.',
+    takeaway: 'Viral tech leaks on X proved accurate as frontier labs release open mathematical verification harnesses, allowing student researchers to evaluate local open-source models on advanced Olympiad reasoning benchmarks.',
+    bullets: [
+      'Independent AI researchers on X identified leaked evaluation checkpoints, forcing frontier labs to release official open weights.',
+      'The open protocol runs locally on consumer RTX 4090 GPUs without requiring costly enterprise cloud tokens.',
+      'Student developers in India, Europe, and the US began immediate fine-tuning sprints for open STEM educational assistants.'
+    ],
+    publishedAt: '55 mins ago',
+    readTime: '35s read',
+    tags: ['X (Twitter)', 'AI Leak', 'Open Source', 'Reasoning Models'],
+    audioScript: 'Viral researcher leaks on X have led to the official release of an open reasoning verification protocol, enabling student developers to benchmark frontier models on consumer hardware.',
+    deepDive: {
+      overview: 'Over the weekend, leaked benchmark logs surfaced on X demonstrating that compact 8B-parameter open models could achieve 90% reasoning parity with closed 100B systems using step-by-step verification.',
+      keyBackground: 'The open-source AI community has consistently challenged proprietary closed models by reverse-engineering distillation recipes and synthetic data verification pipelines.',
+      timeline: [
+        { time: 'Friday 22:00 UTC', event: 'Viral thread by anonymous researcher leaks benchmark comparison logs on X.' },
+        { time: 'Saturday 10:00 UTC', event: 'Hugging Face community confirms reproduction using open weights.' },
+        { time: 'Sunday 18:00 UTC', event: 'Official research lab publishes full open-source evaluation suite.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Clément Delangue', role: 'CEO, Hugging Face', quote: 'Open science always wins in the end. When developers share knowledge freely, the entire student and startup ecosystem accelerates.' }
+      ],
+      impactForStudents: 'Students can now train and verify state-of-the-art reasoning agents on college lab machines or home PCs without paying monthly API fees.',
+      officialSourceUrl: 'https://huggingface.co',
+      sourceDocName: 'Open Reasoning Verification Protocol v2.1'
+    }
+  },
+  {
     id: 'google-next-gen-ai-frontier',
     title: 'Google Unveils Next-Gen Frontier AI Architecture: Crosses 600M Weekly Users Amid Heated Global Debate',
     category: 'ai',
@@ -390,3 +570,143 @@ export const mockNewsArticles: NewsArticle[] = [
     }
   }
 ];
+
+export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
+  {
+    id: 'live-dgca-cockpit-secondary-barrier',
+    title: 'DGCA Mandates Dual Biometric Secondary Cockpit Barriers Across Commercial Fleets Following Mid-Air Incident',
+    category: 'national',
+    locationScope: 'India',
+    sourceName: 'Ministry of Civil Aviation / DGCA India',
+    sourceType: 'Govt. Directive',
+    verification: 'govt_verified',
+    verificationNote: 'Issued under Rule 133A of the Aircraft Rules, 1937, effective immediately across scheduled passenger airlines.',
+    takeaway: 'All domestic airlines operating aircraft over 60 seats must install reinforced physical transition gates between passenger cabins and flight decks to prevent forward galley breach attempts.',
+    bullets: [
+      'Pre-landing cockpit door openings strictly prohibited below 10,000 feet unless guarded by designated cabin marshals.',
+      'Airlines granted 90 days to retrofit biometric interlocks with mandatory crew cabin-view camera feeds.',
+      'Civil aviation security personnel to conduct randomized ramp checks across Tier-1 and regional airports.'
+    ],
+    publishedAt: 'Just now (Live)',
+    readTime: '30s read',
+    tags: ['Aviation', 'Flight Safety', 'DGCA', 'National'],
+    audioScript: 'DGCA has mandated dual biometric secondary cockpit barriers across commercial airlines to prevent in-flight breaches following recent physical assault incidents.',
+    deepDive: {
+      overview: 'In response to acute cockpit approach incidents, the aviation safety regulator has enacted structural barrier requirements matching international FAA standards.',
+      keyBackground: 'Modern aircraft cockpits are bulletproof, but the momentary opening of doors during pilot meal or restroom transit presented an operational vulnerability.',
+      timeline: [
+        { time: 'T-10m', event: 'Director General signs Safety Advisory Series C-Part II.' },
+        { time: 'Just now', event: 'Distributed to IndiGo, Air India, SpiceJet, and Akasa flight operations.' }
+      ],
+      keyQuotes: [
+        { speaker: 'DGCA Flight Standards Panel', role: 'Aviation Safety', quote: 'Physical barriers protect the flight crew so they can concentrate solely on safe flight navigation.' }
+      ],
+      impactForStudents: 'Relevant for aeronautical engineering students studying cockpit human factors and civil aviation law aspirants.',
+      officialSourceUrl: 'https://dgca.gov.in',
+      sourceDocName: 'DGCA Circular 07/2026-FSD'
+    }
+  },
+  {
+    id: 'live-teesta-iot-flood-telemetry',
+    title: 'Teesta River Basin Early Warning Sensor Web Goes Live: Real-Time Hydro-Telemetry for Siliguri & Himalayan Corridors',
+    category: 'disaster',
+    locationScope: 'Siliguri',
+    sourceName: 'Central Water Commission (CWC) & North Bengal Disaster Cell',
+    sourceType: 'Govt. Sensor Telemetry Feed',
+    verification: 'govt_verified',
+    verificationNote: 'Live telemetry verified across 18 solar-powered radar gauging stations along Teesta and Mahananda rivers.',
+    takeaway: 'High-precision ultrasonic water level sensors provide 4-hour advance flood alerts for downstream Siliguri, Jalpaiguri, and Sevoke transit bridges with zero telecom latency.',
+    bullets: [
+      'Automated acoustic wave sensors detect sudden glacial lake discharge or cloudburst runoff in upper Sikkim valleys.',
+      'Direct LoRaWAN radio links transmit water velocity and turbidity metrics even during regional power grid outages.',
+      'Siliguri Municipal Corporation and traffic police receive automated bridge closure triggers if levels cross Amber threshold.'
+    ],
+    publishedAt: 'Just now (Live)',
+    readTime: '30s read',
+    tags: ['Siliguri', 'Disaster Early Warning', 'Teesta', 'IoT'],
+    audioScript: 'Real-time hydro telemetry sensors have gone live across the Teesta and Mahananda rivers, providing early flood warnings for Siliguri and regional bridges.',
+    deepDive: {
+      overview: 'Following recent Himalayan cloudbursts, the Central Water Commission deployed automated IoT telemetry to eliminate reliance on manual phone relays.',
+      keyBackground: 'Siliguri is the strategic logistics choke point connecting Northeast India. Protecting NH-10 and rail bridges from flash floods is vital for national mobility.',
+      timeline: [
+        { time: 'September 2026', event: 'Sensor calibration completed across 18 mountain gauging stations.' },
+        { time: 'Just now', event: 'Live dashboard linked to Siliguri District Emergency Operation Centre.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Er. S. Bhattacharya', role: 'Executive Engineer, CWC North Bengal', quote: 'Minutes matter in mountain floods. Automated radar telemetry gives citizens hours of evacuation buffer.' }
+      ],
+      impactForStudents: 'Protects college students commuting between Siliguri, Jalpaiguri, and Darjeeling; excellent project case study for IoT and electronics students.',
+      officialSourceUrl: 'https://cwc.gov.in',
+      sourceDocName: 'CWC Teesta Basin Telemetry Notice 14'
+    }
+  },
+  {
+    id: 'live-russia-ukraine-microgrid-energy',
+    title: 'Decentralized Solar & Battery Microgrids Deployed Across 200 Ukrainian Critical Facilities Ahead of Winter',
+    category: 'geopolitics',
+    locationScope: 'Eastern Europe',
+    sourceName: 'International Energy Agency (IEA) & Kyiv Energy Bureau',
+    sourceType: 'International Energy Brief',
+    verification: 'reputable_media',
+    verificationNote: 'Monitored and documented by IEA Taskforce for Energy Resilience.',
+    takeaway: 'International humanitarian partners completed installation of hardened containerized solar-plus-storage microgrids for regional hospitals and student water treatment hubs, resisting grid strikes.',
+    bullets: [
+      'Each autonomous 250 kW microgrid can operate off-grid for up to 72 continuous hours during high-voltage transformer outages.',
+      'Utilizes lithium iron phosphate (LFP) battery chemistry housed in fireproof reinforced blast-resistant shipping containers.',
+      'Model praised by international energy engineers as a template for decentralized civilian infrastructure resilience in conflict zones.'
+    ],
+    publishedAt: 'Just now (Live)',
+    readTime: '35s read',
+    tags: ['Russia-Ukraine', 'Clean Energy', 'Geopolitics', 'Microgrids'],
+    audioScript: 'Decentralized solar and battery storage microgrids have been deployed across Ukrainian healthcare and civil infrastructure to safeguard energy continuity.',
+    deepDive: {
+      overview: 'Repeated long-range attacks on centralized high-voltage substations prompted a rapid paradigm shift toward modular decentralized civilian energy units.',
+      keyBackground: 'Traditional power plants present massive stationary targets. Distributed microgrids allow localized power autonomy without cascading blackout risks.',
+      timeline: [
+        { time: 'Spring 2026', event: 'EU-funded civilian energy resilience tender launched.' },
+        { time: 'Just now', event: '200th hospital microgrid commissioned and synced to local emergency circuits.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Dr. Elena Morozova', role: 'Kyiv Regional Medical Director', quote: 'A hospital without electricity cannot run ventilators. These solar storage banks are literal lifesavers.' }
+      ],
+      impactForStudents: 'Pivotal case study for electrical engineering and green energy students studying distributed smart grids and wartime civilian defense.',
+      officialSourceUrl: 'https://iea.org',
+      sourceDocName: 'IEA Ukraine Energy Resilience Review'
+    }
+  },
+  {
+    id: 'live-india-japan-semiconductor-accord',
+    title: 'India and Japan Ratify Bilateral Semiconductor Quantum Foundry & Critical Minerals Supply Framework',
+    category: 'national',
+    locationScope: 'India',
+    sourceName: 'Ministry of Electronics & IT (MeitY) / METI Tokyo',
+    sourceType: 'Bilateral Treaty Gazette',
+    verification: 'govt_verified',
+    verificationNote: 'Signed by Minister of Electronics & IT and Japanese Trade Minister in Tokyo.',
+    takeaway: 'Bilateral accord establishes joint fabrication line for 14nm automotive silicon and establishes student research scholarships in Tokyo and Bengaluru chip design hubs.',
+    bullets: [
+      'Guarantees dedicated supply of refined gallium and silicon wafers to emerging fab facilities in Dholera and Sanand.',
+      'Fully funded 1-year master’s research fellowship launched for 300 Indian engineering students in Japanese cleanroom fabrication labs.',
+      'Includes mutual defense semiconductor stockpile reserves to insulate both nations from East Asian shipping bottlenecks.'
+    ],
+    publishedAt: 'Just now (Live)',
+    readTime: '30s read',
+    tags: ['Semiconductors', 'India-Japan', 'Tech Policy', 'Engineering'],
+    audioScript: 'India and Japan have ratified a bilateral semiconductor and critical minerals framework, including student cleanroom research fellowships.',
+    deepDive: {
+      overview: 'As the global chip race heats up, India and Japan have forged a strategic partnership to combine Japanese chemical and equipment precision with Indian chip design talent.',
+      keyBackground: 'Global chip manufacturing was historically concentrated in a single maritime region. Diversifying fabrication ensures global consumer electronics and automobile continuity.',
+      timeline: [
+        { time: '2024', event: 'Initial semiconductor memorandum of understanding signed.' },
+        { time: 'Just now', event: 'Full treaty ratified with capital commitments and student exchange portal.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Ashwini Vaishnaw', role: 'Union Minister for Electronics & IT', quote: 'This partnership ensures Indian engineering students are directly trained on state-of-the-art lithography and chip fabrication.' }
+      ],
+      impactForStudents: 'Massive scholarship and job placement pipeline for electrical engineering, materials science, and VLSI student specialists.',
+      officialSourceUrl: 'https://pib.gov.in',
+      sourceDocName: 'MeitY Press Release No. 312/2026'
+    }
+  }
+];
+

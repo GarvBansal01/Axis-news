@@ -4,9 +4,15 @@ import {
   Share2, 
   FileText, 
   Check,
-  ArrowUp
+  ArrowUp,
+  Volume2,
+  VolumeX,
+  AlertTriangle,
+  ShieldCheck,
+  Globe
 } from 'lucide-react';
 import { NewsArticle } from '../types';
+import { speakText, stopSpeech } from '../utils/audioPlayer';
 
 interface ScrollingFeedProps {
   articles: NewsArticle[];
@@ -22,6 +28,7 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
   onOpenDeepDive
 }) => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [playingArticleId, setPlayingArticleId] = useState<string | null>(null);
 
   const handleShare = (article: NewsArticle) => {
     const shareText = `⚡ ${article.title}\n\n"${article.takeaway}"\n\n• ${article.bullets.join('\n• ')}\n\nSource: ${article.sourceName} · via AXIS 24H Radar`;
@@ -30,6 +37,24 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
       setCopiedId(article.id);
       setTimeout(() => setCopiedId(null), 2000);
     }
+  };
+
+  const toggleAudio = (article: NewsArticle) => {
+    if (playingArticleId === article.id) {
+      stopSpeech();
+      setPlayingArticleId(null);
+      return;
+    }
+
+    stopSpeech();
+    setPlayingArticleId(article.id);
+    const text = `${article.title}. Takeaway: ${article.takeaway}. Key points: ${article.bullets.join('. ')}. Source: ${article.sourceName}`;
+    speakText(
+      text,
+      1.15,
+      () => setPlayingArticleId(null),
+      () => setPlayingArticleId(null)
+    );
   };
 
   const scrollToTop = () => {
@@ -55,15 +80,34 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
       <div className="divide-y divide-zinc-200 dark:divide-zinc-800/80 border-y border-zinc-200 dark:border-zinc-800/80">
         {articles.map((article) => {
           const isSaved = savedArticleIds.includes(article.id);
+          const isEmergency = article.verification === 'emergency_alert' || article.category === 'disaster';
+          const isGeopolitics = article.category === 'geopolitics';
+          const isPlayingThis = playingArticleId === article.id;
 
           return (
             <article
               key={article.id}
-              className="py-5 space-y-3 transition-colors hover:bg-zinc-50/60 dark:hover:bg-zinc-900/30 px-2 sm:px-3 rounded-xl"
+              className={`py-5 space-y-3 transition-colors px-2 sm:px-3 rounded-xl ${
+                isEmergency 
+                  ? 'bg-red-500/5 dark:bg-red-950/20 border border-red-500/20 dark:border-red-900/40 my-2' 
+                  : 'hover:bg-zinc-50/60 dark:hover:bg-zinc-900/30'
+              }`}
             >
-              {/* Top Source & Timestamp Meta */}
-              <div className="flex items-center justify-between text-xs text-zinc-500 font-mono">
+              {/* Top Source, Category Badge & Timestamp Meta */}
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-500 font-mono">
                 <div className="flex items-center gap-2">
+                  {isEmergency && (
+                    <span className="flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-600 text-white animate-pulse">
+                      <AlertTriangle className="w-3 h-3" />
+                      <span>DISASTER ALERT</span>
+                    </span>
+                  )}
+                  {isGeopolitics && (
+                    <span className="flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-600 text-white">
+                      <Globe className="w-3 h-3" />
+                      <span>GEOPOLITICS</span>
+                    </span>
+                  )}
                   <span className="font-semibold text-zinc-900 dark:text-zinc-100">
                     {article.sourceName}
                   </span>
@@ -73,7 +117,15 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
                   <span className="text-zinc-400">{article.publishedAt}</span>
                 </div>
 
-                <span className="text-[11px] text-zinc-400">{article.readTime}</span>
+                <div className="flex items-center gap-2">
+                  {article.verification === 'govt_verified' && (
+                    <span className="hidden sm:inline-flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
+                      <ShieldCheck className="w-3 h-3" />
+                      <span>Govt Verified</span>
+                    </span>
+                  )}
+                  <span className="text-[11px] text-zinc-400">{article.readTime}</span>
+                </div>
               </div>
 
               {/* Headline */}
@@ -85,9 +137,15 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
               </h2>
 
               {/* Editorial Synthesis Takeaway (Quoted Text) */}
-              <div className="relative pl-4 pr-3 py-2.5 rounded-r-lg border-l-2 border-amber-600/80 dark:border-amber-400/80 bg-amber-500/5 dark:bg-amber-400/5 text-xs md:text-sm text-stone-800 dark:text-stone-200 font-editorial leading-relaxed">
-                <span className="block text-[10px] font-mono font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-0.5">
-                  Core Takeaway
+              <div className={`relative pl-4 pr-3 py-2.5 rounded-r-lg border-l-2 text-xs md:text-sm font-editorial leading-relaxed ${
+                isEmergency 
+                  ? 'border-red-600 bg-red-500/10 text-red-950 dark:text-red-200' 
+                  : 'border-amber-600/80 dark:border-amber-400/80 bg-amber-500/5 dark:bg-amber-400/5 text-stone-800 dark:text-stone-200'
+              }`}>
+                <span className={`block text-[10px] font-mono font-semibold uppercase tracking-wider mb-0.5 ${
+                  isEmergency ? 'text-red-700 dark:text-red-400' : 'text-amber-700 dark:text-amber-400'
+                }`}>
+                  Core Takeaway (30s)
                 </span>
                 <p className="italic font-normal text-stone-900 dark:text-stone-100 text-sm md:text-[15px]">
                   “{article.takeaway}”
@@ -106,13 +164,37 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
 
               {/* Action Bar */}
               <div className="pt-2 flex items-center justify-between text-xs">
-                <button
-                  onClick={() => onOpenDeepDive(article)}
-                  className="flex items-center gap-1.5 text-xs text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 font-medium px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-                >
-                  <FileText className="w-3.5 h-3.5" />
-                  <span>Full Context</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => onOpenDeepDive(article)}
+                    className="flex items-center gap-1.5 text-xs text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 font-medium px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    <span>Full Context</span>
+                  </button>
+
+                  <button
+                    onClick={() => toggleAudio(article)}
+                    className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono transition-colors cursor-pointer ${
+                      isPlayingThis 
+                        ? 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-700' 
+                        : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-900'
+                    }`}
+                    title="Listen to 30s summary"
+                  >
+                    {isPlayingThis ? (
+                      <>
+                        <VolumeX className="w-3 h-3 text-amber-600 animate-pulse" />
+                        <span>Pause</span>
+                      </>
+                    ) : (
+                      <>
+                        <Volume2 className="w-3 h-3" />
+                        <span>30s Audio</span>
+                      </>
+                    )}
+                  </button>
+                </div>
 
                 {/* Right controls: Bookmark, Share */}
                 <div className="flex items-center gap-1">

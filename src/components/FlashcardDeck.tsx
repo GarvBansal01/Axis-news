@@ -9,9 +9,10 @@ import {
   FileText, 
   ShieldCheck, 
   Flame, 
-  Info,
-  Check,
-  FastForward
+  Info, 
+  Check, 
+  FastForward,
+  AlertTriangle
 } from 'lucide-react';
 import { NewsArticle } from '../types';
 
@@ -164,14 +165,30 @@ export const FlashcardDeck: React.FC<FlashcardDeckProps> = ({
             </span>
             <span aria-hidden="true" className="text-stone-300 dark:text-stone-700">·</span>
             <span className="capitalize text-stone-600 dark:text-stone-400">
-              {currentArticle.category === 'local' ? 'Siliguri & Regional' : currentArticle.category}
+              {currentArticle.category === 'local' 
+                ? 'Siliguri & Regional' 
+                : currentArticle.category === 'geopolitics' 
+                ? 'Geopolitics & War' 
+                : currentArticle.category === 'disaster' 
+                ? 'Disaster & Alerts' 
+                : currentArticle.category === 'national' 
+                ? 'India National' 
+                : currentArticle.category}
             </span>
             <span aria-hidden="true" className="text-stone-300 dark:text-stone-700">·</span>
             <span className="text-stone-600 dark:text-stone-400 font-mono-nums">{currentArticle.readTime}</span>
           </div>
 
           {/* Source Verification Marker */}
-          {currentArticle.verification === 'govt_verified' ? (
+          {currentArticle.verification === 'emergency_alert' ? (
+            <div
+              className="flex items-center gap-1.5 text-red-700 dark:text-red-400 font-bold text-xs bg-red-50 dark:bg-red-950/50 px-2.5 py-1 rounded-md border border-red-300 dark:border-red-800 animate-pulse"
+              title={currentArticle.verificationNote}
+            >
+              <AlertTriangle className="w-3.5 h-3.5 text-red-600" />
+              <span>Emergency / Disaster Alert</span>
+            </div>
+          ) : currentArticle.verification === 'govt_verified' ? (
             <div
               className="flex items-center gap-1.5 text-emerald-800 dark:text-emerald-300 font-medium text-xs bg-emerald-50/80 dark:bg-emerald-950/40 px-2.5 py-1 rounded-md border border-emerald-200/80 dark:border-emerald-800/60"
               title={currentArticle.verificationNote}

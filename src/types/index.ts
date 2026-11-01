@@ -1,8 +1,8 @@
-export type NewsCategory = 'all' | 'world' | 'ai' | 'local' | 'national' | 'gaming' | 'personal';
+export type NewsCategory = 'all' | 'world' | 'ai' | 'local' | 'national' | 'gaming' | 'personal' | 'geopolitics' | 'disaster';
 
-export type VerificationStatus = 'govt_verified' | 'reputable_media' | 'trending_unverified';
+export type VerificationStatus = 'govt_verified' | 'reputable_media' | 'trending_unverified' | 'emergency_alert';
 
-export type LocationScope = 'Siliguri' | 'North Bengal' | 'West Bengal' | 'India' | 'Global';
+export type LocationScope = 'Siliguri' | 'North Bengal' | 'West Bengal' | 'India' | 'Global' | 'Eastern Europe' | 'Bay of Bengal';
 
 export interface DeepDiveContent {
   overview: string;
