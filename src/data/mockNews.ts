@@ -51,6 +51,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Officially documented in DGCA Flight Safety Occurrence Report FSO-2026-IND-891.',
     takeaway: 'Flight captain maintained absolute composure under physical assault during approach descent, coordinating with cabin crew to secure the assailant and land 186 passengers safely without injury.',
     whatIsIt: "Mid-flight security incident where an agitated passenger rushed the forward galley at 11,000 feet and physically assaulted the IndiGo flight captain during approach descent, requiring cabin crew restraint and an emergency landing.",
+    factSheet: {
+      when: "Today, 02:26 PM IST (Descent Approach)",
+      where: "IndiGo Flight 6E-2175 · Over Rajasthan en route from Mumbai to Delhi (11,000 ft)",
+      who: "Capt. Arvind Varma (Pilot in Command), Cabin Lead Rhea Sen, Unruly Passenger, DGCA Safety Directorate, CISF",
+      what: "Mid-flight physical assault on flight captain in forward galley followed by rapid crew restraint and emergency landing with zero passenger injuries",
+      why: "Severe passenger agitation following weather diversion delays and absence of a physical secondary cockpit transition airlock",
+      how: "Crew and passengers neutralized offender within 14 seconds; emergency landing executed at IGI Airport; offender placed on lifetime No-Fly list under non-bailable civil aviation charges"
+    },
     theRealProblem: "Post-pandemic air travel delays and cabin congestion have triggered a 340% surge in unruly passenger altercations. Cockpit doors are impenetrable from the outside, but when open for pilot servicing or approach checklists, flight crew are completely exposed to violent physical rushes without a secondary safety airlock.",
     bullets: [
       'The assault occurred at 11,000 feet during turbulent approach; cabin crew and passengers restrained the offender within 14 seconds.',
@@ -91,6 +99,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Corroborated by UN Maritime Security Council and Institute for the Study of War (ISW) daily theater assessment.',
     takeaway: 'Frontline combat has fundamentally shifted from traditional armor to unjammable fiber-optic autonomous drones, while multilateral Black Sea safety agreements prevent global wheat price shocks for student and youth economies in the Global South.',
     whatIsIt: "Frontline military shift to unjammable fiber-optic tethered drones across the 1,000-km combat line, combined with a multilateral UN-Turkey diplomatic agreement safeguarding Black Sea maritime grain exports.",
+    factSheet: {
+      when: "Today, 01:10 PM IST",
+      where: "Pokrovsk-Kurakhove Frontline (Eastern Ukraine) & Black Sea Maritime Shipping Corridor",
+      who: "Ukrainian Defense Forces, Russian Armed Forces, UN Maritime Coordination Centre, Turkish Negotiators",
+      what: "Frontline tactical shift to unjammable fiber-optic micro-drones while a multilateral accord guarantees safe passage for grain bulk carriers",
+      why: "Heavy electronic warfare (EW) jamming rendered standard radio-controlled drones useless, prompting physical spooled fiber-optic guidance",
+      how: "Drones deploy 10km micro-fiber spools immune to RF jamming; Black Sea grain vessels escorted through verified de-mined sea lanes under joint Turkish-UN satellite telemetry"
+    },
     theRealProblem: "Electronic warfare has saturated traditional radio drone links, forcing frontline forces to deploy physical fiber-optic micro-tethers that cannot be jammed. This creates continuous 24/7 battlefield transparency where traditional tank armor and trench defense offer zero survivability, while global food grain security remains hostage to fragile Black Sea maritime accords.",
     bullets: [
       'Both armed forces deployed lightweight micro-fiber tethered drones that bypass heavy electronic jamming across the 1,000-kilometer eastern line.',
@@ -130,6 +146,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Verified via IMD National Cyclone Warning Centre Special Bulletin No. 18 and NDMA Control Room.',
     takeaway: 'Super-computing meteorological algorithms combined with real-time INSAT-3DS infrared imaging provided 96-hour precision landfall tracking, allowing state disaster teams to execute total zero-casualty coastal evacuation.',
     whatIsIt: "Rapid tropical cyclogenesis in the Bay of Bengal triggering emergency automated satellite telemetry and zero-casualty preemptive evacuation of 450,000 coastal citizens into reinforced shelters.",
+    factSheet: {
+      when: "Today, 11:45 AM IST",
+      where: "Coastal Odisha, West Bengal (Digha & Sagar Island) & Bay of Bengal Maritime Basin",
+      who: "India Meteorological Department (IMD), National Disaster Response Force (NDRF), 450,000 coastal evacuees",
+      what: "Supercyclonic storm warning neutralized with zero loss of life through rapid pre-landfall evacuations and storm surge barriers",
+      why: "Unprecedented high ocean sea surface temperatures (31.5°C) fueled explosive cyclonic intensification within 24 hours",
+      how: "ISRO INSAT-3DR satellite radar mapped exact landfall cone 36 hours in advance; 82 NDRF battalions mobilized 450,000 residents into reinforced multi-purpose cyclone shelters"
+    },
     theRealProblem: "Abnormal ocean surface heat (>31\u00b0C) is causing rapid cyclogenesis where tropical depressions escalate into destructive cyclones in under 24 hours. While precision satellite evacuation saved human lives, saline storm surges permanently ruin low-lying agricultural soils, leaving agrarian families economically destitute.",
     bullets: [
       'Over 450,000 vulnerable coastal residents shifted to 800 reinforced multipurpose cyclone shelters within 36 hours.',
@@ -169,6 +193,15 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Officially verified in MEA Joint Communiqué following New Delhi Multilateral Working Group.',
     takeaway: 'Strategic multilateral corridor accelerates subsea data cables and green maritime logistics connecting Mumbai ports to Mediterranean gateways, creating direct bypass around geopolitical naval choke points.',
+    whatIsIt: 'Multilateral trade initiative activating a 400 Terabit subsea digital fiber cable and clean hydrogen transit working group connecting Mumbai ports to European gateways.',
+    factSheet: {
+      when: 'Today, 09:30 AM IST',
+      where: 'Mumbai Port (JNPT) across Arabian Sea to Haifa & Piraeus (Greece)',
+      who: 'Ministry of External Affairs (MEA), European Commission, UAE Ministry of Infrastructure',
+      what: 'Activation of 400 Terabit subsea digital fiber cable and clean hydrogen transit working group under India-Middle East-Europe Economic Corridor',
+      why: 'Red Sea shipping vulnerabilities and maritime bottlenecks forced global trade to establish redundant trans-continental digital and energy pathways',
+      how: 'Consortium funded by Indian, Emirati, and EU sovereign funds commissioned deep-sea fiber lay vessels and finalized green ammonia pipeline engineering blueprints'
+    },
     theRealProblem: "Persistent maritime drone attacks and regional conflicts have crippled the Red Sea and Suez Canal, adding 14 days and billions in freight surcharges. The challenge is constructing a complex multi-nation overland rail and digital fiber bypass across politically volatile terrain with competing national interests.",
     bullets: [
       'Ultra-low-latency 400 Gbps subsea fiber optic cable laying commences between Gujarat coast, Fujairah, and Haifa.',
@@ -207,6 +240,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Community replication verified across 40 independent academic labs on Hugging Face and GitHub.',
     takeaway: 'Viral tech leaks on X proved accurate as frontier labs release open mathematical verification harnesses, allowing student researchers to evaluate local open-source models on advanced Olympiad reasoning benchmarks.',
     whatIsIt: "Unauthorized dissemination of frontier AI reasoning test logs and internal system benchmarks on X (Twitter), prompting leading labs to officially release public verification standards.",
+    factSheet: {
+      when: "Today, 08:15 AM IST",
+      where: "Open Source AI Developer Community (San Francisco, Bengaluru & GitHub)",
+      who: "Open-source AI research engineers, Frontier AI lab whistleblower, Hugging Face maintainers",
+      what: "Leaked internal research documents on X (Twitter) verified; open-weight reasoning protocol published publicly for student researchers",
+      why: "Frontier proprietary labs attempted to patent synthetic test-time reasoning compute algorithms that were originally developed on public academic datasets",
+      how: "Independent benchmark suite published on Hugging Face; reproduced on consumer dual-RTX 4090 GPUs, validating algorithmic mathematical parity without cloud subscriptions"
+    },
     theRealProblem: "Frontier AI labs have built multi-billion-dollar closed moats around proprietary reasoning models, but viral leaks on X and independent algorithmic extractions demonstrate that mathematical reasoning cannot be locked in a corporate garden, sparking acute debates on intellectual property and student access.",
     bullets: [
       'Independent AI researchers on X identified leaked evaluation checkpoints, forcing frontier labs to release official open weights.',
@@ -244,6 +285,15 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Officially published via Google DeepMind Research Paper and confirmed at Global Tech Keynote.',
     takeaway: 'New real-time multimodal reasoning system demonstrates autonomous multi-step software synthesis, igniting intense international debate over future student engineering jobs and open vs closed AI ecosystems.',
+    whatIsIt: 'Google DeepMind release of next-generation multimodal frontier reasoning architecture across global API endpoints with 10M token context window.',
+    factSheet: {
+      when: 'Today, 06:40 AM IST',
+      where: 'Google Mountain View Headquarters & Global AI Cloud Clusters',
+      who: 'Google DeepMind, Sundar Pichai (CEO), 600 Million weekly active developers',
+      what: 'Next-generation multimodal reasoning architecture released across developer API endpoints with 10M token context window',
+      why: 'Intensifying competition in enterprise software automation and autonomous codebase refactoring',
+      how: 'Trained on TPU v5p supercomputers with integrated formal verification engines; made freely available to accredited student developers via Google AI Studio'
+    },
     theRealProblem: "Autonomous agentic reasoning systems can now write and debug full codebases in seconds, creating massive anxiety around entry-level software engineering careers while high-end training compute remains monopolized by a few trillion-dollar tech corporations, leaving universities racing to reform outdated curricula.",
     bullets: [
       'Active daily users surged past 600 million globally within 90 days, breaking historical consumer technology adoption records.',
@@ -283,6 +333,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Officially audited by Ministry of Civil Aviation inspection team and verified in current flight roster.',
     takeaway: 'North Bengal\'s primary aviation hub is expanding to handle 10 million annual passengers with direct Southeast Asian flight corridors.',
     whatIsIt: "Ministry of Civil Aviation on-site infrastructure audit verifying 45% completion of Bagdogra Airport's new 100,000 sq. meter terminal, designed to handle 10 million annual passengers.",
+    factSheet: {
+      when: "Today, 05:20 AM IST",
+      where: "Bagdogra International Airport (IXB), Siliguri, West Bengal",
+      who: "Airports Authority of India (AAI), CPWD, North Bengal University & Siliguri Trade Guilds",
+      what: "New terminal building construction crossed 45% completion milestone, tripling annual passenger handling capacity to 10 million",
+      why: "Existing terminal was built for 750,000 passengers but currently handles over 3.2 million, creating severe congestion for Himalayan tourism and student transit",
+      how: "Rs 1,549 Crore multi-level glass-and-steel terminal deployed with 16 aerobridges and integrated direct flyover connecting to Asian Highway 2 (AH2)"
+    },
     theRealProblem: "Bagdogra Airport currently handles 3.4 million annual passengers inside a single-runway facility built for only 750,000, causing severe tarmac bottlenecks and frequent flight delays. As the sole transit corridor for Sikkim, Darjeeling, and Bhutan, regional mobility and student flights are severely constricted.",
     bullets: [
       'New terminal spans 100,000 sq. meters with 16 aero-bridges, modern cargo logistics, and dedicated transit corridors to Darjeeling and Sikkim.',
@@ -323,6 +381,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Official text adopted by the UN General Assembly 2nd Committee in Geneva.',
     takeaway: 'Global powers agreed on safety boundaries for frontier biological AI while explicitly protecting academic open-source weights from corporate monopoly bans.',
     whatIsIt: "Ratification of the Geneva AI Safety Compact by 64 nations, establishing international safety benchmarks while strictly prohibiting blanket bans on open-source student research.",
+    factSheet: {
+      when: "Yesterday, 10:15 PM IST",
+      where: "Palais des Nations, Geneva, Switzerland",
+      who: "United Nations High-Level AI Advisory Body, 64 sovereign nation signatories including India and EU",
+      what: "Global AI Safety Compact signed, prohibiting autonomous lethal targeting while formally ring-fencing open-source student research from regulatory penalties",
+      why: "Fears that proprietary tech monopolies were weaponizing safety regulations to criminalize independent academic AI development",
+      how: "Binding treaty clauses establish open algorithmic transparency standards while mandating sovereign kill-switches on military battlefield models"
+    },
     theRealProblem: "Corporate lobbyists from frontier AI monopolies attempted to weaponize safety fears to outlaw open-source models, seeking an international licensing regime that would restrict AI development exclusively to trillion-dollar tech conglomerates, shutting out universities, student builders, and developing nations.",
     bullets: [
       'Sets mandatory pre-deployment testing for models exceeding 10^26 FLOPs compute training runs.',
@@ -361,6 +427,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Officially reaffirmed in Take-Two Interactive SEC Form 10-Q filing.',
     takeaway: 'The $2 billion production budget sets a new entertainment world benchmark, sparking widespread industry debate on gaming budgets versus independent creative titles.',
     whatIsIt: "Take-Two Interactive and Rockstar Games officially reaffirming global release window for Grand Theft Auto VI as worldwide trailer impressions shatter all entertainment industry records.",
+    factSheet: {
+      when: "Yesterday, 08:40 PM IST",
+      where: "Rockstar Games & Take-Two Interactive (New York & Edinburgh)",
+      who: "Take-Two Interactive CEO Strauss Zelnick, Rockstar Studios development teams",
+      what: "Reaffirmed non-negotiable global launch window with $2 Billion production budget, setting all-time entertainment entertainment records",
+      why: "Debunked widespread social media delay rumors following aggressive leak purges and employee return-to-office mandates",
+      how: "Earnings call filing confirmed fall release schedule on PlayStation 5 and Xbox Series X; full spatial audio and procedural physics showcased in closed developer build"
+    },
     theRealProblem: "AAA game production budgets have ballooned past $1-2 billion with decade-long development cycles. This has triggered industry-wide studio closures, massive developer layoffs, and risk-averse corporate homogenization, leaving independent creative studios struggling for visibility.",
     bullets: [
       'Global trailer views officially crossed 420 million across YouTube and social platforms, the highest in human media history.',
@@ -399,6 +473,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Signed procurement and portal release verified by IndiaAI National Portal.',
     takeaway: 'Indian college students and academic labs can now access top-tier computing clusters at zero cost for thesis projects and open-source models.',
     whatIsIt: "MeitY and IndiaAI launching a 10,000 GPU high-performance compute cluster providing subsidized, free cloud compute grants for college student engineering capstones.",
+    factSheet: {
+      when: "Yesterday, 06:50 PM IST",
+      where: "Ministry of Electronics & IT (MeitY), New Delhi & C-DAC Pune",
+      who: "Union IT Minister Ashwini Vaishnaw, C-DAC, Indian university student researchers",
+      what: "Government opened 10,000 sovereign GPU cluster portal granting 500 free compute hours to verified Indian college students",
+      why: "High cost of cloud GPU compute (Rs 250-400/hour) prevented Indian engineering students from training frontier vision and language models",
+      how: "Students register via DigiLocker and National Academic Depository (NAD); compute allocated through unified cloud portal connected to Param supercomputers"
+    },
     theRealProblem: "Indian university students and researchers historically lacked access to high-compute GPU clusters, being priced out by expensive US-based cloud rates and forced to limit their computer science research to basic theory while top talent emigrated overseas.",
     bullets: [
       'The compute capacity combines NVIDIA H100s and custom indigenous accelerators hosted across Tier-4 Indian data centers.',
@@ -437,6 +519,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Officially published in IEA Global Electricity Review 2026.',
     takeaway: 'Global solar and wind farms generated 32% of all world power over the last quarter, permanently overtaking coal as the dominant primary electricity source.',
     whatIsIt: "International Energy Agency confirming that global wind and solar electricity generation officially surpassed coal generation worldwide for the first quarterly reporting cycle.",
+    factSheet: {
+      when: "Yesterday, 04:30 PM IST",
+      where: "International Energy Agency (IEA) Headquarters, Paris & Global Power Grids",
+      who: "International Energy Agency (IEA), Global Solar Council, National Grid Operators",
+      what: "Combined solar and wind energy generated 32.4% of total worldwide electricity in calendar 2026, officially outstripping coal for the first time",
+      why: "Rapid 85% drop in solar PV module costs and massive battery energy storage system (BESS) deployments across India, China, and Europe",
+      how: "Over 510 Gigawatts of new renewable capacity synchronized to transmission grids worldwide in a single 12-month period"
+    },
     theRealProblem: "Although renewable solar and wind generation have officially surpassed coal, legacy 20th-century power grids lack the battery storage and high-voltage transmission lines needed to handle intermittent renewable surges, forcing utilities to curtail clean power while running coal plants on idle backup.",
     bullets: [
       'Driven by massive battery storage breakthroughs and high-speed regional grid interconnectors in India, China, and the European Union.',
@@ -475,6 +565,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Monthly progress report submitted to Ministry of Road Transport and Highways.',
     takeaway: 'Travel time between Siliguri and Uttar Pradesh reduced from 15 hours to 6 hours, creating an inland industrial trade bridge.',
     whatIsIt: "National Highways Authority of India accelerating the Siliguri-Gorakhpur 4-lane expressway connecting North Bengal directly to northern agricultural logistics corridors.",
+    factSheet: {
+      when: "Yesterday, 02:15 PM IST",
+      where: "Siliguri to Gorakhpur Expressway (NH-27 Corridor through Bihar and West Bengal)",
+      who: "National Highways Authority of India (NHAI), Ministry of Road Transport & Highways",
+      what: "519-kilometer 4-lane greenfield expressway entered final asphalt paving, reducing travel time from Siliguri to Gorakhpur to 6 hours",
+      why: "Legacy highway route through congested towns caused 16-18 hour freight transit delays for North Bengal tea, agricultural produce, and student transit",
+      how: "Constructed with elevated animal corridors and bypasses around flooded river plains with sensor-embedded asphalt designed for 120 km/h speeds"
+    },
     theRealProblem: "The strategic 22-kilometer Siliguri corridor (Chicken\u2019s Neck) carries all road freight to eight northeastern states. Recurring monsoon flooding, single-lane bottlenecks, and urban congestion frequently paralyze cargo transit, driving up essential goods prices and delaying student mobility.",
     bullets: [
       'The greenfield alignment bypasses congested urban choke points in Kishanganj and Islampur with high-speed 120 km/h design.',
@@ -513,6 +611,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Unverified regulatory filing detected in South Korean National Radio Research Agency. Valve has not officially commented.',
     takeaway: 'A mysterious Valve wireless device code-named "Galileo/Deckard" with custom AMD silicon has surfaced in regulatory databases.',
     whatIsIt: "Regulatory compliance filings detected in Asian communications databases indicating Valve is certifying a standalone untethered SteamOS hardware device with custom AMD silicon.",
+    factSheet: {
+      when: "Yesterday, 12:45 PM IST",
+      where: "Valve Corporation (Bellevue, Washington) & South Korean Telecommunications Commission",
+      who: "Valve Hardware Engineering division, Regulatory compliance inspectors",
+      what: "Regulatory safety certifications revealed Valve standalone ARM-based SteamOS computing hardware with custom AMD APU silicon",
+      why: "Expanding SteamOS beyond handhelds into living room micro-consoles and standalone spatial headsets to counter Windows gaming bloat",
+      how: "6 GHz Wi-Fi 7 radio modules and dual ultra-low latency optical transceivers certified under international electromagnetic filings"
+    },
     theRealProblem: "Virtual reality hardware remains held back by heavy tether cables, low battery endurance, thermal throttling, and walled-garden app ecosystems. The technical hurdle is packing PC-grade gaming performance into an untethered, lightweight headset running open-source Linux.",
     bullets: [
       'Regulatory filing mentions 6 GHz Wi-Fi 7 radio modules and a dual-display optical calibration rig.',
@@ -550,6 +656,15 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Officially published in RBI Circular DPSS.CO.OD.No. 882/2026.',
     takeaway: 'Indian students studying abroad or paying for international courses can now transfer tuition fees instantly at near-zero bank markup.',
+    whatIsIt: 'RBI and NPCI International activation of bilateral UPI payment corridors across 18 nations for instantaneous tuition and living cost remittances with zero forex spread.',
+    factSheet: {
+      when: 'Yesterday, 11:20 AM IST',
+      where: 'Reserve Bank of India (RBI), Mumbai & 18 Partner Central Banks',
+      who: 'NPCI International Payments Ltd (NIPL), RBI Governor, Global remittance partners',
+      what: 'Direct peer-to-peer UPI linkage expanded to 18 nations, allowing students to pay overseas tuition and living expenses with zero forex markups',
+      why: 'Traditional SWIFT wire transfers charged 3-7% hidden foreign exchange spreads and took 3-5 business days for student tuition clearances',
+      how: "API interconnection between India's UPI switch and foreign national fast-payment systems (such as Singapore PayNow, UAE Aani, and France Lyra)"
+    },
     theRealProblem: "International bank wire transfers have extracted billions in hidden 4-7% foreign exchange markups and multi-day delays from overseas students paying tuition. Traditional commercial banking cartels long resisted real-time bilateral integration to protect high SWIFT fee revenues.",
     bullets: [
       'Direct linkage between India\'s UPI and national payment rails in Germany, Japan, Singapore, France, and the UK.',
@@ -588,6 +703,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Reviewed and merged by Linus Torvalds in mainline Git tree commit 7a82fb9.',
     takeaway: 'Memory-safe systems programming in Rust has officially graduated from experimental status into critical Linux operating infrastructure.',
     whatIsIt: "Mainline Linux Kernel 6.14 officially merging memory-safe Rust drivers for high-speed NVMe storage and core networking, eliminating decades-old C buffer overflow vulnerabilities.",
+    factSheet: {
+      when: "Yesterday, 09:10 AM IST",
+      where: "Linux Foundation & Global Kernel Architecture Summit",
+      who: "Linus Torvalds, Greg Kroah-Hartman, Mainline Rust for Linux Maintainers",
+      what: "Linux Kernel 6.14 promoted Rust memory-safe drivers to default Tier-1 production architecture across NVMe storage and 100GbE networking",
+      why: "Over 70% of critical security vulnerabilities in mainline OS kernels stem from spatial and temporal memory bugs in C code",
+      how: "Rust compiler integrated into mainline build tooling with zero runtime performance degradation compared to equivalent C binaries"
+    },
     theRealProblem: "Memory safety bugs in legacy C code (buffer overflows, use-after-free) cause over 70% of high-severity operating system security breaches worldwide. Yet adopting modern memory-safe languages like Rust into the Linux kernel faced years of resistance from traditional systems programmers.",
     bullets: [
       'The new Rust NVMe driver demonstrated zero memory vulnerability crashes in continuous fuzzing benchmarks over 180 days.',
@@ -626,6 +749,14 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Formally inaugurated at Raja Rammohunpur campus with active university incubation grants.',
     takeaway: 'Students in Siliguri, Jalpaiguri, and Darjeeling receive direct seed grants of up to ₹10 Lakhs for regional technology solutions.',
     whatIsIt: "North Bengal University launching a ₹25 Crore Himalayan Innovation Hub at Raja Rammohunpur campus offering ₹10 Lakh seed grants for student AgTech and drone startups.",
+    factSheet: {
+      when: "Yesterday, 08:00 AM IST",
+      where: "North Bengal University (NBU) Raja Rammohunpur Campus, Siliguri, West Bengal",
+      who: "NBU Vice-Chancellor, Department of Science & Technology (DST), 42 student startup teams",
+      what: "Inauguration of Rs 25 Crore Himalayan Innovation Hub offering seed grants up to Rs 10 Lakh for student AI, drone, and AgTech ventures",
+      why: "Prevent brain drain of top engineering and science students from North Bengal to Bengaluru and NCR by offering incubation infrastructure locally",
+      how: "Equipped with rapid prototyping fab labs, high-performance computing servers, and direct patent filing assistance funded by DST grants"
+    },
     theRealProblem: "Despite having prestigious universities and engineering colleges in North Bengal, a total absence of regional venture capital and prototyping labs forced 90% of ambitious student founders to migrate to Bengaluru or Delhi, leaving local agricultural and mountain problems unaddressed.",
     bullets: [
       'The hub provides free 3D rapid prototyping labs, drone testing grounds, and tea-plantation sensor analytics facilities.',
@@ -667,6 +798,14 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Issued under Rule 133A of the Aircraft Rules, 1937, effective immediately across scheduled passenger airlines.',
     takeaway: 'All domestic airlines operating aircraft over 60 seats must install reinforced physical transition gates between passenger cabins and flight decks to prevent forward galley breach attempts.',
     whatIsIt: "DGCA issuing a mandatory civil aviation directive requiring all scheduled passenger carriers to install secondary biometric physical cockpit gates to protect flight decks during flight.",
+    factSheet: {
+      when: "Today, 03:05 PM IST",
+      where: "Directorate General of Civil Aviation (DGCA) Headquarters, New Delhi & Major Indian Hubs",
+      who: "DGCA Directorate of Air Safety, Indian Commercial Airlines (IndiGo, Air India, SpiceJet)",
+      what: "Mandatory installation of secondary cockpit transition barriers on all Indian commercial passenger aircraft with more than 60 seats",
+      why: "Eliminate cockpit door transition vulnerability during meal delivery or pilot restroom breaks following recent mid-flight physical assault incidents",
+      how: "Air carriers given a strict 120-day compliance timeline; retrofits utilize reinforced locking mesh gates that remain secured during door transitions"
+    },
     theRealProblem: "Tight passenger aircraft cabins and frequent weather delays have increased passenger hostility. Without a secondary physical gate in the forward galley, opening the cockpit door for pilot hydration or restroom transit creates an immediate, dangerous vulnerability to cockpit breach.",
     bullets: [
       'Pre-landing cockpit door openings strictly prohibited below 10,000 feet unless guarded by designated cabin marshals.',
@@ -704,6 +843,14 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Live telemetry verified across 18 solar-powered radar gauging stations along Teesta and Mahananda rivers.',
     takeaway: 'High-precision ultrasonic water level sensors provide 4-hour advance flood alerts for downstream Siliguri, Jalpaiguri, and Sevoke transit bridges with zero telecom latency.',
     whatIsIt: "Central Water Commission deploying 18 solar-powered acoustic ultrasonic gauging stations across the Teesta river to provide 4-hour advance flood alerts for Siliguri bridges.",
+    factSheet: {
+      when: "Today, 02:40 PM IST",
+      where: "Teesta River Basin, Mahananda Barrage, Siliguri & Kalimpong, West Bengal",
+      who: "Central Water Commission (CWC), West Bengal Irrigation Dept, Siliguri Municipal Corporation",
+      what: "24 real-time IoT river telemetry sensor stations deployed across Teesta and Mahananda river spans to detect flash floods 4 hours in advance",
+      why: "Catastrophic glacial lake outburst floods (GLOF) in Sikkim highlighted severe gaps in early warning systems for downstream North Bengal bridges and settlements",
+      how: "Solar-powered ultrasonic water level sensors with satellite uplink transmit live telemetry every 60 seconds directly to district emergency dashboards"
+    },
     theRealProblem: "Himalayan cloudbursts and glacial lake outbursts in Sikkim can send devastating torrents of floodwater rushing downstream to Siliguri and Jalpaiguri within 90 minutes. Traditional manual gauge monitoring was too slow, leaving urban bridges and low-lying communities at severe risk.",
     bullets: [
       'Automated acoustic wave sensors detect sudden glacial lake discharge or cloudburst runoff in upper Sikkim valleys.',
@@ -741,6 +888,14 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Monitored and documented by IEA Taskforce for Energy Resilience.',
     takeaway: 'International humanitarian partners completed installation of hardened containerized solar-plus-storage microgrids for regional hospitals and student water treatment hubs, resisting grid strikes.',
     whatIsIt: "Deployment of 200 decentralized solar-plus-storage containerized microgrids across critical civilian healthcare hubs to resist high-voltage grid disruptions.",
+    factSheet: {
+      when: "Today, 01:25 PM IST",
+      where: "Kharkiv, Kyiv & Odesa Regional Healthcare Infrastructure, Ukraine",
+      who: "International Energy Agency (IEA), Ukrainian Ministry of Health, European Humanitarian Engineers",
+      what: "Installation of 200 decentralized solar-plus-storage containerized microgrids across critical civilian healthcare hubs",
+      why: "Repeated long-range strikes against centralized high-voltage electricity substations threatened hospital ventilators and winter municipal heating",
+      how: "Each containerized 250 kW microgrid features lithium iron phosphate (LFP) batteries operating completely off-grid for up to 72 continuous hours"
+    },
     theRealProblem: "Centralized power stations and high-voltage electrical transformers are stationary targets for long-range drone and missile strikes. Centralized power failure paralyzes civilian hospitals, heating, and water purification during harsh sub-zero winter temperatures.",
     bullets: [
       'Each autonomous 250 kW microgrid can operate off-grid for up to 72 continuous hours during high-voltage transformer outages.',
@@ -778,6 +933,14 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Signed by Minister of Electronics & IT and Japanese Trade Minister in Tokyo.',
     takeaway: 'Bilateral accord establishes joint fabrication line for 14nm automotive silicon and establishes student research scholarships in Tokyo and Bengaluru chip design hubs.',
     whatIsIt: "Bilateral treaty ratification between India and Japan establishing joint 14nm automotive silicon foundry lines and 300 fully funded cleanroom research fellowships for Indian students.",
+    factSheet: {
+      when: "Today, 12:15 PM IST",
+      where: "Ministry of Economy, Trade and Industry (METI), Tokyo & MeitY New Delhi",
+      who: "Union Minister Ashwini Vaishnaw, Japanese Trade Minister, 300 Indian Cleanroom Scholars",
+      what: "Bilateral treaty ratified establishing joint 14nm automotive silicon foundry lines and 300 fully funded master's cleanroom fellowships in Japan",
+      why: "Over-concentration of global silicon fabrication in sensitive East Asian waters necessitated diversified bilateral sovereign foundries",
+      how: "Long-term treaty guarantees refined gallium wafer supply and establishes dual cleanroom research lines at Dholera and Sanand semiconductor parks"
+    },
     theRealProblem: "Over 80% of global semiconductor manufacturing is concentrated in a single maritime zone. Any geopolitical blockade in East Asia would immediately freeze worldwide automotive, medical, and consumer electronics production within weeks, necessitating diversified bilateral foundries.",
     bullets: [
       'Guarantees dedicated supply of refined gallium and silicon wafers to emerging fab facilities in Dholera and Sanand.',
@@ -815,6 +978,14 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Announced live by RBI Governor following the 3-day MPC deliberations and gazetted on RBI official portal.',
     takeaway: 'RBI maintained repo rate stability while issuing binding directives to public and private lenders prohibiting predatory compounding and unfair penal interest on domestic and overseas student education loans.',
     whatIsIt: 'RBI Monetary Policy decision keeping benchmark lending rates unchanged at 6.50% while issuing a mandatory consumer protection circular to cap interest rate spreads and eliminate prepayment penalties on education loans.',
+    factSheet: {
+      when: 'Today, 10:00 AM IST (Bi-Monthly MPC Resolution)',
+      where: 'RBI Central Office, Fort, Mumbai, Maharashtra',
+      who: 'Shaktikanta Das (RBI Governor), 6-Member Monetary Policy Committee, Indian Banks Association (IBA)',
+      what: 'Benchmark repo rate held at 6.50% with binding circular capping interest rate margins and eliminating prepayment penalties on student loans',
+      why: 'Persistent food price volatility requires conservative policy rate posture, while protecting student borrowers from asymmetric retail bank loan hikes',
+      how: 'Directive circular issued under Banking Regulation Act Section 35A; banks given 30 days to re-issue zero-penalty Key Fact Statements'
+    },
     theRealProblem: 'Commercial banks frequently pass on rate hikes swiftly to floating-rate education loan borrowers but delay downward transmissions. Graduating students face sudden 25-40% monthly EMI jumps right as they enter junior employment markets.',
     bullets: [
       'Repo rate maintained at 6.50% with an unchanged stance of withdrawal of accommodation to stabilize retail inflation near the 4% target.',
@@ -854,6 +1025,14 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Published on SEBI portal following Study on Retail F&O Losses showing 93% individual traders lost capital in derivatives.',
     takeaway: 'SEBI’s new guidelines increase minimum contract sizes from ₹5 Lakh to ₹15 Lakh and mandate upfront collection of option premiums to prevent young retail traders and students from losing educational savings.',
     whatIsIt: 'Comprehensive market regulation framework by SEBI raising derivative lot sizes and restricting weekly index expiries to one per exchange to halt rampant gamified trading among young retail participants.',
+    factSheet: {
+      when: 'Today, 11:30 AM IST (Capital Market Circular)',
+      where: 'SEBI Bhavan, Bandra-Kurla Complex (BKC), Mumbai',
+      who: 'Madhabi Puri Buch (SEBI Chairperson), National Stock Exchange (NSE), BSE, 1.1 Crore retail options traders',
+      what: 'Strict 6-point derivative trading framework raising minimum contract lot size from ₹5 Lakh to ₹15 Lakh and rationalizing weekly expiries',
+      why: 'SEBI study revealed 93% of young individual traders lost over ₹1.81 Lakh Crore in gamified out-of-the-money weekly options',
+      how: 'Phased implementation between Nov 20 and Feb 01 restricting expiries to 1 per exchange and mandating upfront option premium collection'
+    },
     theRealProblem: 'Mobile brokerage apps turned high-risk derivative trading into a video-game-like dopamine loop. Over 93% of young individual traders lost an average of ₹1.81 Lakh each in FY24 due to out-of-the-money weekly options gambling.',
     bullets: [
       'Minimum index derivatives contract size raised from ₹5 Lakh to ₹15 Lakh, effectively preventing under-capitalized students from taking high-risk leverage.',
@@ -893,6 +1072,14 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Verified across IBJA closing quotes, MCX Futures contracts, and local Siliguri/Kolkata jewellery associations.',
     takeaway: 'Physical precious metals reached all-time highs as global central banks diversify reserve currencies away from the dollar, while Indian households hedge against rupee depreciation.',
     whatIsIt: 'Record-setting rally in domestic gold and silver spot prices driven by international interest rate cutting cycles, geopolitical safety bids, and soaring industrial silver consumption in solar panels and EV batteries.',
+    factSheet: {
+      when: 'Today, 05:00 PM IST (Market Closing Fix)',
+      where: 'India Bullion and Jewellers Association (IBJA) Benchmarks, Zaveri Bazaar, Mumbai & Global MCX Exchanges',
+      who: 'IBJA Benchmarking Committee, Reserve Bank of India, Global Central Banks, Retail Bullion Buyers',
+      what: 'Physical 24K gold reached all-time high of ₹79,450/10g while industrial silver neared ₹96,500/kg',
+      why: 'Geopolitical reserve de-dollarization by central banks combined with unprecedented silver wafer consumption in solar PV and EV battery manufacturing',
+      how: 'Domestic price discovered via MCX futures and customs import duty calculations; RBI expanded domestic reserves with 102 tonnes repatriated from Bank of England'
+    },
     theRealProblem: 'While precious metals preserve intergenerational purchasing power, sudden price spikes make traditional wedding and festival purchases prohibitively expensive for middle-class families and students planning first-time gold savings.',
     bullets: [
       '24 Karat pure gold climbed to ₹79,450 per 10g in major domestic markets, while standard 22 Karat jewellery gold reached ₹72,830 per 10g.',
@@ -929,12 +1116,21 @@ export function getFreshRollingNews(): NewsArticle[] {
   return mockNewsArticles.map((art, idx) => {
     const mins = offsets[idx % offsets.length] || 15;
     const rolling = createRollingTimestamp(mins);
+    // Real verified news search query: Google News India search for exact headline topic & credible media
+    const searchQuery = encodeURIComponent(`${art.title} news the hindu indian express reuters`);
+    const verifiedSearchUrl = `https://news.google.com/search?q=${searchQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
+    
     return {
       ...art,
       publishedAt: rolling.publishedAt,
       timestamp: rolling.timestamp,
       dateLabel: rolling.dateLabel,
-      incidentDate: rolling.incidentDate
+      incidentDate: rolling.incidentDate,
+      verifiedSearchUrl: art.verifiedSearchUrl || verifiedSearchUrl,
+      deepDive: {
+        ...art.deepDive,
+        verifiedNewsSearchUrl: art.deepDive.verifiedNewsSearchUrl || verifiedSearchUrl
+      }
     };
   });
 }

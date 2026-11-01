@@ -4,6 +4,15 @@ export type VerificationStatus = 'govt_verified' | 'reputable_media' | 'trending
 
 export type LocationScope = 'Siliguri' | 'North Bengal' | 'West Bengal' | 'India' | 'Global' | 'Eastern Europe' | 'Bay of Bengal';
 
+export interface ArticleFactSheet {
+  when: string;       // Exact Date, Time & Timeline status
+  where: string;      // Exact Location, City, Landmark, Geotag
+  who: string;        // People, Authorities, Victims, Officials involved
+  what: string;       // Concrete summary of the physical event
+  why: string;        // Root cause and why it occurred
+  how: string;        // How it was resolved or how action was executed
+}
+
 export interface DeepDiveContent {
   overview: string;
   keyBackground: string;
@@ -14,6 +23,7 @@ export interface DeepDiveContent {
   impactForStudents: string;
   officialSourceUrl: string;
   sourceDocName: string;
+  verifiedNewsSearchUrl?: string;
 }
 
 export interface NewsArticle {
@@ -37,6 +47,8 @@ export interface NewsArticle {
   deepDive: DeepDiveContent;
   audioScript: string;
   tags: string[];
+  factSheet?: ArticleFactSheet;
+  verifiedSearchUrl?: string;
 }
 
 export interface WisdomItem {

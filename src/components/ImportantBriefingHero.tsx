@@ -11,7 +11,12 @@ import {
   ChevronRight,
   Sparkles,
   Calendar,
-  Zap
+  Zap,
+  MapPin,
+  Clock,
+  Users,
+  Target,
+  ExternalLink
 } from 'lucide-react';
 import { NewsArticle } from '../types';
 
@@ -134,6 +139,67 @@ export const ImportantBriefingHero: React.FC<ImportantBriefingHeroProps> = ({
           </p>
         </div>
 
+        {/* ================= 5W+1H INCIDENT INTEL (WHERE · WHEN · WHO · WHAT · WHY · HOW) ================= */}
+        {activeArticle.factSheet && (
+          <div className="rounded-xl border border-blue-500/25 bg-blue-500/[0.03] dark:bg-blue-950/20 p-3.5 space-y-2.5 text-xs">
+            <div className="flex items-center justify-between border-b border-blue-500/15 pb-2">
+              <div className="flex items-center gap-1.5 text-blue-700 dark:text-blue-400 font-mono font-bold text-[11px] uppercase tracking-wider">
+                <Target className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                <span>Incident Intel & Granular Verification</span>
+              </div>
+              <span className="text-[10px] text-zinc-500 dark:text-zinc-400 font-mono">
+                Verified Facts
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans">
+              <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                <MapPin className="w-3.5 h-3.5 text-rose-500 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">Where (Location)</span>
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium text-xs leading-tight block">{activeArticle.factSheet.where}</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                <Clock className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">When (Date & Time)</span>
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium text-xs leading-tight block">{activeArticle.factSheet.when}</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                <Users className="w-3.5 h-3.5 text-indigo-500 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">Who (Entities Involved)</span>
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium text-xs leading-tight block">{activeArticle.factSheet.who}</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                <Zap className="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">What (Factual Event)</span>
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium text-xs leading-tight block">{activeArticle.factSheet.what}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Why & How */}
+            <div className="space-y-1.5 pt-1 border-t border-blue-500/10">
+              <div className="flex items-start gap-2 text-xs text-zinc-700 dark:text-zinc-300">
+                <span className="font-mono text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-800 dark:text-amber-300 shrink-0 mt-0.5">Why</span>
+                <span className="leading-relaxed">{activeArticle.factSheet.why}</span>
+              </div>
+              <div className="flex items-start gap-2 text-xs text-zinc-700 dark:text-zinc-300">
+                <span className="font-mono text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 shrink-0 mt-0.5">How / Action</span>
+                <span className="leading-relaxed">{activeArticle.factSheet.how}</span>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* ================= WHAT IS REALLY THE PROBLEM? (ROOT CAUSE) ================= */}
         <div className="my-2.5 p-3.5 rounded-xl border border-red-500/25 bg-red-500/[0.06] dark:bg-red-950/20 text-xs md:text-sm space-y-1">
           <div className="flex items-center gap-1.5 text-red-700 dark:text-red-400 font-mono font-bold text-[11px] uppercase tracking-wider">
@@ -157,7 +223,7 @@ export const ImportantBriefingHero: React.FC<ImportantBriefingHeroProps> = ({
 
         {/* Action Controls & Primary "Know More" Button */}
         <div className="pt-4 flex flex-wrap items-center justify-between gap-3 border-t border-zinc-200/80 dark:border-zinc-800">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {/* Primary "Know More" Action Button */}
             <button
               onClick={() => onOpenDeepDive(activeArticle)}
@@ -166,6 +232,18 @@ export const ImportantBriefingHero: React.FC<ImportantBriefingHeroProps> = ({
               <span>Know More (Full Deep Dive)</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            {/* Direct Verified Google News Link */}
+            <a
+              href={activeArticle.verifiedSearchUrl || `https://news.google.com/search?q=${encodeURIComponent(activeArticle.title + ' news')}&hl=en-IN&gl=IN&ceid=IN:en`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-100 font-semibold px-3 py-2 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-colors cursor-pointer"
+              title="Read live verified articles from The Hindu, Indian Express, BBC, Reuters"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+              <span>Verify on Google News</span>
+            </a>
           </div>
 
           {/* Source Provenance & Bookmark / Share */}

@@ -1,5 +1,18 @@
 import React, { useState } from 'react';
-import { X, ExternalLink, Bookmark, Share2, Check, Calendar, Zap, AlertCircle } from 'lucide-react';
+import { 
+  X, 
+  ExternalLink, 
+  Bookmark, 
+  Share2, 
+  Check, 
+  Calendar, 
+  Zap, 
+  AlertCircle,
+  MapPin,
+  Clock,
+  Users,
+  Target
+} from 'lucide-react';
 import { NewsArticle } from '../types';
 
 interface DeepDiveModalProps {
@@ -20,7 +33,8 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
   if (!article) return null;
 
   const handleShare = () => {
-    const text = `📰 ${article.title}\n\n${article.deepDive.overview}\n\nSource: ${article.deepDive.officialSourceUrl}`;
+    const verifiedUrl = article.verifiedSearchUrl || article.deepDive.verifiedNewsSearchUrl || `https://news.google.com/search?q=${encodeURIComponent(article.title + ' news')}&hl=en-IN&gl=IN&ceid=IN:en`;
+    const text = `📰 ${article.title}\n\n${article.deepDive.overview}\n\nIncident Date: ${article.incidentDate || article.dateLabel}\nVerified Live Coverage: ${verifiedUrl}\nOfficial Filing: ${article.deepDive.officialSourceUrl}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -64,14 +78,14 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
         {/* Source & Filing Provenance */}
         <div className="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 space-y-1 text-xs">
           <div className="flex items-center justify-between text-zinc-500 font-mono">
-            <span>Primary Source & Origin:</span>
+            <span>Primary Reporting & Source:</span>
             <strong className="text-zinc-900 dark:text-zinc-100">{article.sourceName}</strong>
           </div>
           <p className="text-zinc-600 dark:text-zinc-400">
             {article.verificationNote}
           </p>
           <div className="text-[11px] text-zinc-500 font-mono pt-0.5">
-            Document Record: <strong className="text-zinc-700 dark:text-zinc-300">{article.deepDive.sourceDocName}</strong>
+            Official Document / Gazette: <strong className="text-zinc-700 dark:text-zinc-300">{article.deepDive.sourceDocName}</strong>
           </div>
         </div>
 
@@ -101,6 +115,67 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
             {article.whatIsIt || article.takeaway}
           </p>
         </div>
+
+        {/* ================= 5W+1H INCIDENT INTEL (WHERE · WHEN · WHO · WHAT · WHY · HOW) ================= */}
+        {article.factSheet && (
+          <div className="rounded-xl border border-blue-500/30 bg-blue-500/[0.03] dark:bg-blue-950/25 p-4 space-y-3 text-xs">
+            <div className="flex items-center justify-between border-b border-blue-500/15 pb-2">
+              <div className="flex items-center gap-1.5 text-blue-700 dark:text-blue-400 font-mono font-bold text-xs uppercase tracking-wider">
+                <Target className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <span>Incident Intel & Granular Verification</span>
+              </div>
+              <span className="text-[11px] text-zinc-500 dark:text-zinc-400 font-mono">
+                Factsheet (5W+1H)
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-sans">
+              <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                <MapPin className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">Where (Location)</span>
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium text-xs leading-tight block">{article.factSheet.where}</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                <Clock className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">When (Date & Time)</span>
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium text-xs leading-tight block">{article.factSheet.when}</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                <Users className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">Who (Entities Involved)</span>
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium text-xs leading-tight block">{article.factSheet.who}</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                <Zap className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">What (Factual Action)</span>
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium text-xs leading-tight block">{article.factSheet.what}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Why & How */}
+            <div className="space-y-1.5 pt-1.5 border-t border-blue-500/10">
+              <div className="flex items-start gap-2 text-xs text-zinc-700 dark:text-zinc-300">
+                <span className="font-mono text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-500/15 text-amber-800 dark:text-amber-300 shrink-0 mt-0.5">Why</span>
+                <span className="leading-relaxed">{article.factSheet.why}</span>
+              </div>
+              <div className="flex items-start gap-2 text-xs text-zinc-700 dark:text-zinc-300">
+                <span className="font-mono text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 shrink-0 mt-0.5">How / Action</span>
+                <span className="leading-relaxed">{article.factSheet.how}</span>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* What is Really the Problem & Root Cause Breakdown */}
         {(article.theRealProblem || article.deepDive.rootCauseAnalysis) && (
@@ -211,21 +286,36 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
             <button
               onClick={handleShare}
               className="p-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 cursor-pointer"
-              title="Copy Summary"
+              title="Copy Summary & Links"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5" />}
             </button>
           </div>
 
-          <a
-            href={article.deepDive.officialSourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 font-mono text-xs hover:underline"
-          >
-            <span>Original Source</span>
-            <ExternalLink className="w-3 h-3" />
-          </a>
+          {/* Dual Verified Source Options: Live Google News Coverage + Official Regulatory Filing */}
+          <div className="flex flex-wrap items-center gap-2">
+            <a
+              href={article.verifiedSearchUrl || article.deepDive.verifiedNewsSearchUrl || `https://news.google.com/search?q=${encodeURIComponent(article.title + ' news')}&hl=en-IN&gl=IN&ceid=IN:en`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-medium text-xs shadow-xs transition-colors cursor-pointer"
+              title="Verify live reporting across The Hindu, Indian Express, BBC, Reuters"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Verify Coverage (Google News)</span>
+            </a>
+
+            <a
+              href={article.deepDive.officialSourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 font-mono text-xs px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              title="Official Agency / Government Portal Record"
+            >
+              <span>Filing: {article.deepDive.sourceDocName || 'Official Source'}</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
         </div>
       </div>
     </div>

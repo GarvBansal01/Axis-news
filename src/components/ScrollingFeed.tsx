@@ -9,7 +9,12 @@ import {
   ShieldCheck,
   Globe,
   Calendar,
-  Zap
+  Zap,
+  MapPin,
+  Clock,
+  Users,
+  Target,
+  ExternalLink
 } from 'lucide-react';
 import { NewsArticle } from '../types';
 
@@ -150,6 +155,67 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
                 </p>
               </div>
 
+              {/* ================= 5W+1H INCIDENT INTEL (WHERE · WHEN · WHO · WHAT · WHY · HOW) ================= */}
+              {article.factSheet && (
+                <div className="rounded-xl border border-blue-500/25 bg-blue-500/[0.03] dark:bg-blue-950/20 p-3.5 space-y-2.5 text-xs">
+                  <div className="flex items-center justify-between border-b border-blue-500/15 pb-2">
+                    <div className="flex items-center gap-1.5 text-blue-700 dark:text-blue-400 font-mono font-bold text-[11px] uppercase tracking-wider">
+                      <Target className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                      <span>Incident Intel & Verification</span>
+                    </div>
+                    <span className="text-[10px] text-zinc-500 dark:text-zinc-400 font-mono">
+                      Where · When · Who · Why · How
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans">
+                    <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                      <MapPin className="w-3.5 h-3.5 text-rose-500 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">Where (Location)</span>
+                        <span className="text-zinc-900 dark:text-zinc-100 font-medium text-[11.5px] leading-tight block">{article.factSheet.where}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                      <Clock className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">When (Date & Time)</span>
+                        <span className="text-zinc-900 dark:text-zinc-100 font-medium text-[11.5px] leading-tight block">{article.factSheet.when}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                      <Users className="w-3.5 h-3.5 text-indigo-500 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">Who (Entities Involved)</span>
+                        <span className="text-zinc-900 dark:text-zinc-100 font-medium text-[11.5px] leading-tight block">{article.factSheet.who}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-2 bg-white/70 dark:bg-zinc-900/70 p-2 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60">
+                      <Zap className="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-mono text-[10px] uppercase font-bold text-zinc-500 dark:text-zinc-400 block">What (Factual Action)</span>
+                        <span className="text-zinc-900 dark:text-zinc-100 font-medium text-[11.5px] leading-tight block">{article.factSheet.what}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Why & How / Resolution */}
+                  <div className="space-y-1.5 pt-1 border-t border-blue-500/10">
+                    <div className="flex items-start gap-2 text-[11.5px] text-zinc-700 dark:text-zinc-300">
+                      <span className="font-mono text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-800 dark:text-amber-300 shrink-0 mt-0.5">Why</span>
+                      <span className="leading-relaxed">{article.factSheet.why}</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-[11.5px] text-zinc-700 dark:text-zinc-300">
+                      <span className="font-mono text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 shrink-0 mt-0.5">How / Action</span>
+                      <span className="leading-relaxed">{article.factSheet.how}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* The Real Problem & Root Cause Box */}
               {article.theRealProblem && (
                 <div className="p-3 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-900/60 text-xs space-y-1">
@@ -174,8 +240,8 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
               </ul>
 
               {/* Action Bar */}
-              <div className="pt-2 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2">
+              <div className="pt-2 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <div className="flex flex-wrap items-center gap-2">
                   <button
                     onClick={() => onOpenDeepDive(article)}
                     className="flex items-center gap-1.5 text-xs text-zinc-900 dark:text-zinc-100 hover:text-white dark:hover:text-zinc-950 font-semibold px-3 py-1.5 rounded-lg bg-zinc-200/80 dark:bg-zinc-800 hover:bg-zinc-900 dark:hover:bg-zinc-100 transition-colors cursor-pointer shadow-2xs group"
@@ -183,6 +249,18 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
                     <span>Know More</span>
                     <FileText className="w-3.5 h-3.5 group-hover:scale-105 transition-transform" />
                   </button>
+
+                  {/* Direct Verified Google News Link */}
+                  <a
+                    href={article.verifiedSearchUrl || `https://news.google.com/search?q=${encodeURIComponent(article.title + ' news')}&hl=en-IN&gl=IN&ceid=IN:en`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-xs text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-100 font-semibold px-2.5 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-colors cursor-pointer"
+                    title="Read live verified articles from The Hindu, Indian Express, BBC, Reuters"
+                  >
+                    <ExternalLink className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                    <span>Verify on Google News</span>
+                  </a>
                 </div>
 
                 {/* Right controls: Bookmark, Share */}
