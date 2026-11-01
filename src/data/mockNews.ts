@@ -1,27 +1,40 @@
 import { NewsArticle } from '../types';
 
 // Dynamic 24-Hour Rolling Timestamp Generator
-// Ensures all news is strictly from Today or Yesterday (within 24 hours), auto-purging stale news
+// Strictly classifies news into Today or Yesterday based on real calendar midnight
+// Auto-purges any items older than 24 hours (1440 minutes)
 export function createRollingTimestamp(minutesAgo: number): { publishedAt: string; timestamp: number; dateLabel: string } {
   const now = Date.now();
   const timestamp = now - minutesAgo * 60 * 1000;
   
+  const nowDate = new Date(now);
+  const artDate = new Date(timestamp);
+
+  // Midnight of today in local calendar time
+  const startOfToday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate()).getTime();
+  const startOfYesterday = startOfToday - 24 * 60 * 60 * 1000;
+
+  const isToday = timestamp >= startOfToday;
+  const isYesterday = timestamp >= startOfYesterday && timestamp < startOfToday;
+
+  const timeStr = artDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+
   let publishedAt = '';
   if (minutesAgo < 2) {
     publishedAt = 'Just now (Live Radar)';
   } else if (minutesAgo < 60) {
     publishedAt = `${Math.floor(minutesAgo)}m ago (Today)`;
-  } else if (minutesAgo < 120) {
-    publishedAt = '1h ago (Today)';
-  } else if (minutesAgo < 1440) {
-    publishedAt = `${Math.floor(minutesAgo / 60)}h ago (Today)`;
+  } else if (isToday) {
+    const hoursAgo = Math.max(1, Math.floor(minutesAgo / 60));
+    publishedAt = `${hoursAgo}h ago (Today)`;
+  } else if (isYesterday) {
+    const hoursAgo = Math.max(1, Math.floor(minutesAgo / 60));
+    publishedAt = `${hoursAgo}h ago (Yesterday)`;
   } else {
-    publishedAt = 'Yesterday';
+    publishedAt = 'Earlier (>24h)';
   }
 
-  const d = new Date(timestamp);
-  const timeStr = d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
-  const dateLabel = minutesAgo < 1440 ? `Today, ${timeStr}` : `Yesterday, ${timeStr}`;
+  const dateLabel = isToday ? `Today, ${timeStr}` : `Yesterday, ${timeStr}`;
 
   return { publishedAt, timestamp, dateLabel };
 }
@@ -90,9 +103,9 @@ export const mockNewsArticles: NewsArticle[] = [
       keyBackground: 'Since late 2023, intensive electronic warfare (EW) had neutralized over 70% of standard radio-controlled drones. The recent introduction of micro-spool fiber-optic lines transmitting 4K video with zero RF emissions has transformed close-contact reconnaissance.',
       rootCauseAnalysis: "Commercial off-the-shelf FPV drones coupled with unspooling micro-fiber cables bypass radio frequency electronic warfare entirely. This brings $500 precision lethality against multi-million-dollar armor, while developing nations remain economically vulnerable to Black Sea shipping disruptions.",
       timeline: [
-        { time: 'Early 2024', event: 'Mass electronic warfare saturation renders commercial RF drone links obsolete.' },
-        { time: 'Mid 2026', event: 'Tethered fiber-optic and AI-guided edge compute drones achieve frontline scale.' },
-        { time: 'October 2026', event: 'Geneva-Istanbul diplomatic working group solidifies commercial maritime safe passage.' }
+        { time: 'Pre-Deployment', event: 'Mass electronic warfare saturation renders commercial RF drone links obsolete.' },
+        { time: 'Yesterday', event: 'Tethered fiber-optic and AI-guided edge compute drones achieve frontline scale.' },
+        { time: 'Earlier Today', event: 'Geneva-Istanbul diplomatic working group solidifies commercial maritime safe passage.' }
       ],
       keyQuotes: [
         { speaker: 'Dr. George Barros', role: 'Russia & Geopolitics Lead, ISW', quote: 'We are witnessing the fastest tactical military evolution since the invention of radar. Autonomous systems are dictating frontline survivability.' },
@@ -167,9 +180,9 @@ export const mockNewsArticles: NewsArticle[] = [
       keyBackground: 'Recent maritime security disruptions in the Red Sea and Bab-el-Mandeb strait highlighted the urgent necessity of alternative overland railway and coastal shipping redundancy.',
       rootCauseAnalysis: "Global trade relied almost exclusively on single maritime corridors designed in the 19th century. Naval flashpoints and drone attacks in the Red Sea add $2,000 per container in shipping freight and 14 extra transit days around Africa, fueling global price spikes.",
       timeline: [
-        { time: 'Sept 2023', event: 'IMEC Partnership MoU signed at G20 New Delhi.' },
-        { time: 'Early 2026', event: 'Digital subsea cable feasibility study approved.' },
-        { time: 'Late 2026', event: 'Joint working groups launch first physical cable laying and green logistics hub.' }
+        { time: 'Foundation', event: 'IMEC Partnership MoU signed at G20 New Delhi.' },
+        { time: 'Feasibility', event: 'Digital subsea cable feasibility study approved.' },
+        { time: 'Latest Accord', event: 'Joint working groups launch first physical cable laying and green logistics hub.' }
       ],
       keyQuotes: [
         { speaker: 'Dr. S. Jaishankar', role: 'External Affairs Minister of India', quote: 'IMEC is not merely an infrastructure corridor; it is a green, digital, and geopolitical anchor for the 21st century.' }
@@ -241,9 +254,9 @@ export const mockNewsArticles: NewsArticle[] = [
       keyBackground: 'Since late 2023, the global artificial intelligence arms race has seen Silicon Valley giants and international challengers compete for compute supremacy, shifting from simple text generation to real-time agentic execution.',
       rootCauseAnalysis: "Training frontier AI requires hundreds of millions of dollars in compute, concentrating technology governance in 3-4 mega-corporations. Educational systems and university curricula have not updated fast enough to prepare students for an agentic economy.",
       timeline: [
-        { time: 'June 2025', event: 'Initial multi-agent reasoning benchmarks published at NeurIPS.' },
-        { time: 'August 2026', event: 'Global developer beta opens across 160 countries.' },
-        { time: 'October 2026', event: 'Official worldwide rollout achieves 600M active user milestone.' }
+        { time: 'Benchmark Lab', event: 'Initial multi-agent reasoning benchmarks published at NeurIPS.' },
+        { time: 'Developer Beta', event: 'Global developer beta opens across 160 countries.' },
+        { time: 'Latest Rollout', event: 'Official worldwide rollout achieves 600M active user milestone.' }
       ],
       keyQuotes: [
         { speaker: 'Sundar Pichai', role: 'CEO, Alphabet & Google', quote: 'We are moving from AI that merely answers queries to AI that collaborates with researchers to solve hard scientific and engineering challenges.' },
@@ -262,7 +275,7 @@ export const mockNewsArticles: NewsArticle[] = [
     sourceName: 'Airports Authority of India (AAI) & PIB Siliguri',
     sourceType: 'Govt. Official Gazette',
     verification: 'govt_verified',
-    verificationNote: 'Officially audited by Ministry of Civil Aviation inspection team on Oct 28, 2026.',
+    verificationNote: 'Officially audited by Ministry of Civil Aviation inspection team and verified in current flight roster.',
     takeaway: 'North Bengal\'s primary aviation hub is expanding to handle 10 million annual passengers with direct Southeast Asian flight corridors.',
     theRealProblem: "Bagdogra Airport currently handles 3.4 million annual passengers inside a single-runway facility built for only 750,000, causing severe tarmac bottlenecks and frequent flight delays. As the sole transit corridor for Sikkim, Darjeeling, and Bhutan, regional mobility and student flights are severely constricted.",
     bullets: [
@@ -279,9 +292,9 @@ export const mockNewsArticles: NewsArticle[] = [
       keyBackground: 'Currently operating at over 250% design capacity, Bagdogra handled 3.2 million travelers in 2025 despite single-runway and apron bottlenecks.',
       rootCauseAnalysis: "A single shared military-civilian runway coupled with decade-long land acquisition delays left the eastern region without modern terminal infrastructure, creating severe flight delays and stifling North Bengal commerce.",
       timeline: [
-        { time: 'March 2024', event: 'Central Cabinet sanctions ₹1,549 Crore for phase 1 construction.' },
-        { time: 'January 2026', event: 'Substructure piling completed across 16 boarding gates.' },
-        { time: 'October 2026', event: 'AAI reports 45% structural completion; runway expansion verified.' },
+        { time: 'Cabinet Approval', event: 'Central Cabinet sanctions ₹1,549 Crore for phase 1 construction.' },
+        { time: 'Substructure', event: 'Substructure piling completed across 16 boarding gates.' },
+        { time: 'Latest Audit', event: 'AAI reports 45% structural completion; runway expansion verified.' },
         { time: 'Late 2027', event: 'Commercial operations expected to begin.' }
       ],
       keyQuotes: [
@@ -318,9 +331,9 @@ export const mockNewsArticles: NewsArticle[] = [
       keyBackground: 'Smaller nations and independent developers feared that aggressive frontier licensing would concentrate AI ownership entirely inside four Silicon Valley corporations.',
       rootCauseAnalysis: "Dominant tech firms attempted regulatory capture by advocating for impossible compute certification bars, aiming to outlaw student open-source development under the pretext of national security.",
       timeline: [
-        { time: 'Nov 2023', event: 'Bletchley Park declaration initiates multilateral discussions.' },
-        { time: 'Feb 2026', event: 'Seoul Ministerial draft emphasizes open-source protections.' },
-        { time: 'Oct 2026', event: 'Geneva Compact ratified by 64 delegations.' }
+        { time: 'Initial Summit', event: 'Bletchley Park declaration initiates multilateral discussions.' },
+        { time: 'Ministerial Draft', event: 'Seoul Ministerial draft emphasizes open-source protections.' },
+        { time: 'Ratified Today', event: 'Geneva Compact ratified by 64 delegations.' }
       ],
       keyQuotes: [
         { speaker: 'Amandeep Singh Gill', role: 'UN Secretary-General\'s Envoy on Tech', quote: 'We must not allow safety to become a pretext for shutting out student builders and developing nations.' }
@@ -355,9 +368,9 @@ export const mockNewsArticles: NewsArticle[] = [
       keyBackground: 'Grand Theft Auto V generated over $8 billion in revenue over 13 years, making its successor the most anticipated media release in global history.',
       rootCauseAnalysis: "Extreme photorealism expectations and multi-hundred-million-dollar marketing budgets have made AAA game development financially brittle, forcing corporate risk-aversion and mass worker layoffs across the industry.",
       timeline: [
-        { time: 'Dec 2023', event: 'First official trailer breaks Guinness World Record for 24-hour views.' },
-        { time: 'May 2026', event: 'Take-Two confirms final polishing phase across Sony and Microsoft platforms.' },
-        { time: 'October 2026', event: 'Global marketing campaign commences worldwide.' }
+        { time: 'First Reveal', event: 'First official trailer breaks Guinness World Record for 24-hour views.' },
+        { time: 'Polish Phase', event: 'Take-Two confirms final polishing phase across Sony and Microsoft platforms.' },
+        { time: 'Latest Update', event: 'Global marketing campaign commences worldwide.' }
       ],
       keyQuotes: [
         { speaker: 'Strauss Zelnick', role: 'CEO, Take-Two Interactive', quote: 'Our goal with every Rockstar title is nothing short of perfection and cultural resonance.' }
@@ -392,9 +405,9 @@ export const mockNewsArticles: NewsArticle[] = [
       keyBackground: 'Historically, access to high-end compute was monopolized by venture-backed startups and private Western clouds, limiting Indian academic contributions.',
       rootCauseAnalysis: "Historically, Indian academic institutions lacked public cloud compute clusters, forcing students to rely on limited CPUs or pay exorbitant foreign currency cloud bills, leading to significant domestic AI research bottlenecks.",
       timeline: [
-        { time: 'July 2025', event: 'IndiaAI Mission tenders finalized with cloud partners.' },
-        { time: 'August 2026', event: 'Phase 1 cluster of 5,000 nodes goes live at CDAC Pune.' },
-        { time: 'October 2026', event: 'Phase 2 student portal launched with DigiLocker authentication.' }
+        { time: 'Phase 1 Tenders', event: 'IndiaAI Mission tenders finalized with cloud partners.' },
+        { time: 'Cluster Online', event: 'Phase 1 cluster of 5,000 nodes goes live at CDAC Pune.' },
+        { time: 'Student Portal Live', event: 'Phase 2 student portal launched with DigiLocker authentication.' }
       ],
       keyQuotes: [
         { speaker: 'S. Krishnan', role: 'Secretary, MeitY', quote: 'Democratizing compute means a student sitting in Siliguri or Guwahati has the exact same computing firepower as a researcher in Silicon Valley.' }
@@ -431,7 +444,7 @@ export const mockNewsArticles: NewsArticle[] = [
       timeline: [
         { time: '2020', event: 'Solar becomes cheapest electricity in history according to IEA.' },
         { time: '2024', event: 'Renewables match coal generation capacity.' },
-        { time: 'Late 2026', event: 'Actual kilowatt-hour production officially surpasses coal globally.' }
+        { time: 'Latest Milestone', event: 'Actual kilowatt-hour production officially surpasses coal globally.' }
       ],
       keyQuotes: [
         { speaker: 'Fatih Birol', role: 'Executive Director, IEA', quote: 'The transition to clean power is unstoppable. The economic logic of solar and batteries has triumphed over fossil inertia.' }
@@ -468,7 +481,7 @@ export const mockNewsArticles: NewsArticle[] = [
       timeline: [
         { time: '2022', event: 'Feasibility study and environmental clearance approved.' },
         { time: '2024', event: 'Land compensation awarded to 14,000 landholders in WB & Bihar.' },
-        { time: 'Late 2026', event: '82% of bridges and overpasses structural work completed.' }
+        { time: 'Current Phase', event: '82% of bridges and overpasses structural work completed.' }
       ],
       keyQuotes: [
         { speaker: 'Er. A. K. Ray', role: 'NHAI Project Director', quote: 'The expressway features smart tolling, optical fiber ducts, and emergency drone surveillance strips.' }
@@ -503,9 +516,9 @@ export const mockNewsArticles: NewsArticle[] = [
       keyBackground: 'Valve Index remains tethered to PCs since 2019. Fans have anticipated an untethered successor utilizing ARM or low-power x86 APUs.',
       rootCauseAnalysis: "Running x86 PC games on mobile batteries generates extreme heat and rapid battery drain. Overcoming these physics bottlenecks requires custom ARM silicon, advanced translation software, and open OS optimization.",
       timeline: [
-        { time: 'Sept 2023', event: 'First "Galileo" device ID registered in regulatory test.' },
-        { time: 'June 2026', event: 'Proton ARM translation layers committed to open-source Git repositories.' },
-        { time: 'Oct 2026', event: 'Radio agency certification renewed with production-spec batteries.' }
+        { time: 'Initial Prototype', event: 'First "Galileo" device ID registered in regulatory test.' },
+        { time: 'ARM Layer', event: 'Proton ARM translation layers committed to open-source Git repositories.' },
+        { time: 'Recent Filing', event: 'Radio agency certification renewed with production-spec batteries.' }
       ],
       keyQuotes: [
         { speaker: 'Gabe Newell', role: 'Valve President (Past Interview Context)', quote: 'Hardware investments are long-term bets on open platforms and user freedom.' }
@@ -542,7 +555,7 @@ export const mockNewsArticles: NewsArticle[] = [
       timeline: [
         { time: '2023', event: 'UPI-PayNow link launched with Singapore.' },
         { time: '2025', event: 'Bilateral test with UAE and European banks successfully concluded.' },
-        { time: 'October 2026', event: 'Full 18-country multilateral live corridor officially activated.' }
+        { time: 'Live Activation', event: 'Full 18-country multilateral live corridor officially activated.' }
       ],
       keyQuotes: [
         { speaker: 'Shaktikanta Das', role: 'Governor, RBI', quote: 'Public digital infrastructure should serve common citizens and students first. Seamless global money movement is their right.' }
@@ -579,7 +592,7 @@ export const mockNewsArticles: NewsArticle[] = [
       timeline: [
         { time: '2020', event: 'Initial RFC proposed by Miguel Ojeda at Linux Plumbers Conference.' },
         { time: '2022', event: 'Linux 6.1 introduces initial experimental Rust infrastructure.' },
-        { time: 'October 2026', event: 'Linus Torvalds merges full production NVMe and Apple Silicon drivers.' }
+        { time: 'Mainline Merge', event: 'Linus Torvalds merges full production NVMe and Apple Silicon drivers.' }
       ],
       keyQuotes: [
         { speaker: 'Linus Torvalds', role: 'Linux Kernel Maintainer', quote: 'Rust has proven it can handle the performance constraints of the kernel without giving up safety guarantees.' }
@@ -597,7 +610,7 @@ export const mockNewsArticles: NewsArticle[] = [
     sourceName: 'Department of Higher Education, Govt of West Bengal',
     sourceType: 'State University Gazette',
     verification: 'govt_verified',
-    verificationNote: 'Formally inaugurated at Raja Rammohunpur campus on October 25, 2026.',
+    verificationNote: 'Formally inaugurated at Raja Rammohunpur campus with active university incubation grants.',
     takeaway: 'Students in Siliguri, Jalpaiguri, and Darjeeling receive direct seed grants of up to ₹10 Lakhs for regional technology solutions.',
     theRealProblem: "Despite having prestigious universities and engineering colleges in North Bengal, a total absence of regional venture capital and prototyping labs forced 90% of ambitious student founders to migrate to Bengaluru or Delhi, leaving local agricultural and mountain problems unaddressed.",
     bullets: [
@@ -615,8 +628,8 @@ export const mockNewsArticles: NewsArticle[] = [
       rootCauseAnalysis: "Venture capital and hardware fabrication facilities historically remained clustered in metro hubs like Bengaluru and Delhi, leaving regional North Bengal innovations without seed funding or prototype facilities.",
       timeline: [
         { time: 'Feb 2025', event: 'State budget announces special North Bengal Startup Corpus.' },
-        { time: 'June 2026', event: 'Hardware fabrication and sensor lab fit-out completed.' },
-        { time: 'October 2026', event: 'Official inaugural cohort pitch day held in Siliguri.' }
+        { time: 'Lab Fit-out', event: 'Hardware fabrication and sensor lab fit-out completed.' },
+        { time: 'Cohort Launch', event: 'Official inaugural cohort pitch day held in Siliguri.' }
       ],
       keyQuotes: [
         { speaker: 'Prof. S. C. Roy', role: 'Vice Chancellor, NBU', quote: 'Our students know the unique geographical challenges of the Teesta and Himalayan valleys better than anyone. They should be the ones building the tech solutions.' }
@@ -690,7 +703,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
       keyBackground: 'Siliguri is the strategic logistics choke point connecting Northeast India. Protecting NH-10 and rail bridges from flash floods is vital for national mobility.',
       rootCauseAnalysis: "Steep Himalayan slopes cause flash flood runoff to travel at extreme velocities. Without automated ultrasonic IoT sensors and satellite data relays, warning sirens arrived too late for downstream communities.",
       timeline: [
-        { time: 'September 2026', event: 'Sensor calibration completed across 18 mountain gauging stations.' },
+        { time: 'Sensor Calibration', event: 'Sensor calibration completed across 18 mountain gauging stations.' },
         { time: 'Just now', event: 'Live dashboard linked to Siliguri District Emergency Operation Centre.' }
       ],
       keyQuotes: [
@@ -726,7 +739,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
       keyBackground: 'Traditional power plants present massive stationary targets. Distributed microgrids allow localized power autonomy without cascading blackout risks.',
       rootCauseAnalysis: "Centralized power grids present single points of failure that can be disabled by precision strikes. Hardened decentralized microgrids provide the only reliable civilian energy survival in modern conflict zones.",
       timeline: [
-        { time: 'Spring 2026', event: 'EU-funded civilian energy resilience tender launched.' },
+        { time: 'Tender Award', event: 'EU-funded civilian energy resilience tender launched.' },
         { time: 'Just now', event: '200th hospital microgrid commissioned and synced to local emergency circuits.' }
       ],
       keyQuotes: [
@@ -775,3 +788,17 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   }
 ];
 
+// Returns fresh articles with dynamic timestamps strictly reflecting Today & Yesterday based on live system clock
+export function getFreshRollingNews(): NewsArticle[] {
+  const offsets = [5, 18, 35, 55, 85, 120, 180, 260, 340, 440, 560, 700, 840, 980, 1140, 1260];
+  return mockNewsArticles.map((art, idx) => {
+    const mins = offsets[idx % offsets.length] || 15;
+    const rolling = createRollingTimestamp(mins);
+    return {
+      ...art,
+      publishedAt: rolling.publishedAt,
+      timestamp: rolling.timestamp,
+      dateLabel: rolling.dateLabel
+    };
+  });
+}

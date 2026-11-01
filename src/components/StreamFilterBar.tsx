@@ -139,8 +139,8 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
             {categories.find((c) => c.id === activeCategory)?.label || 'All Dispatches'}
           </span>
           <span className="text-zinc-400 text-[11px]">({totalCount} briefs)</span>
-          <span className="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-[10px] text-zinc-500 font-mono border border-zinc-200 dark:border-zinc-700" title="News older than 24 hours is automatically pruned from the stream">
-            🕒 Rolling 24H Feed
+          <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[10px] font-mono border border-emerald-500/20 font-medium" title="News is strictly from Today & Yesterday. Anything older than 24 hours is automatically purged.">
+            🕒 Strictly Today & Yesterday (24H Auto-Purge)
           </span>
         </div>
         {activeCategory !== 'all' && (
@@ -153,7 +153,13 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
         )}
       </div>
 
-      {/* Mobile Only: Horizontal Category Scroll Strip (Preserves great phone UI) */}
+      {/* Mobile Feed Badge & Category Strip */}
+      <div className="flex lg:hidden items-center justify-between text-[10px] font-mono text-zinc-500 pb-1">
+        <span>Channel: <strong className="text-zinc-800 dark:text-zinc-200">{categories.find((c) => c.id === activeCategory)?.label}</strong></span>
+        <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 font-medium">
+          🕒 24H Fresh (Today/Yesterday)
+        </span>
+      </div>
       <div className="flex lg:hidden items-center gap-1 overflow-x-auto pb-1 scrollbar-none">
         {categories.map((cat) => {
           const isActive = activeCategory === cat.id;

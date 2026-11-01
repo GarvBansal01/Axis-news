@@ -8,7 +8,7 @@ import { NotificationDrawer } from './components/NotificationDrawer';
 import { AuthModal } from './components/AuthModal';
 import { ContactModal } from './components/ContactModal';
 
-import { mockNewsArticles, UPCOMING_LIVE_DISPATCHES } from './data/mockNews';
+import { mockNewsArticles, UPCOMING_LIVE_DISPATCHES, getFreshRollingNews, createRollingTimestamp } from './data/mockNews';
 import { wisdomCollection } from './data/wisdomData';
 import { NewsArticle, NewsCategory, UserSession, AppFeedback } from './types';
 import { playAudioChime } from './utils/audioPlayer';
@@ -54,12 +54,12 @@ const INITIAL_FEEDBACKS: AppFeedback[] = [
     rating: 5,
     category: 'Daily Wisdom',
     comment: 'Starting the morning with the Bhagavad Gita sloka followed by global AI frontier news gives incredible focus and peace of mind.',
-    timestamp: '2 days ago'
+    timestamp: 'Yesterday'
   }
 ];
 
 export default function App() {
-  const [articles, setArticles] = useState<NewsArticle[]>(mockNewsArticles);
+  const [articles, setArticles] = useState<NewsArticle[]>(() => getFreshRollingNews());
   const [activeCategory, setActiveCategory] = useState<NewsCategory>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isSavedOnly, setIsSavedOnly] = useState<boolean>(false);
@@ -236,6 +236,17 @@ export default function App() {
     setIsRefreshing(true);
     setSecondsToNextRefresh(60);
     triggerLiveMinuteUpdate();
+    setArticles((prev) => {
+      return prev.map((art) => {
+        const minutesAgo = Math.max(0, (Date.now() - (art.timestamp || Date.now())) / (60 * 1000));
+        const dynamic = createRollingTimestamp(minutesAgo);
+        return {
+          ...art,
+          publishedAt: art.publishedAt.includes('1-Min') ? art.publishedAt : dynamic.publishedAt,
+          dateLabel: dynamic.dateLabel
+        };
+      });
+    });
     setTimeout(() => {
       setIsRefreshing(false);
     }, 600);
