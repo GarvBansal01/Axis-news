@@ -29,6 +29,8 @@ export interface NewsArticle {
   theRealProblem: string;
   bullets: [string, string, string];
   publishedAt: string;
+  timestamp: number;
+  dateLabel?: string;
   readTime: string;
   deepDive: DeepDiveContent;
   audioScript: string;

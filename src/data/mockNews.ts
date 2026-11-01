@@ -1,5 +1,30 @@
 import { NewsArticle } from '../types';
 
+// Dynamic 24-Hour Rolling Timestamp Generator
+// Ensures all news is strictly from Today or Yesterday (within 24 hours), auto-purging stale news
+export function createRollingTimestamp(minutesAgo: number): { publishedAt: string; timestamp: number; dateLabel: string } {
+  const now = Date.now();
+  const timestamp = now - minutesAgo * 60 * 1000;
+  
+  let publishedAt = '';
+  if (minutesAgo < 2) {
+    publishedAt = 'Just now (Live Radar)';
+  } else if (minutesAgo < 60) {
+    publishedAt = `${Math.floor(minutesAgo)}m ago (Today)`;
+  } else if (minutesAgo < 120) {
+    publishedAt = '1h ago (Today)';
+  } else if (minutesAgo < 1440) {
+    publishedAt = `${Math.floor(minutesAgo / 60)}h ago (Today)`;
+  } else {
+    publishedAt = 'Yesterday';
+  }
+
+  const d = new Date(timestamp);
+  const timeStr = d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+  const dateLabel = minutesAgo < 1440 ? `Today, ${timeStr}` : `Yesterday, ${timeStr}`;
+
+  return { publishedAt, timestamp, dateLabel };
+}
 export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'pilot-attacked-safe-emergency-landing',
@@ -17,7 +42,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Ministry of Civil Aviation placed the passenger on the national Lifetime No-Fly List and initiated non-bailable civil aviation criminal charges.',
       'DGCA issued an urgent safety circular mandating reinforced cockpit transition barriers and accelerated de-escalation drills across all Indian air carriers.'
     ],
-    publishedAt: '8 mins ago',
+    ...createRollingTimestamp(5),
     readTime: '30s read',
     tags: ['Aviation', 'DGCA', 'Flight Safety', 'National'],
     audioScript: 'An IndiGo flight captain was physically assaulted mid-flight by an unruly passenger. Despite the attack during descent, the pilot maintained complete calm, the crew restrained the offender, and the aircraft landed safely with zero passenger injuries.',
@@ -56,7 +81,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'UN and Turkey broker renewed Black Sea maritime transit corridor, ensuring steady agricultural exports and stabilizing global food grain inflation.',
       'Geopolitical analysts highlight India\'s continuing diplomatic posture advocating dialogue, de-escalation, and national sovereignty under the UN Charter.'
     ],
-    publishedAt: '22 mins ago',
+    ...createRollingTimestamp(18),
     readTime: '40s read',
     tags: ['Russia-Ukraine', 'Geopolitics', 'Drone Warfare', 'Global Economy'],
     audioScript: 'The Russia-Ukraine conflict has entered an advanced technological phase with unjammable fiber-optic drones altering frontline tactics, while a renewed Black Sea agreement safeguards world grain supply and food security.',
@@ -94,7 +119,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'National Disaster Response Force (NDRF) deployed 56 specialized battalions equipped with satellite phones and flood-rescue cutters.',
       'Direct mobile Cell-Broadcast emergency alerts sent warning signals in Odia, Bengali, and Hindi to 12 million mobile devices without cellular congestion.'
     ],
-    publishedAt: '35 mins ago',
+    ...createRollingTimestamp(34),
     readTime: '35s read',
     tags: ['Cyclone Alert', 'Disaster Management', 'NDRF', 'ISRO Satellites'],
     audioScript: 'A severe Bay of Bengal cyclone threat was effectively neutralized through precision ISRO satellite telemetry and early NDRF evacuations. Four hundred fifty thousand residents were safely relocated with zero reported casualties.',
@@ -133,7 +158,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Standardized clean hydrogen bunkering agreements signed between Adani Ports, DP World, and European terminal operators.',
       'Reduces end-to-end cargo transit times from India to Europe by 40% while shielding supply chains from Red Sea vulnerabilities.'
     ],
-    publishedAt: '48 mins ago',
+    ...createRollingTimestamp(52),
     readTime: '35s read',
     tags: ['IMEC', 'Geopolitics', 'Trade Corridor', 'Clean Energy'],
     audioScript: 'The India-Middle East-Europe Economic Corridor has activated its digital fiber and clean hydrogen transit working group, connecting Indian ports directly to European gateways and shielding global supply chains.',
@@ -170,7 +195,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'The open protocol runs locally on consumer RTX 4090 GPUs without requiring costly enterprise cloud tokens.',
       'Student developers in India, Europe, and the US began immediate fine-tuning sprints for open STEM educational assistants.'
     ],
-    publishedAt: '55 mins ago',
+    ...createRollingTimestamp(75),
     readTime: '35s read',
     tags: ['X (Twitter)', 'AI Leak', 'Open Source', 'Reasoning Models'],
     audioScript: 'Viral researcher leaks on X have led to the official release of an open reasoning verification protocol, enabling student developers to benchmark frontier models on consumer hardware.',
@@ -207,7 +232,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'The heated debate centers on whether closed corporate AI labs or open-source weights should control the next era of frontier intelligence.',
       'Educational institutions in 40+ countries are rewriting computer science curricula to focus on agent orchestration rather than legacy syntax memorization.'
     ],
-    publishedAt: '1 hour ago',
+    ...createRollingTimestamp(110),
     readTime: '45s read',
     tags: ['Google', 'AI Frontier', 'Global Tech', 'Developer Debate'],
     audioScript: 'Google has unveiled its latest next-generation frontier AI architecture, crossing 600 million weekly active users. The release has sparked a fierce worldwide debate among scientists and developers on the future of software engineering and open source access.',
@@ -245,7 +270,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Projected to boost Siliguri\'s regional GDP by 18% through accelerated tourism, IT services, and student exchange mobility.',
       'Target trial commissioning set for Q3 2027, with night landing CAT-II ILS instrument updates already operational.'
     ],
-    publishedAt: '2 hours ago',
+    ...createRollingTimestamp(145),
     readTime: '45s read',
     tags: ['Siliguri', 'Infrastructure', 'Aviation', 'North Bengal'],
     audioScript: 'Bagdogra International Airport expansion has reached 45 percent milestone ahead of schedule. The new terminal will expand capacity to 10 million passengers annually, connecting Siliguri to international student and commercial corridors.',
@@ -284,7 +309,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Explicitly bars monopolistic cloud vendors from outlawing open-source local model fine-tuning.',
       'Establishes an International Scientific Panel on Frontier AI modeled on the IPCC climate body.'
     ],
-    publishedAt: '3 hours ago',
+    ...createRollingTimestamp(210),
     readTime: '40s read',
     tags: ['UN', 'AI Policy', 'Open Source', 'Global Treaty'],
     audioScript: '64 nations in Geneva have signed the Global AI Safety Compact. Crucially, the agreement safeguards open-source software and student research from regulatory capture.',
@@ -321,7 +346,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Engineered with proprietary neural animation physics and dynamic weather simulations powered by modern GPU ray-tracing.',
       'Industry experts debate whether mega-budget blockbusters are crowding out smaller creative indie developers.'
     ],
-    publishedAt: '4 hours ago',
+    ...createRollingTimestamp(280),
     readTime: '40s read',
     tags: ['GTA 6', 'Gaming Industry', 'Take-Two', 'Global Entertainment'],
     audioScript: 'Grand Theft Auto VI has reaffirmed its global release window. With an estimated two billion dollar budget, it has broken world records for trailer views while sparking debates on the future of gaming development.',
@@ -358,7 +383,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Colleges and polytechnic institutes in non-metro hubs (including West Bengal, Assam, and Bihar) receive a guaranteed 35% quota.',
       'Applications open via DigiLocker student credentials; grants up to 500 GPU-hours per verified student project.'
     ],
-    publishedAt: '5 hours ago',
+    ...createRollingTimestamp(360),
     readTime: '40s read',
     tags: ['AI Mission', 'Supercomputing', 'Students', 'Open Source'],
     audioScript: 'India AI Mission has opened its 10,000 GPU compute cluster for college students and researchers. Verified students can apply for up to 500 free GPU hours for machine learning and AI research projects.',
@@ -395,7 +420,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Global carbon emissions from electricity generation dropped by 4.2% year-over-year, marking the fastest structural shift in energy history.',
       'Creates over 4 million new green-engineering jobs globally, with major hiring surges in power electronics and battery chemistry.'
     ],
-    publishedAt: '6 hours ago',
+    ...createRollingTimestamp(450),
     readTime: '40s read',
     tags: ['Clean Energy', 'IEA', 'Climate Tech', 'Global Economy'],
     audioScript: 'In a historic global milestone, renewable wind and solar energy have officially overtaken coal in worldwide electricity production according to the International Energy Agency.',
@@ -432,7 +457,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Special elevated wildlife corridors over the Mahananda wildlife fringe to ensure zero elephant-path disruption.',
       'Expected to cut freight transit costs by 22% and attract automated distribution centers to the Siliguri periphery.'
     ],
-    publishedAt: '7 hours ago',
+    ...createRollingTimestamp(540),
     readTime: '35s read',
     tags: ['Siliguri', 'Highways', 'Connectivity', 'Economy'],
     audioScript: 'The 519 kilometer Siliguri-Gorakhpur expressway has entered final paving. It cuts transit times to six hours, boosting regional commerce and student logistics throughout North Bengal.',
@@ -469,7 +494,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Datamines in latest SteamVR beta reveal code strings referencing "Deckard_Onboarding" and ARM-native Proton translation.',
       'Industry analysts predict a potential 2027 standalone gaming device capable of running lightweight PC titles untethered.'
     ],
-    publishedAt: '8 hours ago',
+    ...createRollingTimestamp(680),
     readTime: '30s read',
     tags: ['Gaming', 'Valve', 'Hardware', 'SteamVR'],
     audioScript: 'Regulatory filings in Asia suggest Valve is developing a new standalone SteamOS hardware device. Note that this is currently an unverified industry leak.',
@@ -506,7 +531,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Replaces cumbersome wire transfers that previously took 3–5 business days and charged up to 6% in hidden forex fees.',
       'Includes instantaneous digital receipt generation accepted directly by universities for fee verification.'
     ],
-    publishedAt: '10 hours ago',
+    ...createRollingTimestamp(820),
     readTime: '35s read',
     tags: ['UPI', 'RBI', 'Education', 'Finance'],
     audioScript: 'The Reserve Bank of India has expanded real-time UPI remittances to 18 countries, allowing students to pay overseas tuition fees instantly with zero hidden bank markup.',
@@ -543,7 +568,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Reduces buffer overflow and use-after-free vulnerabilities by an estimated 70% in high-speed network interfaces.',
       'Marks a pivotal shift for computer science students: learning systems programming now fundamentally includes Rust alongside C.'
     ],
-    publishedAt: '12 hours ago',
+    ...createRollingTimestamp(960),
     readTime: '45s read',
     tags: ['Rust', 'Linux', 'Systems Programming', 'Open Source'],
     audioScript: 'Linux Kernel 6.14 has merged production Rust drivers for high speed storage and networking. Memory safety is now a permanent cornerstone of mainline operating systems.',
@@ -580,7 +605,7 @@ export const mockNewsArticles: NewsArticle[] = [
       'Mentorship partnerships established with IIT Kharagpur and Webel IT Park Siliguri to guide student founders.',
       'First cohort of 30 student-led ventures selected, spanning tea quality computer vision, landslide early warning, and rural fintech.'
     ],
-    publishedAt: '14 hours ago',
+    ...createRollingTimestamp(1140),
     readTime: '35s read',
     tags: ['NBU', 'Siliguri', 'Startups', 'Education'],
     audioScript: 'North Bengal University has launched a 25 crore Himalayan Innovation Hub for student startups, offering seed grants of up to 10 Lakhs for AgTech and drone innovation.',
@@ -620,7 +645,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
       'Airlines granted 90 days to retrofit biometric interlocks with mandatory crew cabin-view camera feeds.',
       'Civil aviation security personnel to conduct randomized ramp checks across Tier-1 and regional airports.'
     ],
-    publishedAt: 'Just now (Live)',
+    ...createRollingTimestamp(0),
     readTime: '30s read',
     tags: ['Aviation', 'Flight Safety', 'DGCA', 'National'],
     audioScript: 'DGCA has mandated dual biometric secondary cockpit barriers across commercial airlines to prevent in-flight breaches following recent physical assault incidents.',
@@ -656,7 +681,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
       'Direct LoRaWAN radio links transmit water velocity and turbidity metrics even during regional power grid outages.',
       'Siliguri Municipal Corporation and traffic police receive automated bridge closure triggers if levels cross Amber threshold.'
     ],
-    publishedAt: 'Just now (Live)',
+    ...createRollingTimestamp(0),
     readTime: '30s read',
     tags: ['Siliguri', 'Disaster Early Warning', 'Teesta', 'IoT'],
     audioScript: 'Real-time hydro telemetry sensors have gone live across the Teesta and Mahananda rivers, providing early flood warnings for Siliguri and regional bridges.',
@@ -692,7 +717,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
       'Utilizes lithium iron phosphate (LFP) battery chemistry housed in fireproof reinforced blast-resistant shipping containers.',
       'Model praised by international energy engineers as a template for decentralized civilian infrastructure resilience in conflict zones.'
     ],
-    publishedAt: 'Just now (Live)',
+    ...createRollingTimestamp(0),
     readTime: '35s read',
     tags: ['Russia-Ukraine', 'Clean Energy', 'Geopolitics', 'Microgrids'],
     audioScript: 'Decentralized solar and battery storage microgrids have been deployed across Ukrainian healthcare and civil infrastructure to safeguard energy continuity.',
@@ -728,7 +753,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
       'Fully funded 1-year master’s research fellowship launched for 300 Indian engineering students in Japanese cleanroom fabrication labs.',
       'Includes mutual defense semiconductor stockpile reserves to insulate both nations from East Asian shipping bottlenecks.'
     ],
-    publishedAt: 'Just now (Live)',
+    ...createRollingTimestamp(0),
     readTime: '30s read',
     tags: ['Semiconductors', 'India-Japan', 'Tech Policy', 'Engineering'],
     audioScript: 'India and Japan have ratified a bilateral semiconductor and critical minerals framework, including student cleanroom research fellowships.',

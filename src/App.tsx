@@ -192,7 +192,9 @@ export default function App() {
     const freshDispatch: NewsArticle = {
       ...template,
       id: `${template.id}-${Date.now()}`,
-      publishedAt: 'Just now (1-Min Radar)'
+      publishedAt: 'Just now (1-Min Radar)',
+      timestamp: Date.now(),
+      dateLabel: `Today, ${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true })}`
     };
 
     setArticles((prev) => [freshDispatch, ...prev]);
@@ -249,9 +251,18 @@ export default function App() {
     }
   };
 
-  // Filtered articles
+  // Filtered articles with 24-Hour Auto-Purge Engine
+  const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
+
   const filteredArticles = useMemo(() => {
+    const now = Date.now();
     return articles.filter((article) => {
+      // 24-Hour Auto-Purge: Excludes news older than 24 hours from the live stream
+      const isWithin24Hours = (now - (article.timestamp || now)) <= TWENTY_FOUR_HOURS_MS;
+      if (!isSavedOnly && !isWithin24Hours) {
+        return false; // automatically purged after 24 hrs
+      }
+
       const matchesCategory =
         activeCategory === 'all' || article.category === activeCategory;
 
@@ -261,6 +272,7 @@ export default function App() {
         !searchQuery.trim() ||
         article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         article.takeaway.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.theRealProblem.toLowerCase().includes(searchQuery.toLowerCase()) ||
         article.sourceName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         article.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase())) ||
         article.locationScope.toLowerCase().includes(searchQuery.toLowerCase());

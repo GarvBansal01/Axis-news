@@ -60,6 +60,8 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
               <span>{article.category.toUpperCase()}</span>
               <span aria-hidden="true">·</span>
               <span>{article.readTime}</span>
+              <span aria-hidden="true">·</span>
+              <span className="font-semibold text-zinc-700 dark:text-zinc-300">{article.dateLabel || article.publishedAt}</span>
             </div>
 
             <h2 className="text-xl md:text-2xl font-editorial font-bold text-zinc-900 dark:text-zinc-100 leading-snug">

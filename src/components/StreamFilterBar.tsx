@@ -138,7 +138,10 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 px-2 py-0.5 rounded-md bg-zinc-200/80 dark:bg-zinc-800 border border-zinc-300/60 dark:border-zinc-700/60">
             {categories.find((c) => c.id === activeCategory)?.label || 'All Dispatches'}
           </span>
-          <span className="text-zinc-400 text-[11px]">({totalCount} verified briefs)</span>
+          <span className="text-zinc-400 text-[11px]">({totalCount} briefs)</span>
+          <span className="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-[10px] text-zinc-500 font-mono border border-zinc-200 dark:border-zinc-700" title="News older than 24 hours is automatically pruned from the stream">
+            🕒 Rolling 24H Feed
+          </span>
         </div>
         {activeCategory !== 'all' && (
           <button

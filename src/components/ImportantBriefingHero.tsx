@@ -91,7 +91,7 @@ export const ImportantBriefingHero: React.FC<ImportantBriefingHeroProps> = ({
           </span>
 
           <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-            {activeArticle.locationScope} · {activeArticle.publishedAt}
+            {activeArticle.locationScope} · {activeArticle.dateLabel || activeArticle.publishedAt}
           </span>
         </div>
 

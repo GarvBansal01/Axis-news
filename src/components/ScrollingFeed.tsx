@@ -114,7 +114,7 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
                   <span aria-hidden="true">·</span>
                   <span className="text-zinc-400">{article.locationScope}</span>
                   <span aria-hidden="true">·</span>
-                  <span className="text-zinc-400">{article.publishedAt}</span>
+                  <span className="text-zinc-400 font-medium">{article.dateLabel || article.publishedAt}</span>
                 </div>
 
                 <div className="flex items-center gap-2">
