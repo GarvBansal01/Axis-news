@@ -26,6 +26,8 @@ export interface NewsArticle {
   verification: VerificationStatus;
   verificationNote: string;
   takeaway: string;
+  whatIsIt?: string;
+  incidentDate?: string;
   theRealProblem: string;
   bullets: [string, string, string];
   publishedAt: string;

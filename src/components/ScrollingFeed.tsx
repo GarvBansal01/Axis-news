@@ -9,7 +9,9 @@ import {
   VolumeX,
   AlertTriangle,
   ShieldCheck,
-  Globe
+  Globe,
+  Calendar,
+  Zap
 } from 'lucide-react';
 import { NewsArticle } from '../types';
 import { speakText, stopSpeech } from '../utils/audioPlayer';
@@ -114,7 +116,10 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
                   <span aria-hidden="true">·</span>
                   <span className="text-zinc-400">{article.locationScope}</span>
                   <span aria-hidden="true">·</span>
-                  <span className="text-zinc-400 font-medium">{article.dateLabel || article.publishedAt}</span>
+                  <span className="text-zinc-500 dark:text-zinc-400 font-medium flex items-center gap-1">
+                    <Calendar className="w-3 h-3 text-amber-500 inline shrink-0" />
+                    <span>{article.incidentDate || article.dateLabel || article.publishedAt}</span>
+                  </span>
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -149,6 +154,22 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
                 </span>
                 <p className="italic font-normal text-stone-900 dark:text-stone-100 text-sm md:text-[15px]">
                   “{article.takeaway}”
+                </p>
+              </div>
+
+              {/* What Is The Incident & Timing Breakdown */}
+              <div className="p-3 rounded-lg border border-blue-500/20 bg-blue-500/[0.04] dark:bg-blue-950/20 text-xs space-y-1">
+                <div className="flex flex-wrap items-center justify-between gap-1 text-blue-700 dark:text-blue-400 font-mono font-bold text-[10.5px] uppercase tracking-wider">
+                  <div className="flex items-center gap-1.5">
+                    <Zap className="w-3 h-3 text-blue-600 shrink-0" />
+                    <span>What Is The Incident?</span>
+                  </div>
+                  <span className="text-[10px] text-zinc-500 dark:text-zinc-400 font-mono font-normal">
+                    {article.incidentDate || article.dateLabel}
+                  </span>
+                </div>
+                <p className="text-zinc-800 dark:text-zinc-200 leading-relaxed font-sans">
+                  {article.whatIsIt || article.takeaway}
                 </p>
               </div>
 

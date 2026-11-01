@@ -12,7 +12,9 @@ import {
   Info, 
   Check, 
   FastForward,
-  AlertTriangle
+  AlertTriangle,
+  Calendar,
+  Zap
 } from 'lucide-react';
 import { NewsArticle } from '../types';
 
@@ -221,12 +223,29 @@ export const FlashcardDeck: React.FC<FlashcardDeckProps> = ({
         </h2>
 
         {/* 1-Sentence Punchy Takeaway */}
-        <div className="my-4 p-3.5 rounded-xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200/60 dark:border-stone-800">
+        <div className="my-3 p-3.5 rounded-xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200/60 dark:border-stone-800">
           <p className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-stone-400 font-mono-nums mb-1">
             KEY TAKEAWAY
           </p>
           <p className="text-sm md:text-base font-editorial italic text-stone-900 dark:text-stone-100 leading-relaxed">
             "{currentArticle.takeaway}"
+          </p>
+        </div>
+
+        {/* What Is The Incident & Timing */}
+        <div className="my-2.5 p-3 rounded-xl bg-blue-50/70 dark:bg-blue-950/20 border border-blue-200/60 dark:border-blue-900/40 text-xs md:text-sm">
+          <div className="flex items-center justify-between text-[10.5px] font-mono font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-1">
+            <div className="flex items-center gap-1.5">
+              <Zap className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+              <span>What Is The Incident?</span>
+            </div>
+            <div className="flex items-center gap-1 font-normal text-zinc-500 dark:text-zinc-400">
+              <Calendar className="w-3 h-3 text-blue-500 shrink-0" />
+              <span>{currentArticle.incidentDate || currentArticle.dateLabel}</span>
+            </div>
+          </div>
+          <p className="text-zinc-800 dark:text-zinc-200 font-sans leading-relaxed">
+            {currentArticle.whatIsIt || currentArticle.takeaway}
           </p>
         </div>
 
@@ -253,7 +272,10 @@ export const FlashcardDeck: React.FC<FlashcardDeckProps> = ({
               {currentArticle.sourceName}
             </strong>
             <span aria-hidden="true">·</span>
-            <span>{currentArticle.publishedAt}</span>
+            <span className="flex items-center gap-1 text-zinc-700 dark:text-zinc-300 font-medium">
+              <Calendar className="w-3 h-3 text-amber-500 inline shrink-0" />
+              <span>{currentArticle.incidentDate || currentArticle.dateLabel || currentArticle.publishedAt}</span>
+            </span>
           </div>
 
           <div className="flex items-center gap-1.5 text-stone-600 dark:text-stone-400">

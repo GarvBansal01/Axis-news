@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ExternalLink, Volume2, VolumeX, Bookmark, Share2, Check } from 'lucide-react';
+import { X, ExternalLink, Volume2, VolumeX, Bookmark, Share2, Check, Calendar, Zap, AlertCircle } from 'lucide-react';
 import { NewsArticle } from '../types';
 import { speakText, stopSpeech } from '../utils/audioPlayer';
 
@@ -61,7 +61,10 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
               <span aria-hidden="true">·</span>
               <span>{article.readTime}</span>
               <span aria-hidden="true">·</span>
-              <span className="font-semibold text-zinc-700 dark:text-zinc-300">{article.dateLabel || article.publishedAt}</span>
+              <span className="font-semibold text-zinc-700 dark:text-zinc-300 flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                <span>{article.incidentDate || article.dateLabel || article.publishedAt}</span>
+              </span>
             </div>
 
             <h2 className="text-xl md:text-2xl font-editorial font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
@@ -102,6 +105,23 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
           </h3>
           <p className="text-sm md:text-base text-zinc-800 dark:text-zinc-200 leading-relaxed font-editorial">
             {article.deepDive.overview}
+          </p>
+        </div>
+
+        {/* ================= WHAT IS THE INCIDENT? ================= */}
+        <div className="p-4 rounded-xl border border-blue-500/25 bg-blue-500/[0.04] dark:bg-blue-950/20 space-y-1.5 text-xs md:text-sm">
+          <div className="flex flex-wrap items-center justify-between gap-1 text-blue-700 dark:text-blue-400 font-mono font-bold text-xs uppercase tracking-wider">
+            <div className="flex items-center gap-1.5">
+              <Zap className="w-4 h-4 text-blue-600 shrink-0" />
+              <span>What Is The Incident?</span>
+            </div>
+            <div className="flex items-center gap-1 font-mono text-[11px] text-zinc-500 dark:text-zinc-400 font-normal">
+              <Calendar className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+              <span>Occurred: <strong>{article.incidentDate || article.dateLabel}</strong></span>
+            </div>
+          </div>
+          <p className="text-zinc-800 dark:text-zinc-200 leading-relaxed font-sans font-medium">
+            {article.whatIsIt || article.takeaway}
           </p>
         </div>
 

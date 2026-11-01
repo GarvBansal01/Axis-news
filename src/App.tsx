@@ -194,7 +194,8 @@ export default function App() {
       id: `${template.id}-${Date.now()}`,
       publishedAt: 'Just now (1-Min Radar)',
       timestamp: Date.now(),
-      dateLabel: `Today, ${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true })}`
+      dateLabel: `Today, ${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true })}`,
+      incidentDate: `Today, ${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true })} IST`
     };
 
     setArticles((prev) => [freshDispatch, ...prev]);
@@ -243,7 +244,8 @@ export default function App() {
         return {
           ...art,
           publishedAt: art.publishedAt.includes('1-Min') ? art.publishedAt : dynamic.publishedAt,
-          dateLabel: dynamic.dateLabel
+          dateLabel: dynamic.dateLabel,
+          incidentDate: dynamic.incidentDate
         };
       });
     });

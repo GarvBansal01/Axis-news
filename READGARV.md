@@ -36,6 +36,9 @@ Here is exactly how the newly updated news engine operates:
    - This ensures the feed never goes stale, even if the app runs for months!
 4. **All Old Static Dates Eradicated**:
    - All historical static references (e.g., "October 25", "Sept 2023", "2 days ago") in timelines and notes have been replaced with relative, live markers (`Earlier Today`, `Yesterday Evening`, `Latest Milestone`, `Current Phase`).
+5. **Exact Incident Timing & "What Is It" Breakdown**:
+   - Every single article in the Stream, Top Spotlight, Deep Dive, and 30s Flashcard deck now features an explicit **`📅 Incident Date & Time`** badge (e.g. `Today, 02:26 PM IST` / `Yesterday, 10:15 PM IST`).
+   - Every story includes a dedicated blue callout box: **`⚡ What Is The Incident?`**, explaining clearly and objectively what occurred and what the event is.
 
 ---
 
@@ -47,6 +50,7 @@ Complete these 3 tasks right now to verify the live app, connect your email, and
 - [ ] Open [https://axis-news-iota.vercel.app](https://axis-news-iota.vercel.app) on your laptop browser.
   - [ ] Look at the top bar: verify the clean **Active Desk** and the green **`🕒 Strictly Today & Yesterday (24H Auto-Purge)`** badge.
   - [ ] Check the top spotlight: verify **"What's Important Right Now"** carousel (Captain assault story, Russia-Ukraine war, Cyclone alert, AI leak).
+  - [ ] Look at the new **"What Is The Incident?"** card displaying the exact date & time when the incident took place.
   - [ ] Read the highlighted **"What is Really the Problem? (Root Cause & Reality Check)"** callout.
   - [ ] Click **"Know More"** to inspect the full deep dive with timeline and verified sources.
   - [ ] Notice the **Volume Mute/Unmute toggle** (`🔊` / `🔇`) next to the 1-Minute Radar badge. Click it to test the gentle WhatsApp-style chime or mute it as desired.

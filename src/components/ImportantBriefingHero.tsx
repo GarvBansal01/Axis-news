@@ -11,7 +11,9 @@ import {
   ShieldCheck, 
   ChevronLeft, 
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Calendar,
+  Zap
 } from 'lucide-react';
 import { NewsArticle } from '../types';
 import { speakText, stopSpeech } from '../utils/audioPlayer';
@@ -84,14 +86,20 @@ export const ImportantBriefingHero: React.FC<ImportantBriefingHeroProps> = ({
 
       {/* Top Banner Meta Bar */}
       <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-zinc-200/80 dark:border-zinc-800">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <span className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-800 dark:text-amber-300 text-[11px] font-mono font-bold tracking-wider uppercase border border-amber-500/25 animate-pulse">
             <Flame className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 fill-current" />
             <span>What&apos;s Important Right Now</span>
           </span>
 
+          {/* Exact Incident Date & Time */}
+          <span className="flex items-center gap-1 text-xs font-mono font-medium px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">
+            <Calendar className="w-3 h-3 text-amber-500 shrink-0" />
+            <span>Incident: <strong>{activeArticle.incidentDate || activeArticle.dateLabel || activeArticle.publishedAt}</strong></span>
+          </span>
+
           <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-            {activeArticle.locationScope} · {activeArticle.dateLabel || activeArticle.publishedAt}
+            {activeArticle.locationScope} · {activeArticle.sourceName}
           </span>
         </div>
 
@@ -135,8 +143,25 @@ export const ImportantBriefingHero: React.FC<ImportantBriefingHeroProps> = ({
           &ldquo;{activeArticle.takeaway}&rdquo;
         </p>
 
+        {/* ================= WHAT IS THE INCIDENT? (INCIDENT OVERVIEW & TIMING) ================= */}
+        <div className="my-2.5 p-3.5 rounded-xl border border-blue-500/20 bg-blue-500/[0.04] dark:bg-blue-950/20 text-xs md:text-sm space-y-1">
+          <div className="flex flex-wrap items-center justify-between gap-1 text-blue-700 dark:text-blue-400 font-mono font-bold text-[11px] uppercase tracking-wider">
+            <div className="flex items-center gap-1.5">
+              <Zap className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+              <span>What Is The Incident?</span>
+            </div>
+            <div className="flex items-center gap-1 text-[10px] text-zinc-500 dark:text-zinc-400 font-mono font-normal">
+              <Calendar className="w-3 h-3 text-blue-500 shrink-0" />
+              <span>Date: <strong>{activeArticle.incidentDate || activeArticle.dateLabel}</strong></span>
+            </div>
+          </div>
+          <p className="text-zinc-800 dark:text-zinc-200 leading-relaxed font-sans font-medium">
+            {activeArticle.whatIsIt || activeArticle.takeaway}
+          </p>
+        </div>
+
         {/* ================= WHAT IS REALLY THE PROBLEM? (ROOT CAUSE) ================= */}
-        <div className="my-3.5 p-3.5 rounded-xl border border-red-500/25 bg-red-500/[0.06] dark:bg-red-950/20 text-xs md:text-sm space-y-1">
+        <div className="my-2.5 p-3.5 rounded-xl border border-red-500/25 bg-red-500/[0.06] dark:bg-red-950/20 text-xs md:text-sm space-y-1">
           <div className="flex items-center gap-1.5 text-red-700 dark:text-red-400 font-mono font-bold text-[11px] uppercase tracking-wider">
             <AlertCircle className="w-3.5 h-3.5 text-red-600 shrink-0" />
             <span>What is Really the Problem? (Root Cause & Reality Check)</span>

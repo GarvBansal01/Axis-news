@@ -3,7 +3,7 @@ import { NewsArticle } from '../types';
 // Dynamic 24-Hour Rolling Timestamp Generator
 // Strictly classifies news into Today or Yesterday based on real calendar midnight
 // Auto-purges any items older than 24 hours (1440 minutes)
-export function createRollingTimestamp(minutesAgo: number): { publishedAt: string; timestamp: number; dateLabel: string } {
+export function createRollingTimestamp(minutesAgo: number): { publishedAt: string; timestamp: number; dateLabel: string; incidentDate: string } {
   const now = Date.now();
   const timestamp = now - minutesAgo * 60 * 1000;
   
@@ -35,8 +35,9 @@ export function createRollingTimestamp(minutesAgo: number): { publishedAt: strin
   }
 
   const dateLabel = isToday ? `Today, ${timeStr}` : `Yesterday, ${timeStr}`;
+  const incidentDate = isToday ? `Today, ${timeStr} IST` : `Yesterday, ${timeStr} IST`;
 
-  return { publishedAt, timestamp, dateLabel };
+  return { publishedAt, timestamp, dateLabel, incidentDate };
 }
 export const mockNewsArticles: NewsArticle[] = [
   {
@@ -49,6 +50,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Officially documented in DGCA Flight Safety Occurrence Report FSO-2026-IND-891.',
     takeaway: 'Flight captain maintained absolute composure under physical assault during approach descent, coordinating with cabin crew to secure the assailant and land 186 passengers safely without injury.',
+    whatIsIt: "Mid-flight security incident where an agitated passenger rushed the forward galley at 11,000 feet and physically assaulted the IndiGo flight captain during approach descent, requiring cabin crew restraint and an emergency landing.",
     theRealProblem: "Post-pandemic air travel delays and cabin congestion have triggered a 340% surge in unruly passenger altercations. Cockpit doors are impenetrable from the outside, but when open for pilot servicing or approach checklists, flight crew are completely exposed to violent physical rushes without a secondary safety airlock.",
     bullets: [
       'The assault occurred at 11,000 feet during turbulent approach; cabin crew and passengers restrained the offender within 14 seconds.',
@@ -88,6 +90,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Corroborated by UN Maritime Security Council and Institute for the Study of War (ISW) daily theater assessment.',
     takeaway: 'Frontline combat has fundamentally shifted from traditional armor to unjammable fiber-optic autonomous drones, while multilateral Black Sea safety agreements prevent global wheat price shocks for student and youth economies in the Global South.',
+    whatIsIt: "Frontline military shift to unjammable fiber-optic tethered drones across the 1,000-km combat line, combined with a multilateral UN-Turkey diplomatic agreement safeguarding Black Sea maritime grain exports.",
     theRealProblem: "Electronic warfare has saturated traditional radio drone links, forcing frontline forces to deploy physical fiber-optic micro-tethers that cannot be jammed. This creates continuous 24/7 battlefield transparency where traditional tank armor and trench defense offer zero survivability, while global food grain security remains hostage to fragile Black Sea maritime accords.",
     bullets: [
       'Both armed forces deployed lightweight micro-fiber tethered drones that bypass heavy electronic jamming across the 1,000-kilometer eastern line.',
@@ -126,6 +129,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'emergency_alert',
     verificationNote: 'Verified via IMD National Cyclone Warning Centre Special Bulletin No. 18 and NDMA Control Room.',
     takeaway: 'Super-computing meteorological algorithms combined with real-time INSAT-3DS infrared imaging provided 96-hour precision landfall tracking, allowing state disaster teams to execute total zero-casualty coastal evacuation.',
+    whatIsIt: "Rapid tropical cyclogenesis in the Bay of Bengal triggering emergency automated satellite telemetry and zero-casualty preemptive evacuation of 450,000 coastal citizens into reinforced shelters.",
     theRealProblem: "Abnormal ocean surface heat (>31\u00b0C) is causing rapid cyclogenesis where tropical depressions escalate into destructive cyclones in under 24 hours. While precision satellite evacuation saved human lives, saline storm surges permanently ruin low-lying agricultural soils, leaving agrarian families economically destitute.",
     bullets: [
       'Over 450,000 vulnerable coastal residents shifted to 800 reinforced multipurpose cyclone shelters within 36 hours.',
@@ -202,6 +206,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Community replication verified across 40 independent academic labs on Hugging Face and GitHub.',
     takeaway: 'Viral tech leaks on X proved accurate as frontier labs release open mathematical verification harnesses, allowing student researchers to evaluate local open-source models on advanced Olympiad reasoning benchmarks.',
+    whatIsIt: "Unauthorized dissemination of frontier AI reasoning test logs and internal system benchmarks on X (Twitter), prompting leading labs to officially release public verification standards.",
     theRealProblem: "Frontier AI labs have built multi-billion-dollar closed moats around proprietary reasoning models, but viral leaks on X and independent algorithmic extractions demonstrate that mathematical reasoning cannot be locked in a corporate garden, sparking acute debates on intellectual property and student access.",
     bullets: [
       'Independent AI researchers on X identified leaked evaluation checkpoints, forcing frontier labs to release official open weights.',
@@ -277,6 +282,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Officially audited by Ministry of Civil Aviation inspection team and verified in current flight roster.',
     takeaway: 'North Bengal\'s primary aviation hub is expanding to handle 10 million annual passengers with direct Southeast Asian flight corridors.',
+    whatIsIt: "Ministry of Civil Aviation on-site infrastructure audit verifying 45% completion of Bagdogra Airport's new 100,000 sq. meter terminal, designed to handle 10 million annual passengers.",
     theRealProblem: "Bagdogra Airport currently handles 3.4 million annual passengers inside a single-runway facility built for only 750,000, causing severe tarmac bottlenecks and frequent flight delays. As the sole transit corridor for Sikkim, Darjeeling, and Bhutan, regional mobility and student flights are severely constricted.",
     bullets: [
       'New terminal spans 100,000 sq. meters with 16 aero-bridges, modern cargo logistics, and dedicated transit corridors to Darjeeling and Sikkim.',
@@ -316,6 +322,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Official text adopted by the UN General Assembly 2nd Committee in Geneva.',
     takeaway: 'Global powers agreed on safety boundaries for frontier biological AI while explicitly protecting academic open-source weights from corporate monopoly bans.',
+    whatIsIt: "Ratification of the Geneva AI Safety Compact by 64 nations, establishing international safety benchmarks while strictly prohibiting blanket bans on open-source student research.",
     theRealProblem: "Corporate lobbyists from frontier AI monopolies attempted to weaponize safety fears to outlaw open-source models, seeking an international licensing regime that would restrict AI development exclusively to trillion-dollar tech conglomerates, shutting out universities, student builders, and developing nations.",
     bullets: [
       'Sets mandatory pre-deployment testing for models exceeding 10^26 FLOPs compute training runs.',
@@ -353,6 +360,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Officially reaffirmed in Take-Two Interactive SEC Form 10-Q filing.',
     takeaway: 'The $2 billion production budget sets a new entertainment world benchmark, sparking widespread industry debate on gaming budgets versus independent creative titles.',
+    whatIsIt: "Take-Two Interactive and Rockstar Games officially reaffirming global release window for Grand Theft Auto VI as worldwide trailer impressions shatter all entertainment industry records.",
     theRealProblem: "AAA game production budgets have ballooned past $1-2 billion with decade-long development cycles. This has triggered industry-wide studio closures, massive developer layoffs, and risk-averse corporate homogenization, leaving independent creative studios struggling for visibility.",
     bullets: [
       'Global trailer views officially crossed 420 million across YouTube and social platforms, the highest in human media history.',
@@ -390,6 +398,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Signed procurement and portal release verified by IndiaAI National Portal.',
     takeaway: 'Indian college students and academic labs can now access top-tier computing clusters at zero cost for thesis projects and open-source models.',
+    whatIsIt: "MeitY and IndiaAI launching a 10,000 GPU high-performance compute cluster providing subsidized, free cloud compute grants for college student engineering capstones.",
     theRealProblem: "Indian university students and researchers historically lacked access to high-compute GPU clusters, being priced out by expensive US-based cloud rates and forced to limit their computer science research to basic theory while top talent emigrated overseas.",
     bullets: [
       'The compute capacity combines NVIDIA H100s and custom indigenous accelerators hosted across Tier-4 Indian data centers.',
@@ -427,6 +436,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Officially published in IEA Global Electricity Review 2026.',
     takeaway: 'Global solar and wind farms generated 32% of all world power over the last quarter, permanently overtaking coal as the dominant primary electricity source.',
+    whatIsIt: "International Energy Agency confirming that global wind and solar electricity generation officially surpassed coal generation worldwide for the first quarterly reporting cycle.",
     theRealProblem: "Although renewable solar and wind generation have officially surpassed coal, legacy 20th-century power grids lack the battery storage and high-voltage transmission lines needed to handle intermittent renewable surges, forcing utilities to curtail clean power while running coal plants on idle backup.",
     bullets: [
       'Driven by massive battery storage breakthroughs and high-speed regional grid interconnectors in India, China, and the European Union.',
@@ -464,6 +474,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Monthly progress report submitted to Ministry of Road Transport and Highways.',
     takeaway: 'Travel time between Siliguri and Uttar Pradesh reduced from 15 hours to 6 hours, creating an inland industrial trade bridge.',
+    whatIsIt: "National Highways Authority of India accelerating the Siliguri-Gorakhpur 4-lane expressway connecting North Bengal directly to northern agricultural logistics corridors.",
     theRealProblem: "The strategic 22-kilometer Siliguri corridor (Chicken\u2019s Neck) carries all road freight to eight northeastern states. Recurring monsoon flooding, single-lane bottlenecks, and urban congestion frequently paralyze cargo transit, driving up essential goods prices and delaying student mobility.",
     bullets: [
       'The greenfield alignment bypasses congested urban choke points in Kishanganj and Islampur with high-speed 120 km/h design.',
@@ -501,6 +512,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'trending_unverified',
     verificationNote: 'Unverified regulatory filing detected in South Korean National Radio Research Agency. Valve has not officially commented.',
     takeaway: 'A mysterious Valve wireless device code-named "Galileo/Deckard" with custom AMD silicon has surfaced in regulatory databases.',
+    whatIsIt: "Regulatory compliance filings detected in Asian communications databases indicating Valve is certifying a standalone untethered SteamOS hardware device with custom AMD silicon.",
     theRealProblem: "Virtual reality hardware remains held back by heavy tether cables, low battery endurance, thermal throttling, and walled-garden app ecosystems. The technical hurdle is packing PC-grade gaming performance into an untethered, lightweight headset running open-source Linux.",
     bullets: [
       'Regulatory filing mentions 6 GHz Wi-Fi 7 radio modules and a dual-display optical calibration rig.',
@@ -575,6 +587,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Reviewed and merged by Linus Torvalds in mainline Git tree commit 7a82fb9.',
     takeaway: 'Memory-safe systems programming in Rust has officially graduated from experimental status into critical Linux operating infrastructure.',
+    whatIsIt: "Mainline Linux Kernel 6.14 officially merging memory-safe Rust drivers for high-speed NVMe storage and core networking, eliminating decades-old C buffer overflow vulnerabilities.",
     theRealProblem: "Memory safety bugs in legacy C code (buffer overflows, use-after-free) cause over 70% of high-severity operating system security breaches worldwide. Yet adopting modern memory-safe languages like Rust into the Linux kernel faced years of resistance from traditional systems programmers.",
     bullets: [
       'The new Rust NVMe driver demonstrated zero memory vulnerability crashes in continuous fuzzing benchmarks over 180 days.',
@@ -612,6 +625,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Formally inaugurated at Raja Rammohunpur campus with active university incubation grants.',
     takeaway: 'Students in Siliguri, Jalpaiguri, and Darjeeling receive direct seed grants of up to ₹10 Lakhs for regional technology solutions.',
+    whatIsIt: "North Bengal University launching a ₹25 Crore Himalayan Innovation Hub at Raja Rammohunpur campus offering ₹10 Lakh seed grants for student AgTech and drone startups.",
     theRealProblem: "Despite having prestigious universities and engineering colleges in North Bengal, a total absence of regional venture capital and prototyping labs forced 90% of ambitious student founders to migrate to Bengaluru or Delhi, leaving local agricultural and mountain problems unaddressed.",
     bullets: [
       'The hub provides free 3D rapid prototyping labs, drone testing grounds, and tea-plantation sensor analytics facilities.',
@@ -652,6 +666,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Issued under Rule 133A of the Aircraft Rules, 1937, effective immediately across scheduled passenger airlines.',
     takeaway: 'All domestic airlines operating aircraft over 60 seats must install reinforced physical transition gates between passenger cabins and flight decks to prevent forward galley breach attempts.',
+    whatIsIt: "DGCA issuing a mandatory civil aviation directive requiring all scheduled passenger carriers to install secondary biometric physical cockpit gates to protect flight decks during flight.",
     theRealProblem: "Tight passenger aircraft cabins and frequent weather delays have increased passenger hostility. Without a secondary physical gate in the forward galley, opening the cockpit door for pilot hydration or restroom transit creates an immediate, dangerous vulnerability to cockpit breach.",
     bullets: [
       'Pre-landing cockpit door openings strictly prohibited below 10,000 feet unless guarded by designated cabin marshals.',
@@ -688,6 +703,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Live telemetry verified across 18 solar-powered radar gauging stations along Teesta and Mahananda rivers.',
     takeaway: 'High-precision ultrasonic water level sensors provide 4-hour advance flood alerts for downstream Siliguri, Jalpaiguri, and Sevoke transit bridges with zero telecom latency.',
+    whatIsIt: "Central Water Commission deploying 18 solar-powered acoustic ultrasonic gauging stations across the Teesta river to provide 4-hour advance flood alerts for Siliguri bridges.",
     theRealProblem: "Himalayan cloudbursts and glacial lake outbursts in Sikkim can send devastating torrents of floodwater rushing downstream to Siliguri and Jalpaiguri within 90 minutes. Traditional manual gauge monitoring was too slow, leaving urban bridges and low-lying communities at severe risk.",
     bullets: [
       'Automated acoustic wave sensors detect sudden glacial lake discharge or cloudburst runoff in upper Sikkim valleys.',
@@ -724,6 +740,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Monitored and documented by IEA Taskforce for Energy Resilience.',
     takeaway: 'International humanitarian partners completed installation of hardened containerized solar-plus-storage microgrids for regional hospitals and student water treatment hubs, resisting grid strikes.',
+    whatIsIt: "Deployment of 200 decentralized solar-plus-storage containerized microgrids across critical civilian healthcare hubs to resist high-voltage grid disruptions.",
     theRealProblem: "Centralized power stations and high-voltage electrical transformers are stationary targets for long-range drone and missile strikes. Centralized power failure paralyzes civilian hospitals, heating, and water purification during harsh sub-zero winter temperatures.",
     bullets: [
       'Each autonomous 250 kW microgrid can operate off-grid for up to 72 continuous hours during high-voltage transformer outages.',
@@ -760,6 +777,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Signed by Minister of Electronics & IT and Japanese Trade Minister in Tokyo.',
     takeaway: 'Bilateral accord establishes joint fabrication line for 14nm automotive silicon and establishes student research scholarships in Tokyo and Bengaluru chip design hubs.',
+    whatIsIt: "Bilateral treaty ratification between India and Japan establishing joint 14nm automotive silicon foundry lines and 300 fully funded cleanroom research fellowships for Indian students.",
     theRealProblem: "Over 80% of global semiconductor manufacturing is concentrated in a single maritime zone. Any geopolitical blockade in East Asia would immediately freeze worldwide automotive, medical, and consumer electronics production within weeks, necessitating diversified bilateral foundries.",
     bullets: [
       'Guarantees dedicated supply of refined gallium and silicon wafers to emerging fab facilities in Dholera and Sanand.',
@@ -798,7 +816,8 @@ export function getFreshRollingNews(): NewsArticle[] {
       ...art,
       publishedAt: rolling.publishedAt,
       timestamp: rolling.timestamp,
-      dateLabel: rolling.dateLabel
+      dateLabel: rolling.dateLabel,
+      incidentDate: rolling.incidentDate
     };
   });
 }
