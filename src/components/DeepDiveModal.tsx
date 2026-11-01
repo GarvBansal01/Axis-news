@@ -103,6 +103,28 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
           </p>
         </div>
 
+        {/* What is Really the Problem & Root Cause Breakdown */}
+        {(article.theRealProblem || article.deepDive.rootCauseAnalysis) && (
+          <div className="p-4 rounded-xl border border-red-500/30 bg-red-500/[0.05] dark:bg-red-950/20 space-y-2">
+            <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-red-700 dark:text-red-400 uppercase tracking-wider">
+              <span>🔍 What is Really the Problem? (Root Cause & Reality Check)</span>
+            </div>
+            {article.theRealProblem && (
+              <p className="text-xs md:text-sm text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
+                {article.theRealProblem}
+              </p>
+            )}
+            {article.deepDive.rootCauseAnalysis && (
+              <div className="pt-2 border-t border-red-500/15 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <strong className="text-zinc-800 dark:text-zinc-200 block mb-0.5 font-mono text-[11px] uppercase">
+                  Underlying Conflict / Systemic Failure:
+                </strong>
+                {article.deepDive.rootCauseAnalysis}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Key Background */}
         <div className="space-y-1.5">
           <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-500">

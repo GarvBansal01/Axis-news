@@ -152,6 +152,19 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
                 </p>
               </div>
 
+              {/* The Real Problem & Root Cause Box */}
+              {article.theRealProblem && (
+                <div className="p-3 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-900/60 text-xs space-y-1">
+                  <div className="flex items-center gap-1.5 text-zinc-800 dark:text-zinc-200 font-mono font-bold text-[10.5px] uppercase tracking-wider">
+                    <AlertTriangle className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
+                    <span>What is Really the Problem?</span>
+                  </div>
+                  <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans">
+                    {article.theRealProblem}
+                  </p>
+                </div>
+              )}
+
               {/* 3 Synthesized Bullets */}
               <ul className="space-y-1.5 text-xs md:text-sm text-stone-700 dark:text-stone-300 leading-relaxed pt-0.5 font-sans">
                 {article.bullets.map((bullet, idx) => (
@@ -167,18 +180,18 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => onOpenDeepDive(article)}
-                    className="flex items-center gap-1.5 text-xs text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 font-medium px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+                    className="flex items-center gap-1.5 text-xs text-zinc-900 dark:text-zinc-100 hover:text-white dark:hover:text-zinc-950 font-semibold px-3 py-1.5 rounded-lg bg-zinc-200/80 dark:bg-zinc-800 hover:bg-zinc-900 dark:hover:bg-zinc-100 transition-colors cursor-pointer shadow-2xs group"
                   >
-                    <FileText className="w-3.5 h-3.5" />
-                    <span>Full Context</span>
+                    <span>Know More</span>
+                    <FileText className="w-3.5 h-3.5 group-hover:scale-105 transition-transform" />
                   </button>
 
                   <button
                     onClick={() => toggleAudio(article)}
-                    className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono transition-colors cursor-pointer ${
+                    className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-mono transition-colors cursor-pointer border ${
                       isPlayingThis 
-                        ? 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-700' 
-                        : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-900'
+                        ? 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-700' 
+                        : 'border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-900'
                     }`}
                     title="Listen to 30s summary"
                   >

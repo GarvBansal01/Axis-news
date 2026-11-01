@@ -7,6 +7,8 @@ export type LocationScope = 'Siliguri' | 'North Bengal' | 'West Bengal' | 'India
 export interface DeepDiveContent {
   overview: string;
   keyBackground: string;
+  rootCauseAnalysis?: string;
+  theRealProblem?: string;
   timeline: { time: string; event: string }[];
   keyQuotes: { speaker: string; role: string; quote: string }[];
   impactForStudents: string;
@@ -24,6 +26,7 @@ export interface NewsArticle {
   verification: VerificationStatus;
   verificationNote: string;
   takeaway: string;
+  theRealProblem: string;
   bullets: [string, string, string];
   publishedAt: string;
   readTime: string;

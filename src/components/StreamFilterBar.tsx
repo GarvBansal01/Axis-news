@@ -104,8 +104,27 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
         </div>
       </div>
 
-      {/* Clean Editorial Filter Line */}
-      <div className="flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none">
+      {/* Laptop & Desktop: Sleek Active Desk Indicator (Eliminates Duplicate Category Buttons) */}
+      <div className="hidden lg:flex items-center justify-between text-xs font-mono py-0.5 text-zinc-500">
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-400">Active Desk:</span>
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 px-2 py-0.5 rounded-md bg-zinc-200/80 dark:bg-zinc-800 border border-zinc-300/60 dark:border-zinc-700/60">
+            {categories.find((c) => c.id === activeCategory)?.label || 'All Dispatches'}
+          </span>
+          <span className="text-zinc-400 text-[11px]">({totalCount} verified briefs)</span>
+        </div>
+        {activeCategory !== 'all' && (
+          <button
+            onClick={() => setActiveCategory('all')}
+            className="text-xs text-amber-600 dark:text-amber-400 hover:underline cursor-pointer font-medium"
+          >
+            Show All Channels ×
+          </button>
+        )}
+      </div>
+
+      {/* Mobile Only: Horizontal Category Scroll Strip (Preserves great phone UI) */}
+      <div className="flex lg:hidden items-center gap-1 overflow-x-auto pb-1 scrollbar-none">
         {categories.map((cat) => {
           const isActive = activeCategory === cat.id;
           return (

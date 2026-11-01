@@ -11,6 +11,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Officially documented in DGCA Flight Safety Occurrence Report FSO-2026-IND-891.',
     takeaway: 'Flight captain maintained absolute composure under physical assault during approach descent, coordinating with cabin crew to secure the assailant and land 186 passengers safely without injury.',
+    theRealProblem: "Post-pandemic air travel delays and cabin congestion have triggered a 340% surge in unruly passenger altercations. Cockpit doors are impenetrable from the outside, but when open for pilot servicing or approach checklists, flight crew are completely exposed to violent physical rushes without a secondary safety airlock.",
     bullets: [
       'The assault occurred at 11,000 feet during turbulent approach; cabin crew and passengers restrained the offender within 14 seconds.',
       'Ministry of Civil Aviation placed the passenger on the national Lifetime No-Fly List and initiated non-bailable civil aviation criminal charges.',
@@ -23,6 +24,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'Flight 6E-2175 en route to Delhi encountered an acute in-flight security breach when an agitated passenger breached the forward galley and assaulted the pilot during descent preparations.',
       keyBackground: 'India enacted stringent anti-unruly passenger regulations in 2017 with a 3-tier severity index. Physical violence against flight crew constitutes Level-3, carrying mandatory lifetime travel bans and criminal prosecution.',
+      rootCauseAnalysis: "Airline scheduling pressure has pushed aircraft turnaround times below 25 minutes while seat density has peaked. When weather disruptions delay flights, cabin crew are left to manage passenger anger without a physical buffer separating the cabin from the flight deck.",
       timeline: [
         { time: '14:20 IST', event: 'Aircraft begins descent toward runway 28; seatbelt sign illuminated.' },
         { time: '14:26 IST', event: 'Unruly passenger rushes forward galley; pilot assaulted while assisting co-pilot with approach checklist.' },
@@ -48,6 +50,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Corroborated by UN Maritime Security Council and Institute for the Study of War (ISW) daily theater assessment.',
     takeaway: 'Frontline combat has fundamentally shifted from traditional armor to unjammable fiber-optic autonomous drones, while multilateral Black Sea safety agreements prevent global wheat price shocks for student and youth economies in the Global South.',
+    theRealProblem: "Electronic warfare has saturated traditional radio drone links, forcing frontline forces to deploy physical fiber-optic micro-tethers that cannot be jammed. This creates continuous 24/7 battlefield transparency where traditional tank armor and trench defense offer zero survivability, while global food grain security remains hostage to fragile Black Sea maritime accords.",
     bullets: [
       'Both armed forces deployed lightweight micro-fiber tethered drones that bypass heavy electronic jamming across the 1,000-kilometer eastern line.',
       'UN and Turkey broker renewed Black Sea maritime transit corridor, ensuring steady agricultural exports and stabilizing global food grain inflation.',
@@ -60,6 +63,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'Over two and a half years into the conflict, the battlefield has become the world’s most intense proving ground for autonomous robotic systems, machine vision guidance, and electromagnetic spectrum dominance.',
       keyBackground: 'Since late 2023, intensive electronic warfare (EW) had neutralized over 70% of standard radio-controlled drones. The recent introduction of micro-spool fiber-optic lines transmitting 4K video with zero RF emissions has transformed close-contact reconnaissance.',
+      rootCauseAnalysis: "Commercial off-the-shelf FPV drones coupled with unspooling micro-fiber cables bypass radio frequency electronic warfare entirely. This brings $500 precision lethality against multi-million-dollar armor, while developing nations remain economically vulnerable to Black Sea shipping disruptions.",
       timeline: [
         { time: 'Early 2024', event: 'Mass electronic warfare saturation renders commercial RF drone links obsolete.' },
         { time: 'Mid 2026', event: 'Tethered fiber-optic and AI-guided edge compute drones achieve frontline scale.' },
@@ -84,6 +88,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'emergency_alert',
     verificationNote: 'Verified via IMD National Cyclone Warning Centre Special Bulletin No. 18 and NDMA Control Room.',
     takeaway: 'Super-computing meteorological algorithms combined with real-time INSAT-3DS infrared imaging provided 96-hour precision landfall tracking, allowing state disaster teams to execute total zero-casualty coastal evacuation.',
+    theRealProblem: "Abnormal ocean surface heat (>31\u00b0C) is causing rapid cyclogenesis where tropical depressions escalate into destructive cyclones in under 24 hours. While precision satellite evacuation saved human lives, saline storm surges permanently ruin low-lying agricultural soils, leaving agrarian families economically destitute.",
     bullets: [
       'Over 450,000 vulnerable coastal residents shifted to 800 reinforced multipurpose cyclone shelters within 36 hours.',
       'National Disaster Response Force (NDRF) deployed 56 specialized battalions equipped with satellite phones and flood-rescue cutters.',
@@ -96,6 +101,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'The successful handling of the deep depression in the Bay of Bengal represents a historic milestone in India’s disaster risk reduction architecture, converting potential devastation into a textbook evacuation drill.',
       keyBackground: 'In 1999, the Odisha Super Cyclone claimed nearly 10,000 lives due to rudimentary warning times. In 2026, indigenous INSAT-3DS Doppler radars and supercomputing numerical forecasts predict landfall coordinates to within 12 kilometers.',
+      rootCauseAnalysis: "Deltaic river topology and dense low-lying agrarian communities along the eastern seaboard create severe drainage choke points. Storm surges breach earthen embankments, turning fertile agricultural soil saline and destroying local farming livelihoods.",
       timeline: [
         { time: 'T-96 Hours', event: 'IMD supercomputer detects tropical cyclogenesis east of Andaman islands.' },
         { time: 'T-48 Hours', event: 'NDMA triggers automated Red Alert SMS to 12 million coastal mobile devices.' },
@@ -121,6 +127,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Officially verified in MEA Joint Communiqué following New Delhi Multilateral Working Group.',
     takeaway: 'Strategic multilateral corridor accelerates subsea data cables and green maritime logistics connecting Mumbai ports to Mediterranean gateways, creating direct bypass around geopolitical naval choke points.',
+    theRealProblem: "Persistent maritime drone attacks and regional conflicts have crippled the Red Sea and Suez Canal, adding 14 days and billions in freight surcharges. The challenge is constructing a complex multi-nation overland rail and digital fiber bypass across politically volatile terrain with competing national interests.",
     bullets: [
       'Ultra-low-latency 400 Gbps subsea fiber optic cable laying commences between Gujarat coast, Fujairah, and Haifa.',
       'Standardized clean hydrogen bunkering agreements signed between Adani Ports, DP World, and European terminal operators.',
@@ -133,6 +140,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'IMEC was unveiled during the G20 New Delhi summit to forge a resilient multimodal economic bridge between South Asia, the Arabian Gulf, and Europe.',
       keyBackground: 'Recent maritime security disruptions in the Red Sea and Bab-el-Mandeb strait highlighted the urgent necessity of alternative overland railway and coastal shipping redundancy.',
+      rootCauseAnalysis: "Global trade relied almost exclusively on single maritime corridors designed in the 19th century. Naval flashpoints and drone attacks in the Red Sea add $2,000 per container in shipping freight and 14 extra transit days around Africa, fueling global price spikes.",
       timeline: [
         { time: 'Sept 2023', event: 'IMEC Partnership MoU signed at G20 New Delhi.' },
         { time: 'Early 2026', event: 'Digital subsea cable feasibility study approved.' },
@@ -156,6 +164,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Community replication verified across 40 independent academic labs on Hugging Face and GitHub.',
     takeaway: 'Viral tech leaks on X proved accurate as frontier labs release open mathematical verification harnesses, allowing student researchers to evaluate local open-source models on advanced Olympiad reasoning benchmarks.',
+    theRealProblem: "Frontier AI labs have built multi-billion-dollar closed moats around proprietary reasoning models, but viral leaks on X and independent algorithmic extractions demonstrate that mathematical reasoning cannot be locked in a corporate garden, sparking acute debates on intellectual property and student access.",
     bullets: [
       'Independent AI researchers on X identified leaked evaluation checkpoints, forcing frontier labs to release official open weights.',
       'The open protocol runs locally on consumer RTX 4090 GPUs without requiring costly enterprise cloud tokens.',
@@ -168,6 +177,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'Over the weekend, leaked benchmark logs surfaced on X demonstrating that compact 8B-parameter open models could achieve 90% reasoning parity with closed 100B systems using step-by-step verification.',
       keyBackground: 'The open-source AI community has consistently challenged proprietary closed models by reverse-engineering distillation recipes and synthetic data verification pipelines.',
+      rootCauseAnalysis: "Algorithmic distillation and step-verification techniques allow compact models to match corporate frontier systems on mathematical tasks. As research leaked on social media, open community developers demonstrated that artificial reasoning cannot be monopolized by closed corporate labs.",
       timeline: [
         { time: 'Friday 22:00 UTC', event: 'Viral thread by anonymous researcher leaks benchmark comparison logs on X.' },
         { time: 'Saturday 10:00 UTC', event: 'Hugging Face community confirms reproduction using open weights.' },
@@ -191,6 +201,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Officially published via Google DeepMind Research Paper and confirmed at Global Tech Keynote.',
     takeaway: 'New real-time multimodal reasoning system demonstrates autonomous multi-step software synthesis, igniting intense international debate over future student engineering jobs and open vs closed AI ecosystems.',
+    theRealProblem: "Autonomous agentic reasoning systems can now write and debug full codebases in seconds, creating massive anxiety around entry-level software engineering careers while high-end training compute remains monopolized by a few trillion-dollar tech corporations, leaving universities racing to reform outdated curricula.",
     bullets: [
       'Active daily users surged past 600 million globally within 90 days, breaking historical consumer technology adoption records.',
       'The heated debate centers on whether closed corporate AI labs or open-source weights should control the next era of frontier intelligence.',
@@ -203,6 +214,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'The announcement marks a historic inflection point in consumer AI adoption, showcasing autonomous multimodal reasoning capabilities that can plan, execute, and verify code across complex system architectures without human intervention.',
       keyBackground: 'Since late 2023, the global artificial intelligence arms race has seen Silicon Valley giants and international challengers compete for compute supremacy, shifting from simple text generation to real-time agentic execution.',
+      rootCauseAnalysis: "Training frontier AI requires hundreds of millions of dollars in compute, concentrating technology governance in 3-4 mega-corporations. Educational systems and university curricula have not updated fast enough to prepare students for an agentic economy.",
       timeline: [
         { time: 'June 2025', event: 'Initial multi-agent reasoning benchmarks published at NeurIPS.' },
         { time: 'August 2026', event: 'Global developer beta opens across 160 countries.' },
@@ -227,6 +239,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Officially audited by Ministry of Civil Aviation inspection team on Oct 28, 2026.',
     takeaway: 'North Bengal\'s primary aviation hub is expanding to handle 10 million annual passengers with direct Southeast Asian flight corridors.',
+    theRealProblem: "Bagdogra Airport currently handles 3.4 million annual passengers inside a single-runway facility built for only 750,000, causing severe tarmac bottlenecks and frequent flight delays. As the sole transit corridor for Sikkim, Darjeeling, and Bhutan, regional mobility and student flights are severely constricted.",
     bullets: [
       'New terminal spans 100,000 sq. meters with 16 aero-bridges, modern cargo logistics, and dedicated transit corridors to Darjeeling and Sikkim.',
       'Projected to boost Siliguri\'s regional GDP by 18% through accelerated tourism, IT services, and student exchange mobility.',
@@ -239,6 +252,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'The Bagdogra Airport modernization project represents the single largest civil aviation investment in North Bengal history, addressing severe terminal congestion and opening international connections.',
       keyBackground: 'Currently operating at over 250% design capacity, Bagdogra handled 3.2 million travelers in 2025 despite single-runway and apron bottlenecks.',
+      rootCauseAnalysis: "A single shared military-civilian runway coupled with decade-long land acquisition delays left the eastern region without modern terminal infrastructure, creating severe flight delays and stifling North Bengal commerce.",
       timeline: [
         { time: 'March 2024', event: 'Central Cabinet sanctions ₹1,549 Crore for phase 1 construction.' },
         { time: 'January 2026', event: 'Substructure piling completed across 16 boarding gates.' },
@@ -264,6 +278,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Official text adopted by the UN General Assembly 2nd Committee in Geneva.',
     takeaway: 'Global powers agreed on safety boundaries for frontier biological AI while explicitly protecting academic open-source weights from corporate monopoly bans.',
+    theRealProblem: "Corporate lobbyists from frontier AI monopolies attempted to weaponize safety fears to outlaw open-source models, seeking an international licensing regime that would restrict AI development exclusively to trillion-dollar tech conglomerates, shutting out universities, student builders, and developing nations.",
     bullets: [
       'Sets mandatory pre-deployment testing for models exceeding 10^26 FLOPs compute training runs.',
       'Explicitly bars monopolistic cloud vendors from outlawing open-source local model fine-tuning.',
@@ -276,6 +291,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'After two years of intense debate between closed-source lobbyists and academic coalitions, the Geneva treaty enshrines a balanced approach to synthetic safety and open science.',
       keyBackground: 'Smaller nations and independent developers feared that aggressive frontier licensing would concentrate AI ownership entirely inside four Silicon Valley corporations.',
+      rootCauseAnalysis: "Dominant tech firms attempted regulatory capture by advocating for impossible compute certification bars, aiming to outlaw student open-source development under the pretext of national security.",
       timeline: [
         { time: 'Nov 2023', event: 'Bletchley Park declaration initiates multilateral discussions.' },
         { time: 'Feb 2026', event: 'Seoul Ministerial draft emphasizes open-source protections.' },
@@ -299,6 +315,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Officially reaffirmed in Take-Two Interactive SEC Form 10-Q filing.',
     takeaway: 'The $2 billion production budget sets a new entertainment world benchmark, sparking widespread industry debate on gaming budgets versus independent creative titles.',
+    theRealProblem: "AAA game production budgets have ballooned past $1-2 billion with decade-long development cycles. This has triggered industry-wide studio closures, massive developer layoffs, and risk-averse corporate homogenization, leaving independent creative studios struggling for visibility.",
     bullets: [
       'Global trailer views officially crossed 420 million across YouTube and social platforms, the highest in human media history.',
       'Engineered with proprietary neural animation physics and dynamic weather simulations powered by modern GPU ray-tracing.',
@@ -311,6 +328,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'GTA VI represents the pinnacle of interactive entertainment production, utilizing groundbreaking computational physics and machine-learning NPC behavioral routines.',
       keyBackground: 'Grand Theft Auto V generated over $8 billion in revenue over 13 years, making its successor the most anticipated media release in global history.',
+      rootCauseAnalysis: "Extreme photorealism expectations and multi-hundred-million-dollar marketing budgets have made AAA game development financially brittle, forcing corporate risk-aversion and mass worker layoffs across the industry.",
       timeline: [
         { time: 'Dec 2023', event: 'First official trailer breaks Guinness World Record for 24-hour views.' },
         { time: 'May 2026', event: 'Take-Two confirms final polishing phase across Sony and Microsoft platforms.' },
@@ -334,6 +352,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Signed procurement and portal release verified by IndiaAI National Portal.',
     takeaway: 'Indian college students and academic labs can now access top-tier computing clusters at zero cost for thesis projects and open-source models.',
+    theRealProblem: "Indian university students and researchers historically lacked access to high-compute GPU clusters, being priced out by expensive US-based cloud rates and forced to limit their computer science research to basic theory while top talent emigrated overseas.",
     bullets: [
       'The compute capacity combines NVIDIA H100s and custom indigenous accelerators hosted across Tier-4 Indian data centers.',
       'Colleges and polytechnic institutes in non-metro hubs (including West Bengal, Assam, and Bihar) receive a guaranteed 35% quota.',
@@ -346,6 +365,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'The ₹10,372 crore IndiaAI Mission aims to eliminate compute inequality, allowing students outside elite institutes to train state-of-the-art foundation models.',
       keyBackground: 'Historically, access to high-end compute was monopolized by venture-backed startups and private Western clouds, limiting Indian academic contributions.',
+      rootCauseAnalysis: "Historically, Indian academic institutions lacked public cloud compute clusters, forcing students to rely on limited CPUs or pay exorbitant foreign currency cloud bills, leading to significant domestic AI research bottlenecks.",
       timeline: [
         { time: 'July 2025', event: 'IndiaAI Mission tenders finalized with cloud partners.' },
         { time: 'August 2026', event: 'Phase 1 cluster of 5,000 nodes goes live at CDAC Pune.' },
@@ -369,6 +389,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Officially published in IEA Global Electricity Review 2026.',
     takeaway: 'Global solar and wind farms generated 32% of all world power over the last quarter, permanently overtaking coal as the dominant primary electricity source.',
+    theRealProblem: "Although renewable solar and wind generation have officially surpassed coal, legacy 20th-century power grids lack the battery storage and high-voltage transmission lines needed to handle intermittent renewable surges, forcing utilities to curtail clean power while running coal plants on idle backup.",
     bullets: [
       'Driven by massive battery storage breakthroughs and high-speed regional grid interconnectors in India, China, and the European Union.',
       'Global carbon emissions from electricity generation dropped by 4.2% year-over-year, marking the fastest structural shift in energy history.',
@@ -381,6 +402,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'For over 150 years since the industrial revolution, coal formed the backbone of global electricity. In 2026, falling battery storage prices and solar scaling permanently flipped the balance.',
       keyBackground: 'Solar PV installation costs plummeted 88% over the past decade, making new solar farms cheaper to build than simply operating existing coal plants.',
+      rootCauseAnalysis: "Legacy electrical infrastructure was built for steady, centralized coal plants. Absorbing massive spikes of midday solar and midnight wind requires utility-scale battery storage and modern smart grid software that many monopolies delay investing in.",
       timeline: [
         { time: '2020', event: 'Solar becomes cheapest electricity in history according to IEA.' },
         { time: '2024', event: 'Renewables match coal generation capacity.' },
@@ -404,6 +426,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Monthly progress report submitted to Ministry of Road Transport and Highways.',
     takeaway: 'Travel time between Siliguri and Uttar Pradesh reduced from 15 hours to 6 hours, creating an inland industrial trade bridge.',
+    theRealProblem: "The strategic 22-kilometer Siliguri corridor (Chicken\u2019s Neck) carries all road freight to eight northeastern states. Recurring monsoon flooding, single-lane bottlenecks, and urban congestion frequently paralyze cargo transit, driving up essential goods prices and delaying student mobility.",
     bullets: [
       'The greenfield alignment bypasses congested urban choke points in Kishanganj and Islampur with high-speed 120 km/h design.',
       'Special elevated wildlife corridors over the Mahananda wildlife fringe to ensure zero elephant-path disruption.',
@@ -416,6 +439,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'The expressway forms a crucial segment of the PM Gati Shakti National Master Plan, connecting the eastern Himalayan foothills directly to northern logistics networks.',
       keyBackground: 'NH-31 and NH-27 had long suffered from severe monsoon bottlenecks and single-lane bridges, paralyzing freight into the Northeast.',
+      rootCauseAnalysis: "The 22km Siliguri corridor connects 50 million people through narrow, flood-prone roads. Seasonal monsoon landslides and bridge bottlenecks frequently cut off rail and road supplies to the entire Northeast.",
       timeline: [
         { time: '2022', event: 'Feasibility study and environmental clearance approved.' },
         { time: '2024', event: 'Land compensation awarded to 14,000 landholders in WB & Bihar.' },
@@ -439,6 +463,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'trending_unverified',
     verificationNote: 'Unverified regulatory filing detected in South Korean National Radio Research Agency. Valve has not officially commented.',
     takeaway: 'A mysterious Valve wireless device code-named "Galileo/Deckard" with custom AMD silicon has surfaced in regulatory databases.',
+    theRealProblem: "Virtual reality hardware remains held back by heavy tether cables, low battery endurance, thermal throttling, and walled-garden app ecosystems. The technical hurdle is packing PC-grade gaming performance into an untethered, lightweight headset running open-source Linux.",
     bullets: [
       'Regulatory filing mentions 6 GHz Wi-Fi 7 radio modules and a dual-display optical calibration rig.',
       'Datamines in latest SteamVR beta reveal code strings referencing "Deckard_Onboarding" and ARM-native Proton translation.',
@@ -451,6 +476,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'While the Steam Deck proved SteamOS could run PC games portably, dataminers have long sought proof of Valve\'s standalone VR / hybrid console ambitions.',
       keyBackground: 'Valve Index remains tethered to PCs since 2019. Fans have anticipated an untethered successor utilizing ARM or low-power x86 APUs.',
+      rootCauseAnalysis: "Running x86 PC games on mobile batteries generates extreme heat and rapid battery drain. Overcoming these physics bottlenecks requires custom ARM silicon, advanced translation software, and open OS optimization.",
       timeline: [
         { time: 'Sept 2023', event: 'First "Galileo" device ID registered in regulatory test.' },
         { time: 'June 2026', event: 'Proton ARM translation layers committed to open-source Git repositories.' },
@@ -474,6 +500,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Officially published in RBI Circular DPSS.CO.OD.No. 882/2026.',
     takeaway: 'Indian students studying abroad or paying for international courses can now transfer tuition fees instantly at near-zero bank markup.',
+    theRealProblem: "International bank wire transfers have extracted billions in hidden 4-7% foreign exchange markups and multi-day delays from overseas students paying tuition. Traditional commercial banking cartels long resisted real-time bilateral integration to protect high SWIFT fee revenues.",
     bullets: [
       'Direct linkage between India\'s UPI and national payment rails in Germany, Japan, Singapore, France, and the UK.',
       'Replaces cumbersome wire transfers that previously took 3–5 business days and charged up to 6% in hidden forex fees.',
@@ -486,6 +513,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'Cross-border educational remittances have traditionally been a costly pain point for Indian families, burdened by SWIFT charges and unfavorable exchange spreads.',
       keyBackground: 'Over 1.3 million Indian students study abroad annually, remitting an estimated $10 billion in tuition and living costs.',
+      rootCauseAnalysis: "Legacy correspondent banking chains route wire transfers through multiple intermediary foreign banks, each taking hidden commission fees and taking 3 to 5 business days for simple fee payments.",
       timeline: [
         { time: '2023', event: 'UPI-PayNow link launched with Singapore.' },
         { time: '2025', event: 'Bilateral test with UAE and European banks successfully concluded.' },
@@ -509,6 +537,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Reviewed and merged by Linus Torvalds in mainline Git tree commit 7a82fb9.',
     takeaway: 'Memory-safe systems programming in Rust has officially graduated from experimental status into critical Linux operating infrastructure.',
+    theRealProblem: "Memory safety bugs in legacy C code (buffer overflows, use-after-free) cause over 70% of high-severity operating system security breaches worldwide. Yet adopting modern memory-safe languages like Rust into the Linux kernel faced years of resistance from traditional systems programmers.",
     bullets: [
       'The new Rust NVMe driver demonstrated zero memory vulnerability crashes in continuous fuzzing benchmarks over 180 days.',
       'Reduces buffer overflow and use-after-free vulnerabilities by an estimated 70% in high-speed network interfaces.',
@@ -521,6 +550,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'After four years of architectural debates and gradual infrastructure building, Rust in the Linux kernel is now running on production servers worldwide.',
       keyBackground: 'Historically, over 65% of critical security advisories in operating systems originated from memory allocation bugs written in traditional C.',
+      rootCauseAnalysis: "C does not provide compiler-enforced memory safety, meaning even experienced kernel engineers inevitably introduce use-after-free or buffer overflow vulnerabilities in complex operating system network stacks.",
       timeline: [
         { time: '2020', event: 'Initial RFC proposed by Miguel Ojeda at Linux Plumbers Conference.' },
         { time: '2022', event: 'Linux 6.1 introduces initial experimental Rust infrastructure.' },
@@ -544,6 +574,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Formally inaugurated at Raja Rammohunpur campus on October 25, 2026.',
     takeaway: 'Students in Siliguri, Jalpaiguri, and Darjeeling receive direct seed grants of up to ₹10 Lakhs for regional technology solutions.',
+    theRealProblem: "Despite having prestigious universities and engineering colleges in North Bengal, a total absence of regional venture capital and prototyping labs forced 90% of ambitious student founders to migrate to Bengaluru or Delhi, leaving local agricultural and mountain problems unaddressed.",
     bullets: [
       'The hub provides free 3D rapid prototyping labs, drone testing grounds, and tea-plantation sensor analytics facilities.',
       'Mentorship partnerships established with IIT Kharagpur and Webel IT Park Siliguri to guide student founders.',
@@ -556,6 +587,7 @@ export const mockNewsArticles: NewsArticle[] = [
     deepDive: {
       overview: 'Located at the picturesque Raja Rammohunpur campus near Siliguri, the incubator aims to halt the brain drain of North Bengal tech talent to metro cities.',
       keyBackground: 'Despite strong engineering colleges in Siliguri, Jalpaiguri, and Kurseong, students traditionally lacked local venture capital and hardware testing labs.',
+      rootCauseAnalysis: "Venture capital and hardware fabrication facilities historically remained clustered in metro hubs like Bengaluru and Delhi, leaving regional North Bengal innovations without seed funding or prototype facilities.",
       timeline: [
         { time: 'Feb 2025', event: 'State budget announces special North Bengal Startup Corpus.' },
         { time: 'June 2026', event: 'Hardware fabrication and sensor lab fit-out completed.' },
@@ -582,6 +614,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Issued under Rule 133A of the Aircraft Rules, 1937, effective immediately across scheduled passenger airlines.',
     takeaway: 'All domestic airlines operating aircraft over 60 seats must install reinforced physical transition gates between passenger cabins and flight decks to prevent forward galley breach attempts.',
+    theRealProblem: "Tight passenger aircraft cabins and frequent weather delays have increased passenger hostility. Without a secondary physical gate in the forward galley, opening the cockpit door for pilot hydration or restroom transit creates an immediate, dangerous vulnerability to cockpit breach.",
     bullets: [
       'Pre-landing cockpit door openings strictly prohibited below 10,000 feet unless guarded by designated cabin marshals.',
       'Airlines granted 90 days to retrofit biometric interlocks with mandatory crew cabin-view camera feeds.',
@@ -594,6 +627,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     deepDive: {
       overview: 'In response to acute cockpit approach incidents, the aviation safety regulator has enacted structural barrier requirements matching international FAA standards.',
       keyBackground: 'Modern aircraft cockpits are bulletproof, but the momentary opening of doors during pilot meal or restroom transit presented an operational vulnerability.',
+      rootCauseAnalysis: "The absence of a secondary locked galley door leaves an open security vulnerability during cockpit entry and exit, creating danger for flight crews during stressful flights.",
       timeline: [
         { time: 'T-10m', event: 'Director General signs Safety Advisory Series C-Part II.' },
         { time: 'Just now', event: 'Distributed to IndiGo, Air India, SpiceJet, and Akasa flight operations.' }
@@ -616,6 +650,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Live telemetry verified across 18 solar-powered radar gauging stations along Teesta and Mahananda rivers.',
     takeaway: 'High-precision ultrasonic water level sensors provide 4-hour advance flood alerts for downstream Siliguri, Jalpaiguri, and Sevoke transit bridges with zero telecom latency.',
+    theRealProblem: "Himalayan cloudbursts and glacial lake outbursts in Sikkim can send devastating torrents of floodwater rushing downstream to Siliguri and Jalpaiguri within 90 minutes. Traditional manual gauge monitoring was too slow, leaving urban bridges and low-lying communities at severe risk.",
     bullets: [
       'Automated acoustic wave sensors detect sudden glacial lake discharge or cloudburst runoff in upper Sikkim valleys.',
       'Direct LoRaWAN radio links transmit water velocity and turbidity metrics even during regional power grid outages.',
@@ -628,6 +663,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     deepDive: {
       overview: 'Following recent Himalayan cloudbursts, the Central Water Commission deployed automated IoT telemetry to eliminate reliance on manual phone relays.',
       keyBackground: 'Siliguri is the strategic logistics choke point connecting Northeast India. Protecting NH-10 and rail bridges from flash floods is vital for national mobility.',
+      rootCauseAnalysis: "Steep Himalayan slopes cause flash flood runoff to travel at extreme velocities. Without automated ultrasonic IoT sensors and satellite data relays, warning sirens arrived too late for downstream communities.",
       timeline: [
         { time: 'September 2026', event: 'Sensor calibration completed across 18 mountain gauging stations.' },
         { time: 'Just now', event: 'Live dashboard linked to Siliguri District Emergency Operation Centre.' }
@@ -650,6 +686,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verification: 'reputable_media',
     verificationNote: 'Monitored and documented by IEA Taskforce for Energy Resilience.',
     takeaway: 'International humanitarian partners completed installation of hardened containerized solar-plus-storage microgrids for regional hospitals and student water treatment hubs, resisting grid strikes.',
+    theRealProblem: "Centralized power stations and high-voltage electrical transformers are stationary targets for long-range drone and missile strikes. Centralized power failure paralyzes civilian hospitals, heating, and water purification during harsh sub-zero winter temperatures.",
     bullets: [
       'Each autonomous 250 kW microgrid can operate off-grid for up to 72 continuous hours during high-voltage transformer outages.',
       'Utilizes lithium iron phosphate (LFP) battery chemistry housed in fireproof reinforced blast-resistant shipping containers.',
@@ -662,6 +699,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     deepDive: {
       overview: 'Repeated long-range attacks on centralized high-voltage substations prompted a rapid paradigm shift toward modular decentralized civilian energy units.',
       keyBackground: 'Traditional power plants present massive stationary targets. Distributed microgrids allow localized power autonomy without cascading blackout risks.',
+      rootCauseAnalysis: "Centralized power grids present single points of failure that can be disabled by precision strikes. Hardened decentralized microgrids provide the only reliable civilian energy survival in modern conflict zones.",
       timeline: [
         { time: 'Spring 2026', event: 'EU-funded civilian energy resilience tender launched.' },
         { time: 'Just now', event: '200th hospital microgrid commissioned and synced to local emergency circuits.' }
@@ -684,6 +722,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verification: 'govt_verified',
     verificationNote: 'Signed by Minister of Electronics & IT and Japanese Trade Minister in Tokyo.',
     takeaway: 'Bilateral accord establishes joint fabrication line for 14nm automotive silicon and establishes student research scholarships in Tokyo and Bengaluru chip design hubs.',
+    theRealProblem: "Over 80% of global semiconductor manufacturing is concentrated in a single maritime zone. Any geopolitical blockade in East Asia would immediately freeze worldwide automotive, medical, and consumer electronics production within weeks, necessitating diversified bilateral foundries.",
     bullets: [
       'Guarantees dedicated supply of refined gallium and silicon wafers to emerging fab facilities in Dholera and Sanand.',
       'Fully funded 1-year master’s research fellowship launched for 300 Indian engineering students in Japanese cleanroom fabrication labs.',
@@ -696,6 +735,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     deepDive: {
       overview: 'As the global chip race heats up, India and Japan have forged a strategic partnership to combine Japanese chemical and equipment precision with Indian chip design talent.',
       keyBackground: 'Global chip manufacturing was historically concentrated in a single maritime region. Diversifying fabrication ensures global consumer electronics and automobile continuity.',
+      rootCauseAnalysis: "Semiconductor fabrication is geographically over-concentrated in vulnerable East Asian waters. Without bilateral foundries and alternative mineral supply chains, global supply remains fragile to naval disruption.",
       timeline: [
         { time: '2024', event: 'Initial semiconductor memorandum of understanding signed.' },
         { time: 'Just now', event: 'Full treaty ratified with capital commitments and student exchange portal.' }

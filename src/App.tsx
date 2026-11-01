@@ -13,6 +13,7 @@ import { wisdomCollection } from './data/wisdomData';
 import { NewsArticle, NewsCategory, UserSession, AppFeedback } from './types';
 import { playAudioChime } from './utils/audioPlayer';
 import { FlashcardDeck } from './components/FlashcardDeck';
+import { ImportantBriefingHero } from './components/ImportantBriefingHero';
 import { 
   Sparkles, 
   TrendingUp, 
@@ -268,6 +269,16 @@ export default function App() {
     });
   }, [articles, activeCategory, isSavedOnly, savedArticleIds, searchQuery]);
 
+  // Top Critical Spotlight Articles (Pilot emergency landing, Russia-Ukraine war, Cyclone alert, AI Leaks)
+  const topCriticalArticles = useMemo(() => {
+    return [
+      articles.find((a) => a.id === 'pilot-attacked-safe-emergency-landing') || articles[0],
+      articles.find((a) => a.id === 'russia-ukraine-high-tech-frontline-grain-pact') || articles[1],
+      articles.find((a) => a.id === 'bay-of-bengal-supercyclone-evacuation-zero-casualties') || articles[2],
+      articles.find((a) => a.id === 'frontier-ai-researcher-x-leak-verified') || articles[3]
+    ].filter(Boolean) as NewsArticle[];
+  }, [articles]);
+
   const categories: { id: NewsCategory; label: string; count: number }[] = [
     { id: 'all', label: 'All Dispatches', count: articles.length },
     { id: 'national', label: '🇮🇳 India National', count: articles.filter(a => a.category === 'national').length },
@@ -302,11 +313,11 @@ export default function App() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
         <div className="flex justify-center gap-8">
           {/* ================= LEFT RAIL (DESKTOP) ================= */}
-          <aside className="w-56 shrink-0 hidden lg:block sticky top-20 self-start space-y-5">
+          <aside className="w-56 shrink-0 hidden lg:block sticky top-20 self-start space-y-4">
             {/* Navigation Channels */}
             <div className="space-y-1">
               <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block px-2 mb-2 font-bold">
-                Intelligence Feeds
+                Radar Desks
               </span>
               {categories.map((cat) => {
                 const isActive = activeCategory === cat.id && !isSavedOnly;
@@ -328,6 +339,27 @@ export default function App() {
                   </button>
                 );
               })}
+            </div>
+
+            {/* Student Efficiency Hub Card */}
+            <div className="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 space-y-2 text-xs">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block font-bold">
+                Student Intel Hub
+              </span>
+              <div className="space-y-1.5 text-[11px] text-zinc-600 dark:text-zinc-400 font-sans">
+                <div className="flex items-center gap-1.5">
+                  <Zap className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                  <span>~45 min daily doomscroll saved</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                  <span>100% Accredited Sources</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                  <span>1-Min Live Radar Active</span>
+                </div>
+              </div>
             </div>
 
             {/* Bookmarks Filter */}
@@ -352,7 +384,7 @@ export default function App() {
             </div>
 
             {/* Quick Contact & Feedback Action */}
-            <div className="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 space-y-2 text-xs">
+            <div className="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40 space-y-2 text-xs">
               <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block font-bold">
                 Connect
               </span>
@@ -423,12 +455,24 @@ export default function App() {
                 />
               </div>
             ) : (
-              <ScrollingFeed
-                articles={filteredArticles}
-                savedArticleIds={savedArticleIds}
-                onToggleSave={handleToggleSave}
-                onOpenDeepDive={(art) => setActiveDeepDiveArticle(art)}
-              />
+              <>
+                {/* WHAT'S IMPORTANT RIGHT NOW (CRITICAL SPOTLIGHT HERO) */}
+                {!isSavedOnly && !searchQuery.trim() && activeCategory === 'all' && (
+                  <ImportantBriefingHero
+                    topArticles={topCriticalArticles}
+                    savedArticleIds={savedArticleIds}
+                    onToggleSave={handleToggleSave}
+                    onOpenDeepDive={(art) => setActiveDeepDiveArticle(art)}
+                  />
+                )}
+
+                <ScrollingFeed
+                  articles={filteredArticles}
+                  savedArticleIds={savedArticleIds}
+                  onToggleSave={handleToggleSave}
+                  onOpenDeepDive={(art) => setActiveDeepDiveArticle(art)}
+                />
+              </>
             )}
 
             {/* BHAGAVAD GITA SHLOKA (PLACED AT THE LAST AS REQUESTED) */}
