@@ -50,19 +50,6 @@ export interface WisdomItem {
   coreTheme: 'Focus' | 'Duty & Action' | 'Overcoming Fear' | 'Self-Discipline' | 'Resilience' | 'Peace of Mind';
 }
 
-export interface MemeItem {
-  id: string;
-  title: string;
-  punchline: string;
-  category: 'exams' | 'coding' | 'campus_life' | 'ai_humor';
-  author: string;
-  upvotes: number;
-  aiVerifiedClean: boolean;
-  aiVerificationReason: string;
-  createdAt: string;
-  tag: string;
-}
-
 export interface UserSession {
   email: string;
   name: string;
@@ -83,21 +70,6 @@ export interface AppFeedback {
   category: string;
   comment: string;
   timestamp: string;
-}
-
-export interface LearningModule {
-  id: string;
-  title: string;
-  subtitle: string;
-  plainEnglishConcept: string;
-  realCodeExplanation: string;
-  codeSnippet: string;
-  studentQuiz: {
-    question: string;
-    options: string[];
-    correctIndex: number;
-    explanation: string;
-  };
 }
 
 export interface ContactRequest {
