@@ -5,8 +5,6 @@ import {
   FileText, 
   Check,
   ArrowUp,
-  Volume2,
-  VolumeX,
   AlertTriangle,
   ShieldCheck,
   Globe,
@@ -14,7 +12,6 @@ import {
   Zap
 } from 'lucide-react';
 import { NewsArticle } from '../types';
-import { speakText, stopSpeech } from '../utils/audioPlayer';
 
 interface ScrollingFeedProps {
   articles: NewsArticle[];
@@ -30,7 +27,6 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
   onOpenDeepDive
 }) => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [playingArticleId, setPlayingArticleId] = useState<string | null>(null);
 
   const handleShare = (article: NewsArticle) => {
     const shareText = `⚡ ${article.title}\n\n"${article.takeaway}"\n\n• ${article.bullets.join('\n• ')}\n\nSource: ${article.sourceName} · via AXIS 24H Radar`;
@@ -39,24 +35,6 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
       setCopiedId(article.id);
       setTimeout(() => setCopiedId(null), 2000);
     }
-  };
-
-  const toggleAudio = (article: NewsArticle) => {
-    if (playingArticleId === article.id) {
-      stopSpeech();
-      setPlayingArticleId(null);
-      return;
-    }
-
-    stopSpeech();
-    setPlayingArticleId(article.id);
-    const text = `${article.title}. Takeaway: ${article.takeaway}. Key points: ${article.bullets.join('. ')}. Source: ${article.sourceName}`;
-    speakText(
-      text,
-      1.15,
-      () => setPlayingArticleId(null),
-      () => setPlayingArticleId(null)
-    );
   };
 
   const scrollToTop = () => {
@@ -84,7 +62,6 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
           const isSaved = savedArticleIds.includes(article.id);
           const isEmergency = article.verification === 'emergency_alert' || article.category === 'disaster';
           const isGeopolitics = article.category === 'geopolitics';
-          const isPlayingThis = playingArticleId === article.id;
 
           return (
             <article
@@ -205,28 +182,6 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
                   >
                     <span>Know More</span>
                     <FileText className="w-3.5 h-3.5 group-hover:scale-105 transition-transform" />
-                  </button>
-
-                  <button
-                    onClick={() => toggleAudio(article)}
-                    className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-mono transition-colors cursor-pointer border ${
-                      isPlayingThis 
-                        ? 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-700' 
-                        : 'border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-900'
-                    }`}
-                    title="Listen to 30s summary"
-                  >
-                    {isPlayingThis ? (
-                      <>
-                        <VolumeX className="w-3 h-3 text-amber-600 animate-pulse" />
-                        <span>Pause</span>
-                      </>
-                    ) : (
-                      <>
-                        <Volume2 className="w-3 h-3" />
-                        <span>30s Audio</span>
-                      </>
-                    )}
                   </button>
                 </div>
 

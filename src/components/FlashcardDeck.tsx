@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { 
   ChevronLeft, 
   ChevronRight, 
-  Volume2, 
-  VolumeX, 
   Bookmark, 
   Share2, 
   FileText, 
@@ -11,7 +9,6 @@ import {
   Flame, 
   Info, 
   Check, 
-  FastForward,
   AlertTriangle,
   Calendar,
   Zap
@@ -32,24 +29,13 @@ export const FlashcardDeck: React.FC<FlashcardDeckProps> = ({
   onOpenDeepDive
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
-  const [playbackRate, setPlaybackRate] = useState<number>(1.0);
   const [copied, setCopied] = useState(false);
 
   // Bounds check
   const safeIndex = articles.length === 0 ? 0 : Math.min(currentIndex, articles.length - 1);
   const currentArticle = articles[safeIndex];
 
-  // Stop audio when changing article
-  const stopAudio = () => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
-    setIsPlayingAudio(false);
-  };
-
   const handlePrev = () => {
-    stopAudio();
     if (safeIndex > 0) {
       setCurrentIndex(safeIndex - 1);
     } else {
@@ -58,7 +44,6 @@ export const FlashcardDeck: React.FC<FlashcardDeckProps> = ({
   };
 
   const handleNext = () => {
-    stopAudio();
     if (safeIndex < articles.length - 1) {
       setCurrentIndex(safeIndex + 1);
     } else {
@@ -66,10 +51,9 @@ export const FlashcardDeck: React.FC<FlashcardDeckProps> = ({
     }
   };
 
-  // Keyboard navigation
+  // Keyboard navigation for card flipping
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't intercept if user is typing in an input
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) {
         return;
       }
@@ -84,36 +68,6 @@ export const FlashcardDeck: React.FC<FlashcardDeckProps> = ({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [safeIndex, articles.length]);
-
-  // Audio speech synthesis
-  const toggleAudio = () => {
-    if (!('speechSynthesis' in window) || !currentArticle) return;
-
-    if (isPlayingAudio) {
-      stopAudio();
-      return;
-    }
-
-    window.speechSynthesis.cancel();
-    const narrationText = `${currentArticle.title}. Key Takeaway: ${currentArticle.takeaway}. Context: ${currentArticle.bullets.join('. ')}. Source: ${currentArticle.sourceName}`;
-    const utterance = new SpeechSynthesisUtterance(narrationText);
-    utterance.rate = playbackRate;
-    utterance.onend = () => setIsPlayingAudio(false);
-    utterance.onerror = () => setIsPlayingAudio(false);
-
-    setIsPlayingAudio(true);
-    window.speechSynthesis.speak(utterance);
-  };
-
-  const cyclePlaybackRate = () => {
-    const rates = [1.0, 1.25, 1.5];
-    const nextRate = rates[(rates.indexOf(playbackRate) + 1) % rates.length];
-    setPlaybackRate(nextRate);
-    if (isPlayingAudio) {
-      stopAudio();
-      setTimeout(toggleAudio, 100);
-    }
-  };
 
   const handleShare = () => {
     if (!currentArticle) return;
@@ -287,41 +241,6 @@ export const FlashcardDeck: React.FC<FlashcardDeckProps> = ({
 
         {/* Action Controls Bar */}
         <div className="mt-6 pt-4 border-t border-stone-200 dark:border-stone-800 flex flex-wrap items-center justify-between gap-3">
-          {/* Audio Reader Controls */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={toggleAudio}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer ${
-                isPlayingAudio
-                  ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-300 text-indigo-700 dark:text-indigo-300'
-                  : 'bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800'
-              }`}
-              title="Read 30s summary aloud via Web Speech API"
-            >
-              {isPlayingAudio ? (
-                <>
-                  <VolumeX className="w-3.5 h-3.5 text-indigo-600 animate-pulse" />
-                  <span>Pause Audio</span>
-                </>
-              ) : (
-                <>
-                  <Volume2 className="w-3.5 h-3.5 text-indigo-600" />
-                  <span>Listen (30s)</span>
-                </>
-              )}
-            </button>
-
-            {/* Playback Speed Multiplier */}
-            <button
-              onClick={cyclePlaybackRate}
-              className="px-2 py-1.5 rounded-lg border border-stone-200 dark:border-stone-800 text-xs font-mono-nums text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 flex items-center gap-1 cursor-pointer"
-              title="Adjust speech playback speed"
-            >
-              <FastForward className="w-3 h-3" />
-              <span>{playbackRate}x</span>
-            </button>
-          </div>
-
           {/* Deep-Dive, Bookmark & Share Buttons */}
           <div className="flex items-center gap-2">
             <button

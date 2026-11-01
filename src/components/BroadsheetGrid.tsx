@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Flame, Info, Bookmark, FileText, Volume2 } from 'lucide-react';
+import { ShieldCheck, Flame, Info, Bookmark, FileText } from 'lucide-react';
 import { NewsArticle } from '../types';
 
 interface BroadsheetGridProps {
@@ -7,15 +7,13 @@ interface BroadsheetGridProps {
   savedArticleIds: string[];
   onToggleSave: (id: string) => void;
   onOpenDeepDive: (article: NewsArticle) => void;
-  onPlayAudio: (text: string) => void;
 }
 
 export const BroadsheetGrid: React.FC<BroadsheetGridProps> = ({
   articles,
   savedArticleIds,
   onToggleSave,
-  onOpenDeepDive,
-  onPlayAudio
+  onOpenDeepDive
 }) => {
   if (articles.length === 0) {
     return (
@@ -83,15 +81,6 @@ export const BroadsheetGrid: React.FC<BroadsheetGridProps> = ({
               >
                 <FileText className="w-3.5 h-3.5" />
                 <span>Full Deep Dive</span>
-              </button>
-
-              <button
-                onClick={() => onPlayAudio(`${leadArticle.title}. ${leadArticle.takeaway}`)}
-                className="p-2 rounded-lg border border-stone-200 dark:border-stone-800 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs flex items-center gap-1 cursor-pointer"
-                title="Listen"
-              >
-                <Volume2 className="w-3.5 h-3.5 text-indigo-600" />
-                <span className="hidden sm:inline">Audio</span>
               </button>
 
               <button

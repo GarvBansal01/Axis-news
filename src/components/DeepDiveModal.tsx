@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { X, ExternalLink, Volume2, VolumeX, Bookmark, Share2, Check, Calendar, Zap, AlertCircle } from 'lucide-react';
+import { X, ExternalLink, Bookmark, Share2, Check, Calendar, Zap, AlertCircle } from 'lucide-react';
 import { NewsArticle } from '../types';
-import { speakText, stopSpeech } from '../utils/audioPlayer';
 
 interface DeepDiveModalProps {
   article: NewsArticle | null;
@@ -17,27 +16,8 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
   onToggleSave
 }) => {
   const [copied, setCopied] = useState(false);
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
   if (!article) return null;
-
-  const toggleAudio = () => {
-    if (isPlayingAudio) {
-      stopSpeech();
-      setIsPlayingAudio(false);
-      return;
-    }
-
-    const narrationText = `${article.title}. Summary: ${article.deepDive.overview}. Historical Context: ${article.deepDive.keyBackground}. Student Impact: ${article.deepDive.impactForStudents}`;
-    
-    setIsPlayingAudio(true);
-    speakText(
-      narrationText,
-      1.0,
-      () => setIsPlayingAudio(false),
-      () => setIsPlayingAudio(false)
-    );
-  };
 
   const handleShare = () => {
     const text = `📰 ${article.title}\n\n${article.deepDive.overview}\n\nSource: ${article.deepDive.officialSourceUrl}`;
@@ -73,10 +53,7 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
           </div>
 
           <button
-            onClick={() => {
-              stopSpeech();
-              onClose();
-            }}
+            onClick={onClose}
             className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer shrink-0"
             aria-label="Close"
           >
@@ -219,23 +196,6 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
         {/* Bottom Utility Bar */}
         <div className="pt-3 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
-            <button
-              onClick={toggleAudio}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 font-medium cursor-pointer"
-            >
-              {isPlayingAudio ? (
-                <>
-                  <VolumeX className="w-3.5 h-3.5 animate-pulse" />
-                  <span>Pause</span>
-                </>
-              ) : (
-                <>
-                  <Volume2 className="w-3.5 h-3.5" />
-                  <span>Listen Aloud</span>
-                </>
-              )}
-            </button>
-
             <button
               onClick={() => onToggleSave(article.id)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-medium cursor-pointer ${

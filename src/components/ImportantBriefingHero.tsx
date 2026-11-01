@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { 
   Flame, 
   ArrowRight, 
-  Volume2, 
-  VolumeX, 
   Bookmark, 
   Share2, 
   Check, 
@@ -16,7 +14,6 @@ import {
   Zap
 } from 'lucide-react';
 import { NewsArticle } from '../types';
-import { speakText, stopSpeech } from '../utils/audioPlayer';
 
 interface ImportantBriefingHeroProps {
   topArticles: NewsArticle[];
@@ -32,31 +29,12 @@ export const ImportantBriefingHero: React.FC<ImportantBriefingHeroProps> = ({
   onOpenDeepDive
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [copied, setCopied] = useState(false);
 
   if (!topArticles || topArticles.length === 0) return null;
 
   const activeArticle = topArticles[currentIndex % topArticles.length];
   const isSaved = savedArticleIds.includes(activeArticle.id);
-
-  const toggleAudio = () => {
-    if (isPlayingAudio) {
-      stopSpeech();
-      setIsPlayingAudio(false);
-      return;
-    }
-
-    stopSpeech();
-    setIsPlayingAudio(true);
-    const script = `${activeArticle.title}. Core Takeaway: ${activeArticle.takeaway}. What is really the problem: ${activeArticle.theRealProblem}. Key facts: ${activeArticle.bullets.join('. ')}. Source: ${activeArticle.sourceName}`;
-    speakText(
-      script,
-      1.15,
-      () => setIsPlayingAudio(false),
-      () => setIsPlayingAudio(false)
-    );
-  };
 
   const handleShare = () => {
     const text = `⚡ WHAT'S IMPORTANT RIGHT NOW: ${activeArticle.title}\n\n🔍 The Real Problem: ${activeArticle.theRealProblem}\n\n• ${activeArticle.bullets.join('\n• ')}\n\nRead more on AXIS 24H Radar`;
@@ -68,14 +46,10 @@ export const ImportantBriefingHero: React.FC<ImportantBriefingHeroProps> = ({
   };
 
   const handleNext = () => {
-    stopSpeech();
-    setIsPlayingAudio(false);
     setCurrentIndex((prev) => (prev + 1) % topArticles.length);
   };
 
   const handlePrev = () => {
-    stopSpeech();
-    setIsPlayingAudio(false);
     setCurrentIndex((prev) => (prev - 1 + topArticles.length) % topArticles.length);
   };
 
@@ -191,28 +165,6 @@ export const ImportantBriefingHero: React.FC<ImportantBriefingHeroProps> = ({
             >
               <span>Know More (Full Deep Dive)</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </button>
-
-            {/* Audio Button */}
-            <button
-              onClick={toggleAudio}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-medium border transition-colors cursor-pointer ${
-                isPlayingAudio
-                  ? 'bg-amber-100 dark:bg-amber-950/60 border-amber-400 text-amber-800 dark:text-amber-300'
-                  : 'border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900'
-              }`}
-            >
-              {isPlayingAudio ? (
-                <>
-                  <VolumeX className="w-3.5 h-3.5 text-amber-600 animate-pulse" />
-                  <span>Stop Voice</span>
-                </>
-              ) : (
-                <>
-                  <Volume2 className="w-3.5 h-3.5 text-zinc-500" />
-                  <span>30s Audio</span>
-                </>
-              )}
             </button>
           </div>
 
