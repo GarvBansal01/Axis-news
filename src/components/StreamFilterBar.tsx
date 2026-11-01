@@ -1,6 +1,7 @@
-import React from 'react';
-import { Search, Clock, Layers, Zap, Radio } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, Clock, Layers, Zap, Radio, Volume2, VolumeX } from 'lucide-react';
 import { NewsCategory } from '../types';
+import { isAudioChimeMuted, setAudioChimeMuted, playAudioChime } from '../utils/audioPlayer';
 
 interface StreamFilterBarProps {
   activeCategory: NewsCategory;
@@ -25,6 +26,18 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
   setViewMode,
   secondsToNextRefresh
 }) => {
+  const [isMuted, setIsMuted] = useState<boolean>(() => isAudioChimeMuted());
+
+  const handleToggleMute = () => {
+    const nextState = !isMuted;
+    setIsMuted(nextState);
+    setAudioChimeMuted(nextState);
+    if (!nextState) {
+      // Play a quick test sound to confirm unmuted
+      setTimeout(() => playAudioChime(), 50);
+    }
+  };
+
   const categories: { id: NewsCategory; label: string }[] = [
     { id: 'all', label: 'All Dispatches' },
     { id: 'national', label: '🇮🇳 India National' },
@@ -91,6 +104,20 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
               <span>⚡ 30s Preview</span>
             </button>
           </div>
+
+          {/* Sound Notification Chime Toggle Button (WhatsApp-style gentle chime) */}
+          <button
+            onClick={handleToggleMute}
+            className={`p-1.5 rounded-lg border text-xs transition-colors cursor-pointer flex items-center justify-center ${
+              isMuted
+                ? 'border-zinc-200 dark:border-zinc-800 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200'
+                : 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/20'
+            }`}
+            title={isMuted ? 'Radar chime muted (click to unmute)' : 'Radar notification chime active (click to mute)'}
+            aria-label={isMuted ? 'Unmute radar notification chime' : 'Mute radar notification chime'}
+          >
+            {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+          </button>
 
           {/* 1-Minute Live Radar Telemetry Indicator */}
           <div
