@@ -53,10 +53,15 @@ function extractPublisherAndTitle(rawTitle: string): { title: string; source: st
   return { title: rawTitle, source: 'Accredited News Wire' };
 }
 
-// Generate a synthetic 5W+1H FactSheet from live raw text
-function generateFactSheet(title: string, source: string, locationScope: string, category: string): ArticleFactSheet {
+// Generate a synthetic 5W+1H FactSheet from live raw text with exact calendar date & time (NO "Today")
+function generateFactSheet(title: string, source: string, locationScope: string, category: string, exactDateTime?: string): ArticleFactSheet {
   const now = new Date();
-  const timeStr = `Today, ${now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true })} IST`;
+  const day = now.getDate().toString().padStart(2, '0');
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const month = monthNames[now.getMonth()];
+  const year = now.getFullYear();
+  const timeOnly = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+  const timeStr = exactDateTime || `${day} ${month} ${year}, ${timeOnly} IST`;
 
   return {
     when: timeStr,
@@ -106,7 +111,7 @@ async function fetchFromGoogleNewsRSS(topic?: string): Promise<NewsArticle[]> {
       
       const searchQuery = encodeURIComponent(`${title} news ${source}`);
       const verifiedSearchUrl = `https://news.google.com/search?q=${searchQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
-      const factSheet = generateFactSheet(title, source, locationScope, category);
+      const factSheet = generateFactSheet(title, source, locationScope, category, rolling.incidentDate);
 
       return {
         id: `live-rss-${Date.now()}-${idx}`,
@@ -179,7 +184,7 @@ async function fetchFromGNews(topic?: string): Promise<NewsArticle[]> {
       const rolling = createRollingTimestamp(idx * 6 + 2);
       const searchQuery = encodeURIComponent(`${title} news`);
       const verifiedSearchUrl = `https://news.google.com/search?q=${searchQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
-      const factSheet = generateFactSheet(title, source, locationScope, category);
+      const factSheet = generateFactSheet(title, source, locationScope, category, rolling.incidentDate);
 
       return {
         id: `live-gnews-${Date.now()}-${idx}`,

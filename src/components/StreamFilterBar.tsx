@@ -157,8 +157,8 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500" />
           <span>Real-Time Stream Active</span>
           <span className="text-zinc-400 text-[11px]">({totalCount} briefs)</span>
-          <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[10px] font-mono border border-emerald-500/20 font-medium" title="News is strictly from Today & Yesterday. Anything older than 24 hours is automatically purged.">
-            🕒 Strictly Today & Yesterday (24H Auto-Purge)
+          <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[10px] font-mono border border-emerald-500/20 font-medium" title="Live verified news with exact dates and incident timestamps. Articles older than 24 hours are automatically purged.">
+            🕒 24H Real-Time Radar (Exact Dates & Timestamps)
           </span>
         </div>
         {activeCategory !== 'all' && (

@@ -263,13 +263,18 @@ export default function App() {
     const template = UPCOMING_LIVE_DISPATCHES[incomingIndexRef.current % UPCOMING_LIVE_DISPATCHES.length];
     incomingIndexRef.current += 1;
 
+    const rolling = createRollingTimestamp(0);
     const freshDispatch: NewsArticle = {
       ...template,
       id: `${template.id}-${Date.now()}`,
-      publishedAt: 'Just now (1-Min Radar)',
-      timestamp: Date.now(),
-      dateLabel: `Today, ${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true })}`,
-      incidentDate: `Today, ${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true })} IST`
+      publishedAt: 'Just now (Live Radar)',
+      timestamp: rolling.timestamp,
+      dateLabel: rolling.dateLabel,
+      incidentDate: rolling.incidentDate,
+      factSheet: template.factSheet ? {
+        ...template.factSheet,
+        when: rolling.incidentDate
+      } : template.factSheet
     };
 
     setArticles((prev) => [freshDispatch, ...prev]);
@@ -338,9 +343,13 @@ export default function App() {
         const dynamic = createRollingTimestamp(minutesAgo);
         return {
           ...art,
-          publishedAt: art.publishedAt.includes('1-Min') ? art.publishedAt : dynamic.publishedAt,
+          publishedAt: art.publishedAt.includes('1-Min') || art.publishedAt.includes('Live Radar') ? art.publishedAt : dynamic.publishedAt,
           dateLabel: dynamic.dateLabel,
-          incidentDate: dynamic.incidentDate
+          incidentDate: dynamic.incidentDate,
+          factSheet: art.factSheet ? {
+            ...art.factSheet,
+            when: dynamic.incidentDate
+          } : art.factSheet
         };
       });
     });

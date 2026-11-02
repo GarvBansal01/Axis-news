@@ -1,41 +1,43 @@
 import { NewsArticle } from '../types';
 
-// Dynamic 24-Hour Rolling Timestamp Generator
-// Strictly classifies news into Today or Yesterday based on real calendar midnight
-// Auto-purges any items older than 24 hours (1440 minutes)
+// Dynamic Exact Timestamp & Calendar Date Generator
+// Strictly outputs exact calendar date and exact time (e.g. "02 Nov 2026, 08:30 AM IST")
+// Never uses the generic word "Today"
+export function formatExactCalendarDateTime(dateOrTimestamp: Date | number): {
+  dateStr: string;
+  timeStr: string;
+  exactDateTime: string;
+} {
+  const d = typeof dateOrTimestamp === 'number' ? new Date(dateOrTimestamp) : dateOrTimestamp;
+  const day = d.getDate().toString().padStart(2, '0');
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const month = monthNames[d.getMonth()];
+  const year = d.getFullYear();
+  const dateStr = `${day} ${month} ${year}`;
+  const timeStr = d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+  const exactDateTime = `${dateStr}, ${timeStr} IST`;
+  return { dateStr, timeStr, exactDateTime };
+}
+
 export function createRollingTimestamp(minutesAgo: number): { publishedAt: string; timestamp: number; dateLabel: string; incidentDate: string } {
   const now = Date.now();
   const timestamp = now - minutesAgo * 60 * 1000;
   
-  const nowDate = new Date(now);
-  const artDate = new Date(timestamp);
-
-  // Midnight of today in local calendar time
-  const startOfToday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate()).getTime();
-  const startOfYesterday = startOfToday - 24 * 60 * 60 * 1000;
-
-  const isToday = timestamp >= startOfToday;
-  const isYesterday = timestamp >= startOfYesterday && timestamp < startOfToday;
-
-  const timeStr = artDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+  const { dateStr, timeStr, exactDateTime } = formatExactCalendarDateTime(timestamp);
 
   let publishedAt = '';
   if (minutesAgo < 2) {
     publishedAt = 'Just now (Live Radar)';
   } else if (minutesAgo < 60) {
-    publishedAt = `${Math.floor(minutesAgo)}m ago (Today)`;
-  } else if (isToday) {
-    const hoursAgo = Math.max(1, Math.floor(minutesAgo / 60));
-    publishedAt = `${hoursAgo}h ago (Today)`;
-  } else if (isYesterday) {
-    const hoursAgo = Math.max(1, Math.floor(minutesAgo / 60));
-    publishedAt = `${hoursAgo}h ago (Yesterday)`;
+    publishedAt = `${Math.floor(minutesAgo)}m ago`;
   } else {
-    publishedAt = 'Earlier (>24h)';
+    const hoursAgo = Math.max(1, Math.floor(minutesAgo / 60));
+    publishedAt = `${hoursAgo}h ago (${dateStr})`;
   }
 
-  const dateLabel = isToday ? `Today, ${timeStr}` : `Yesterday, ${timeStr}`;
-  const incidentDate = isToday ? `Today, ${timeStr} IST` : `Yesterday, ${timeStr} IST`;
+  // Exact calendar date and time (NO "Today")
+  const dateLabel = `${dateStr}, ${timeStr}`;
+  const incidentDate = exactDateTime;
 
   return { publishedAt, timestamp, dateLabel, incidentDate };
 }
@@ -53,7 +55,7 @@ export const mockNewsArticles: NewsArticle[] = [
     takeaway: 'Deep depression in Bay of Bengal officially upgraded to Cyclonic Storm Murasu with 75-85 kmph winds; 18 NDRF battalions pre-deployed across coastal Andhra Pradesh and South Odisha.',
     whatIsIt: "Severe meteorological event where a deep depression over the southwest and west-central Bay of Bengal intensified into Cyclonic Storm 'Murasu', triggering emergency storm and heavy rainfall alerts across coastal Andhra Pradesh and southern Odisha.",
     factSheet: {
-      when: "Today, 08:30 AM IST",
+      when: "02 Nov 2026, 08:30 AM IST",
       where: "Southwest and West-Central Bay of Bengal, moving towards Visakhapatnam, Kakinada, and Gopalpur coastline",
       who: "IMD Director General, National Disaster Response Force (NDRF), Andhra Pradesh & Odisha State Disaster Management Authorities",
       what: "Deep depression upgraded to Cyclonic Storm 'Murasu' packing sustained winds of 75–85 kmph gusting to 95 kmph, bringing heavy to very heavy rainfall warnings",
@@ -99,7 +101,7 @@ export const mockNewsArticles: NewsArticle[] = [
     takeaway: 'Opposition leaders including Rahul Gandhi and Mallikarjun Kharge lead thousands at Ramlila Maidan protesting alleged voter roll irregularities; ruling BJP labels demonstration a political drama.',
     whatIsIt: "National political mobilization where INDIA bloc opposition constituents held a massive 'Chalo Dilli' protest rally at New Delhi's Ramlila Maidan demanding accountability from Chief Election Commissioner Gyanesh Kumar regarding alleged voter roll deletions.",
     factSheet: {
-      when: "Today, 11:30 AM IST",
+      when: "02 Nov 2026, 11:30 AM IST",
       where: "Ramlila Maidan, Central Delhi, India",
       who: "Rahul Gandhi, Mallikarjun Kharge, INDIA Bloc Constituents, Chief Election Commissioner Gyanesh Kumar, Delhi Police",
       what: "Opposition parties organize massive gathering demanding transparent forensic audits and accountability over alleged voter deletions from electronic electoral registers",
@@ -145,7 +147,7 @@ export const mockNewsArticles: NewsArticle[] = [
     takeaway: 'Long-range Ukrainian drone strike triggers major fire at Lukoil oil refinery in Kstovo, Russia, while high-intensity ground combat continues along the strategic Pokrovsk frontline.',
     whatIsIt: "High-intensity military clash involving long-range Ukrainian drone strikes on strategic petroleum infrastructure inside Russia alongside fierce positional battles in the Pokrovsk logistical hub of eastern Ukraine.",
     factSheet: {
-      when: "Today, 04:15 AM IST",
+      when: "02 Nov 2026, 04:15 AM IST",
       where: "Lukoil Oil Refinery, Kstovo (Nizhny Novgorod Region, Russia) and Pokrovsk Sector (Donetsk Oblast, Ukraine)",
       who: "Ukrainian Armed Forces, Russian Armed Forces, Lukoil Industrial Personnel, ISW Defense Observers",
       what: "Drone strike ignites primary distillation column at major Russian oil refinery while intense mechanized and infantry combat unfolds along eastern frontlines",
@@ -191,7 +193,7 @@ export const mockNewsArticles: NewsArticle[] = [
     takeaway: 'India’s top IT firms report automated routine coding by AI, shifting campus recruitment from generic bulk coders to specialized Engineering Research & Development (ER&D) roles.',
     whatIsIt: "Major economic and structural workforce transition across Indian IT services (TCS, Infosys, Cognizant) where generative AI coding tools automate routine junior engineering tasks, pivoting hiring towards advanced systems engineering and AI integration.",
     factSheet: {
-      when: "Today, 10:15 AM IST",
+      when: "02 Nov 2026, 10:15 AM IST",
       where: "Bengaluru, Hyderabad, Pune, Gurugram & National Engineering Colleges",
       who: "Indian IT Service Giants (TCS, Infosys, Wipro, Cognizant), NASSCOM, Engineering College Graduates",
       what: "Structural reduction in routine junior software maintenance hiring as companies adopt AI code generation and focus on high-margin ER&D contracts",
@@ -236,7 +238,7 @@ export const mockNewsArticles: NewsArticle[] = [
     takeaway: 'NH-10 Teesta Valley stabilization fast-tracked to ensure all-weather transport between Siliguri and Sikkim; forest squads deploy extra night patrols in Dooars tea gardens.',
     whatIsIt: "Dual regional development where infrastructure authorities expedite permanent slope stabilization along the landslide-affected NH-10 Teesta corridor connecting Siliguri to Sikkim, alongside active wildlife corridor monitoring in Dooars.",
     factSheet: {
-      when: "Today, 09:45 AM IST",
+      when: "02 Nov 2026, 09:45 AM IST",
       where: "Siliguri, Sevoke, Teesta Valley (NH-10) and Dooars Tea Estates, North Bengal",
       who: "NHIDCL Engineers, West Bengal PWD, Darjeeling & Jalpaiguri District Authorities, Wildlife Squad Teams",
       what: "Heavy engineering works deployed to reinforce vulnerable cliff sections along NH-10, while forest department activates early warning systems for elephant corridors",
@@ -281,7 +283,7 @@ export const mockNewsArticles: NewsArticle[] = [
     takeaway: 'India wins exciting 5th T20I in Hamilton to take bilateral series 3-2; Ishan Kishan surpasses historic batting records for most T20I runs scored by an Indian in a calendar year.',
     whatIsIt: "High-stakes international cricket bilateral where Team India secured a 3-2 series victory over New Zealand in Hamilton, marked by record-breaking top-order performances.",
     factSheet: {
-      when: "Earlier Today, 03:30 PM IST",
+      when: "02 Nov 2026, 03:30 PM IST",
       where: "Seddon Park, Hamilton, New Zealand",
       who: "Indian Men's Cricket Team, New Zealand Black Caps, Ishan Kishan, BCCI Match Officials",
       what: "India captures the 5-match bilateral T20I series 3-2 after a thrilling finale, with Ishan Kishan breaking the record for the most T20I runs scored by an Indian in a calendar year",
@@ -326,7 +328,7 @@ export const mockNewsArticles: NewsArticle[] = [
     takeaway: 'SEBI enforces strict derivative trading reforms, raising minimum contract sizes to ₹15 Lakh and restricting weekly expiries to protect retail college students from speculative losses.',
     whatIsIt: "Landmark regulatory intervention by capital markets watchdog SEBI mandating stringent entry guardrails for retail index futures and options to prevent catastrophic speculative capital erosion among young investors.",
     factSheet: {
-      when: "Today, 10:00 AM IST",
+      when: "02 Nov 2026, 10:00 AM IST",
       where: "National Stock Exchange (NSE) & Bombay Stock Exchange (BSE), Mumbai",
       who: "SEBI Board, Reserve Bank of India, Clearing Corporations, Young College Retail Investors",
       what: "Implementation of 6-point framework raising derivative contract entry thresholds to ₹15 Lakh, removing multiple weekly expiries, and mandating upfront option premium collections",
@@ -372,7 +374,7 @@ export const mockNewsArticles: NewsArticle[] = [
     takeaway: 'Union Cabinet clears next tranche of semiconductor assembly, testing, and cleanroom packaging facilities in Gujarat, accelerating domestic chip fabrication.',
     whatIsIt: "Strategic government expansion under the ₹76,000 Crore India Semiconductor Mission (ISM) approving commercial packaging and testing clusters in Gujarat to anchor indigenous silicon supply chains.",
     factSheet: {
-      when: "Today, 01:20 PM IST",
+      when: "02 Nov 2026, 01:20 PM IST",
       where: "Dholera Special Investment Region (SIR) & Sanand, Gujarat, India",
       who: "Union Minister for Electronics & IT, India Semiconductor Mission Board, Tata Electronics, PSMC, CG Power",
       what: "Accelerated funding clearance and construction milestone for advanced semiconductor fabrication and OSAT cleanroom modules",
@@ -420,7 +422,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     takeaway: 'Machilipatnam and Visakhapatnam radars track cyclone eye with rain bands hitting coastline; early evacuations prevent casualties.',
     whatIsIt: "Real-time meteorological tracking of Cyclonic Storm Murasu as rain bands approach the eastern coastline, triggering coordinated district administration protective procedures.",
     factSheet: {
-      when: "Just now (Live Radar)",
+      when: "02 Nov 2026, 05:45 AM IST",
       where: "Visakhapatnam & Machilipatnam Coastal Belt, Bay of Bengal",
       who: "State Emergency Operations Centre, IMD Radar Meteorologists, SDRF Rescue Teams",
       what: "Continuous Doppler radar tracking and sea-surge monitoring as outer spiral bands make landfall contact",
@@ -465,7 +467,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     takeaway: 'Opposition delegation presents documented representations urging independent technical audits of voter roll revisions before final publication.',
     whatIsIt: "Follow-up constitutional step where an all-party opposition delegation formally submitted a detailed representation to the Election Commission regarding voter list audit protocols.",
     factSheet: {
-      when: "Just now (Live Radar)",
+      when: "02 Nov 2026, 05:45 AM IST",
       where: "Nirvachan Sadan (ECI Headquarters), Ashoka Road, New Delhi",
       who: "Senior Opposition Delegation, Principal Secretaries of the Election Commission of India",
       what: "Submission of formal 12-point memorandum requesting transparent booth-level verification lists and algorithmic audit trails",
@@ -509,7 +511,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     takeaway: 'Smooth two-way vehicular flow restored between Siliguri and Sikkim after engineers successfully anchored high-tensile rockfall barriers.',
     whatIsIt: "Local transport clearance update where highway engineering teams completed critical rock-anchoring works on NH-10, enabling normal traffic between Siliguri and Sikkim.",
     factSheet: {
-      when: "Just now (Live Radar)",
+      when: "02 Nov 2026, 05:45 AM IST",
       where: "NH-10 Sevoke-Coronation Bridge-Teesta Bazaar Corridor, North Bengal",
       who: "Darjeeling District Traffic Police, NHIDCL Road Maintenance Unit, Commuters and Transporters",
       what: "Removal of temporary transit restrictions and full reopening of key trade highway connecting North Bengal plains with the hills",
@@ -559,6 +561,10 @@ export function getFreshRollingNews(): NewsArticle[] {
       timestamp: rolling.timestamp,
       dateLabel: rolling.dateLabel,
       incidentDate: rolling.incidentDate,
+      factSheet: art.factSheet ? {
+        ...art.factSheet,
+        when: rolling.incidentDate
+      } : art.factSheet,
       verifiedSearchUrl: art.verifiedSearchUrl || verifiedSearchUrl,
       deepDive: {
         ...art.deepDive,

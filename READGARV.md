@@ -22,23 +22,20 @@ You pointed out that news must **strictly reflect Today and Yesterday, auto-purg
 
 Here is exactly how the newly updated news engine operates:
 
-1. **Real-Clock Calendar Day Boundaries**:
-   - The engine checks midnight (`00:00:00`) of the current local calendar day.
-   - Any dispatch published since midnight is marked as **`Today, [Time]`** (e.g. `Today, 02:45 PM IST` or `25m ago (Today)`).
-   - Any dispatch published before midnight but within the last 24 hours is marked as **`Yesterday, [Time]`** (e.g. `Yesterday, 10:15 PM IST` or `18h ago (Yesterday)`).
+1. **Exact Calendar Dates & Timestamps (Never Generic "Today")**:
+   - Instead of writing generic labels like "Today", every news dispatch and FactSheet (`WHEN`) calculates and formats the **exact calendar date and time when the incident took place** (e.g. `02 Nov 2026, 08:30 AM IST` or `01 Nov 2026, 11:30 PM IST`).
+   - This provides total factual precision, auditability, and clarity for students and researchers.
 2. **Automated 24-Hour Purge Filter (`App.tsx`)**:
    - The news engine compares every article timestamp against `Date.now()`.
-   - Any news item where `(now - timestamp) > 24 * 60 * 60 * 1000` is **automatically deleted/purged** from the live stream. It will never clutter the feed.
-3. **Continuous Rolling Forward (Tomorrow & The Day After)**:
-   - When tomorrow comes, today's news automatically becomes labeled as `Yesterday`.
-   - The older news from yesterday passes the 24-hour mark and is automatically pruned.
-   - Fresh incoming dispatches from the 1-Minute Radar become `Today`.
-   - This ensures the feed never goes stale, even if the app runs for months!
+   - Any news item where `(now - timestamp) > 24 * 60 * 60 * 1000` is **automatically purged** from the live stream so only relevant news from the current 24-hour window remains active.
+3. **Continuous Rolling Forward (Day by Day)**:
+   - As new days unfold, the live system clock continuously stamps exact dates on incoming dispatches.
+   - Older dispatches crossing the 24-hour mark are cleanly removed, keeping the feed fast, lightweight, and clutter-free.
 4. **All Old Static Dates Eradicated**:
-   - All historical static references (e.g., "October 25", "Sept 2023", "2 days ago") in timelines and notes have been replaced with relative, live markers (`Earlier Today`, `Yesterday Evening`, `Latest Milestone`, `Current Phase`).
-5. **Exact Incident Timing & "What Is It" Breakdown**:
-   - Every single article in the Stream, Top Spotlight, Deep Dive, and 30s Flashcard deck now features an explicit **`📅 Incident Date & Time`** badge (e.g. `Today, 02:26 PM IST` / `Yesterday, 10:15 PM IST`).
-   - Every story includes a dedicated blue callout box: **`⚡ What Is The Incident?`**, explaining clearly and objectively what occurred and what the event is.
+   - Timelines and historical notes reflect relative operational markers (`Milestone`, `Phase 1`, `Operational Deployment`) rather than arbitrary past dates.
+5. **Exact Incident Timing & FactSheet `WHEN` Integration**:
+   - In all news cards, the **WHEN (Date & Time)** field in the 5W+1H FactSheet displays the exact calendar date and time (e.g. `02 Nov 2026, 08:30 AM IST`).
+   - Every story includes a dedicated blue callout box: **`⚡ What Is The Incident?`**, explaining clearly and objectively what occurred.
 
 ---
 
