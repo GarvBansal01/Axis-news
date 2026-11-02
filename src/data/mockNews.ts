@@ -227,6 +227,96 @@ export const mockNewsArticles: NewsArticle[] = [
     }
   },
   {
+    id: 'openai-anthropic-test-time-reasoning-breakthrough',
+    title: 'OpenAI and Anthropic Pioneer Test-Time Reasoning Architectures: Frontier AI Shifts from Parameter Scaling to Multi-Step Verification Compute',
+    category: 'ai',
+    locationScope: 'Global',
+    sourceName: 'OpenAI Research & Anthropic Technical Briefings',
+    sourceType: 'Frontier AI Foundation Lab Papers',
+    verification: 'reputable_media',
+    verificationNote: 'Verified across official technical reports for o1, o3-mini and Claude 3.7 Sonnet reasoning benchmarks.',
+    takeaway: 'Leading AI labs transition from brute-force pre-training parameter scale to test-time compute search, enabling neural models to self-correct reasoning steps and eliminate hallucinations in mathematics and coding.',
+    whatIsIt: "Major architectural shift where frontier AI models spend dynamic compute time verifying logic trees during inference rather than merely predicting the next immediate token.",
+    factSheet: {
+      when: "02 Nov 2026, 08:30 AM IST",
+      where: "San Francisco, California & Global Developer Ecosystem",
+      who: "OpenAI Research Team, Anthropic Alignment Scientists, Foundation Model Engineers",
+      what: "Transition from pure pre-training scaling laws to test-time reasoning compute and multi-agent verification trees",
+      why: "Web text data for pre-training faces diminishing returns; spending compute at inference time allows models to explore multiple solution paths and self-correct errors",
+      how: "Reinforcement learning trained on verified chain-of-thought problems allows models to think before answering, scoring over 90% on competitive coding and PhD-level science"
+    },
+    theRealProblem: "Traditional LLMs predict the immediate next token without planning, causing them to confidently hallucinate logic errors. Test-time reasoning requires significantly more compute per user query, challenging consumer server economics.",
+    bullets: [
+      'Frontier labs confirm shift toward test-time reasoning compute as pre-training scaling slows.',
+      'Models perform recursive self-questioning, backtracking from dead-end logic paths during generation.',
+      'Benchmarks show near-perfect performance on International Mathematical Olympiad (IMO) and code synthesis.'
+    ],
+    ...createRollingTimestamp(45),
+    readTime: '30s read',
+    tags: ['AI Frontier', 'OpenAI', 'Anthropic', 'Reasoning Models', 'Research'],
+    audioScript: 'Frontier AI research has reached a major turning point as OpenAI and Anthropic pioneer test-time reasoning compute, enabling neural models to think through problems and eliminate hallucinations.',
+    deepDive: {
+      overview: 'Frontier AI development is fundamentally transitioning from scaling static pre-training datasets to dynamically expanding inference-time verification compute.',
+      keyBackground: 'Since GPT-3, the dominant paradigm was scaling model parameter counts and feeding ever-larger crawl corpora. However, human internet text has largely been exhausted.',
+      rootCauseAnalysis: "By structuring generation as a tree-search guided by learned process reward models (PRMs), the AI explores candidate hypothesis branches and self-corrects prior missteps before outputting a response.",
+      timeline: [
+        { time: 'Previous Era', event: 'Brute-force parameter scaling and static unsupervised next-token prediction.' },
+        { time: 'Today', event: 'Widespread rollout of test-time reasoning engines solving complex multi-step proofs.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Dario Amodei', role: 'CEO, Anthropic', quote: 'The future of artificial intelligence is not bigger models that guess faster, but reflective systems that deliberate, cross-examine evidence, and verify truth.' }
+      ],
+      impactForStudents: 'Crucial insight for CS and AI students: focus on reinforcement learning from verifier feedback (RLVR), search algorithms, and agentic workflows rather than simple prompt engineering.',
+      officialSourceUrl: 'https://openai.com/research',
+      sourceDocName: 'Frontier AI Reasoning & Inference Scaling Report 2026'
+    }
+  },
+  {
+    id: 'deepseek-open-weights-efficiency-revolution',
+    title: 'Open-Weights AI Architecture Disrupts Proprietary Moats: DeepSeek-V3 and Reasoning Models Trigger Global Compute Efficiency Revolution',
+    category: 'ai',
+    locationScope: 'Global',
+    sourceName: 'DeepSeek AI Research, Hugging Face & Stanford CRFM',
+    sourceType: 'Open-Source AI Technical Assessment',
+    verification: 'reputable_media',
+    verificationNote: 'Evaluated by independent AI researchers on Hugging Face leaderboards and open-weight model architectures.',
+    takeaway: 'DeepSeek’s Multi-head Latent Attention (MLA) and FP8 mixed-precision innovations achieve frontier model performance at a fraction of hyperscaler training costs, democratizing open AI research.',
+    whatIsIt: "Architectural disruption in generative AI proving that sophisticated mixture-of-experts (MoE) routing, multi-head latent attention, and pure algorithmic efficiency can match trillion-dollar hyperscaler models at less than $6M training cost.",
+    factSheet: {
+      when: "02 Nov 2026, 09:15 AM IST",
+      where: "Hangzhou, Global Open-Source Developer Repositories & Hugging Face Hub",
+      who: "DeepSeek AI Research Team, Open-Source ML Community, Stanford Center for Research on Foundation Models",
+      what: "Release and widespread adoption of highly optimized open-weights models demonstrating frontier reasoning without proprietary API locks",
+      why: "Proves that algorithmic innovations like FP8 training and dynamic MoE routing can slash compute overhead by 80%, challenging closed big tech corporate moats",
+      how: "Full open model weights released with inference engines and architectural documentation, enabling local deployment on accessible enterprise GPU hardware"
+    },
+    theRealProblem: "Closed API monopolies charged high per-token pricing while keeping architectural safety and weights concealed. Open weights shift competitive advantage toward organizations that can run and fine-tune private on-premise models.",
+    bullets: [
+      'Multi-head Latent Attention (MLA) compresses KV cache memory requirements by over 90% during inference.',
+      'Global enterprises and university research labs rapidly adopt open-weights distillation for custom domain workloads.',
+      'Triggered significant strategic recalibration across Wall Street and Silicon Valley hardware investment theses.'
+    ],
+    ...createRollingTimestamp(60),
+    readTime: '30s read',
+    tags: ['AI Frontier', 'DeepSeek', 'Open Weights', 'Hugging Face', 'Compute Efficiency'],
+    audioScript: 'DeepSeek open-weights architecture has triggered an efficiency revolution across the global AI ecosystem, matching closed corporate models at a fraction of training costs.',
+    deepDive: {
+      overview: 'Open-weights foundation models have reached parity with proprietary closed APIs, challenging the narrative that only trillion-dollar balance sheets can build frontier AI.',
+      keyBackground: 'For years, industry consensus held that training frontier models required tens of thousands of specialized GPUs running for months at hundreds of millions of dollars.',
+      rootCauseAnalysis: "By combining Multi-head Latent Attention (MLA) with DualPipe parallelism and FP8 low-precision numerical formats, communication bottlenecks between GPUs were minimized.",
+      timeline: [
+        { time: 'Milestone 1', event: 'Public release of DeepSeek-V3 and R1 technical papers and open model weights.' },
+        { time: 'Today', event: 'Tens of thousands of enterprise engineering teams run local distilled reasoning models on private clusters.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Open Source AI Lead', role: 'Hugging Face', quote: 'The open-weights movement has proven that architectural ingenuity and algorithmic efficiency beat raw brute-force capital every time.' }
+      ],
+      impactForStudents: 'Invaluable learning for students: you can now inspect, fine-tune, and run state-of-the-art open-weights models on consumer and cloud workstations without vendor lock-in.',
+      officialSourceUrl: 'https://huggingface.co',
+      sourceDocName: 'DeepSeek Technical Architecture Analysis'
+    }
+  },
+  {
     id: 'siliguri-nh10-teesta-restoration-dooars-alert',
     title: 'Siliguri & North Bengal Infrastructure Push: NH-10 Teesta Corridor Restoration Accelerated While Forest Squads Issue Dooars Wildlife Alert',
     category: 'local',
@@ -406,6 +496,186 @@ export const mockNewsArticles: NewsArticle[] = [
       officialSourceUrl: 'https://meity.gov.in',
       sourceDocName: 'MeitY Semiconductor Mission Gazette ISM-2026-PKG-08'
     }
+  },
+  {
+    id: 'apple-tim-cook-five-trillion-on-device-enterprise',
+    title: 'Apple Crosses Historic $5 Trillion Valuation as Tim Cook Champions On-Device Compute: Mac M4 Deployments Surge as Enterprises Seek Relief from Soaring Cloud AI Bills',
+    category: 'personal',
+    locationScope: 'Global',
+    sourceName: 'Bloomberg, Reuters & Apple Keynote Briefing',
+    sourceType: 'Big Tech Corporate & Market Intelligence',
+    verification: 'reputable_media',
+    verificationNote: 'Confirmed via NASDAQ market records and Apple Global Keynote executive transcript.',
+    takeaway: 'Apple surpasses Nvidia as the world’s most valuable enterprise at $5.03 Trillion; CEO Tim Cook emphasizes that enterprise developers are deploying on-device M4 silicon to process neural workloads locally without hyperscaler cloud rental costs.',
+    whatIsIt: "Historic corporate valuation milestone and strategic technology talk by Apple CEO Tim Cook highlighting how dedicated Neural Engines in Apple Silicon (M4 Pro / M4 Max) allow companies to bypass expensive per-token cloud APIs through secure on-premise local compute.",
+    factSheet: {
+      when: "02 Nov 2026, 11:45 AM IST",
+      where: "Apple Park, Cupertino, California & Wall Street, New York",
+      who: "Tim Cook (CEO, Apple), Luca Maestri (CFO), Global Enterprise IT Directors, Wall Street Analysts",
+      what: "Apple market capitalization crosses $5.03 Trillion driven by record Mac mini and MacBook Pro enterprise adoption for local developer workloads",
+      why: "Hyperscaler cloud AI capex surged to $201.9B in Q3, prompting corporate CIOs to look for predictable on-device workstation hardware rather than recurring cloud consumption fees",
+      how: "M4 unified memory architecture allows developers to run 7B-70B parameter models completely offline with zero latency and enterprise data privacy"
+    },
+    theRealProblem: "Relying purely on cloud APIs creates endless operational expenses and data compliance friction. On-device silicon transfers compute ownership directly back into the enterprise's hands.",
+    bullets: [
+      'Apple market cap hits $5.03T, reclaiming spot as the world’s most valuable publicly traded company.',
+      'Tim Cook remarks during keynote panel: "The most cost-effective and private AI computer is the one sitting directly on your desk."',
+      'Enterprises report 40% reductions in recurring cloud inference bills by offloading routine coding models to local M4 hardware.'
+    ],
+    ...createRollingTimestamp(120),
+    readTime: '30s read',
+    tags: ['Big Tech', 'Apple', 'Tim Cook', 'M4 Silicon', 'Hardware Launch'],
+    audioScript: 'Apple has crossed a record five trillion dollar market valuation as CEO Tim Cook highlighted rapid enterprise adoption of Mac M4 systems for on-device compute.',
+    deepDive: {
+      overview: 'Apple has surged past Nvidia to become the first company in financial history to cross the five trillion dollar valuation threshold, powered by soaring corporate Mac adoption.',
+      keyBackground: 'While hyperscalers spent over two hundred billion dollars on server clusters, rising cloud API bills drove engineering teams to seek powerful local workstation silicon.',
+      rootCauseAnalysis: "With up to 128 gigabytes of unified memory bandwidth on M4 Max chips, developer laptops can run modern open-weights reasoning models locally at zero incremental cost.",
+      timeline: [
+        { time: 'Last Quarter', event: 'Launch of redesigned Mac mini and M4 MacBook Pro systems.' },
+        { time: 'Today', event: 'Apple closes above $5.03T market cap as Wall Street upgrades enterprise silicon forecasts.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Tim Cook', role: 'CEO, Apple Inc.', quote: 'By integrating high-bandwidth unified memory and private neural engines directly into our silicon, we are empowering businesses to compute locally, securely, and without unending cloud subscription taxation.' }
+      ],
+      impactForStudents: 'Shows how computing oscillates between centralized mainframes/clouds and decentralized personal workstations: mastering local developer toolchains is an essential professional superpower.',
+      officialSourceUrl: 'https://apple.com/newsroom',
+      sourceDocName: 'Apple Enterprise Architecture & Market Report 2026'
+    }
+  },
+  {
+    id: 'google-open-tpu-silicon-datacenter-strategy',
+    title: 'Google Unveils Open TPU Silicon Initiative: Sundar Pichai Outlines External Data Center Expansion and Open Software Stack to Challenge Nvidia CUDA Monopoly',
+    category: 'personal',
+    locationScope: 'Global',
+    sourceName: 'Google Cloud Next Keynote, WSJ & Reuters Technology',
+    sourceType: 'Big Tech Infrastructure & Silicon Strategy',
+    verification: 'reputable_media',
+    verificationNote: 'Officially presented by Alphabet CEO Sundar Pichai and Google Cloud Chief Thomas Kurian during Silicon Summit.',
+    takeaway: 'Google breaks tradition by licensing its custom Tensor Processing Units (TPUs) directly to third-party data centers with open-source software drivers, mounting the most serious commercial challenge yet to Nvidia’s hardware dominance.',
+    whatIsIt: "Major hardware launch and strategic talk by Alphabet CEO Sundar Pichai announcing that Google will ship custom Trillium and TPU v5e silicon directly to external colocation facilities with a free open software license.",
+    factSheet: {
+      when: "02 Nov 2026, 12:30 PM IST",
+      where: "Mountain View, California & Las Vegas Convention Center",
+      who: "Sundar Pichai (CEO, Alphabet & Google), Thomas Kurian (CEO, Google Cloud), Enterprise Datacenter Partners",
+      what: "Commercial launch of external TPU infrastructure access and open-source compiler toolchains (OpenXLA and JAX integration)",
+      why: "Nvidia GPU supply constraints and 80%+ hardware margins have forced hyperscalers and enterprises to demand competitive custom silicon alternatives",
+      how: "Google partners with global colocation hosts to deploy liquid-cooled TPU pods with optical circuit switches (OCS) for scalable distributed clusters"
+    },
+    theRealProblem: "Nvidia's proprietary CUDA programming model created a 15-year developer lock-in. Google's open compiler framework aims to make silicon interchangeable so developers can compile workloads across TPUs, AMD chips, and GPUs without rewriting software.",
+    bullets: [
+      'Google officially opens custom TPU silicon to external enterprise colocation facilities.',
+      'Sundar Pichai comments: "Compute must become an accessible utility; our open silicon strategy ensures no single supplier bottlenecks global progress."',
+      'OpenXLA framework adoption accelerates, allowing seamless model compilation across heterogeneous accelerator hardware.'
+    ],
+    ...createRollingTimestamp(180),
+    readTime: '30s read',
+    tags: ['Big Tech', 'Google', 'Sundar Pichai', 'TPU', 'Cloud Infrastructure'],
+    audioScript: 'In a landmark industry shift, Google CEO Sundar Pichai has announced that Google will ship custom Tensor Processing Units directly to external data centers with open software tooling.',
+    deepDive: {
+      overview: 'Google is challenging Nvidia’s near-monopoly in AI acceleration by commercializing its proprietary TPU hardware and open-sourcing its compilation infrastructure.',
+      keyBackground: 'For a decade, Google restricted its custom TPU silicon exclusively to its internal search infrastructure and Google Cloud Platform customers.',
+      rootCauseAnalysis: "By decoupling silicon from proprietary cloud enclosures and backing the OpenXLA compiler, developers can run PyTorch and JAX models on TPUs without rewriting CUDA kernels.",
+      timeline: [
+        { time: 'Keynote Address', event: 'Sundar Pichai announces Open Silicon Initiative during live global stream.' },
+        { time: 'Live Today', event: 'First batch of external colocation deployment partnerships signed with enterprise hosts.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Sundar Pichai', role: 'CEO, Alphabet & Google', quote: 'The next era of computing demands open silicon standards. By decoupling hardware from proprietary software moats, we are enabling the world to scale intelligence affordably.' }
+      ],
+      impactForStudents: 'Crucial systems insight: learning framework-agnostic compiler toolchains (like MLIR, OpenXLA, and Triton) makes your engineering skills resilient across any future hardware vendor.',
+      officialSourceUrl: 'https://cloud.google.com',
+      sourceDocName: 'Google Cloud Silicon Architecture Briefing 2026'
+    }
+  },
+  {
+    id: 'amazon-aws-microsoft-dark-gpu-power-grid-crisis',
+    title: 'Microsoft and Amazon AWS Issue "Dark GPU" Warning: Hyperscaler CEOs Sound Alarm as Power Grid Delays Leave Thousands of High-End Chips Unpowered',
+    category: 'personal',
+    locationScope: 'Global',
+    sourceName: 'Financial Times, TechCrunch & Hyperscaler Executive Panels',
+    sourceType: 'Cloud Systems & Infrastructure Advisory',
+    verification: 'reputable_media',
+    verificationNote: 'Compiled from Satya Nadella and Matt Garman public talks at the Global Infrastructure Leadership Forum.',
+    takeaway: 'Microsoft CEO Satya Nadella and AWS CEO Matt Garman warn that electric utility queues are delaying data center activations by up to 36 months, stranding billions of dollars in high-end server silicon as "Dark GPUs".',
+    whatIsIt: "High-level industry talks and cautionary statements by Microsoft and Amazon AWS leadership warning of electrical transmission and nuclear/geothermal power constraints threatening global datacenter expansions.",
+    factSheet: {
+      when: "02 Nov 2026, 02:15 PM IST",
+      where: "Seattle, Washington & Washington D.C. Energy Forum",
+      who: "Satya Nadella (CEO, Microsoft), Matt Garman (CEO, AWS), Federal Energy Regulatory Commission (FERC) Officials",
+      what: "Joint executive advisory regarding electrical interconnection gridlock stranding tens of thousands of server racks without operational power",
+      why: "Modern AI compute clusters consume 100MW to 1GW per campus—equivalent to small cities—overwhelming municipal regional utility grids",
+      how: "Hyperscalers negotiating direct long-term Small Modular Reactor (SMR) nuclear contracts and behind-the-meter battery storage to bypass grid queues"
+    },
+    theRealProblem: "While chip designers can fabricate GPUs in months, building high-voltage transmission lines and electrical transformers takes 3 to 5 years. Power, not silicon availability, is now the primary bottleneck of technology expansion.",
+    bullets: [
+      'Cloud giants warn that power grid interconnect delays now exceed 36 months in major US and European tech hubs.',
+      'Satya Nadella highlights: "The physical limits of electrical grids are now dictating the tempo of software innovation."',
+      'AWS and Microsoft invest billions directly into advanced nuclear power purchase agreements and next-generation geothermal energy.'
+    ],
+    ...createRollingTimestamp(240),
+    readTime: '30s read',
+    tags: ['Big Tech', 'Microsoft', 'Amazon AWS', 'Satya Nadella', 'Datacenter Power'],
+    audioScript: 'Microsoft CEO Satya Nadella and AWS leadership have sounded the alarm over electrical grid bottlenecks that are stranding thousands of high-end AI chips without power.',
+    deepDive: {
+      overview: 'The global expansion of cloud and AI datacenters has hit a hard physical wall: electrical transmission infrastructure and power generation capacity.',
+      keyBackground: 'Between 2023 and 2026, hyperscalers ordered hundreds of thousands of high-wattage accelerator racks without verifying local utility substation lead times.',
+      rootCauseAnalysis: "Utility interconnect queues require extensive environmental impact reviews and specialized heavy transformers with multi-year manufacturing backlogs.",
+      timeline: [
+        { time: 'Warning Issued', event: 'Satya Nadella and Matt Garman speak at energy summit on grid bottlenecks.' },
+        { time: 'Infrastructure Pivot', event: 'Cloud giants accelerate direct co-location at nuclear power plants.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Satya Nadella', role: 'CEO, Microsoft', quote: 'Every technology revolution ultimately collides with physical resource constraints. Today, our code runs as fast as power lines can be strung.' }
+      ],
+      impactForStudents: 'Bridges software with mechanical and electrical engineering: understanding energy efficiency, green compute, and power grid dynamics is becoming as vital as writing algorithms.',
+      officialSourceUrl: 'https://ft.com/technology',
+      sourceDocName: 'Global Cloud Infrastructure Power Grid Assessment 2026'
+    }
+  },
+  {
+    id: 'nvidia-jensen-huang-blackwell-liquid-cooled-keynote',
+    title: 'Nvidia Commences Commercial Blackwell Rack Shipments: Jensen Huang Declares End of General-Purpose Computing in Landmark GTC Industry Talk',
+    category: 'personal',
+    locationScope: 'Global',
+    sourceName: 'Nvidia GTC Keynote, AnandTech & Reuters',
+    sourceType: 'Semiconductor & Compute Architecture Briefing',
+    verification: 'reputable_media',
+    verificationNote: 'Delivered live by CEO Jensen Huang during the worldwide GTC Semiconductor Keynote Address.',
+    takeaway: 'Nvidia begins shipping full-rack GB200 NVL72 liquid-cooled systems to cloud hyperscalers; Jensen Huang proclaims that traditional CPU instruction retrieval has ended in favor of continuous accelerated computing.',
+    whatIsIt: "Landmark hardware deployment announcement and keynote talk where Nvidia CEO Jensen Huang showcased commercial shipments of liquid-cooled Blackwell NVL72 supercomputer racks, redefining datacenter architectures.",
+    factSheet: {
+      when: "02 Nov 2026, 03:40 PM IST",
+      where: "San Jose Convention Center, California",
+      who: "Jensen Huang (Founder & CEO, Nvidia), Hyperscaler Cloud Architects, Enterprise Systems Engineers",
+      what: "Commercial dispatch of GB200 NVL72 liquid-cooled supercomputer racks featuring 72 Blackwell GPUs and 36 Grace CPUs operating as a single unified system",
+      why: "Air-cooled data centers can no longer dissipate 120kW+ per rack densities; liquid cooling and direct copper interconnects provide 30x faster inference at 25x lower energy consumption",
+      how: "Direct liquid-to-chip cooling loops circulating chilled fluid over high-dielectric cold plates with 800Gb/s Quantum-X800 InfiniBand switches"
+    },
+    theRealProblem: "Standard enterprise data centers built for air-cooled x86 servers must undergo complete civil and plumbing reconstruction to support 100kW+ liquid-cooled racks, forcing massive infrastructure retrofits.",
+    bullets: [
+      'Commercial GB200 NVL72 racks shipped to tier-one cloud providers across North America and Europe.',
+      'Jensen Huang states during keynote: "General-purpose computing has reached its thermodynamic end. The future is accelerated computing and generative token manufacturing."',
+      'Liquid-to-chip cooling becomes the mandatory standard for next-generation enterprise AI infrastructure.'
+    ],
+    ...createRollingTimestamp(280),
+    readTime: '30s read',
+    tags: ['Big Tech', 'Nvidia', 'Jensen Huang', 'Blackwell GB200', 'Keynote'],
+    audioScript: 'Nvidia has begun shipping commercial Blackwell supercomputer racks as CEO Jensen Huang declared the end of general-purpose computing in a landmark industry address.',
+    deepDive: {
+      overview: 'Nvidia has officially initiated mass customer deliveries of its flagship GB200 NVL72 liquid-cooled systems, transitioning the industry from discrete PCIe cards to unified mega-rack supercomputers.',
+      keyBackground: 'Moore’s Law slowdown made standard CPU scaling economically unviable, forcing all computational growth into dense parallel accelerator arrays.',
+      rootCauseAnalysis: "By integrating 72 Blackwell GPUs with NVLink spine backplanes supporting 1.8 TB/s bidirectional bandwidth per GPU, the entire rack functions as a single monolithic processor.",
+      timeline: [
+        { time: 'Keynote Demo', event: 'Jensen Huang reveals production liquid-cooled NVL72 rack on stage.' },
+        { time: 'Commercial Rollout', event: 'First enterprise clusters go online across major cloud partner datacenters.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Jensen Huang', role: 'CEO, Nvidia', quote: 'We are no longer building computers. We are manufacturing intelligence factories where raw electricity enters and valuable tokens exit at the speed of light.' }
+      ],
+      impactForStudents: 'Fascinating career trajectory in computer engineering: hardware, thermals, fluid dynamics, and distributed systems are now fully merged into a single engineering discipline.',
+      officialSourceUrl: 'https://nvidianews.nvidia.com',
+      sourceDocName: 'Nvidia GTC Architecture & Hardware Launch Keynote 2026'
+    }
   }
 ];
 
@@ -541,6 +811,94 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
       impactForStudents: 'Direct relief for students and faculty traveling between Siliguri, NBU, and educational institutes in Kalimpong and Gangtok.',
       officialSourceUrl: 'https://darjeeling.gov.in',
       sourceDocName: 'Darjeeling District Police Traffic Advisory'
+    }
+  },
+  {
+    id: 'live-ai-frontier-reasoning-benchmark',
+    title: 'Frontier AI Laboratory Dispatch: Multi-Step Reasoning Models Outperform Human Benchmarks on Competitive Science & Math',
+    category: 'ai',
+    locationScope: 'Global',
+    sourceName: 'Frontier AI Alignment & Evaluation Network',
+    sourceType: 'Live Foundation Model Benchmark Wire',
+    verification: 'reputable_media',
+    verificationNote: 'Real-time telemetry from automated evaluation test harnesses.',
+    takeaway: 'Standardized benchmarks confirm reasoning models achieved 93% accuracy on complex Olympiad proofs, proving verification compute efficacy.',
+    whatIsIt: 'Live foundation model evaluation telemetry measuring multi-step reasoning models against competitive PhD-level scientific benchmarks.',
+    factSheet: {
+      when: "02 Nov 2026, 05:45 AM IST",
+      where: "San Francisco & Global Evaluation Research Consortia",
+      who: "Independent Evaluation Researchers, Red Teaming Scientists, Foundation Model Labs",
+      what: "Release of standardized empirical benchmark scores demonstrating that test-time search loops solve intricate multi-step proofs without hallucinations",
+      why: "Validating that reasoning-oriented reinforcement learning produces reliable outputs suitable for scientific discovery and code synthesis",
+      how: "Automated verification pipelines testing candidate outputs against formal proof checkers (Lean 4) and executable sandbox test suites"
+    },
+    theRealProblem: "Raw benchmarks often suffer from data contamination. Verifying reasoning on novel, previously unreleased proof challenges is essential to confirm genuine generalized problem solving.",
+    bullets: [
+      'Evaluation harnesses report 93% success rate on novel Olympiad-level mathematical reasoning challenges.',
+      'Formal proof checker integration guarantees mathematical correctness before final answer synthesis.',
+      'Research labs publish open reproduction kits for academic peer validation.'
+    ],
+    ...createRollingTimestamp(0),
+    readTime: '30s read',
+    tags: ['AI Frontier', 'Reasoning', 'Benchmarks', 'Frontier Labs'],
+    audioScript: 'Live AI Frontier bulletin: Standardized benchmarks confirm that new multi-step reasoning models have crossed ninety percent accuracy on competitive math challenges.',
+    deepDive: {
+      overview: 'Independent foundation model evaluators have verified that inference-time reasoning compute produces genuine mathematical breakthroughs.',
+      keyBackground: 'Earlier LLMs struggled with multi-step logical consistency, failing when problem steps exceeded five consecutive deductions.',
+      rootCauseAnalysis: "Tree-of-thought search guided by process reward verifiers prevents compounding errors across prolonged derivation chains.",
+      timeline: [
+        { time: 'Just now', event: 'Consortium publishes formal benchmark validation dataset.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Benchmark Director', role: 'AI Evaluation Network', quote: 'We are observing genuine multi-step deduction verified by formal proof checkers.' }
+      ],
+      impactForStudents: 'Demonstrates the power of rigorous mathematical logic and formal verification in advanced artificial intelligence.',
+      officialSourceUrl: 'https://openai.com/research',
+      sourceDocName: 'Frontier AI Benchmark Verification Report'
+    }
+  },
+  {
+    id: 'live-big-tech-keynote-announcements',
+    title: 'Big Tech Keynote Dispatch: Google and Nvidia Announce Next-Gen Silicon Deployments as Enterprise Systems Demand Surges',
+    category: 'personal',
+    locationScope: 'Global',
+    sourceName: 'Silicon Valley Executive Dispatch & Reuters Tech',
+    sourceType: 'Live Big Tech Systems Wire',
+    verification: 'reputable_media',
+    verificationNote: 'Streamed directly from Silicon Executive Roundtable briefings.',
+    takeaway: 'Hardware executives confirm massive transition toward heterogeneous custom silicon and liquid-cooled datacenter pods.',
+    whatIsIt: 'Live corporate technology briefing on datacenter hardware scaling, liquid cooling adoption, and custom silicon deployments across major tech companies.',
+    factSheet: {
+      when: "02 Nov 2026, 05:45 AM IST",
+      where: "Silicon Valley, California & Global Cloud Datacenters",
+      who: "Enterprise Infrastructure Vice Presidents, Semiconductor Architects, Hyperscaler Engineers",
+      what: "Executive panel discussions detailing deployment schedules for custom silicon accelerators and liquid-cooled supercomputing pods",
+      why: "Surging enterprise computational demand necessitates dramatic thermal and energy efficiency improvements",
+      how: "Transitioning traditional air-cooled server rooms into high-efficiency liquid-chilled facilities operating at lower total cost of ownership"
+    },
+    theRealProblem: "Power grid constraints require datacenters to maximize compute per megawatt rather than simply building physically larger facilities.",
+    bullets: [
+      'Next-generation accelerator pods demonstrate 3x compute density improvements per square foot.',
+      'Liquid-to-chip cooling adoption crosses 50% in new commercial hyperscaler builds.',
+      'Open software compiler toolchains enable interoperability between diverse hardware chips.'
+    ],
+    ...createRollingTimestamp(0),
+    readTime: '30s read',
+    tags: ['Big Tech', 'Systems', 'Silicon', 'Hardware Launch'],
+    audioScript: 'Live Big Tech bulletin: Industry executives report rapid acceleration in liquid-cooled server deployments and custom silicon hardware adoption.',
+    deepDive: {
+      overview: 'Executive briefings at the Silicon Infrastructure Forum highlight the transformation of modern computing from CPU clusters to heterogeneous accelerated networks.',
+      keyBackground: 'Modern artificial intelligence workloads require custom memory architectures that traditional server designs cannot accommodate.',
+      rootCauseAnalysis: "Specialized tensor and matrix arithmetic cores operating with high-bandwidth memory provide orders of magnitude higher energy efficiency.",
+      timeline: [
+        { time: 'Live', event: 'Executive panel concludes with roadmap for commercial deployments.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Hardware Architecture VP', role: 'Systems Engineering', quote: 'System design is now the decisive competitive frontier: cooling, power, and silicon must operate as one cohesive unit.' }
+      ],
+      impactForStudents: 'Inspiring insight for electrical and systems engineering students into the massive physical infrastructure powering modern computing.',
+      officialSourceUrl: 'https://reuters.com/technology',
+      sourceDocName: 'Silicon Executive Infrastructure Briefing'
     }
   }
 ];

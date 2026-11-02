@@ -49,7 +49,7 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
     { id: 'ai', label: '🤖 AI Frontier' },
     { id: 'world', label: '🌍 World' },
     { id: 'local', label: '📍 Siliguri & Regional' },
-    { id: 'personal', label: '💻 Tech & Systems' },
+    { id: 'personal', label: '💻 Big Tech & Systems' },
     { id: 'gaming', label: '🎮 Gaming' }
   ];
 

@@ -430,7 +430,7 @@ export default function App() {
     { id: 'ai', label: '🤖 AI Frontier', count: articles.filter(a => a.category === 'ai').length },
     { id: 'world', label: '🌍 World Affairs', count: articles.filter(a => a.category === 'world').length },
     { id: 'local', label: '📍 Siliguri & Regional', count: articles.filter(a => a.category === 'local').length },
-    { id: 'personal', label: '💻 Tech & Systems', count: articles.filter(a => a.category === 'personal').length },
+    { id: 'personal', label: '💻 Big Tech & Systems', count: articles.filter(a => a.category === 'personal').length },
     { id: 'gaming', label: '🎮 Gaming & Hardware', count: articles.filter(a => a.category === 'gaming').length }
   ];
 

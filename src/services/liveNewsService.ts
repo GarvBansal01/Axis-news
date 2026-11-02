@@ -1,4 +1,4 @@
-import { NewsArticle, ArticleFactSheet, NewsCategory } from '../types';
+import { NewsArticle, ArticleFactSheet, NewsCategory, LocationScope } from '../types';
 import { createRollingTimestamp } from '../data/mockNews';
 
 // Live News API Configuration
@@ -17,26 +17,60 @@ function stripHtml(html: string): string {
 }
 
 // Categorize raw news titles into AXIS channels
-function detectCategory(title: string, desc: string): { category: NewsCategory; locationScope: string } {
+function detectCategory(title: string, desc: string): { category: NewsCategory; locationScope: LocationScope } {
   const text = `${title} ${desc}`.toLowerCase();
   
-  if (text.includes('siliguri') || text.includes('bagdogra') || text.includes('darjeeling') || text.includes('north bengal') || text.includes('sikkim') || text.includes('teesta')) {
+  // 1. Regional: Siliguri & North Bengal
+  if (text.includes('siliguri') || text.includes('bagdogra') || text.includes('darjeeling') || text.includes('north bengal') || text.includes('sikkim') || text.includes('teesta') || text.includes('dooars') || text.includes('sevoke')) {
     return { category: 'local', locationScope: 'Siliguri' };
   }
-  if (text.includes('rbi') || text.includes('sebi') || text.includes('nifty') || text.includes('sensex') || text.includes('stock') || text.includes('gold') || text.includes('rupee') || text.includes('ipo') || text.includes('inflation') || text.includes('bank')) {
+
+  // 2. Disaster & Weather Emergencies
+  if (text.includes('cyclone') || text.includes('murasu') || text.includes('flood') || text.includes('earthquake') || text.includes('landslide') || text.includes('weather alert') || text.includes('tsunami') || text.includes('imd alert') || text.includes('heavy rain')) {
+    return { category: 'disaster', locationScope: 'Bay of Bengal' };
+  }
+
+  // 3. Finance, Markets & Macro
+  if (text.includes('rbi') || text.includes('sebi') || text.includes('nifty') || text.includes('sensex') || text.includes('stock market') || text.includes('gold price') || text.includes('silver price') || text.includes('rupee') || text.includes('ipo') || text.includes('inflation') || text.includes('derivatives') || text.includes('f&o')) {
     return { category: 'finance', locationScope: 'India' };
   }
-  if (text.includes('ai') || text.includes('artificial intelligence') || text.includes('google') || text.includes('openai') || text.includes('nvidia') || text.includes('tech') || text.includes('chip') || text.includes('software')) {
+
+  // 4. Geopolitics & Warfare
+  if (text.includes('russia') || text.includes('ukraine') || text.includes('pokrovsk') || text.includes('kstovo') || text.includes('israel') || text.includes('gaza') || text.includes('iran') || text.includes('netanyahu') || text.includes('nato') || text.includes('drone strike') || text.includes('frontline')) {
+    return { category: 'geopolitics', locationScope: 'Eastern Europe' };
+  }
+
+  // 5. Big Tech Launches, Comments & Keynotes (Apple, Nvidia, Microsoft, Amazon AWS, Google hardware, Intel, AMD, executive talks)
+  const isBigTechCompany = /\b(apple|tim cook|nvidia|jensen huang|microsoft|satya nadella|amazon aws|aws|andy jassy|matt garman|intel|amd|qualcomm|tsmc|semiconductor|semiconductors|microchip|hardware launch|device launch|keynote speech|keynote address|macbook|iphone|pixel 9|galaxy s|blackwell|gb200|tpu|datacenter|datacenters|cloud infrastructure)\b/i.test(text);
+
+  // 6. Strict AI Frontier Detection (Pure AI models, LLMs, neural networks, OpenAI, Anthropic, DeepSeek, reasoning architectures)
+  const isStrictAI = /\b(artificial intelligence|generative ai|genai|llm|llms|gpt-?4|gpt-?5|o1|o3|o3-mini|claude|gemini|deepseek|chatgpt|openai|anthropic|machine learning|neural network|neural networks|agentic ai|reasoning models?|diffusion models?|transformer models?|foundation models?|open weights)\b/i.test(text) ||
+    /\b(ai model|ai models|ai agent|ai agents|frontier ai|ai chip|ai safety|ai startup|ai startups|ai research|ai breakthrough|ai labs?|ai governance|ai compute|ai benchmark|ai coding)\b/i.test(text) ||
+    (/\b(a\.i\.|ai)\b/i.test(text) && !/\b(air india|flight|flights|airline|airlines|airport|airports|aviation)\b/i.test(text));
+
+  // If it is specifically about a Big Tech company launch, executive talk, or hardware system (and not pure AI model research from OpenAI/Anthropic/DeepSeek):
+  if (isBigTechCompany && !/\b(openai|anthropic|deepseek|chatgpt|claude|o1|o3)\b/i.test(text)) {
+    return { category: 'personal', locationScope: 'Global' };
+  }
+
+  // Pure AI Frontier news
+  if (isStrictAI) {
     return { category: 'ai', locationScope: 'Global' };
   }
-  if (text.includes('cyclone') || text.includes('flood') || text.includes('earthquake') || text.includes('landslide') || text.includes('weather alert') || text.includes('tsunami')) {
-    return { category: 'disaster', locationScope: 'India' };
+
+  // Big Tech & Systems general
+  if (isBigTechCompany) {
+    return { category: 'personal', locationScope: 'Global' };
   }
-  if (text.includes('russia') || text.includes('ukraine') || text.includes('israel') || text.includes('gaza') || text.includes('china') || text.includes('us') || text.includes('nato') || text.includes('un ') || text.includes('treaty')) {
-    return { category: 'geopolitics', locationScope: 'Global' };
-  }
-  if (text.includes('pilot') || text.includes('flight') || text.includes('dgca') || text.includes('indigo') || text.includes('air india') || text.includes('aviation') || text.includes('supreme court') || text.includes('cabinet') || text.includes('parliament')) {
+
+  // 7. National Politics & Governance
+  if (text.includes('chalo dilli') || text.includes('ramlila') || text.includes('election commission') || text.includes('supreme court') || text.includes('parliament') || text.includes('lok sabha') || text.includes('rahul gandhi') || text.includes('modi') || text.includes('bjp') || text.includes('congress') || text.includes('dgca') || text.includes('aviation')) {
     return { category: 'national', locationScope: 'India' };
+  }
+
+  // 8. Sports & World Events
+  if (text.includes('cricket') || text.includes('t20') || text.includes('bcci') || text.includes('ishan kishan') || text.includes('olympics') || text.includes('fifa') || text.includes('world cup')) {
+    return { category: 'world', locationScope: 'Global' };
   }
 
   return { category: 'national', locationScope: 'India' };
@@ -71,7 +105,9 @@ function generateFactSheet(title: string, source: string, locationScope: string,
     why: category === 'finance' 
       ? 'Macroeconomic interest rates, market demand shifts, and regulatory compliance standards'
       : category === 'ai' 
-      ? 'Rapid technological breakthrough and developer ecosystem adoption'
+      ? 'Rapid frontier AI breakthrough, reasoning architecture shifts, and developer ecosystem adoption'
+      : category === 'personal'
+      ? 'Strategic Big Tech hardware launch, executive keynote commentary, and datacenter infrastructure scaling'
       : category === 'disaster'
       ? 'Meteorological warning advisory and civic emergency readiness'
       : 'Evolving national policy developments and public interest verification',
@@ -85,12 +121,13 @@ async function fetchFromGoogleNewsRSS(topic?: string): Promise<NewsArticle[]> {
     let rssUrl = 'https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en';
     if (topic && topic !== 'all') {
       const topicKeywords: Record<string, string> = {
-        national: 'India+national+news',
-        local: 'Siliguri+North+Bengal',
-        geopolitics: 'World+geopolitics+diplomacy',
-        ai: 'Artificial+Intelligence+Tech',
-        finance: 'India+economy+stock+market+RBI',
-        disaster: 'India+weather+warning+disaster'
+        national: 'India+national+news+parliament',
+        local: 'Siliguri+North+Bengal+Teesta',
+        geopolitics: 'Russia+Ukraine+frontline+world+war',
+        ai: 'Artificial+Intelligence+OpenAI+Anthropic+DeepSeek+LLM+reasoning',
+        personal: 'Apple+Microsoft+Google+Nvidia+Meta+Amazon+tech+launch+talk',
+        finance: 'India+stock+market+SEBI+RBI+Nifty+Sensex',
+        disaster: 'Cyclone+Murasu+weather+alert+IMD+disaster'
       };
       const query = topicKeywords[topic] || 'India+breaking+news';
       rssUrl = `https://news.google.com/rss/search?q=${query}&hl=en-IN&gl=IN&ceid=IN:en`;
@@ -103,7 +140,25 @@ async function fetchFromGoogleNewsRSS(topic?: string): Promise<NewsArticle[]> {
 
     if (!data.items || !Array.isArray(data.items)) return [];
 
-    return data.items.slice(0, 10).map((item: any, idx: number) => {
+    let items = data.items.slice(0, 10);
+
+    // Strict Purity Gatekeeper:
+    // When requesting AI news, purge any non-AI items.
+    if (topic === 'ai') {
+      items = items.filter((item: any) => {
+        const text = `${item.title || ''} ${stripHtml(item.description || item.content || '')}`.toLowerCase();
+        return /\b(artificial intelligence|generative ai|genai|llm|llms|gpt-?4|gpt-?5|o1|o3|o3-mini|claude|gemini|deepseek|chatgpt|openai|anthropic|machine learning|neural network|agentic ai|reasoning models?|foundation models?|open weights|frontier ai|ai model|ai safety|ai research)\b/i.test(text) ||
+          (/\b(a\.i\.|ai)\b/i.test(text) && !/\b(air india|flight|airline|aviation)\b/i.test(text));
+      });
+    } else if (topic === 'personal') {
+      // Big Tech guarantee: ONLY keep items from Big Tech launches, executive talks, and systems
+      items = items.filter((item: any) => {
+        const text = `${item.title || ''} ${stripHtml(item.description || item.content || '')}`.toLowerCase();
+        return /\b(apple|microsoft|google|nvidia|meta|amazon|aws|intel|amd|qualcomm|tsmc|semiconductor|chip|hardware|macbook|iphone|keynote|datacenter|tim cook|satya nadella|sundar pichai|jensen huang|zuckerberg)\b/i.test(text);
+      });
+    }
+
+    return items.map((item: any, idx: number) => {
       const { title, source } = extractPublisherAndTitle(item.title || 'Breaking News Dispatch');
       const cleanDesc = stripHtml(item.description || item.content || '');
       const { category, locationScope } = detectCategory(title, cleanDesc);
@@ -176,7 +231,21 @@ async function fetchFromGNews(topic?: string): Promise<NewsArticle[]> {
 
     if (!data.articles || !Array.isArray(data.articles)) return [];
 
-    return data.articles.map((item: any, idx: number) => {
+    let articlesList = data.articles;
+    if (topic === 'ai') {
+      articlesList = articlesList.filter((item: any) => {
+        const text = `${item.title || ''} ${item.description || ''}`.toLowerCase();
+        return /\b(artificial intelligence|generative ai|genai|llm|llms|gpt-?4|gpt-?5|o1|o3|o3-mini|claude|gemini|deepseek|chatgpt|openai|anthropic|machine learning|neural network|agentic ai|reasoning models?|foundation models?|open weights|frontier ai|ai model|ai safety|ai research)\b/i.test(text) ||
+          (/\b(a\.i\.|ai)\b/i.test(text) && !/\b(air india|flight|airline|aviation)\b/i.test(text));
+      });
+    } else if (topic === 'personal') {
+      articlesList = articlesList.filter((item: any) => {
+        const text = `${item.title || ''} ${item.description || ''}`.toLowerCase();
+        return /\b(apple|microsoft|google|nvidia|meta|amazon|aws|intel|amd|qualcomm|tsmc|semiconductor|chip|hardware|macbook|iphone|keynote|datacenter|tim cook|satya nadella|sundar pichai|jensen huang|zuckerberg)\b/i.test(text);
+      });
+    }
+
+    return articlesList.map((item: any, idx: number) => {
       const title = item.title || 'Breaking News';
       const source = item.source?.name || 'GNews Wire';
       const cleanDesc = item.description || '';

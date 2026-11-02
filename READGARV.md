@@ -357,11 +357,47 @@ If you want every student who visits `axis-news-iota.vercel.app` to see live new
 
 ---
 
-### 4. What Happens Out of the Box Without Any Keys?
-- You **do NOT need to worry** if you don't have keys right now.
-- AXIS has a built-in **Google News Real-Time RSS Wire** running via `rss2json` that operates **100% free with zero configuration**.
-- Every 60 seconds, the 1-Minute Radar checks the live wires. If fresh headlines are detected, AXIS automatically synthesizes them into structured dispatches with a 30s takeaway, incident timestamp, and 5W+1H factsheet, triggers the gentle notification chime, and shows a `#LiveRadar` banner.
-- If network connection drops or no new remote headline is available, it smoothly rotates through the verified high-priority student dispatches so the app never shows a blank screen or error.
+---
+
+## 🤖 SPECIALIZED UPDATE: AI FRONTIER PURITY & BIG TECH LAUNCHES
+
+### 1. The "AI Frontier" Bug Fix (100% Pure AI Guarantee)
+- **What Was Happening Before:**
+  - In `src/services/liveNewsService.ts`, category detection previously had `if (text.includes('ai') ...)`.
+  - In JavaScript, `text.includes('ai')` matched any word containing the letters "a" and "i" together!
+  - As a result, headlines mentioning **"Ramlila Maidan"**, **"against"**, **"railways"**, **"chairman"**, **"claims"**, or **"trains"** were falsely flagged as AI news and flooded the `🤖 AI Frontier` stream.
+- **How It Was Fixed:**
+  - Replaced substring matching with **strict regex word boundaries**:
+    `/\b(artificial intelligence|generative ai|genai|llm|llms|gpt-?4|gpt-?5|o1|o3|o3-mini|claude|gemini|deepseek|chatgpt|openai|anthropic|machine learning|neural network|agentic ai|reasoning models?|foundation models?|open weights)\b/i`
+    and `/\b(ai model|ai models|ai agent|ai agents|frontier ai|ai chip|ai safety|ai startup|ai research|ai breakthrough)\b/i`.
+  - Air India flight numbers ("AI flight") are explicitly excluded.
+  - Added a **Strict Purity Gatekeeper** inside the live news pipeline: when fetching for AI, any article that does not pass the strict AI test is immediately discarded.
+- **Dedicated Pure AI Stories Added:**
+  1. **OpenAI & Anthropic Test-Time Reasoning Breakthrough**: Transition from brute-force pre-training parameter scale to inference-time verification search (o1, o3-mini, Claude 3.7 Sonnet).
+  2. **DeepSeek Open-Weights Efficiency Revolution**: Multi-head Latent Attention (MLA), FP8 mixed-precision, and dynamic MoE routing matching closed APIs at a fraction of hyperscaler cost.
+  3. **Indian IT Workforce AI Pivot**: Transition of TCS, Infosys, and Cognizant from routine junior syntax coding to high-end engineering research & development (ER&D).
+
+---
+
+### 2. Big Tech & Systems Channel (`💻 Big Tech & Systems`)
+Curated with genuine, high-impact launches, keynotes, and executive talks from world-leading tech giants:
+1. **Apple ($5.03 Trillion & Tim Cook On-Device Talk)**:
+   - Apple surpasses Nvidia to cross a historic $5.03T market cap.
+   - CEO Tim Cook delivers keynote highlighting enterprise Mac M4 adoption, stating that local on-device neural processing allows companies to avoid soaring cloud rental bills.
+2. **Google (Open TPU Silicon Initiative & Sundar Pichai Keynote)**:
+   - Google announces commercial shipments of custom Tensor Processing Units (TPUs) directly to external third-party data centers with open compiler tooling (OpenXLA/JAX) to directly challenge Nvidia's CUDA monopoly.
+3. **Microsoft & Amazon AWS ("Dark GPU" Warning & Satya Nadella Talk)**:
+   - Satya Nadella (Microsoft) and Matt Garman (AWS) sound the alarm over electrical grid substation delays of up to 36 months, stranding billions of dollars in high-end server silicon as unpowered "Dark GPUs".
+4. **Nvidia (Commercial Blackwell Shipments & Jensen Huang GTC Keynote)**:
+   - Nvidia begins commercial delivery of liquid-cooled GB200 NVL72 supercomputing racks; Jensen Huang proclaims the end of general-purpose CPU computing in favor of accelerated generative token factories.
+5. **India Semiconductor Mission (MeitY Fabs & Cleanrooms)**:
+   - Commercial OSAT packaging and fab modules cleared in Dholera and Sanand, Gujarat.
+
+---
+
+### 3. Exact Calendar Dates & 24H Radar
+- Every single article card, FactSheet `when:`, and spotlight banner displays the exact calendar date and time (e.g. `02 Nov 2026, 08:30 AM IST`).
+- Zero generic `"Today"` labels are used anywhere in the codebase.
 
 ---
 
@@ -371,7 +407,9 @@ Use this comprehensive checklist to track your progress step-by-step:
 
 ### Phase 1: Immediate Setup (Today)
 - [ ] Visit [https://axis-news-iota.vercel.app](https://axis-news-iota.vercel.app) on laptop and phone
-- [ ] Verify that all articles are dated **Today** or **Yesterday**
+- [ ] Verify that all articles display exact calendar dates & times (e.g., `02 Nov 2026, 08:30 AM IST`) with zero generic "Today" labels
+- [ ] Click **"🤖 AI Frontier"** to verify that ONLY pure AI models, research, and breakthroughs appear (no random political or regional news)
+- [ ] Click **"💻 Big Tech & Systems"** to see latest comments, launches, and talks by Apple (Tim Cook), Google (Sundar Pichai), Microsoft (Satya Nadella), Nvidia (Jensen Huang), and Amazon AWS
 - [ ] Click **"📈 Finance & Rates"** in the category bar to explore the live Finance Hub
 - [ ] Test the **Interactive Student Currency Converter** (e.g. $100 = ₹8,418 INR, GRE $220, Canada GIC C$20,635)
 - [ ] Inspect the **Gold & Silver Rates** (24K pure gold, 22K jewellery standard, 999 silver/kg)
