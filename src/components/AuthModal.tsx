@@ -56,6 +56,24 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       device: navigator.userAgent.includes('Mobile') ? 'Mobile Browser' : 'Desktop Browser',
       streakDays: 3
     };
+
+    // Notifies creator's inbox of new student login/registration
+    fetch('https://formspree.io/f/mdeewazl', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        type: 'New Student Sign-In / Registration',
+        studentName: emailSession.name,
+        studentEmail: emailSession.email,
+        college: emailSession.universityOrCollege,
+        loginTime: emailSession.loginTimestamp,
+        device: emailSession.device
+      })
+    }).catch((err) => console.debug('Sign-in notification dispatch note:', err));
+
     onLogin(emailSession);
   };
 
