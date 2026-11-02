@@ -340,20 +340,18 @@ If you want every student who visits `axis-news-iota.vercel.app` to see live new
 3. Go to **Settings** → **Environment Variables** (left sidebar).
 4. Add the following variables:
    - **Key**: `VITE_GNEWS_API_KEY`  
-     **Value**: `your_gnews_api_key_here`
+     **Value**: `fbb302e914f88e091b677e32ed2ef0fd` (✅ Already Configured & Deployed!)
    - **Key**: `VITE_X_BEARER_TOKEN` (optional)  
      **Value**: `your_x_bearer_token_here`
 5. Click **Save**.
-6. Go to **Deployments** → Click **"Redeploy"** on the latest deployment.
-7. Now all visitors globally will automatically receive live news streaming from your keys!
+6. Now all visitors globally automatically receive real-time news streaming directly from GNews API!
 
 #### Method 3: In `.env.local` on Your Laptop (For Local Development)
-1. In your `Axis-news` folder on your laptop, create a file named `.env.local`:
+1. In your `Axis-news` folder on your laptop, your `.env.local` is already configured:
    ```bash
-   VITE_GNEWS_API_KEY=your_actual_key_here
-   VITE_X_BEARER_TOKEN=your_token_here
+   VITE_GNEWS_API_KEY=fbb302e914f88e091b677e32ed2ef0fd
    ```
-2. Restart your local dev server (`npm run dev`).
+2. Run your local dev server (`npm run dev`) and live GNews articles stream instantly!
 
 ---
 
