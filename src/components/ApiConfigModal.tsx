@@ -13,7 +13,7 @@ export const ApiConfigModal: React.FC<ApiConfigModalProps> = ({
   onClose,
   onKeysUpdated
 }) => {
-  const [gnewsKey, setGnewsKey] = useState(() => localStorage.getItem('axis_gnews_key') || '');
+  const [gnewsKey, setGnewsKey] = useState(() => localStorage.getItem('axis_gnews_key') || 'fbb302e914f88e091b677e32ed2ef0fd');
   const [xToken, setXToken] = useState(() => localStorage.getItem('axis_x_token') || '');
   const [savedSuccess, setSavedSuccess] = useState(false);
 

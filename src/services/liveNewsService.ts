@@ -4,7 +4,7 @@ import { createRollingTimestamp } from '../data/mockNews';
 // Live News API Configuration
 // Users can provide API keys via Vercel Environment Variables, .env.local, or UI modal
 function getKeys() {
-  const gnews = (typeof localStorage !== 'undefined' ? localStorage.getItem('axis_gnews_key') : '') || import.meta.env.VITE_GNEWS_API_KEY || '';
+  const gnews = (typeof localStorage !== 'undefined' ? localStorage.getItem('axis_gnews_key') : '') || import.meta.env.VITE_GNEWS_API_KEY || 'fbb302e914f88e091b677e32ed2ef0fd';
   const newsdata = (typeof localStorage !== 'undefined' ? localStorage.getItem('axis_newsdata_key') : '') || import.meta.env.VITE_NEWSDATA_API_KEY || '';
   const xToken = (typeof localStorage !== 'undefined' ? localStorage.getItem('axis_x_token') : '') || import.meta.env.VITE_X_BEARER_TOKEN || '';
   return { gnews, newsdata, xToken };
@@ -217,14 +217,32 @@ async function fetchFromGoogleNewsRSS(topic?: string): Promise<NewsArticle[]> {
   }
 }
 
-// Fetch live news from GNews API (if user configured VITE_GNEWS_API_KEY)
+// Fetch live news from GNews API (configured with user's GNews API key)
 async function fetchFromGNews(topic?: string): Promise<NewsArticle[]> {
   const { gnews } = getKeys();
   if (!gnews) return [];
 
   try {
-    const categoryParam = topic && topic !== 'all' ? topic : 'general';
-    const url = `https://gnews.io/api/v4/top-headlines?category=${categoryParam}&lang=en&country=in&max=10&apikey=${gnews}`;
+    let url = `https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=in&max=10&apikey=${gnews}`;
+
+    if (topic && topic !== 'all') {
+      if (topic === 'ai') {
+        url = `https://gnews.io/api/v4/search?q=artificial+intelligence+OR+OpenAI+OR+Anthropic+OR+DeepSeek+OR+LLM&lang=en&max=10&apikey=${gnews}`;
+      } else if (topic === 'personal') {
+        url = `https://gnews.io/api/v4/search?q=Apple+OR+Microsoft+OR+Google+OR+Nvidia+OR+Amazon+tech+launch&lang=en&max=10&apikey=${gnews}`;
+      } else if (topic === 'finance') {
+        url = `https://gnews.io/api/v4/top-headlines?category=business&lang=en&country=in&max=10&apikey=${gnews}`;
+      } else if (topic === 'geopolitics') {
+        url = `https://gnews.io/api/v4/top-headlines?category=world&lang=en&max=10&apikey=${gnews}`;
+      } else if (topic === 'national') {
+        url = `https://gnews.io/api/v4/top-headlines?category=nation&lang=en&country=in&max=10&apikey=${gnews}`;
+      } else if (topic === 'local') {
+        url = `https://gnews.io/api/v4/search?q=Siliguri+OR+North+Bengal+OR+Teesta&lang=en&country=in&max=10&apikey=${gnews}`;
+      } else if (topic === 'disaster') {
+        url = `https://gnews.io/api/v4/search?q=cyclone+OR+flood+OR+earthquake+OR+weather+alert+India&lang=en&country=in&max=10&apikey=${gnews}`;
+      }
+    }
+
     const res = await fetch(url);
     if (!res.ok) return [];
     const data = await res.json();
