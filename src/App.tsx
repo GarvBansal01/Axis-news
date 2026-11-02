@@ -29,7 +29,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Send,
-  Coins
+  Coins,
+  Star
 } from 'lucide-react';
 
 const INITIAL_FEEDBACKS: AppFeedback[] = [
@@ -75,8 +76,19 @@ export default function App() {
   const [isNotificationDrawerOpen, setIsNotificationDrawerOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [contactModalTab, setContactModalTab] = useState<'contact' | 'rate'>('rate');
   const [isApiModalOpen, setIsApiModalOpen] = useState(false);
   const [unreadAlertsCount, setUnreadAlertsCount] = useState<number>(3);
+
+  const openReviewModal = () => {
+    setContactModalTab('rate');
+    setIsContactModalOpen(true);
+  };
+
+  const openContactModal = () => {
+    setContactModalTab('contact');
+    setIsContactModalOpen(true);
+  };
 
   const [viewMode, setViewMode] = useState<'stream' | 'flashcards'>('stream');
   const [secondsToNextRefresh, setSecondsToNextRefresh] = useState<number>(60);
@@ -359,7 +371,7 @@ export default function App() {
   };
 
   const scrollToContact = () => {
-    setIsContactModalOpen(true);
+    openReviewModal();
   };
 
   const scrollToShloka = () => {
@@ -442,7 +454,7 @@ export default function App() {
         unreadAlertsCount={unreadAlertsCount}
         onOpenNotifications={() => setIsNotificationDrawerOpen(true)}
         onOpenAuth={() => setIsAuthModalOpen(true)}
-        onOpenContact={scrollToContact}
+        onOpenContact={openReviewModal}
         onRefreshFeed={handleRefreshFeed}
         isRefreshing={isRefreshing}
         currentUser={currentUser}
@@ -526,20 +538,21 @@ export default function App() {
               </button>
             </div>
 
-            {/* Quick Contact & Feedback Action */}
-            <div className="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40 space-y-2 text-xs">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block font-bold">
-                Connect
+            {/* Quick Review & Feedback Action */}
+            <div className="p-3.5 rounded-xl border border-amber-200/60 dark:border-amber-900/40 bg-amber-50/50 dark:bg-amber-950/10 space-y-2 text-xs">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-amber-700 dark:text-amber-400 block font-bold flex items-center gap-1">
+                <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                Review & Feedback
               </span>
-              <p className="text-[11px] text-zinc-500 leading-snug">
-                Have a local news tip or feedback for AXIS?
+              <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-snug">
+                Reviewing AXIS? Rate it, report bugs, or tell Garv what features to add next!
               </p>
               <button
-                onClick={() => setIsContactModalOpen(true)}
-                className="w-full py-1.5 px-2 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 text-xs font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-2xs"
+                onClick={openReviewModal}
+                className="w-full py-1.5 px-2 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 text-xs font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-2xs"
               >
-                <Send className="w-3 h-3" />
-                <span>Contact Us</span>
+                <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                <span>Give Review & Ideas</span>
               </button>
             </div>
           </aside>
@@ -661,18 +674,21 @@ export default function App() {
               <WisdomBanner wisdomList={wisdomCollection} />
             </div>
 
-            {/* SENDER / CONTACT MODAL TRIGGER BAR */}
+            {/* REVIEW / FEEDBACK TRIGGER BAR */}
             <div className="pt-6 pb-2">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-500">
-                <span className="text-zinc-600 dark:text-zinc-400">
-                  Have a news tip from Siliguri or feedback on AXIS?
-                </span>
+                <div className="flex items-center gap-2">
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400 shrink-0" />
+                  <span className="text-zinc-600 dark:text-zinc-300 font-medium">
+                    Testing AXIS? Tell Garv what works, what's broken, or what to add!
+                  </span>
+                </div>
                 <button
-                  onClick={() => setIsContactModalOpen(true)}
-                  className="px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors cursor-pointer flex items-center gap-1.5 shrink-0"
+                  onClick={openReviewModal}
+                  className="px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors cursor-pointer flex items-center gap-1.5 shrink-0 shadow-2xs"
                 >
-                  <Send className="w-3 h-3" />
-                  <span>Contact Us</span>
+                  <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                  <span>Give Review</span>
                 </button>
               </div>
             </div>
@@ -805,20 +821,20 @@ export default function App() {
               </div>
             </div>
 
-            {/* Quick Contact Formspree Card */}
+            {/* Quick Review Formspree Card */}
             <div className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/40 space-y-2 text-xs">
               <div className="flex items-center gap-1.5 font-mono font-semibold text-zinc-900 dark:text-zinc-100">
-                <Send className="w-3.5 h-3.5" />
-                <span>Quick Contact</span>
+                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                <span>Review & Suggestions</span>
               </div>
               <p className="text-[11px] text-zinc-500 leading-snug">
-                Have news from Siliguri or want to connect? Submit your note directly to the creator.
+                Share your rating or request custom data feeds directly. Submissions go straight to the creator.
               </p>
               <button
-                onClick={() => setIsContactModalOpen(true)}
+                onClick={openReviewModal}
                 className="w-full mt-1 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer text-xs flex items-center justify-center gap-1 shadow-2xs"
               >
-                <span>Send Message / Note</span>
+                <span>Write Review / Suggestion</span>
                 <ArrowRight className="w-3 h-3" />
               </button>
             </div>
@@ -847,10 +863,11 @@ export default function App() {
             </button>
             <span aria-hidden="true" className="text-zinc-300 dark:text-zinc-700">·</span>
             <button
-              onClick={() => setIsContactModalOpen(true)}
-              className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer"
+              onClick={openReviewModal}
+              className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer flex items-center gap-1"
             >
-              Contact Us
+              <Star className="w-3 h-3 fill-amber-400 text-amber-400 inline" />
+              <span>Review & Feedback</span>
             </button>
             <span aria-hidden="true" className="text-zinc-300 dark:text-zinc-700">·</span>
             <button
@@ -895,6 +912,7 @@ export default function App() {
         feedbacks={feedbacks}
         onSubmitFeedback={handleSubmitFeedback}
         currentUserEmail={currentUser?.email}
+        initialTab={contactModalTab}
       />
 
       <ApiConfigModal
@@ -904,6 +922,16 @@ export default function App() {
           triggerLiveMinuteUpdate();
         }}
       />
+
+      {/* Discreet Floating Review & Feedback Button (Mobile & Desktop) */}
+      <button
+        onClick={openReviewModal}
+        className="fixed bottom-5 right-5 z-30 flex items-center gap-2 px-3.5 py-2 rounded-full bg-zinc-900/95 hover:bg-zinc-900 text-white dark:bg-zinc-100/95 dark:hover:bg-zinc-100 dark:text-zinc-950 font-sans text-xs font-semibold shadow-lg backdrop-blur-md transition-all hover:scale-105 cursor-pointer border border-zinc-700/50 dark:border-zinc-300/50"
+        title="Leave feedback, rating, or feature suggestion"
+      >
+        <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+        <span>Review / Ideas</span>
+      </button>
     </div>
   );
 }

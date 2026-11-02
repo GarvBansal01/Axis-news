@@ -19,6 +19,7 @@ interface ContactModalProps {
   feedbacks: AppFeedback[];
   onSubmitFeedback: (fb: AppFeedback) => void;
   currentUserEmail?: string;
+  initialTab?: 'contact' | 'rate';
 }
 
 export const ContactModal: React.FC<ContactModalProps> = ({
@@ -26,9 +27,16 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   onClose,
   feedbacks,
   onSubmitFeedback,
-  currentUserEmail
+  currentUserEmail,
+  initialTab = 'rate'
 }) => {
-  const [activeTab, setActiveTab] = useState<'contact' | 'rate'>('contact');
+  const [activeTab, setActiveTab] = useState<'contact' | 'rate'>(initialTab);
+
+  useEffect(() => {
+    if (isOpen) {
+      setActiveTab(initialTab);
+    }
+  }, [isOpen, initialTab]);
 
   // Formspree Contact Form State
   const [name, setName] = useState('');
@@ -42,7 +50,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   // Rate App Form State
   const [rating, setRating] = useState(5);
   const [hoverRating, setHoverRating] = useState(0);
-  const [feedbackCategory, setFeedbackCategory] = useState('Siliguri Local Coverage');
+  const [feedbackCategory, setFeedbackCategory] = useState('💡 Feature Suggestion / What to Add');
   const [feedbackComment, setFeedbackComment] = useState('');
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
@@ -108,10 +116,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     e.preventDefault();
     if (!feedbackComment.trim()) return;
 
+    const reviewerName = name.trim() || (currentUserEmail ? currentUserEmail.split('@')[0] : 'AXIS Reader');
+    const reviewerEmail = currentUserEmail || email.trim() || 'reader@axis.news';
+
     const newFeedback: AppFeedback = {
       id: `fb-${Date.now()}`,
-      userEmail: currentUserEmail || email.trim() || 'reader@axis.news',
-      userName: name.trim() || (currentUserEmail ? currentUserEmail.split('@')[0] : 'AXIS Reader'),
+      userEmail: reviewerEmail,
+      userName: reviewerName,
       rating,
       category: feedbackCategory,
       comment: feedbackComment.trim(),
@@ -121,7 +132,28 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     onSubmitFeedback(newFeedback);
     setFeedbackSubmitted(true);
     setFeedbackComment('');
-    setTimeout(() => setFeedbackSubmitted(false), 3000);
+
+    // Dispatches review directly to creator's Formspree notification inbox
+    fetch('https://formspree.io/f/mdeewazl', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        type: 'Reader Review & Suggestion',
+        rating: `${rating} / 5 Stars`,
+        category: feedbackCategory,
+        reviewer: reviewerName,
+        email: reviewerEmail,
+        comment: feedbackComment.trim(),
+        submittedAt: new Date().toISOString()
+      })
+    }).catch((err) => {
+      console.debug('Background review dispatch note:', err);
+    });
+
+    setTimeout(() => setFeedbackSubmitted(false), 3500);
   };
 
   const avgRating = (
@@ -335,24 +367,27 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     onChange={(e) => setFeedbackCategory(e.target.value)}
                     className="w-full px-3 py-1.5 text-xs bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-zinc-400"
                   >
-                    <option value="Siliguri Local Coverage">Siliguri Local Coverage</option>
-                    <option value="AI Frontier Curation">AI Frontier Curation</option>
-                    <option value="World News Precision">World News Precision</option>
-                    <option value="Feed Speed & Brevity">Feed Speed & Brevity</option>
-                    <option value="Feature Request">Feature Request</option>
+                    <option value="💡 Feature Suggestion / What to Add">💡 Feature Suggestion / What to Add</option>
+                    <option value="🐛 Bug / Glitch Found">🐛 Bug / Glitch Found</option>
+                    <option value="🤖 AI Frontier Coverage">🤖 AI Frontier Coverage</option>
+                    <option value="💻 Big Tech & Systems">💻 Big Tech & Systems</option>
+                    <option value="📈 Finance & Rates Hub">📈 Finance & Rates Hub</option>
+                    <option value="📍 Siliguri & Regional News">📍 Siliguri & Regional News</option>
+                    <option value="🎨 UI, Design & Readability">🎨 UI, Design & Readability</option>
+                    <option value="⚡ General Feedback & Praise">⚡ General Feedback & Praise</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
-                    What can we do better?
+                    Your Review / Suggestions
                   </label>
                   <textarea
                     rows={3}
                     required
                     value={feedbackComment}
                     onChange={(e) => setFeedbackComment(e.target.value)}
-                    placeholder="Tell us what you liked or how we can improve..."
+                    placeholder="Tell us what you liked, what is buggy or needs improvement, or what new features we should add..."
                     className="w-full px-3 py-1.5 text-xs bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-zinc-400 resize-none"
                   />
                 </div>

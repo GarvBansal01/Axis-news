@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Bell, 
   Bookmark, 
   Sun, 
   Moon, 
-  RefreshCw,
-  Phone,
-  User
+  RefreshCw, 
+  Star,
+  Share2,
+  Check,
+  User 
 } from 'lucide-react';
 import { UserSession } from '../types';
 
@@ -39,6 +41,34 @@ export const Masthead: React.FC<MastheadProps> = ({
   onToggleSavedOnly,
   isSavedOnly
 }) => {
+  const [copiedLink, setCopiedLink] = useState(false);
+
+  const handleShare = async () => {
+    const shareUrl = window.location.origin;
+    const shareData = {
+      title: 'AXIS — Student News Intelligence & Real-Time Radar',
+      text: 'Check out AXIS! Zero-clutter 24H student news radar, Finance & Rates Hub, and pure AI Frontier without social media noise. Tell me what you think and what else we should add!',
+      url: shareUrl
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch {
+        // Fallback to clipboard
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2500);
+    } catch {
+      // Ignore
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-[#09090b]/95 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800/80 transition-colors">
       <div className="max-w-5xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between gap-4">
@@ -70,6 +100,25 @@ export const Masthead: React.FC<MastheadProps> = ({
 
         {/* Right: Functional Action Bar */}
         <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* One-Click Share with Friends */}
+          <button
+            onClick={handleShare}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+            title="Share AXIS with friends"
+          >
+            {copiedLink ? (
+              <>
+                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                <span className="text-emerald-600 dark:text-emerald-400 font-medium text-[11px]">Copied!</span>
+              </>
+            ) : (
+              <>
+                <Share2 className="w-3.5 h-3.5 text-zinc-600 dark:text-zinc-400" />
+                <span className="hidden md:inline">Share</span>
+              </>
+            )}
+          </button>
+
           {/* Refresh / Check for latest news */}
           <button
             onClick={onRefreshFeed}
@@ -109,13 +158,15 @@ export const Masthead: React.FC<MastheadProps> = ({
             )}
           </button>
 
-          {/* Contact / Callback Request */}
+          {/* Review & Feedback Button */}
           <button
             onClick={onOpenContact}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 text-xs font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors cursor-pointer shadow-xs"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 text-xs font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors cursor-pointer shadow-xs"
+            title="Submit review, feedback or feature requests"
           >
-            <Phone className="w-3 h-3" />
-            <span className="hidden sm:inline">Connect</span>
+            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+            <span className="hidden sm:inline">Review & Feedback</span>
+            <span className="sm:hidden">Review</span>
           </button>
 
           {/* Theme Toggle */}
