@@ -162,7 +162,18 @@ async function fetchFromGoogleNewsRSS(topic?: string): Promise<NewsArticle[]> {
       const { title, source } = extractPublisherAndTitle(item.title || 'Breaking News Dispatch');
       const cleanDesc = stripHtml(item.description || item.content || '');
       const { category, locationScope } = detectCategory(title, cleanDesc);
-      const rolling = createRollingTimestamp(idx * 8 + 3);
+      
+      let minutesAgo = idx * 8 + 3;
+      if (item.pubDate) {
+        const parsedTime = new Date(item.pubDate.replace(' ', 'T')).getTime() || new Date(item.pubDate).getTime();
+        if (!isNaN(parsedTime) && parsedTime > 0) {
+          const diffMinutes = Math.max(1, Math.floor((Date.now() - parsedTime) / (1000 * 60)));
+          if (diffMinutes < 24 * 60) {
+            minutesAgo = diffMinutes;
+          }
+        }
+      }
+      const rolling = createRollingTimestamp(minutesAgo);
       
       const searchQuery = encodeURIComponent(`${title} news ${source}`);
       const verifiedSearchUrl = `https://news.google.com/search?q=${searchQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
@@ -268,7 +279,19 @@ async function fetchFromGNews(topic?: string): Promise<NewsArticle[]> {
       const source = item.source?.name || 'GNews Wire';
       const cleanDesc = item.description || '';
       const { category, locationScope } = detectCategory(title, cleanDesc);
-      const rolling = createRollingTimestamp(idx * 6 + 2);
+      
+      let minutesAgo = idx * 6 + 2;
+      if (item.publishedAt) {
+        const parsedTime = new Date(item.publishedAt).getTime();
+        if (!isNaN(parsedTime) && parsedTime > 0) {
+          const diffMinutes = Math.max(1, Math.floor((Date.now() - parsedTime) / (1000 * 60)));
+          if (diffMinutes < 24 * 60) {
+            minutesAgo = diffMinutes;
+          }
+        }
+      }
+      const rolling = createRollingTimestamp(minutesAgo);
+
       const searchQuery = encodeURIComponent(`${title} news`);
       const verifiedSearchUrl = `https://news.google.com/search?q=${searchQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
       const factSheet = generateFactSheet(title, source, locationScope, category, rolling.incidentDate);
@@ -321,20 +344,43 @@ async function fetchFromGNews(topic?: string): Promise<NewsArticle[]> {
   }
 }
 
-// Master function: Fetches live news from configured APIs or Google News RSS fallback
+// Master function: Fetches live news from configured APIs and Google News RSS Wire
 export async function fetchLiveRealTimeNews(topic?: string): Promise<NewsArticle[]> {
   const { gnews } = getKeys();
-  // 1. Try GNews if API key is provided
-  if (gnews) {
-    const gnewsArticles = await fetchFromGNews(topic);
-    if (gnewsArticles.length > 0) return gnewsArticles;
+  const allArticles: NewsArticle[] = [];
+  const seenTitles = new Set<string>();
+
+  // 1. Fetch zero-delay live breaking headlines from Google News RSS Wire (Today's live news)
+  try {
+    const rssArticles = await fetchFromGoogleNewsRSS(topic);
+    for (const art of rssArticles) {
+      const key = art.title.toLowerCase().trim();
+      if (!seenTitles.has(key)) {
+        seenTitles.add(key);
+        allArticles.push(art);
+      }
+    }
+  } catch (err) {
+    console.debug('RSS fetch note:', err);
   }
 
-  // 2. Default to Free Google News RSS Wire (Always works out-of-the-box!)
-  const rssArticles = await fetchFromGoogleNewsRSS(topic);
-  if (rssArticles.length > 0) return rssArticles;
+  // 2. Supplement with GNews API if available
+  if (gnews) {
+    try {
+      const gnewsArticles = await fetchFromGNews(topic);
+      for (const art of gnewsArticles) {
+        const key = art.title.toLowerCase().trim();
+        if (!seenTitles.has(key)) {
+          seenTitles.add(key);
+          allArticles.push(art);
+        }
+      }
+    } catch (err) {
+      console.debug('GNews fetch note:', err);
+    }
+  }
 
-  return [];
+  return allArticles;
 }
 
 // Diagnostic helper to report connected API status
