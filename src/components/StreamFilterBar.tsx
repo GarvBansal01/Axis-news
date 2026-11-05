@@ -132,16 +132,6 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
             <span>{secondsToNextRefresh}s</span>
           </div>
 
-          {/* Live APIs & Twitter/X Config Action */}
-          {onOpenApiConfig && (
-            <button
-              onClick={onOpenApiConfig}
-              className="flex items-center gap-1 px-2.5 py-1 rounded-md border border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/20 text-[10px] font-mono font-semibold text-blue-700 dark:text-blue-400 transition-colors cursor-pointer"
-              title="Configure live Twitter (X) & News APIs"
-            >
-              <span>📡 Live APIs</span>
-            </button>
-          )}
         </div>
       </div>
 

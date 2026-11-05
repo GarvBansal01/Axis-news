@@ -321,14 +321,8 @@ Because of this, we designed AXIS with a **smart multi-tiered news pipeline**:
 
 You can choose whichever way is easiest for you:
 
-#### Method 1: Directly in the Web App (Fastest & Zero Coding!)
-1. Open [https://axis-news-iota.vercel.app](https://axis-news-iota.vercel.app) on your laptop or phone.
-2. In the stream filter bar (top right, next to the green 1-Min Radar badge), click the blue **`📡 Live APIs`** button.
-3. An in-app settings modal will open:
-   - Paste your **GNews API Key** into the GNews field.
-   - Or paste your **Twitter (X) Bearer Token** into the X field.
-4. Click **"Save API Keys"**.
-5. Done! The keys are saved directly into your browser's secure `localStorage`, and AXIS will immediately begin streaming live headlines from your provider!
+#### Method 1: Centrally in Vercel Environment Variables (Active & Recommended)
+Since the API keys are configured in your Vercel project settings (`VITE_GNEWS_API_KEY`), every student who visits `axis-news-iota.vercel.app` automatically receives verified live news without any developer buttons cluttering the interface!
 
 #### Method 2: In Vercel (For All Users Visiting Your Site Globally)
 If you want every student who visits `axis-news-iota.vercel.app` to see live news without needing their own key:
@@ -412,7 +406,8 @@ Use this comprehensive checklist to track your progress step-by-step:
 - [ ] Review the **IPOs Radar** with live Grey Market Premiums (GMP) and UPI ASBA guide
 - [ ] Test the WhatsApp-style notification chime and volume mute toggle (`🔊`/`🔇`)
 - [ ] Test the **"What's Important Right Now"** carousel and click **"Know More"**
-- [ ] Click **"📡 Live APIs"** in the stream bar to test the Live News & Twitter settings modal
+- [x] Verified zero developer buttons cluttering the clean student stream bar
+- [x] Connected GNews API key centrally in Vercel for live streaming news
 - [ ] Sign up for free Formspree account at [formspree.io](https://formspree.io)
 - [ ] Insert Formspree Form ID in `src/components/ContactModal.tsx`
 - [ ] Enable free Web Analytics in your Vercel Dashboard
