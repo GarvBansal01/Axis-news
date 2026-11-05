@@ -43,13 +43,16 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
   const categories: { id: NewsCategory; label: string }[] = [
     { id: 'all', label: 'All Dispatches' },
     { id: 'finance', label: '📈 Finance & Rates' },
+    { id: 'education', label: '🎓 Campus & Hiring' },
+    { id: 'startups', label: '🚀 Startups & VC' },
+    { id: 'science', label: '🔬 Space & Science' },
     { id: 'national', label: '🇮🇳 India National' },
+    { id: 'ai', label: '🤖 AI Frontier' },
+    { id: 'personal', label: '💻 Big Tech & Systems' },
     { id: 'geopolitics', label: '🌐 Geopolitics & War' },
     { id: 'disaster', label: '🚨 Disaster & Alerts' },
-    { id: 'ai', label: '🤖 AI Frontier' },
-    { id: 'world', label: '🌍 World' },
     { id: 'local', label: '📍 Siliguri & Regional' },
-    { id: 'personal', label: '💻 Big Tech & Systems' },
+    { id: 'world', label: '🌍 World' },
     { id: 'gaming', label: '🎮 Gaming' }
   ];
 

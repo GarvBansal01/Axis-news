@@ -1,8 +1,21 @@
-export type NewsCategory = 'all' | 'world' | 'ai' | 'local' | 'national' | 'finance' | 'gaming' | 'personal' | 'geopolitics' | 'disaster';
+export type NewsCategory = 
+  | 'all' 
+  | 'finance' 
+  | 'national' 
+  | 'geopolitics' 
+  | 'disaster' 
+  | 'ai' 
+  | 'personal' 
+  | 'education' 
+  | 'startups' 
+  | 'science' 
+  | 'world' 
+  | 'local' 
+  | 'gaming';
 
 export type VerificationStatus = 'govt_verified' | 'reputable_media' | 'trending_unverified' | 'emergency_alert';
 
-export type LocationScope = 'Siliguri' | 'North Bengal' | 'West Bengal' | 'India' | 'Global' | 'Eastern Europe' | 'Bay of Bengal';
+export type LocationScope = 'Siliguri' | 'North Bengal' | 'West Bengal' | 'India' | 'Global' | 'Eastern Europe' | 'Bay of Bengal' | 'Bengaluru' | 'Sriharikota' | 'New Delhi';
 
 export interface ArticleFactSheet {
   when: string;       // Exact Date, Time & Timeline status

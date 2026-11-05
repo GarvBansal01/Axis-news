@@ -32,12 +32,30 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
 
   if (!article) return null;
 
-  const handleShare = () => {
+  const handleShare = async () => {
     const verifiedUrl = article.verifiedSearchUrl || article.deepDive.verifiedNewsSearchUrl || `https://news.google.com/search?q=${encodeURIComponent(article.title + ' news')}&hl=en-IN&gl=IN&ceid=IN:en`;
     const text = `📰 ${article.title}\n\n${article.deepDive.overview}\n\nIncident Date: ${article.incidentDate || article.dateLabel}\nVerified Live Coverage: ${verifiedUrl}\nOfficial Filing: ${article.deepDive.officialSourceUrl}`;
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: article.title,
+          text: `${article.title}\n\n${article.takeaway}`,
+          url: verifiedUrl
+        });
+        return;
+      } catch {
+        // Fallback to clipboard
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Ignore
+    }
   };
 
   return (

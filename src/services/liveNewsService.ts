@@ -30,20 +30,35 @@ function detectCategory(title: string, desc: string): { category: NewsCategory; 
     return { category: 'disaster', locationScope: 'Bay of Bengal' };
   }
 
-  // 3. Finance, Markets & Macro
+  // 3. Space & Deep Science
+  if (text.includes('isro') || text.includes('nasa') || text.includes('space mission') || text.includes('chandrayaan') || text.includes('gaganyaan') || text.includes('superconducting') || text.includes('quantum computer') || text.includes('quantum computing') || text.includes('fusion reactor') || text.includes('james webb') || text.includes('particle physics') || text.includes('hadron') || text.includes('astronomy') || text.includes('satellite launch')) {
+    return { category: 'science', locationScope: 'Sriharikota' };
+  }
+
+  // 4. Campus, Placements & Exam Radar
+  if (text.includes('placement') || text.includes('placements') || text.includes('internship') || text.includes('internships') || text.includes('upsc') || text.includes('gate 20') || text.includes('jee main') || text.includes('neet') || text.includes('cat 20') || text.includes('admit card') || text.includes('campus hiring') || text.includes('recruitment drive') || text.includes('cbse') || text.includes('ugc net') || text.includes('engineering college') || text.includes('iit') || text.includes('nit')) {
+    return { category: 'education', locationScope: 'India' };
+  }
+
+  // 5. Startups, Founders & Venture Capital
+  if (text.includes('startup') || text.includes('startups') || text.includes('funding round') || text.includes('venture capital') || text.includes('series a') || text.includes('series b') || text.includes('seed round') || text.includes('y combinator') || text.includes('unicorn') || text.includes('angel investor') || text.includes('founder') || text.includes('zepto') || text.includes('swiggy') || text.includes('zomato') || text.includes('fintech startup')) {
+    return { category: 'startups', locationScope: 'Bengaluru' };
+  }
+
+  // 6. Finance, Markets & Macro
   if (text.includes('rbi') || text.includes('sebi') || text.includes('nifty') || text.includes('sensex') || text.includes('stock market') || text.includes('gold price') || text.includes('silver price') || text.includes('rupee') || text.includes('ipo') || text.includes('inflation') || text.includes('derivatives') || text.includes('f&o')) {
     return { category: 'finance', locationScope: 'India' };
   }
 
-  // 4. Geopolitics & Warfare
+  // 7. Geopolitics & Warfare
   if (text.includes('russia') || text.includes('ukraine') || text.includes('pokrovsk') || text.includes('kstovo') || text.includes('israel') || text.includes('gaza') || text.includes('iran') || text.includes('netanyahu') || text.includes('nato') || text.includes('drone strike') || text.includes('frontline')) {
     return { category: 'geopolitics', locationScope: 'Eastern Europe' };
   }
 
-  // 5. Big Tech Launches, Comments & Keynotes (Apple, Nvidia, Microsoft, Amazon AWS, Google hardware, Intel, AMD, executive talks)
+  // 8. Big Tech Launches, Comments & Keynotes (Apple, Nvidia, Microsoft, Amazon AWS, Google hardware, Intel, AMD, executive talks)
   const isBigTechCompany = /\b(apple|tim cook|nvidia|jensen huang|microsoft|satya nadella|amazon aws|aws|andy jassy|matt garman|intel|amd|qualcomm|tsmc|semiconductor|semiconductors|microchip|hardware launch|device launch|keynote speech|keynote address|macbook|iphone|pixel 9|galaxy s|blackwell|gb200|tpu|datacenter|datacenters|cloud infrastructure)\b/i.test(text);
 
-  // 6. Strict AI Frontier Detection (Pure AI models, LLMs, neural networks, OpenAI, Anthropic, DeepSeek, reasoning architectures)
+  // 9. Strict AI Frontier Detection (Pure AI models, LLMs, neural networks, OpenAI, Anthropic, DeepSeek, reasoning architectures)
   const isStrictAI = /\b(artificial intelligence|generative ai|genai|llm|llms|gpt-?4|gpt-?5|o1|o3|o3-mini|claude|gemini|deepseek|chatgpt|openai|anthropic|machine learning|neural network|neural networks|agentic ai|reasoning models?|diffusion models?|transformer models?|foundation models?|open weights)\b/i.test(text) ||
     /\b(ai model|ai models|ai agent|ai agents|frontier ai|ai chip|ai safety|ai startup|ai startups|ai research|ai breakthrough|ai labs?|ai governance|ai compute|ai benchmark|ai coding)\b/i.test(text) ||
     (/\b(a\.i\.|ai)\b/i.test(text) && !/\b(air india|flight|flights|airline|airlines|airport|airports|aviation)\b/i.test(text));
@@ -63,12 +78,12 @@ function detectCategory(title: string, desc: string): { category: NewsCategory; 
     return { category: 'personal', locationScope: 'Global' };
   }
 
-  // 7. National Politics & Governance
+  // 10. National Politics & Governance
   if (text.includes('chalo dilli') || text.includes('ramlila') || text.includes('election commission') || text.includes('supreme court') || text.includes('parliament') || text.includes('lok sabha') || text.includes('rahul gandhi') || text.includes('modi') || text.includes('bjp') || text.includes('congress') || text.includes('dgca') || text.includes('aviation')) {
     return { category: 'national', locationScope: 'India' };
   }
 
-  // 8. Sports & World Events
+  // 11. Sports & World Events
   if (text.includes('cricket') || text.includes('t20') || text.includes('bcci') || text.includes('ishan kishan') || text.includes('olympics') || text.includes('fifa') || text.includes('world cup')) {
     return { category: 'world', locationScope: 'Global' };
   }
@@ -106,6 +121,12 @@ function generateFactSheet(title: string, source: string, locationScope: string,
       ? 'Macroeconomic interest rates, market demand shifts, and regulatory compliance standards'
       : category === 'ai' 
       ? 'Rapid frontier AI breakthrough, reasoning architecture shifts, and developer ecosystem adoption'
+      : category === 'education'
+      ? 'Evolving university hiring criteria, standardized national examination schedules, and engineering placement drives'
+      : category === 'startups'
+      ? 'Venture capital market expansion, unit economics validation, and innovative product ecosystem scaling'
+      : category === 'science'
+      ? 'National aerospace telemetry milestones, deep-tech research breakthroughs, and scientific mission progress'
       : category === 'personal'
       ? 'Strategic Big Tech hardware launch, executive keynote commentary, and datacenter infrastructure scaling'
       : category === 'disaster'
@@ -127,7 +148,10 @@ async function fetchFromGoogleNewsRSS(topic?: string): Promise<NewsArticle[]> {
         ai: 'Artificial+Intelligence+OpenAI+Anthropic+DeepSeek+LLM+reasoning',
         personal: 'Apple+Microsoft+Google+Nvidia+Meta+Amazon+tech+launch+talk',
         finance: 'India+stock+market+SEBI+RBI+Nifty+Sensex',
-        disaster: 'Cyclone+Murasu+weather+alert+IMD+disaster'
+        disaster: 'Cyclone+Murasu+weather+alert+IMD+disaster',
+        education: 'college+placements+internships+UPSC+GATE+exam+admit+card+hiring',
+        startups: 'Indian+startups+funding+seed+round+venture+capital+Y+Combinator',
+        science: 'ISRO+space+launch+NASA+astronomy+quantum+research'
       };
       const query = topicKeywords[topic] || 'India+breaking+news';
       rssUrl = `https://news.google.com/rss/search?q=${query}&hl=en-IN&gl=IN&ceid=IN:en`;
@@ -251,6 +275,12 @@ async function fetchFromGNews(topic?: string): Promise<NewsArticle[]> {
         url = `https://gnews.io/api/v4/search?q=Siliguri+OR+North+Bengal+OR+Teesta&lang=en&country=in&max=10&apikey=${gnews}`;
       } else if (topic === 'disaster') {
         url = `https://gnews.io/api/v4/search?q=cyclone+OR+flood+OR+earthquake+OR+weather+alert+India&lang=en&country=in&max=10&apikey=${gnews}`;
+      } else if (topic === 'education') {
+        url = `https://gnews.io/api/v4/search?q=college+placements+OR+internship+OR+UPSC+OR+GATE+OR+hiring&lang=en&country=in&max=10&apikey=${gnews}`;
+      } else if (topic === 'startups') {
+        url = `https://gnews.io/api/v4/search?q=startup+funding+OR+unicorn+OR+venture+capital+OR+founder&lang=en&max=10&apikey=${gnews}`;
+      } else if (topic === 'science') {
+        url = `https://gnews.io/api/v4/search?q=ISRO+OR+space+mission+OR+NASA+OR+quantum+OR+fusion&lang=en&max=10&apikey=${gnews}`;
       }
     }
 

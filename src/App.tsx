@@ -436,13 +436,16 @@ export default function App() {
   const categories: { id: NewsCategory; label: string; count: number }[] = [
     { id: 'all', label: 'All Dispatches', count: articles.length },
     { id: 'finance', label: '📈 Finance & Rates', count: articles.filter(a => a.category === 'finance').length },
+    { id: 'education', label: '🎓 Campus & Hiring', count: articles.filter(a => a.category === 'education').length },
+    { id: 'startups', label: '🚀 Startups & VC', count: articles.filter(a => a.category === 'startups').length },
+    { id: 'science', label: '🔬 Space & Science', count: articles.filter(a => a.category === 'science').length },
     { id: 'national', label: '🇮🇳 India National', count: articles.filter(a => a.category === 'national').length },
+    { id: 'ai', label: '🤖 AI Frontier', count: articles.filter(a => a.category === 'ai').length },
+    { id: 'personal', label: '💻 Big Tech & Systems', count: articles.filter(a => a.category === 'personal').length },
     { id: 'geopolitics', label: '🌐 Geopolitics & War', count: articles.filter(a => a.category === 'geopolitics').length },
     { id: 'disaster', label: '🚨 Disaster & Alerts', count: articles.filter(a => a.category === 'disaster').length },
-    { id: 'ai', label: '🤖 AI Frontier', count: articles.filter(a => a.category === 'ai').length },
-    { id: 'world', label: '🌍 World Affairs', count: articles.filter(a => a.category === 'world').length },
     { id: 'local', label: '📍 Siliguri & Regional', count: articles.filter(a => a.category === 'local').length },
-    { id: 'personal', label: '💻 Big Tech & Systems', count: articles.filter(a => a.category === 'personal').length },
+    { id: 'world', label: '🌍 World Affairs', count: articles.filter(a => a.category === 'world').length },
     { id: 'gaming', label: '🎮 Gaming & Hardware', count: articles.filter(a => a.category === 'gaming').length }
   ];
 

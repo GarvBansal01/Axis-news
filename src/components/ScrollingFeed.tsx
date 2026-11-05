@@ -33,12 +33,29 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
 }) => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  const handleShare = (article: NewsArticle) => {
+  const handleShare = async (article: NewsArticle) => {
     const shareText = `⚡ ${article.title}\n\n"${article.takeaway}"\n\n• ${article.bullets.join('\n• ')}\n\nSource: ${article.sourceName} · via AXIS 24H Radar`;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: article.title,
+          text: shareText,
+          url: window.location.origin
+        });
+        return;
+      } catch {
+        // Fallback to clipboard
+      }
+    }
+
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(shareText);
-      setCopiedId(article.id);
-      setTimeout(() => setCopiedId(null), 2000);
+      try {
+        await navigator.clipboard.writeText(shareText);
+        setCopiedId(article.id);
+        setTimeout(() => setCopiedId(null), 2000);
+      } catch {
+        // Ignore
+      }
     }
   };
 

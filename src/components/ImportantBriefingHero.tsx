@@ -41,12 +41,29 @@ export const ImportantBriefingHero: React.FC<ImportantBriefingHeroProps> = ({
   const activeArticle = topArticles[currentIndex % topArticles.length];
   const isSaved = savedArticleIds.includes(activeArticle.id);
 
-  const handleShare = () => {
+  const handleShare = async () => {
     const text = `⚡ WHAT'S IMPORTANT RIGHT NOW: ${activeArticle.title}\n\n🔍 The Real Problem: ${activeArticle.theRealProblem}\n\n• ${activeArticle.bullets.join('\n• ')}\n\nRead more on AXIS 24H Radar`;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: activeArticle.title,
+          text,
+          url: window.location.origin
+        });
+        return;
+      } catch {
+        // Fallback to clipboard
+      }
+    }
+
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      try {
+        await navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        // Ignore
+      }
     }
   };
 

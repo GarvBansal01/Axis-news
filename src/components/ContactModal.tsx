@@ -369,6 +369,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   >
                     <option value="💡 Feature Suggestion / What to Add">💡 Feature Suggestion / What to Add</option>
                     <option value="🐛 Bug / Glitch Found">🐛 Bug / Glitch Found</option>
+                    <option value="🎓 Campus & Hiring Radar">🎓 Campus & Hiring Radar</option>
+                    <option value="🚀 Startups & Venture Capital">🚀 Startups & Venture Capital</option>
+                    <option value="🔬 Space & Deep Science">🔬 Space & Deep Science</option>
                     <option value="🤖 AI Frontier Coverage">🤖 AI Frontier Coverage</option>
                     <option value="💻 Big Tech & Systems">💻 Big Tech & Systems</option>
                     <option value="📈 Finance & Rates Hub">📈 Finance & Rates Hub</option>
