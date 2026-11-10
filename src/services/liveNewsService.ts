@@ -412,23 +412,3 @@ export async function fetchLiveRealTimeNews(topic?: string): Promise<NewsArticle
 
   return allArticles;
 }
-
-// Diagnostic helper to report connected API status
-export function getLiveApiStatus(): {
-  hasGNews: boolean;
-  hasNewsData: boolean;
-  hasXTwitter: boolean;
-  activeProvider: string;
-} {
-  const { gnews, newsdata, xToken } = getKeys();
-  return {
-    hasGNews: Boolean(gnews),
-    hasNewsData: Boolean(newsdata),
-    hasXTwitter: Boolean(xToken),
-    activeProvider: gnews 
-      ? 'GNews API (Active)' 
-      : xToken 
-      ? 'Twitter/X API (Active)' 
-      : 'Google News Real-Time Wire (Active · Free)'
-  };
-}

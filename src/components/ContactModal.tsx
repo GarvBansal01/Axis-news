@@ -8,8 +8,7 @@ import {
   AlertCircle,
   Phone,
   Mail,
-  User,
-  Sparkles
+  User
 } from 'lucide-react';
 import { AppFeedback } from '../types';
 

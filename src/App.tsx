@@ -8,15 +8,14 @@ import { NotificationDrawer } from './components/NotificationDrawer';
 import { AuthModal } from './components/AuthModal';
 import { ContactModal } from './components/ContactModal';
 
-import { mockNewsArticles, UPCOMING_LIVE_DISPATCHES, getFreshRollingNews, createRollingTimestamp } from './data/mockNews';
+import { UPCOMING_LIVE_DISPATCHES, getFreshRollingNews, createRollingTimestamp } from './data/mockNews';
 import { wisdomCollection } from './data/wisdomData';
 import { NewsArticle, NewsCategory, UserSession, AppFeedback } from './types';
 import { playAudioChime } from './utils/audioPlayer';
 import { FlashcardDeck } from './components/FlashcardDeck';
 import { ImportantBriefingHero } from './components/ImportantBriefingHero';
 import { FinanceHub } from './components/FinanceHub';
-import { ApiConfigModal } from './components/ApiConfigModal';
-import { fetchLiveRealTimeNews, getLiveApiStatus } from './services/liveNewsService';
+import { fetchLiveRealTimeNews } from './services/liveNewsService';
 import { 
   Sparkles, 
   TrendingUp, 
@@ -28,7 +27,6 @@ import {
   Zap, 
   ArrowRight,
   ShieldCheck,
-  Send,
   Coins,
   Star
 } from 'lucide-react';
@@ -77,7 +75,6 @@ export default function App() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [contactModalTab, setContactModalTab] = useState<'contact' | 'rate'>('rate');
-  const [isApiModalOpen, setIsApiModalOpen] = useState(false);
   const [unreadAlertsCount, setUnreadAlertsCount] = useState<number>(3);
 
   const openReviewModal = () => {
@@ -576,7 +573,6 @@ export default function App() {
               viewMode={viewMode}
               setViewMode={setViewMode}
               secondsToNextRefresh={secondsToNextRefresh}
-              onOpenApiConfig={() => setIsApiModalOpen(true)}
             />
 
             {/* Live Incoming Dispatch Banner */}
@@ -916,14 +912,6 @@ export default function App() {
         onSubmitFeedback={handleSubmitFeedback}
         currentUserEmail={currentUser?.email}
         initialTab={contactModalTab}
-      />
-
-      <ApiConfigModal
-        isOpen={isApiModalOpen}
-        onClose={() => setIsApiModalOpen(false)}
-        onKeysUpdated={() => {
-          triggerLiveMinuteUpdate();
-        }}
       />
 
       {/* Discreet Floating Review & Feedback Button (Mobile & Desktop) */}

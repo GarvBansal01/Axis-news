@@ -15,7 +15,6 @@ import {
   AlertCircle, 
   Clock, 
   Info,
-  Layers,
   ArrowRightLeft,
   Search
 } from 'lucide-react';

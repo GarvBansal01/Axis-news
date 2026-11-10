@@ -97,20 +97,6 @@ export interface AppFeedback {
   timestamp: string;
 }
 
-export interface ContactRequest {
-  id: string;
-  name: string;
-  phone: string;
-  email: string;
-  collegeOrCity: string;
-  preferredTime: 'anytime' | 'morning' | 'afternoon' | 'evening';
-  reason: 'news_lead' | 'feedback' | 'collaboration' | 'general';
-  message: string;
-  timestamp: string;
-  status: 'pending' | 'called' | 'resolved';
-  adminNotes?: string;
-}
-
 // ================= FINANCE DESK DATA STRUCTURES =================
 export interface StockQuote {
   symbol: string;

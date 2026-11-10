@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shuffle, Check, Copy, BookOpen, Quote, Compass } from 'lucide-react';
+import { Shuffle, Check, Copy, BookOpen, Compass } from 'lucide-react';
 import { WisdomItem } from '../types';
 
 interface WisdomBannerProps {

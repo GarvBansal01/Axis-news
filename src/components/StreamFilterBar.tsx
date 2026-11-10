@@ -13,7 +13,6 @@ interface StreamFilterBarProps {
   viewMode: 'stream' | 'flashcards';
   setViewMode: (mode: 'stream' | 'flashcards') => void;
   secondsToNextRefresh: number;
-  onOpenApiConfig?: () => void;
 }
 
 export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
@@ -25,8 +24,7 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
   lastUpdatedText,
   viewMode,
   setViewMode,
-  secondsToNextRefresh,
-  onOpenApiConfig
+  secondsToNextRefresh
 }) => {
   const [isMuted, setIsMuted] = useState<boolean>(() => isAudioChimeMuted());
 

@@ -9,7 +9,6 @@ import {
   ShieldCheck, 
   ChevronLeft, 
   ChevronRight,
-  Sparkles,
   Calendar,
   Zap,
   MapPin,
