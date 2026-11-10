@@ -61,6 +61,33 @@ const INITIAL_FEEDBACKS: AppFeedback[] = [
   }
 ];
 
+const getCategoryBadge = (category: NewsCategory) => {
+  switch (category) {
+    case 'education':
+      return { label: 'Campus & Hiring', color: 'text-indigo-600 dark:text-indigo-400' };
+    case 'startups':
+      return { label: 'Startups & VC', color: 'text-emerald-600 dark:text-emerald-400' };
+    case 'ai':
+      return { label: 'Frontier AI', color: 'text-purple-600 dark:text-purple-400' };
+    case 'science':
+      return { label: 'Space & Deep Tech', color: 'text-cyan-600 dark:text-cyan-400' };
+    case 'disaster':
+      return { label: 'Disaster Radar', color: 'text-red-600 dark:text-red-400' };
+    case 'national':
+      return { label: 'National Intel', color: 'text-amber-600 dark:text-amber-400' };
+    case 'geopolitics':
+      return { label: 'Geopolitics', color: 'text-blue-600 dark:text-blue-400' };
+    case 'local':
+      return { label: 'Siliguri & Regional', color: 'text-teal-600 dark:text-teal-400' };
+    case 'gaming':
+      return { label: 'Gaming & Tech', color: 'text-violet-600 dark:text-violet-400' };
+    case 'finance':
+      return { label: 'Finance & Markets', color: 'text-emerald-600 dark:text-emerald-400' };
+    default:
+      return { label: 'Live Intel', color: 'text-zinc-600 dark:text-zinc-400' };
+  }
+};
+
 export default function App() {
   const [articles, setArticles] = useState<NewsArticle[]>(() => getFreshRollingNews());
   const [activeCategory, setActiveCategory] = useState<NewsCategory>('all');
@@ -430,6 +457,27 @@ export default function App() {
     return topList.slice(0, 4);
   }, [articles]);
 
+  // Dynamic Trending Fast Dispatches (Highest velocity across Campus, Startups, AI, Space & National)
+  const trendingArticles = useMemo(() => {
+    const priorityCategories: NewsCategory[] = ['education', 'startups', 'ai', 'science', 'disaster', 'national'];
+    const selected: NewsArticle[] = [];
+
+    for (const cat of priorityCategories) {
+      const found = articles.find((a) => a.category === cat && !selected.some((s) => s.id === a.id));
+      if (found) selected.push(found);
+      if (selected.length >= 4) break;
+    }
+
+    for (const art of articles) {
+      if (!selected.some((s) => s.id === art.id)) {
+        selected.push(art);
+      }
+      if (selected.length >= 4) break;
+    }
+
+    return selected.slice(0, 4);
+  }, [articles]);
+
   const categories: { id: NewsCategory; label: string; count: number }[] = [
     { id: 'all', label: 'All Dispatches', count: articles.length },
     { id: 'finance', label: '📈 Finance & Rates', count: articles.filter(a => a.category === 'finance').length },
@@ -770,53 +818,50 @@ export default function App() {
               </button>
             </div>
 
-            {/* Trending Radar Topics (Fast Facts) */}
-            <div className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 space-y-3">
-              <div className="flex items-center gap-1.5 text-xs font-mono text-zinc-900 dark:text-zinc-100 font-bold uppercase tracking-wider border-b border-zinc-100 dark:border-zinc-900 pb-2">
-                <TrendingUp className="w-3.5 h-3.5 text-zinc-500" />
-                <span>Trending Fast</span>
+            {/* Dynamic Trending Radar Topics (Fact-Checked Real-Time Dispatches) */}
+            <div className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 space-y-3 shadow-2xs">
+              <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-900 pb-2">
+                <div className="flex items-center gap-1.5 text-xs font-mono text-zinc-900 dark:text-zinc-100 font-bold uppercase tracking-wider">
+                  <TrendingUp className="w-3.5 h-3.5 text-rose-500" />
+                  <span>Trending Fast</span>
+                </div>
+                <span className="flex items-center gap-1 text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                  Live
+                </span>
               </div>
 
-              <div className="space-y-3 text-xs">
-                <div 
-                  onClick={() => setActiveDeepDiveArticle(articles.find(a => a.id === 'pilot-attacked-safe-emergency-landing') || articles[0])}
-                  className="space-y-0.5 cursor-pointer hover:opacity-80 transition-opacity"
-                >
-                  <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400 font-bold uppercase">1 · Aviation Emergency</span>
-                  <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug">
-                    IndiGo pilot attacked mid-flight; safe emergency landing executed
-                  </h4>
-                </div>
-
-                <div 
-                  onClick={() => setActiveDeepDiveArticle(articles.find(a => a.id === 'russia-ukraine-high-tech-frontline-grain-pact') || articles[1])}
-                  className="space-y-0.5 cursor-pointer hover:opacity-80 transition-opacity border-t border-zinc-100 dark:border-zinc-900 pt-2"
-                >
-                  <span className="text-[10px] font-mono text-blue-600 dark:text-blue-400 font-bold uppercase">2 · Geopolitics & War</span>
-                  <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug">
-                    Russia-Ukraine drone frontline & Black Sea grain safety accord
-                  </h4>
-                </div>
-
-                <div 
-                  onClick={() => setActiveDeepDiveArticle(articles.find(a => a.id === 'bay-of-bengal-supercyclone-evacuation-zero-casualties') || articles[2])}
-                  className="space-y-0.5 cursor-pointer hover:opacity-80 transition-opacity border-t border-zinc-100 dark:border-zinc-900 pt-2"
-                >
-                  <span className="text-[10px] font-mono text-red-600 dark:text-red-400 font-bold uppercase">3 · Disaster Alert</span>
-                  <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug">
-                    Bay of Bengal cyclone alert: 450,000 sheltered with zero casualties
-                  </h4>
-                </div>
-
-                <div 
-                  onClick={() => setActiveDeepDiveArticle(articles.find(a => a.id === 'frontier-ai-researcher-x-leak-verified') || articles[3])}
-                  className="space-y-0.5 cursor-pointer hover:opacity-80 transition-opacity border-t border-zinc-100 dark:border-zinc-900 pt-2"
-                >
-                  <span className="text-[10px] font-mono text-purple-600 dark:text-purple-400 font-bold uppercase">4 · AI Leaks</span>
-                  <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug">
-                    Viral X (Twitter) researcher leaks verified: open reasoning models
-                  </h4>
-                </div>
+              <div className="space-y-2.5 text-xs">
+                {trendingArticles.map((article, idx) => {
+                  const badge = getCategoryBadge(article.category);
+                  return (
+                    <div 
+                      key={article.id}
+                      onClick={() => setActiveDeepDiveArticle(article)}
+                      className={`group p-2 -mx-2 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-900/60 transition-all cursor-pointer space-y-1 ${
+                        idx > 0 ? 'border-t border-zinc-100 dark:border-zinc-900/80 pt-2.5' : ''
+                      }`}
+                    >
+                      <div className="flex items-center justify-between text-[10px] font-mono">
+                        <span className={`font-bold uppercase tracking-wider ${badge.color}`}>
+                          {idx + 1} · {badge.label}
+                        </span>
+                        <span className="text-zinc-400 dark:text-zinc-500">
+                          {article.dateLabel || article.publishedAt}
+                        </span>
+                      </div>
+                      <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {article.title}
+                      </h4>
+                      <div className="flex items-center justify-between text-[10px] text-zinc-500 pt-0.5">
+                        <span className="truncate max-w-[140px] font-mono">{article.sourceName}</span>
+                        <span className="font-mono text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors flex items-center gap-0.5">
+                          Read 30s <ArrowRight className="w-2.5 h-2.5 inline" />
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
