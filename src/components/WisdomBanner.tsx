@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shuffle, Check, Copy, BookOpen, Compass } from 'lucide-react';
+import { Shuffle, Check, Copy, BookOpen, Compass, Sparkles } from 'lucide-react';
 import { WisdomItem } from '../types';
 
 interface WisdomBannerProps {
@@ -17,7 +17,7 @@ export const WisdomBanner: React.FC<WisdomBannerProps> = ({ wisdomList }) => {
   };
 
   const copyWisdom = () => {
-    const textToCopy = `“${activeWisdom.translation}”\n— ${activeWisdom.author} (${activeWisdom.reference})\n\nFocus Lesson: ${activeWisdom.studentTakeaway}`;
+    const textToCopy = `“${activeWisdom.translation}”\n— ${activeWisdom.author} (${activeWisdom.bookOrSource ? activeWisdom.bookOrSource + ' · ' : ''}${activeWisdom.reference})\n\nFocus Lesson: ${activeWisdom.studentTakeaway}`;
     navigator.clipboard.writeText(textToCopy);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -34,26 +34,34 @@ export const WisdomBanner: React.FC<WisdomBannerProps> = ({ wisdomList }) => {
       </div>
 
       {/* Top Provenance & Action Header */}
-      <div className="flex items-center justify-between text-xs font-mono text-zinc-500 pb-3 border-b border-stone-200/70 dark:border-zinc-800/80 relative z-10">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-zinc-500 pb-3 border-b border-stone-200/70 dark:border-zinc-800/80 relative z-10">
+        <div className="flex flex-wrap items-center gap-2">
           <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-stone-100 dark:bg-zinc-800 text-stone-800 dark:text-stone-200 text-[11px] font-semibold tracking-wider uppercase">
             <BookOpen className="w-3 h-3 text-amber-600 dark:text-amber-400" />
-            <span>Bhagavad Gītā</span>
+            <span>{activeWisdom.bookOrSource || activeWisdom.author}</span>
           </span>
           <span aria-hidden="true" className="text-stone-300 dark:text-zinc-700">·</span>
           <span className="text-[11px] text-stone-600 dark:text-stone-400 font-medium">
             {activeWisdom.reference}
           </span>
+          {activeWisdom.coreTheme && (
+            <>
+              <span aria-hidden="true" className="text-stone-300 dark:text-zinc-700">·</span>
+              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-300">
+                {activeWisdom.coreTheme}
+              </span>
+            </>
+          )}
         </div>
 
         <div className="flex items-center gap-1.5">
           <button
             onClick={handleNextWisdom}
-            className="flex items-center gap-1 px-2.5 py-1 rounded-md border border-stone-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:border-stone-400 dark:hover:border-zinc-600 transition-colors cursor-pointer text-[11px] shadow-2xs"
-            title="Next verse"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-md border border-stone-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:border-stone-400 dark:hover:border-zinc-600 transition-colors cursor-pointer text-[11px] shadow-2xs font-mono"
+            title="Next reflection quote"
           >
-            <Shuffle className="w-3 h-3" />
-            <span>Next Verse</span>
+            <Shuffle className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+            <span>Next Insight</span>
           </button>
 
           <button
@@ -66,11 +74,11 @@ export const WisdomBanner: React.FC<WisdomBannerProps> = ({ wisdomList }) => {
         </div>
       </div>
 
-      {/* Sanskrit Sacred Verse & Transliteration */}
-      {activeWisdom.sanskritVerse && (
+      {/* Sanskrit Sacred Verse or Original Script if present */}
+      {(activeWisdom.sanskritVerse || activeWisdom.originalScript) && (
         <div className="space-y-1.5 relative z-10 pt-1">
           <p className="text-base sm:text-lg md:text-xl font-sanskrit font-semibold text-stone-900 dark:text-stone-100 tracking-wide leading-relaxed">
-            {activeWisdom.sanskritVerse}
+            {activeWisdom.sanskritVerse || activeWisdom.originalScript}
           </p>
           {activeWisdom.transliteration && (
             <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 font-editorial italic tracking-normal leading-relaxed">
@@ -88,7 +96,7 @@ export const WisdomBanner: React.FC<WisdomBannerProps> = ({ wisdomList }) => {
         <div className="mt-2 text-[11px] font-mono text-stone-500 dark:text-stone-400 flex items-center gap-1.5 not-italic">
           <span>— {activeWisdom.author}</span>
           <span aria-hidden="true">·</span>
-          <span>{activeWisdom.reference}</span>
+          <span>{activeWisdom.bookOrSource ? `${activeWisdom.bookOrSource} (${activeWisdom.reference})` : activeWisdom.reference}</span>
         </div>
       </div>
 

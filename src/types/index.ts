@@ -88,19 +88,22 @@ export interface NewsArticle {
   tags: string[];
   factSheet?: ArticleFactSheet;
   verifiedSearchUrl?: string;
+  targetedSearchQuery?: string;
   trendingScore?: number;
   trendingBreakdown?: TrendingScoreBreakdown;
 }
 
 export interface WisdomItem {
   id: string;
-  author: 'Bhagavad Gita' | 'Dr. APJ Abdul Kalam' | 'Swami Vivekananda' | 'Marcus Aurelius';
+  author: string;
+  bookOrSource?: string;
   reference: string;
   sanskritVerse?: string;
+  originalScript?: string;
   transliteration?: string;
   translation: string;
   studentTakeaway: string;
-  coreTheme: 'Focus' | 'Duty & Action' | 'Overcoming Fear' | 'Self-Discipline' | 'Resilience' | 'Peace of Mind';
+  coreTheme: string;
 }
 
 export interface UserSession {

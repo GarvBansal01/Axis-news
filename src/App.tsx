@@ -859,11 +859,14 @@ export default function App() {
               </>
             )}
 
-            {/* BHAGAVAD GITA SHLOKA (PLACED AT THE LAST AS REQUESTED) */}
+            {/* TIMELESS WISDOM & PHILOSOPHY (GITA, STOICISM, KALAM, VIVEKANANDA, CHANAKYA, WORLD BOOKS) */}
             <div ref={shlokaSectionRef} className="pt-8">
-              <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-zinc-400 pb-2">
-                <Sparkles className="w-3.5 h-3.5 text-zinc-500" />
-                <span>Daily Reflection & Focus</span>
+              <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-zinc-400 pb-2">
+                <div className="flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
+                  <span className="font-semibold text-zinc-700 dark:text-zinc-300">Timeless Wisdom & Focus Lessons</span>
+                </div>
+                <span className="text-[10px] text-zinc-400 dark:text-zinc-500 hidden sm:inline">Gita · Stoics · Kalam · Vivekananda · Confucius · Tao</span>
               </div>
               <WisdomBanner wisdomList={wisdomCollection} />
             </div>
@@ -1064,7 +1067,7 @@ export default function App() {
               onClick={scrollToShloka}
               className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer"
             >
-              Daily Shloka
+              Timeless Wisdom & Quotes
             </button>
             <span aria-hidden="true" className="text-zinc-300 dark:text-zinc-700">·</span>
             <button

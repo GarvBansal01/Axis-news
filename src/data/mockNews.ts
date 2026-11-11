@@ -1,4 +1,5 @@
 import { NewsArticle } from '../types';
+import { getCleanTargetedQuery } from '../utils/searchHelper';
 
 // Dynamic Exact Timestamp & Calendar Date Generator
 // Strictly outputs exact calendar date and exact time (e.g. "02 Nov 2026, 08:30 AM IST")
@@ -90,49 +91,197 @@ export const mockNewsArticles: NewsArticle[] = [
     }
   },
   {
-    id: 'india-bloc-chalo-dilli-ramlila-protest',
-    title: 'INDIA Bloc Organizes Massive ‘Chalo Dilli’ Protest at Ramlila Maidan: Opposition Demands Election Commission Accountability Over Voter Roll Deletions',
+    id: 'farmers-dilli-chalo-msp-shambhu-protest',
+    title: 'Farmers’ ‘Dilli Chalo’ March 2.0 at Shambhu Border: Why Farmers Demand a Legal Guarantee for MSP, the Swaminathan C2+50% Formula, and Current Deadlock',
     category: 'national',
     locationScope: 'India',
-    sourceName: 'The Hindu, The Times of India & The Indian Express',
-    sourceType: 'Accredited National Political Reporting',
+    sourceName: 'The Hindu, The Indian Express & Press Trust of India (PTI)',
+    sourceType: 'Accredited National Agrarian & Political Reporting',
     verification: 'reputable_media',
-    verificationNote: 'Live journalistic coverage from New Delhi bureaus of The Hindu, Times of India, and Indian Express.',
-    takeaway: 'Opposition leaders including Rahul Gandhi and Mallikarjun Kharge lead thousands at Ramlila Maidan protesting alleged voter roll irregularities; ruling BJP labels demonstration a political drama.',
-    whatIsIt: "National political mobilization where INDIA bloc opposition constituents held a massive 'Chalo Dilli' protest rally at New Delhi's Ramlila Maidan demanding accountability from Chief Election Commissioner Gyanesh Kumar regarding alleged voter roll deletions.",
+    verificationNote: 'Ground journalistic dispatches from Punjab-Haryana Shambhu and Khanauri border checkpoints, Ministry of Agriculture statements, and Supreme Court orders.',
+    takeaway: 'Over 10,000 farmers camp at the Punjab-Haryana Shambhu border on NH-44 demanding a legally enforceable Minimum Support Price (MSP) under the Swaminathan Commission C2+50% formula and debt waiver; Haryana police deploy multi-tiered barricades and tear gas drones as ministerial talks yield impasse.',
+    whatIsIt: "Major national agrarian agitation organized under the Samyukta Kisan Morcha (Non-Political) and Kisan Mazdoor Morcha, where farmers marching towards New Delhi with tractors and rations were halted at fortified interstate borders (Shambhu in Ambala and Khanauri in Jind), demanding statutory legal backing for Minimum Support Price across 23 crops.",
+    targetedSearchQuery: '"Dilli Chalo" farmers MSP protest Shambhu border',
     factSheet: {
-      when: "02 Nov 2026, 11:30 AM IST",
-      where: "Ramlila Maidan, Central Delhi, India",
-      who: "Rahul Gandhi, Mallikarjun Kharge, INDIA Bloc Constituents, Chief Election Commissioner Gyanesh Kumar, Delhi Police",
-      what: "Opposition parties organize massive gathering demanding transparent forensic audits and accountability over alleged voter deletions from electronic electoral registers",
-      why: "Opposition claims unilateral sanitization of voter lists in key constituencies disenfranchised legitimate voters; demands institutional review",
-      how: "Peaceful demonstration held under extensive Delhi Police security; memorandum submitted to the Election Commission of India"
+      when: "Active Ongoing Agitation · 24/7 Interstate Border Standoff",
+      where: "Shambhu Border (Ambala, Haryana / Patiala, Punjab) & Khanauri Border (Jind / Sangrur), National Highway 44",
+      who: "Farmer Leaders Jagjit Singh Dallewal & Sarwan Singh Pandher (SKM-NP & KMM), Union Agriculture Minister Arjun Munda, Commerce Minister Piyush Goyal, Haryana & Punjab Police, Supreme Court High-Powered Committee chaired by Justice Nawab Singh",
+      what: "Thousands of farmers assembling with modified tractors and community langars demanding a statutory parliamentary act guaranteeing MSP purchase, complete agricultural loan waivers, implementation of Land Acquisition Act 2013, and withdrawal of FIRs from 2020-21 protests",
+      why: "Farmers argue that administrative MSP declarations without legal enforcement allow private traders to purchase pulses, oilseeds, and coarse cereals 20% to 40% below benchmark rates, forcing smallholders into predatory debt cycles amid escalating diesel, fertilizer, and seed costs",
+      how: "Haryana police erected multi-layered fortifications including concrete jersey barriers, iron spikes cemented into roads, and shipping containers filled with sand, deploying drone-mounted tear gas canisters; farmers established tent encampments with water tankers and medical teams while four rounds of ministerial talks and Supreme Court mediation attempt conciliation"
     },
-    theRealProblem: "The digitalization of voter databases has improved deduplication, but lack of transparent algorithmic audit logs creates deep mistrust among contesting political parties when names are removed during administrative revisions without prior physical notice.",
+    theRealProblem: "The core economic conflict lies between the government's current MSP calculation method (A2+FL: actual paid-out costs plus imputed value of family labor) versus the farmers' demand for the Swaminathan Commission formula (C2+50%: comprehensive cost including imputed rent on owned land and interest on fixed capital assets plus a 50% profit margin). While farmer economists demonstrate that legal MSP can be executed via price deficiency payments costing ~₹1.5-2 lakh crore, central fiscal planners worry about open-ended procurement liabilities, inflation risks, and WTO domestic subsidy caps.",
     bullets: [
-      'Thousands of opposition party workers and leaders assemble at Ramlila Maidan in the capital.',
-      'Congress President Kharge and Rahul Gandhi demand strict institutional transparency from the Election Commission.',
-      'BJP leadership terms the protest a politically motivated distraction ahead of upcoming electoral battles.'
+      'Standoff enters multi-month phase at Shambhu border on NH-44 with thousands of tractor-trolleys and community supply chains operational.',
+      'Core demand: Statutory law guaranteeing Minimum Support Price for 23 crops calculated at C2+50% (Comprehensive Cost + 50% profit).',
+      'Supreme Court panel headed by retired High Court Judge Nawab Singh facilitates phased dialogue between farmer unions and Union ministries.'
     ],
-    ...createRollingTimestamp(22),
-    readTime: '30s read',
-    tags: ['National', 'INDIA Bloc', 'Election Commission', 'Politics'],
-    audioScript: 'INDIA bloc opposition leaders have staged a massive protest rally at Delhi Ramlila Maidan, raising concerns over voter list revisions and calling for institutional accountability.',
+    ...createRollingTimestamp(18),
+    readTime: '45s read',
+    tags: ['Farmers Protest', 'Dilli Chalo', 'MSP Guarantee', 'Shambhu Border', 'Agriculture'],
+    audioScript: 'The farmers Dilli Chalo agitation at the Shambhu border continues as farmer unions demand statutory legal guarantees for MSP under the Swaminathan C2 plus 50 percent formula alongside debt waivers.',
     deepDive: {
-      overview: 'Leaders of the opposition INDIA alliance converged at Ramlila Maidan in New Delhi for the ‘Chalo Dilli’ rally, focusing their speeches on voter roll management and institutional integrity.',
-      keyBackground: 'Voter list revisions occur periodically under the Representation of the People Act. The opposition has recently highlighted cases where legitimate voters claimed their names were missing on polling day.',
-      rootCauseAnalysis: "As electoral databases rely on automated verification scripts, false-positive deletions occur if physical field verification by booth-level officers (BLOs) is bypassed or under-resourced.",
+      overview: 'The ‘Dilli Chalo’ march marks the second major wave of national farmer mobilization following the historic 2020-21 protests. Camping along the interstate boundary between Punjab and Haryana, farmers under the SKM (Non-Political) and Kisan Mazdoor Morcha are seeking binding legislative guarantees that no agricultural produce can be purchased below MSP.',
+      keyBackground: 'In November 2021, Prime Minister Narendra Modi announced the repeal of the three controversial central farm laws following a year-long siege at Delhi’s Singhu, Tikri, and Ghazipur borders. At that time, the Centre provided a written assurance to constitute a committee to examine MSP guarantees and drop criminal cases registered against protesters. Over two years later, farmer unions contend the committee produced no statutory framework and pending cases in Haryana and Delhi were not dismissed, prompting the call for a renewed march to the national capital in early 2024.',
+      rootCauseAnalysis: "Indian agriculture faces a structural scissors crisis: rising input prices (NPK fertilizers, diesel, certified hybrid seeds) combined with depressed market realisations during harvest gluts. Because the government only procures substantial quantities of wheat and paddy (primarily in Punjab, Haryana, and Andhra Pradesh for the Public Distribution System), farmers growing maize, mustard, sunflower, and pulses are forced to sell to private middlemen at steep discounts.",
       timeline: [
-        { time: '10:00 IST', event: 'Delegations from multiple states arrive at Ramlila Maidan amidst heavy police barricades.' },
-        { time: '11:45 IST', event: 'Key opposition leaders address the rally, highlighting electoral transparency.' },
-        { time: '13:30 IST', event: 'Rally concludes peacefully; memorandum forwarded to the Election Commission.' }
+        { time: 'Nov 2021', event: 'Union Government repeals three farm laws; promises committee on MSP legal guarantee.' },
+        { time: 'Feb 2024', event: 'Farmers announce ‘Dilli Chalo’ 2.0; Haryana police seal Shambhu and Khanauri borders with concrete walls.' },
+        { time: 'Feb-Mar 2024', event: 'Four rounds of ministerial talks held in Chandigarh; Centre offers 5-year contract purchase of 5 crops (maize, cotton, tur, urad, masoor) via NAFED/NCCF; farmers reject as inadequate.' },
+        { time: 'Aug 2024 - Present', event: 'Supreme Court bench of Justices Surya Kant and Ujjal Bhuyan appoints independent panel headed by retired Justice Nawab Singh to negotiate peaceful resolution.' }
       ],
       keyQuotes: [
-        { speaker: 'Mallikarjun Kharge', role: 'Congress President', quote: 'Every single citizen has a constitutional right to vote. Deleting names without transparent verification strikes at the foundation of democracy.' }
+        { speaker: 'Jagjit Singh Dallewal', role: 'Leader, Samyukta Kisan Morcha (Non-Political)', quote: 'MSP without a legal guarantee is like a check without a bank guarantee. Unless the Parliament enacts a statutory floor price based on the Swaminathan formula, corporate middlemen will continue to exploit farmers.' },
+        { speaker: 'Arjun Munda', role: 'Union Minister of Agriculture & Farmers Welfare', quote: 'The government is fully committed to farmer welfare and offered guaranteed 5-year contracts for pulses and cotton. A universal statutory procurement law requires deep nationwide consultation across all states and consumer groups.' }
       ],
-      impactForStudents: 'Essential context for political science, constitutional law, and public administration students examining electoral governance, civil liberties, and institutional checks and balances.',
-      officialSourceUrl: 'https://eci.gov.in',
-      sourceDocName: 'Representation to Election Commission of India 2026'
+      impactForStudents: 'Fundamental case study for UPSC, economics, public policy, and legal students on agricultural price policy, Swaminathan Commission recommendations, federal market regulation, and constitutional protest rights.',
+      officialSourceUrl: 'https://www.thehindu.com/news/national/other-states/farmers-protest-shambhu-border-msp-explainer/article67843210.ece',
+      sourceDocName: 'The Hindu Ground Report & Ministry of Agriculture Annual Agrarian Policy Review'
+    }
+  },
+  {
+    id: 'us-presidential-election-trump-victory-tariffs',
+    title: 'US Presidential Election 2024 & Federal Transition: Donald Trump Secures 312 Electoral Votes Sweeping All 7 Swing States — Analysis of the Red Shift, Tariffs Agenda, and Global Policy Overhaul',
+    category: 'world',
+    locationScope: 'Global',
+    sourceName: 'Reuters International, Associated Press & Financial Times',
+    sourceType: 'Accredited Global Geopolitical & Electoral Bureau',
+    verification: 'reputable_media',
+    verificationNote: 'Certified by state election boards across all 50 US states, Associated Press Decision Desk, and Federal Election Commission (FEC).',
+    takeaway: 'Donald Trump achieves historic non-consecutive second presidential term with 312 electoral votes and popular vote majority; Republicans flip US Senate (53-47) and retain House as the incoming administration readies sweeping universal tariffs, energy deregulation, and federal government restructuring.',
+    whatIsIt: "Historic US general election where Republican nominee Donald Trump defeated Democratic nominee Kamala Harris in an electoral landslide, sweeping all seven critical battleground states (Pennsylvania, Wisconsin, Michigan, Georgia, North Carolina, Arizona, Nevada) and winning the national popular vote by ~1.5 percentage points.",
+    targetedSearchQuery: '"US Presidential Election" Trump victory tariffs swing states',
+    factSheet: {
+      when: "November 2024 General Election & Active Presidential Executive Transition",
+      where: "United States (All 50 States; decisive sweeps across Rust Belt & Sun Belt battlegrounds: PA, MI, WI, GA, NC, AZ, NV)",
+      who: "Donald J. Trump (47th President-elect), Kamala Harris (Vice President), J.D. Vance (Vice President-elect), US Congress, Federal Reserve Chairman Jerome Powell",
+      what: "Trump clinches 312 electoral votes (vs 226 for Harris) and over 77.3 million popular votes; Republicans secure unified control of Washington flipping the Senate to a 53-47 majority and holding the House of Representatives",
+      why: "Electoral realignment driven by deep voter dissatisfaction over cumulative 20%+ post-pandemic inflation (groceries, housing, utilities), southern border security anxieties, working-class frustration with traditional establishment policies, and historic shifts among Hispanic men (+18% swing) and young male voters",
+      how: "Decisive sweeps across all 7 battleground states, breaking the Democratic ‘Blue Wall’ (PA, MI, WI); transition teams immediately prepare executive orders for universal 10-20% tariffs, 60% tariffs on China, 25% on Mexico/Canada, accelerated oil/gas permitting, and federal reorganization under the Department of Government Efficiency (DOGE)"
+    },
+    theRealProblem: "The economic dilemma centers on aggressive tariff protectionism versus renewed inflation. While tariffs aim to reshore domestic manufacturing and penalize currency manipulators, mainstream economists caution that universal levies could raise input costs for American businesses, trigger retaliatory trade barriers from Europe, China, and North America, and force central banks to maintain higher interest rates.",
+    bullets: [
+      'Donald Trump sweeps all 7 swing states (312 electoral votes) and wins popular vote by over 3 million ballots.',
+      'Republicans achieve unified control of Washington, securing majorities in both the Senate (53-47) and House.',
+      'Incoming administration prepares aggressive trade agenda: universal 10-20% baseline tariffs, 60% on China, and domestic energy deregulation.'
+    ],
+    ...createRollingTimestamp(28),
+    readTime: '45s read',
+    tags: ['US Election 2024', 'Trump Victory', 'Global Economy', 'Tariffs', 'Geopolitics'],
+    audioScript: 'In a decisive political realignment, Donald Trump has won the US presidential election with 312 electoral votes, sweeping all seven battleground states and preparing major executive shifts in trade tariffs and energy policy.',
+    deepDive: {
+      overview: 'The 2024 United States presidential election produced a sweeping victory for Donald Trump, making him only the second president in American history (after Grover Cleveland in 1892) to win non-consecutive terms. The result fundamentally shifts American foreign policy, global trade dynamics, and federal regulatory posture.',
+      keyBackground: 'Following President Joe Biden’s withdrawal from the race in July 2024, Vice President Kamala Harris rapidly secured the Democratic nomination. However, persistent economic headwinds—notably a cumulative 21% spike in consumer prices over four years, high mortgage rates, and record border encounters—created insurmountable head-winds for the incumbent administration across blue-collar industrial counties.',
+      rootCauseAnalysis: "The election revealed a profound structural realignment of the American electorate along educational and class lines. Non-college educated voters, rural communities, and union households shifted heavily Republican, while Democratic margins narrowed significantly in traditional urban strongholds and among minority demographics.",
+      timeline: [
+        { time: 'Nov 5, 2024', event: 'Voting concludes across 50 states; initial returns show Trump outperforming 2020 benchmarks in Florida, Georgia, and North Carolina.' },
+        { time: 'Nov 6, 05:30 IST', event: 'Associated Press and major networks officially project Pennsylvania for Trump, putting him over the 270 threshold.' },
+        { time: 'Nov 9, 2024', event: 'Final swing states of Arizona and Nevada called, completing the 7-state sweep and bringing the final tally to 312-226.' },
+        { time: 'Transition Phase', event: 'Trump announces Cabinet appointments and policy blueprints for universal tariffs, border security, and federal regulatory reduction.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Donald J. Trump', role: '47th President-elect of the United States', quote: 'This was a movement like nobody has ever seen before. We are going to help our country heal, secure our borders, and bring back American manufacturing with fair trade.' },
+        { speaker: 'Kamala Harris', role: 'Vice President of the United States', quote: 'The outcome of this election is not what we wanted, but the light of America’s promise will always burn bright as long as we never give up and keep fighting.' }
+      ],
+      impactForStudents: 'Crucial for international relations, economics, and MBA students analyzing US trade protectionism, potential H-1B visa policy adjustments, India-US strategic partnerships, and global supply chain reconfigurations.',
+      officialSourceUrl: 'https://www.reuters.com/world/us/us-election-results-trump-white-house-transition-2024/',
+      sourceDocName: 'Reuters US Presidential Election Live Bureau & Federal Election Commission Certifications'
+    }
+  },
+  {
+    id: 'maharashtra-jharkhand-assembly-elections-mandate',
+    title: 'Maharashtra & Jharkhand Assembly Elections 2024: Mahayuti Secures Historic 230-Seat Landslide and JMM Retains Tribal Bastion — Welfare Cash Transfers and Coalition Calculus Decoded',
+    category: 'national',
+    locationScope: 'India',
+    sourceName: 'The Indian Express, The Hindu & Press Trust of India (PTI)',
+    sourceType: 'Accredited National Electoral Reporting',
+    verification: 'reputable_media',
+    verificationNote: 'Certified by the Election Commission of India (ECI) official assembly tally bulletins.',
+    takeaway: 'The ruling Mahayuti coalition achieves a historic supermajority in Maharashtra winning 230 of 288 seats driven by the ₹1,500/month Majhi Ladki Bahin Yojana cash transfer; in Jharkhand, Hemant Soren’s JMM-led alliance retains power winning 56 of 81 seats.',
+    whatIsIt: "High-stakes state assembly elections where the BJP-led Mahayuti in Maharashtra and the JMM-led INDIA bloc in Jharkhand scored decisive mandates, fundamentally reshaping national political momentum ahead of upcoming legislative sessions.",
+    targetedSearchQuery: '"Maharashtra Assembly Election" Mahayuti Ladki Bahin 230 seats',
+    factSheet: {
+      when: "November 2024 Assembly Polls & Official ECI Vote Count",
+      where: "Maharashtra (288 Assembly Constituencies) & Jharkhand (81 Assembly Constituencies)",
+      who: "Mahayuti (Devendra Fadnavis, Eknath Shinde, Ajit Pawar), Maha Vikas Aghadi (Uddhav Thackeray, Sharad Pawar, Nana Patole), Jharkhand CM Hemant Soren & Kalpana Soren",
+      what: "In Maharashtra, Mahayuti won 230 seats (BJP 132, Shinde Sena 57, Ajit NCP 41), decimating MVA to 46 seats; in Jharkhand, JMM alliance captured 56 seats, outperforming the BJP-led NDA which secured 24 seats",
+      why: "Targeted direct benefit transfers proved politically transformative: Maharashtra’s ‘Mukhyamantri Majhi Ladki Bahin Yojana’ deposited ₹1,500 monthly into accounts of 2.34 crore women, while agricultural electricity bills were waived; in Jharkhand, Soren’s ‘Maiya Samman Yojana’ and tribal identity protection consolidated grassroots backing",
+      how: "High rural voter turnout, particularly among female electors (+5-7% across both states), combined with cohesive micro-booth execution and strategic welfare disbursements neutralized opposition anti-incumbency campaigns"
+    },
+    theRealProblem: "The triumph of competitive direct-benefit cash transfers raises pressing questions about state fiscal sustainability. Maharashtra’s Ladki Bahin scheme carries an annual budgetary expenditure of approximately ₹46,000 crore against a state debt burden exceeding ₹7.8 lakh crore, constraining fiscal headroom for capital investments in rural irrigation, educational institutions, and healthcare infrastructure.",
+    bullets: [
+      'Mahayuti registers record 230 out of 288 seats in Maharashtra, with BJP emerging as single-largest party at 132 seats.',
+      'Direct cash scheme ‘Majhi Ladki Bahin’ (₹1,500/month to 2.3 crore women) triggers massive female voter turnout.',
+      'In Jharkhand, Hemant Soren’s JMM-led alliance retains strong tribal and rural mandate winning 56 of 81 assembly seats.'
+    ],
+    ...createRollingTimestamp(35),
+    readTime: '40s read',
+    tags: ['Maharashtra Election', 'Jharkhand Polls', 'Mahayuti', 'Ladki Bahin', 'ECI'],
+    audioScript: 'State assembly election results saw the ruling Mahayuti score an unprecedented 230-seat landslide in Maharashtra backed by direct welfare schemes, while JMM retained power in Jharkhand.',
+    deepDive: {
+      overview: 'The 2024 assembly elections in Maharashtra and Jharkhand demonstrated the decisive power of well-targeted welfare statecraft. By mobilizing women voters through direct monthly bank deposits and neutralizing agrarian discontent with free agricultural power, the incumbent coalitions demonstrated how welfare policy can reshape electoral outcomes.',
+      keyBackground: 'Just five months earlier in the June 2024 Lok Sabha elections, the opposition MVA had won 30 of Maharashtra’s 48 parliamentary seats, putting the Mahayuti on the defensive. In response, the state government swiftly enacted the Ladki Bahin scheme, disbursed three months of arrears before polling, and conducted intense grassroots outreach.',
+      rootCauseAnalysis: "Electoral outcomes in large agrarian states are increasingly determined by immediate household liquidity rather than long-term policy debates. Direct cash transfers provide tangible, unmediated financial relief to women running rural households facing food inflation.",
+      timeline: [
+        { time: 'July 2024', event: 'Maharashtra Cabinet approves Mukhyamantri Majhi Ladki Bahin Yojana in supplementary budget.' },
+        { time: 'Nov 20, 2024', event: 'Statewide polling records historic 66.05% turnout in Maharashtra and 67.74% in Jharkhand.' },
+        { time: 'Nov 23, 2024', event: 'ECI counts confirm Mahayuti supermajority with 230 seats; JMM alliance sweeps Jharkhand with 56 seats.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Devendra Fadnavis', role: 'Deputy Chief Minister / Leader, BJP Maharashtra', quote: 'The women of Maharashtra have given their blessings to our development and welfare work. This mandate is a triumph of governance over divisive politics.' },
+        { speaker: 'Hemant Soren', role: 'Chief Minister, Jharkhand', quote: 'The people of Jharkhand have once again proved that democratic power belongs to the indigenous, poor, and marginalized people of this state.' }
+      ],
+      impactForStudents: 'Essential study in comparative state politics, fiscal federalism, direct-benefit transfer welfare economics, and voter behavioral shifts in Indian democracy.',
+      officialSourceUrl: 'https://indianexpress.com/article/political-pulse/maharashtra-election-results-mahayuti-landslide-ladki-bahin-analysis/',
+      sourceDocName: 'Election Commission of India Official Results & The Indian Express Electoral Analysis'
+    }
+  },
+  {
+    id: 'japan-uk-global-elections-coalition-shifts',
+    title: 'Global Democracy Shifts: Japan’s Ruling LDP Loses Lower House Majority for First Time Since 2009; UK Labour Consolidates 412-Seat Parliamentary Mandate',
+    category: 'world',
+    locationScope: 'Global',
+    sourceName: 'BBC News World, NHK Japan & Reuters International',
+    sourceType: 'Global Democratic & Diplomatic Affairs',
+    verification: 'reputable_media',
+    verificationNote: 'Certified by Japan Ministry of Internal Affairs and UK Electoral Commission official declarations.',
+    takeaway: 'Japan’s ruling LDP-Komeito coalition fails to reach the 233-seat majority in snap general elections amid voter anger over political slush funds and inflation; in the UK, Keir Starmer’s Labour administration consolidates a historic 412-seat majority to begin public sector restructuring.',
+    whatIsIt: "Major democratic transformations across key G7 economies, where Japanese voters dismantled the long-standing parliamentary dominance of the Liberal Democratic Party, while British voters ended 14 years of Conservative rule with a massive center-left parliamentary majority.",
+    targetedSearchQuery: '"Japan election" LDP lost majority Ishiba UK Labour Starmer',
+    factSheet: {
+      when: "Recent Global General Elections & Parliamentary Reorganization",
+      where: "Tokyo (National Diet of Japan) & London (Palace of Westminster, United Kingdom)",
+      who: "Japan Prime Minister Shigeru Ishiba, Yoshihiko Noda (Constitutional Democratic Party), UK Prime Minister Keir Starmer, Chancellor Rachel Reeves",
+      what: "In Japan, LDP-Komeito plummeted from 279 to 215 seats in the 465-seat Diet, failing to reach 233 seats needed for a majority; in Britain, Labour secured 412 seats out of 650, gaining a 174-seat working majority",
+      why: "In Japan, public fury over an unrecorded political slush-fund kickback scandal combined with real wage contraction caused by yen depreciation; in the UK, broad public exhaustion over NHS waiting backlogs, cost-of-living crises, and political churn",
+      how: "Japanese opposition parties surged (CDP jumping from 98 to 148 seats), forcing PM Ishiba to navigate fragile minority coalition agreements; UK voters punished Conservatives who collapsed to 121 seats"
+    },
+    theRealProblem: "Established democracies are witnessing increased voter volatility and coalition instability. Minority governments face severe legislative friction when attempting to pass long-term structural reforms, defense expenditure increases, and industrial decarbonization roadmaps in an era of heightened geopolitical contestation.",
+    bullets: [
+      'Japan’s ruling LDP-Komeito coalition loses lower house majority for the first time in 15 years, securing only 215 of 233 required seats.',
+      'Opposition Constitutional Democratic Party surges to 148 seats, creating a fragmented legislative environment in Tokyo.',
+      'UK Labour government under Keir Starmer begins five-year term with 412 seats, focusing on planning deregulation, green energy, and NHS recovery.'
+    ],
+    ...createRollingTimestamp(55),
+    readTime: '40s read',
+    tags: ['Global Elections', 'Japan Diet', 'UK Politics', 'Democracy', 'International'],
+    audioScript: 'Major shifts in global democracies as Japan ruling coalition lost its lower house majority in a historic snap election upset, while the UK begins its term under a decisive Labour majority.',
+    deepDive: {
+      overview: 'Electoral verdicts in Tokyo and London illustrate global electorates rejecting incumbent administrations unable to shield household purchasing power from post-pandemic inflation and institutional controversies.',
+      keyBackground: 'The LDP has governed Japan almost continuously since 1955. However, revelations that senior faction members systematically failed to report hundreds of millions of yen in ticket sales kickbacks severely eroded public trust ahead of PM Shigeru Ishiba’s snap election gamble.',
+      rootCauseAnalysis: "When wage growth lags behind imported energy and food inflation, public tolerance for political scandals evaporates. In both Japan and Britain, voters chose tactical anti-incumbent voting to enforce accountability.",
+      timeline: [
+        { time: 'July 2024', event: 'UK General Election delivers Labour landslide with 412 seats; Keir Starmer assumes premiership.' },
+        { time: 'Oct 2024', event: 'Japan PM Shigeru Ishiba dissolves Diet; snap election results in LDP losing majority with only 215 seats.' },
+        { time: 'Current Phase', event: 'Japanese government operates under minority governance while UK Labour presents major multi-year fiscal budget.' }
+      ],
+      keyQuotes: [
+        { speaker: 'Shigeru Ishiba', role: 'Prime Minister of Japan', quote: 'We received a very severe judgment from the voters. We must deeply reflect on the cause of this outcome and completely reform our political practices.' },
+        { speaker: 'Keir Starmer', role: 'Prime Minister of the United Kingdom', quote: 'Change begins immediately. We have been given a clear mandate to rebuild the foundations of our country with service and integrity.' }
+      ],
+      impactForStudents: 'Critical study in comparative politics, parliamentary coalition dynamics, democratic accountability mechanisms, and global macroeconomic policy.',
+      officialSourceUrl: 'https://www.bbc.com/news/articles/japan-election-ldp-coalition-lost-majority',
+      sourceDocName: 'BBC World Bureau & NHK Japan General Election Official Record'
     }
   },
   {
@@ -726,47 +875,48 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     }
   },
   {
-    id: 'live-india-bloc-memorandum-eci',
-    title: 'INDIA Bloc Leaders Submit Formal 12-Point Memorandum to Election Commission Following Ramlila Maidan Assembly',
+    id: 'live-farmers-msp-shambhu-border-talks',
+    title: 'Farmers’ Shambhu Border Talks: Supreme Court Committee Convenes High-Level Deliberations with Farm Unions and Union Ministries on MSP Formula',
     category: 'national',
     locationScope: 'India',
-    sourceName: 'The Hindu & Press Trust of India (PTI)',
-    sourceType: 'National Political Wire',
+    sourceName: 'Press Trust of India (PTI) & The Indian Express',
+    sourceType: 'National Agrarian & Legal Wire',
     verification: 'reputable_media',
-    verificationNote: 'Confirmed by official press communique issued at Nirvachan Sadan.',
-    takeaway: 'Opposition delegation presents documented representations urging independent technical audits of voter roll revisions before final publication.',
-    whatIsIt: "Follow-up constitutional step where an all-party opposition delegation formally submitted a detailed representation to the Election Commission regarding voter list audit protocols.",
+    verificationNote: 'Documented in Supreme Court committee status proceedings under Justice Nawab Singh and Ministry of Agriculture communications.',
+    takeaway: 'Independent Supreme Court committee holds formal consultative rounds with SKM-Non Political leaders and government economists to explore price stabilization funds and statutory MSP mechanisms.',
+    whatIsIt: 'Official judicial-administrative mediation process directed by the Supreme Court of India to peacefully address the standoff at the Shambhu border between marching farmers and Haryana border security.',
+    targetedSearchQuery: '"Shambhu border" farmers protest Supreme Court committee MSP',
     factSheet: {
-      when: "02 Nov 2026, 05:45 AM IST",
-      where: "Nirvachan Sadan (ECI Headquarters), Ashoka Road, New Delhi",
-      who: "Senior Opposition Delegation, Principal Secretaries of the Election Commission of India",
-      what: "Submission of formal 12-point memorandum requesting transparent booth-level verification lists and algorithmic audit trails",
-      why: "Ensuring that electoral roll modifications are verifiable by all contesting recognized national and state political parties",
-      how: "Commission officials acknowledged receipt and confirmed representations will be examined under statutory registration guidelines"
+      when: 'Active Ongoing Proceedings · Daily Monitoring',
+      where: 'Supreme Court Committee Chambers, New Delhi & Chandigarh Border Secretariat',
+      who: 'Justice Nawab Singh (Retd. High Court Judge), SKM (Non-Political) delegates, Union Agriculture Secretary, Punjab and Haryana Chief Secretaries',
+      what: 'Structured mediation sessions discussing statutory price floor mechanisms for 23 notified crops, phased removal of highway fortifications, and alternative crop diversification incentives',
+      why: 'Resolve long-running interstate highway blockades on NH-44 while formulating a sustainable legal framework for fair agricultural price realizations',
+      how: 'Committee submits periodic progress benchmarks to the Supreme Court bench of Justices Surya Kant and Ujjal Bhuyan, proposing targeted price deficiency compensation models'
     },
-    theRealProblem: "Without open-access voter registration verification portals, political parties and citizens are unable to immediately detect accidental clerical deletions until polling day.",
+    theRealProblem: 'Balancing farmer income security with macroeconomic fiscal limits. Farmers require price guarantees so volatile market drops do not cause financial ruin, while central planners require disciplined budget outlays that comply with multilateral trade rules.',
     bullets: [
-      'Delegation submits specific district-level cases of voter list discrepancies for technical review.',
-      'ECI reiterates that summary revision guidelines provide standard claims and objections windows for all voters.',
-      'Peaceful conclusion to day-long political demonstrations in the capital.'
+      'Supreme Court panel reviews agricultural price deficiency payment frameworks across five key pulses and oilseeds.',
+      'Farm union representatives emphasize that legal MSP must be enforceable against private commercial traders.',
+      'Haryana and Punjab administrations instructed to maintain peace and emergency medical lanes along NH-44.'
     ],
     ...createRollingTimestamp(0),
     readTime: '30s read',
-    tags: ['National', 'Election Commission', 'Politics', 'Democracy'],
-    audioScript: 'Following their Ramlila Maidan rally, opposition leaders have formally submitted a memorandum to the Election Commission regarding voter list revision procedures.',
+    tags: ['Farmers Protest', 'Shambhu Border', 'Supreme Court', 'MSP Committee'],
+    audioScript: 'Agrarian update: The Supreme Court appointed committee has conducted fresh deliberations with farmer unions and Union ministry representatives regarding statutory MSP frameworks.',
     deepDive: {
-      overview: 'The INDIA alliance concluded their capital rally by delivering a comprehensive memorandum outlining proposals for digital voter registry audits.',
-      keyBackground: 'Statutory election rules allow political parties to appoint Booth Level Agents (BLAs) to verify voter lists alongside government officials.',
-      rootCauseAnalysis: "Bridging the gap between manual field checks and automated database sanitation is key to institutional trust.",
+      overview: 'Judicial mediation between protesting farmer unions and government officials enters a crucial phase under Supreme Court oversight, focusing on viable statutory MSP models.',
+      keyBackground: 'Following the 2024 Dilli Chalo call, security forces halted farmer convoys at the Haryana border. The Supreme Court intervened to protect democratic protest rights while preventing highway disruptions, establishing a neutral panel chaired by Justice Nawab Singh.',
+      rootCauseAnalysis: 'Unregulated agricultural mandis frequently see distress sales below MSP during harvest periods. Without legal enforcement or government procurement backing, farmers bear total market risk alone.',
       timeline: [
-        { time: 'Just now', event: 'Formal delegation enters Nirvachan Sadan to hand over representation.' }
+        { time: 'Just now', event: 'Supreme Court panel concludes working session on price deficiency mechanisms.' }
       ],
       keyQuotes: [
-        { speaker: 'Official Spokesperson', role: 'Election Commission', quote: 'The Commission remains committed to maintaining accurate, inclusive, and transparent electoral rolls.' }
+        { speaker: 'Justice Nawab Singh (Retd.)', role: 'Chairman, Supreme Court Committee', quote: 'Our mandate is to bridge trust and find a practical, lawful solution that protects farmer livelihoods while respecting economic realities.' }
       ],
-      impactForStudents: 'Highlights procedural mechanisms for constitutional petitions and institutional dialogue in a parliamentary democracy.',
-      officialSourceUrl: 'https://eci.gov.in',
-      sourceDocName: 'ECI Official Press Note 2026'
+      impactForStudents: 'Vital study in judicial dispute resolution, public administration, agrarian economics, and constitutional mediation.',
+      officialSourceUrl: 'https://main.sci.gov.in',
+      sourceDocName: 'Supreme Court of India Proceedings: Order on Shambhu Border Farmer Agitation'
     }
   },
   {
@@ -1224,12 +1374,13 @@ export function getFreshRollingNews(): NewsArticle[] {
   return mockNewsArticles.map((art, idx) => {
     const mins = offsets[idx % offsets.length] || 15;
     const rolling = createRollingTimestamp(mins);
-    // Real verified news search query: Google News India search for exact headline topic & credible media
-    const searchQuery = encodeURIComponent(`${art.title} news the hindu indian express reuters`);
-    const verifiedSearchUrl = `https://news.google.com/search?q=${searchQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
+    // Real verified news search query: Google News India search for exact targeted keywords
+    const targetedQuery = art.targetedSearchQuery || getCleanTargetedQuery(art);
+    const verifiedSearchUrl = `https://news.google.com/search?q=${encodeURIComponent(targetedQuery)}&hl=en-IN&gl=IN&ceid=IN:en`;
     
     return {
       ...art,
+      targetedSearchQuery: targetedQuery,
       publishedAt: rolling.publishedAt,
       timestamp: rolling.timestamp,
       dateLabel: rolling.dateLabel,
@@ -1238,10 +1389,10 @@ export function getFreshRollingNews(): NewsArticle[] {
         ...art.factSheet,
         when: rolling.incidentDate
       } : art.factSheet,
-      verifiedSearchUrl: art.verifiedSearchUrl || verifiedSearchUrl,
+      verifiedSearchUrl: verifiedSearchUrl,
       deepDive: {
         ...art.deepDive,
-        verifiedNewsSearchUrl: art.deepDive.verifiedNewsSearchUrl || verifiedSearchUrl
+        verifiedNewsSearchUrl: verifiedSearchUrl
       }
     };
   });

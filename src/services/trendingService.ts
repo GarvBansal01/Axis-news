@@ -8,6 +8,10 @@ const TRENDING_STORAGE_KEY = 'axis_trending_cache_v1';
 
 // Base simulated view counts seeded from editorial importance to initialize realistic trending on first visit
 const INITIAL_VIEW_SEED: Record<string, number> = {
+  'farmers-dilli-chalo-msp-shambhu-protest': 185,
+  'us-presidential-election-trump-victory-tariffs': 210,
+  'maharashtra-jharkhand-assembly-elections-mandate': 165,
+  'japan-uk-global-elections-coalition-shifts': 135,
   'cyclone-murasu-bay-of-bengal-alert': 124,
   'deepseek-v3-architecture-technical-breakthrough': 148,
   'isro-sce200-semicryogenic-hotfire-milestone': 112,
@@ -22,13 +26,16 @@ const INITIAL_VIEW_SEED: Record<string, number> = {
   'microsoft-aws-power-grid-datacenter-bottleneck': 50,
   'nvidia-blackwell-supercomputing-racks-shipped': 62,
   'russia-ukraine-high-tech-frontline-grain-pact': 52,
-  'india-bloc-chalo-dilli-ramlila-protest': 48,
   'siliguri-teesta-nh10-highway-dooars-elephant-corridor': 36,
   'cricket-t20-series-win-ishan-kishan-record': 42
 };
 
 // Canonical entity clusters for matching related dispatches reporting the same event
 const KNOWN_EVENT_SIGNATURES: { key: string; keywords: string[] }[] = [
+  { key: 'farmers-dilli-chalo', keywords: ['farmers', 'dilli chalo', 'shambhu', 'msp', 'swaminathan', 'khanauri', 'kisan'] },
+  { key: 'us-election-trump', keywords: ['us election', 'trump', 'presidential', 'swing states', 'tariffs', 'electoral'] },
+  { key: 'maharashtra-election', keywords: ['maharashtra', 'mahayuti', 'ladki bahin', 'assembly election', 'jharkhand', 'hemant soren'] },
+  { key: 'japan-uk-elections', keywords: ['japan', 'ldp', 'ishiba', 'uk election', 'labour', 'starmer'] },
   { key: 'cyclone-murasu', keywords: ['cyclone', 'murasu', 'bay of bengal', 'andhra', 'odisha', 'imd'] },
   { key: 'deepseek-v3', keywords: ['deepseek', 'v3', 'moe', 'architecture', '671b', 'open weights', 'reasoning'] },
   { key: 'isro-sce200', keywords: ['isro', 'sce-200', 'sce200', 'semicryogenic', 'cryogenic', 'gaganyaan', 'mahendragiri'] },
@@ -42,7 +49,7 @@ const KNOWN_EVENT_SIGNATURES: { key: string; keywords: string[] }[] = [
   { key: 'google-tpu', keywords: ['google', 'tpu', 'sundar pichai', 'custom silicon', 'tensor processing unit'] },
   { key: 'microsoft-aws-power', keywords: ['microsoft', 'aws', 'power grid', 'electrical grid', 'datacenter power', 'satya nadella'] },
   { key: 'nvidia-blackwell', keywords: ['nvidia', 'blackwell', 'gb200', 'jensen huang', 'accelerated computing'] },
-  { key: 'india-bloc-protest', keywords: ['india bloc', 'ramlila maidan', 'chalo dilli', 'voter list', 'election commission'] },
+  { key: 'india-bloc-protest', keywords: ['india bloc', 'ramlila maidan', 'voter list', 'election commission'] },
   { key: 'russia-ukraine', keywords: ['russia', 'ukraine', 'refinery', 'drone strike', 'pokrovsk', 'kstovo'] },
   { key: 'teesta-nh10', keywords: ['teesta', 'nh-10', 'nh10', 'siliguri', 'sevoke', 'dooars', 'darjeeling'] }
 ];

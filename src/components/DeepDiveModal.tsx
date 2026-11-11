@@ -14,6 +14,7 @@ import {
   Target
 } from 'lucide-react';
 import { NewsArticle } from '../types';
+import { getTargetedGoogleNewsUrl, getTargetedGoogleSearchUrl } from '../utils/searchHelper';
 
 interface DeepDiveModalProps {
   article: NewsArticle | null;
@@ -33,8 +34,8 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
   if (!article) return null;
 
   const handleShare = async () => {
-    const verifiedUrl = article.verifiedSearchUrl || article.deepDive.verifiedNewsSearchUrl || `https://news.google.com/search?q=${encodeURIComponent(article.title + ' news')}&hl=en-IN&gl=IN&ceid=IN:en`;
-    const text = `📰 ${article.title}\n\n${article.deepDive.overview}\n\nIncident Date: ${article.incidentDate || article.dateLabel}\nVerified Live Coverage: ${verifiedUrl}\nOfficial Filing: ${article.deepDive.officialSourceUrl}`;
+    const verifiedUrl = getTargetedGoogleNewsUrl(article);
+    const text = `📰 ${article.title}\n\n${article.deepDive.overview}\n\nIncident Date: ${article.incidentDate || article.dateLabel}\nVerified Live Coverage: ${verifiedUrl}\nOfficial Source: ${article.deepDive.officialSourceUrl}`;
     
     if (navigator.share) {
       try {
@@ -310,28 +311,39 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
             </button>
           </div>
 
-          {/* Dual Verified Source Options: Live Google News Coverage + Official Regulatory Filing */}
+          {/* Dual Verified Source Options: Targeted Google News + Official Direct Publisher Wire */}
           <div className="flex flex-wrap items-center gap-2">
             <a
-              href={article.verifiedSearchUrl || article.deepDive.verifiedNewsSearchUrl || `https://news.google.com/search?q=${encodeURIComponent(article.title + ' news')}&hl=en-IN&gl=IN&ceid=IN:en`}
+              href={getTargetedGoogleNewsUrl(article)}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-medium text-xs shadow-xs transition-colors cursor-pointer"
-              title="Verify live reporting across The Hindu, Indian Express, BBC, Reuters"
+              title={`Read live reporting on "${article.targetedSearchQuery || article.title.split(':')[0]}" across top news outlets`}
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              <span>Verify Coverage (Google News)</span>
+              <span>Read on Google News</span>
             </a>
 
             <a
               href={article.deepDive.officialSourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 font-mono text-xs px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-              title="Official Agency / Government Portal Record"
+              className="flex items-center gap-1 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 font-mono text-xs px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              title="Open direct primary reporting or official gazette"
             >
-              <span>Filing: {article.deepDive.sourceDocName || 'Official Source'}</span>
-              <ExternalLink className="w-3 h-3" />
+              <span>Source: {article.deepDive.sourceDocName || article.sourceName.split(',')[0]}</span>
+              <ExternalLink className="w-3 h-3 text-zinc-400" />
+            </a>
+
+            <a
+              href={getTargetedGoogleSearchUrl(article)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex items-center gap-1 text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 font-mono text-xs px-2 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              title="Search related articles on Google"
+            >
+              <span>Web Search</span>
+              <ExternalLink className="w-2.5 h-2.5 text-zinc-400" />
             </a>
           </div>
         </div>

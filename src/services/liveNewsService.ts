@@ -1,6 +1,7 @@
 import { NewsArticle, ArticleFactSheet, NewsCategory, LocationScope } from '../types';
 import { createRollingTimestamp } from '../data/mockNews';
 import { summaryCacheService, computeContentFingerprint } from './summaryCacheService';
+import { getCleanTargetedQuery } from '../utils/searchHelper';
 
 // Live News API Configuration
 // Users can provide API keys via Vercel Environment Variables, .env.local, or UI modal
@@ -200,8 +201,8 @@ async function fetchFromGoogleNewsRSS(topic?: string): Promise<NewsArticle[]> {
       }
       const rolling = createRollingTimestamp(minutesAgo);
       
-      const searchQuery = encodeURIComponent(`${title} news ${source}`);
-      const verifiedSearchUrl = `https://news.google.com/search?q=${searchQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
+      const targetedSearchQuery = getCleanTargetedQuery({ title, targetedSearchQuery: undefined });
+      const verifiedSearchUrl = `https://news.google.com/search?q=${encodeURIComponent(targetedSearchQuery)}&hl=en-IN&gl=IN&ceid=IN:en`;
       
       // Check summary cache to prevent redundant summarization on page reloads
       const contentFingerprint = computeContentFingerprint(title, source, cleanDesc);
@@ -258,6 +259,7 @@ async function fetchFromGoogleNewsRSS(topic?: string): Promise<NewsArticle[]> {
         readTime: '30s read',
         tags: [category.toUpperCase(), source, 'Live Radar'],
         factSheet,
+        targetedSearchQuery,
         verifiedSearchUrl,
         deepDive: {
           overview: cleanDesc || title,
@@ -353,8 +355,8 @@ async function fetchFromGNews(topic?: string): Promise<NewsArticle[]> {
       }
       const rolling = createRollingTimestamp(minutesAgo);
 
-      const searchQuery = encodeURIComponent(`${title} news`);
-      const verifiedSearchUrl = `https://news.google.com/search?q=${searchQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
+      const targetedSearchQuery = getCleanTargetedQuery({ title, targetedSearchQuery: undefined });
+      const verifiedSearchUrl = `https://news.google.com/search?q=${encodeURIComponent(targetedSearchQuery)}&hl=en-IN&gl=IN&ceid=IN:en`;
 
       // Check summary cache before invoking any summarization
       const contentFingerprint = computeContentFingerprint(title, source, cleanDesc);
@@ -409,6 +411,7 @@ async function fetchFromGNews(topic?: string): Promise<NewsArticle[]> {
         readTime: '30s read',
         tags: [category.toUpperCase(), 'Live News'],
         factSheet,
+        targetedSearchQuery,
         verifiedSearchUrl,
         deepDive: {
           overview: cleanDesc || title,

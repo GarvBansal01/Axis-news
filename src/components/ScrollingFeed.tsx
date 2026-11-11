@@ -17,6 +17,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { NewsArticle } from '../types';
+import { getTargetedGoogleNewsUrl } from '../utils/searchHelper';
 
 interface ScrollingFeedProps {
   articles: NewsArticle[];
@@ -269,11 +270,11 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
 
                   {/* Direct Verified Google News Link */}
                   <a
-                    href={article.verifiedSearchUrl || `https://news.google.com/search?q=${encodeURIComponent(article.title + ' news')}&hl=en-IN&gl=IN&ceid=IN:en`}
+                    href={getTargetedGoogleNewsUrl(article)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-xs text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-100 font-semibold px-2.5 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-colors cursor-pointer"
-                    title="Read live verified articles from The Hindu, Indian Express, BBC, Reuters"
+                    title={`Read live verified reporting on "${article.targetedSearchQuery || article.title.split(':')[0]}" across top news outlets`}
                   >
                     <ExternalLink className="w-3 h-3 text-blue-600 dark:text-blue-400" />
                     <span>Verify on Google News</span>
