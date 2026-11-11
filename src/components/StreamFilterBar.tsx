@@ -40,6 +40,7 @@ export const StreamFilterBar: React.FC<StreamFilterBarProps> = ({
 
   const categories: { id: NewsCategory; label: string }[] = [
     { id: 'all', label: 'All Dispatches' },
+    { id: 'trending', label: '🔥 Trending Now' },
     { id: 'finance', label: '📈 Finance & Rates' },
     { id: 'education', label: '🎓 Campus & Hiring' },
     { id: 'startups', label: '🚀 Startups & VC' },

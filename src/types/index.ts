@@ -1,5 +1,6 @@
 export type NewsCategory = 
   | 'all' 
+  | 'trending'
   | 'finance' 
   | 'national' 
   | 'geopolitics' 
@@ -16,6 +17,31 @@ export type NewsCategory =
 export type VerificationStatus = 'govt_verified' | 'reputable_media' | 'trending_unverified' | 'emergency_alert';
 
 export type LocationScope = 'Siliguri' | 'North Bengal' | 'West Bengal' | 'India' | 'Global' | 'Eastern Europe' | 'Bay of Bengal' | 'Bengaluru' | 'Sriharikota' | 'New Delhi';
+
+export interface TrendingScoreBreakdown {
+  sourceCount: number;
+  distinctSources: string[];
+  sourcePoints: number;              // (source_count * 2)
+  viewCount: number;                 // view_count_on_axis
+  hoursSinceFirstSeen: number;       // hours elapsed since first reported in window
+  decayFactor: number;               // decay coefficient per hour
+  decayPoints: number;               // (hours_since_first_seen * decay_factor)
+  trendingScore: number;             // (source_count * 2) + view_count - (hours * decay)
+  windowHours: number;               // 6 hours window
+  firstSeenTimestamp: number;
+  lastCalculatedAt: number;
+}
+
+export interface CachedArticleSummary {
+  contentFingerprint: string;
+  takeaway: string;
+  whatIsIt?: string;
+  theRealProblem: string;
+  bullets: [string, string, string];
+  factSheet?: ArticleFactSheet;
+  deepDiveOverview?: string;
+  cachedAt: number;
+}
 
 export interface ArticleFactSheet {
   when: string;       // Exact Date, Time & Timeline status
@@ -62,6 +88,8 @@ export interface NewsArticle {
   tags: string[];
   factSheet?: ArticleFactSheet;
   verifiedSearchUrl?: string;
+  trendingScore?: number;
+  trendingBreakdown?: TrendingScoreBreakdown;
 }
 
 export interface WisdomItem {

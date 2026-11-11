@@ -1,5 +1,6 @@
 import { NewsArticle, ArticleFactSheet, NewsCategory, LocationScope } from '../types';
 import { createRollingTimestamp } from '../data/mockNews';
+import { summaryCacheService, computeContentFingerprint } from './summaryCacheService';
 
 // Live News API Configuration
 // Users can provide API keys via Vercel Environment Variables, .env.local, or UI modal
@@ -201,7 +202,41 @@ async function fetchFromGoogleNewsRSS(topic?: string): Promise<NewsArticle[]> {
       
       const searchQuery = encodeURIComponent(`${title} news ${source}`);
       const verifiedSearchUrl = `https://news.google.com/search?q=${searchQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
-      const factSheet = generateFactSheet(title, source, locationScope, category, rolling.incidentDate);
+      
+      // Check summary cache to prevent redundant summarization on page reloads
+      const contentFingerprint = computeContentFingerprint(title, source, cleanDesc);
+      const cached = summaryCacheService.get(title, contentFingerprint);
+
+      let takeaway = cleanDesc ? cleanDesc.slice(0, 180) + '...' : `Live breaking coverage regarding ${title}.`;
+      let whatIsIt = `Live breaking news event reported by ${source} regarding ${title}.`;
+      let theRealProblem = `Rapidly developing event: public agencies and news desks are monitoring the situation for confirmed official statements and structural impact.`;
+      let bullets: [string, string, string] = [
+        `Reported by ${source} under live national monitoring radar.`,
+        `Initial reporting indicates dynamic developments; ongoing verification in progress.`,
+        `Students and citizens advised to rely on primary verified bulletins.`
+      ];
+      let factSheet = generateFactSheet(title, source, locationScope, category, rolling.incidentDate);
+
+      if (cached) {
+        // Instant retrieval from cache without invoking AI / generation pipelines
+        takeaway = cached.takeaway;
+        whatIsIt = cached.whatIsIt || whatIsIt;
+        theRealProblem = cached.theRealProblem;
+        bullets = cached.bullets;
+        if (cached.factSheet) {
+          factSheet = { ...cached.factSheet, when: rolling.incidentDate };
+        }
+      } else {
+        // Cache newly synthesized summary for subsequent visits
+        summaryCacheService.set(title, contentFingerprint, {
+          takeaway,
+          whatIsIt,
+          theRealProblem,
+          bullets,
+          factSheet,
+          deepDiveOverview: cleanDesc || title
+        });
+      }
 
       return {
         id: `live-rss-${Date.now()}-${idx}`,
@@ -212,14 +247,10 @@ async function fetchFromGoogleNewsRSS(topic?: string): Promise<NewsArticle[]> {
         sourceType: 'Accredited Real-Time News Wire',
         verification: 'reputable_media' as const,
         verificationNote: `Streamed live from ${source} via Google News Real-Time Wire.`,
-        takeaway: cleanDesc ? cleanDesc.slice(0, 180) + '...' : `Live breaking coverage regarding ${title}.`,
-        whatIsIt: `Live breaking news event reported by ${source} regarding ${title}.`,
-        theRealProblem: `Rapidly developing event: public agencies and news desks are monitoring the situation for confirmed official statements and structural impact.`,
-        bullets: [
-          `Reported by ${source} under live national monitoring radar.`,
-          `Initial reporting indicates dynamic developments; ongoing verification in progress.`,
-          `Students and citizens advised to rely on primary verified bulletins.`
-        ],
+        takeaway,
+        whatIsIt,
+        theRealProblem,
+        bullets,
         publishedAt: rolling.publishedAt,
         timestamp: rolling.timestamp,
         dateLabel: rolling.dateLabel,
@@ -324,7 +355,39 @@ async function fetchFromGNews(topic?: string): Promise<NewsArticle[]> {
 
       const searchQuery = encodeURIComponent(`${title} news`);
       const verifiedSearchUrl = `https://news.google.com/search?q=${searchQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
-      const factSheet = generateFactSheet(title, source, locationScope, category, rolling.incidentDate);
+
+      // Check summary cache before invoking any summarization
+      const contentFingerprint = computeContentFingerprint(title, source, cleanDesc);
+      const cached = summaryCacheService.get(title, contentFingerprint);
+
+      let takeaway = cleanDesc ? cleanDesc.slice(0, 180) + '...' : title;
+      let whatIsIt = title;
+      let theRealProblem = `Ongoing real-time development tracked by ${source}.`;
+      let bullets: [string, string, string] = [
+        `Published live by ${source}.`,
+        cleanDesc.slice(0, 120) || `Developing coverage on ${title}.`,
+        `Live verification available on Google News.`
+      ];
+      let factSheet = generateFactSheet(title, source, locationScope, category, rolling.incidentDate);
+
+      if (cached) {
+        takeaway = cached.takeaway;
+        whatIsIt = cached.whatIsIt || whatIsIt;
+        theRealProblem = cached.theRealProblem;
+        bullets = cached.bullets;
+        if (cached.factSheet) {
+          factSheet = { ...cached.factSheet, when: rolling.incidentDate };
+        }
+      } else {
+        summaryCacheService.set(title, contentFingerprint, {
+          takeaway,
+          whatIsIt,
+          theRealProblem,
+          bullets,
+          factSheet,
+          deepDiveOverview: cleanDesc || title
+        });
+      }
 
       return {
         id: `live-gnews-${Date.now()}-${idx}`,
@@ -335,14 +398,10 @@ async function fetchFromGNews(topic?: string): Promise<NewsArticle[]> {
         sourceType: 'Real-Time Global News Wire',
         verification: 'reputable_media' as const,
         verificationNote: `Verified via GNews API feed from ${source}.`,
-        takeaway: cleanDesc ? cleanDesc.slice(0, 180) + '...' : title,
-        whatIsIt: title,
-        theRealProblem: `Ongoing real-time development tracked by ${source}.`,
-        bullets: [
-          `Published live by ${source}.`,
-          cleanDesc.slice(0, 120),
-          `Live verification available on Google News.`
-        ],
+        takeaway,
+        whatIsIt,
+        theRealProblem,
+        bullets,
         publishedAt: rolling.publishedAt,
         timestamp: rolling.timestamp,
         dateLabel: rolling.dateLabel,

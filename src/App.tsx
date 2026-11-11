@@ -15,10 +15,13 @@ import { playAudioChime } from './utils/audioPlayer';
 import { FlashcardDeck } from './components/FlashcardDeck';
 import { ImportantBriefingHero } from './components/ImportantBriefingHero';
 import { FinanceHub } from './components/FinanceHub';
+import { TrendingNowSection } from './components/TrendingNowSection';
 import { fetchLiveRealTimeNews } from './services/liveNewsService';
+import { calculateTrendingMetrics, recordArticleView, TrendingJobScheduler } from './services/trendingService';
 import { 
   Sparkles, 
   TrendingUp, 
+  Flame,
   CloudSun, 
   Clock, 
   Bookmark, 
@@ -81,6 +84,8 @@ const getCategoryBadge = (category: NewsCategory) => {
       return { label: 'Siliguri & Regional', color: 'text-teal-600 dark:text-teal-400' };
     case 'gaming':
       return { label: 'Gaming & Tech', color: 'text-violet-600 dark:text-violet-400' };
+    case 'trending':
+      return { label: 'Trending Radar', color: 'text-rose-600 dark:text-rose-400' };
     case 'finance':
       return { label: 'Finance & Markets', color: 'text-emerald-600 dark:text-emerald-400' };
     default:
@@ -95,6 +100,21 @@ export default function App() {
   const [isSavedOnly, setIsSavedOnly] = useState<boolean>(false);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
   const [newDispatchAlert, setNewDispatchAlert] = useState<string | null>(null);
+
+  // Trending Detection State & 15-Minute Scheduled Job
+  const [trendingData, setTrendingData] = useState<{
+    rankedArticles: NewsArticle[];
+    top5: NewsArticle[];
+    lastCalculatedAt: number;
+  }>(() => {
+    const res = calculateTrendingMetrics(articles);
+    return {
+      rankedArticles: res.rankedArticles,
+      top5: res.top5,
+      lastCalculatedAt: res.lastCalculatedAt
+    };
+  });
+  const [secondsToNextRecalc, setSecondsToNextRecalc] = useState<number>(15 * 60);
 
   // Modals & Drawers
   const [activeDeepDiveArticle, setActiveDeepDiveArticle] = useState<NewsArticle | null>(null);
@@ -224,6 +244,68 @@ export default function App() {
   const handleSubmitFeedback = (fb: AppFeedback) => {
     setFeedbacks((prev) => [fb, ...prev]);
   };
+
+  // Open Deep Dive & Record Article View for Trending Detection
+  const handleOpenDeepDive = (article: NewsArticle) => {
+    recordArticleView(article.id);
+    const res = calculateTrendingMetrics(articles);
+    setTrendingData({
+      rankedArticles: res.rankedArticles,
+      top5: res.top5,
+      lastCalculatedAt: res.lastCalculatedAt
+    });
+    setActiveDeepDiveArticle(article);
+  };
+
+  // Manual Recalculation Handler for Trending Job
+  const handleManualRecalculateTrending = () => {
+    const res = calculateTrendingMetrics(articles);
+    setTrendingData({
+      rankedArticles: res.rankedArticles,
+      top5: res.top5,
+      lastCalculatedAt: res.lastCalculatedAt
+    });
+    setSecondsToNextRecalc(15 * 60);
+  };
+
+  // Recalculate trending metrics whenever the articles array updates
+  useEffect(() => {
+    const res = calculateTrendingMetrics(articles);
+    setTrendingData({
+      rankedArticles: res.rankedArticles,
+      top5: res.top5,
+      lastCalculatedAt: res.lastCalculatedAt
+    });
+  }, [articles]);
+
+  // Scheduled 15-Minute Recalculation Job & 1-second countdown ticker
+  useEffect(() => {
+    const scheduler = new TrendingJobScheduler(() => articles, 15 * 60 * 1000);
+
+    const countdownTimer = setInterval(() => {
+      setSecondsToNextRecalc((prev) => {
+        if (prev <= 1) {
+          scheduler.triggerNow();
+          return 15 * 60;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    scheduler.start((result) => {
+      setTrendingData({
+        rankedArticles: result.rankedArticles,
+        top5: result.top5,
+        lastCalculatedAt: result.calculatedAt
+      });
+      setSecondsToNextRecalc(15 * 60);
+    });
+
+    return () => {
+      scheduler.stop();
+      clearInterval(countdownTimer);
+    };
+  }, [articles]);
 
   // Initial mount: Fetch fresh real-time RSS / GNews dispatches to prepend to feed
   useEffect(() => {
@@ -408,6 +490,9 @@ export default function App() {
   const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
   const filteredArticles = useMemo(() => {
+    if (activeCategory === 'trending') {
+      return trendingData.rankedArticles;
+    }
     const now = Date.now();
     return articles.filter((article) => {
       // 24-Hour Auto-Purge: Excludes news older than 24 hours from the live stream
@@ -432,7 +517,7 @@ export default function App() {
 
       return matchesCategory && matchesSaved && matchesSearch;
     });
-  }, [articles, activeCategory, isSavedOnly, savedArticleIds, searchQuery]);
+  }, [articles, activeCategory, isSavedOnly, savedArticleIds, searchQuery, trendingData.rankedArticles]);
 
   // Top Critical Spotlight Articles (Dynamically prioritized from real live dispatches)
   const topCriticalArticles = useMemo(() => {
@@ -480,6 +565,7 @@ export default function App() {
 
   const categories: { id: NewsCategory; label: string; count: number }[] = [
     { id: 'all', label: 'All Dispatches', count: articles.length },
+    { id: 'trending', label: '🔥 Trending Now (Top 5)', count: trendingData.top5.length },
     { id: 'finance', label: '📈 Finance & Rates', count: articles.filter(a => a.category === 'finance').length },
     { id: 'education', label: '🎓 Campus & Hiring', count: articles.filter(a => a.category === 'education').length },
     { id: 'startups', label: '🚀 Startups & VC', count: articles.filter(a => a.category === 'startups').length },
@@ -655,18 +741,52 @@ export default function App() {
                   articles={filteredArticles}
                   savedArticleIds={savedArticleIds}
                   onToggleSave={handleToggleSave}
-                  onOpenDeepDive={(art) => setActiveDeepDiveArticle(art)}
+                  onOpenDeepDive={handleOpenDeepDive}
                 />
               </div>
             ) : (
               <>
+                {/* DEDICATED TRENDING TAB VIEW */}
+                {activeCategory === 'trending' && !isSavedOnly && (
+                  <div className="space-y-6">
+                    <TrendingNowSection
+                      top5Articles={trendingData.top5}
+                      savedArticleIds={savedArticleIds}
+                      onToggleSave={handleToggleSave}
+                      onOpenDeepDive={handleOpenDeepDive}
+                      lastCalculatedAt={trendingData.lastCalculatedAt}
+                      secondsToNextRecalc={secondsToNextRecalc}
+                      onManualRecalculate={handleManualRecalculateTrending}
+                    />
+
+                    {/* Additional Ranked Stories below Top 5 */}
+                    {trendingData.rankedArticles.length > 5 && (
+                      <div className="pt-4 space-y-3">
+                        <div className="flex items-center justify-between text-xs font-mono text-zinc-500 px-1">
+                          <span className="font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
+                            <Layers className="w-3.5 h-3.5 text-zinc-400" />
+                            Additional Ranked Stories ({trendingData.rankedArticles.length - 5})
+                          </span>
+                          <span>Sorted by trending_score</span>
+                        </div>
+                        <ScrollingFeed
+                          articles={trendingData.rankedArticles.slice(5)}
+                          savedArticleIds={savedArticleIds}
+                          onToggleSave={handleToggleSave}
+                          onOpenDeepDive={handleOpenDeepDive}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {/* WHAT'S IMPORTANT RIGHT NOW (CRITICAL SPOTLIGHT HERO) */}
                 {!isSavedOnly && !searchQuery.trim() && activeCategory === 'all' && (
                   <ImportantBriefingHero
                     topArticles={topCriticalArticles}
                     savedArticleIds={savedArticleIds}
                     onToggleSave={handleToggleSave}
-                    onOpenDeepDive={(art) => setActiveDeepDiveArticle(art)}
+                    onOpenDeepDive={handleOpenDeepDive}
                   />
                 )}
 
@@ -703,12 +823,39 @@ export default function App() {
                   </div>
                 )}
 
-                <ScrollingFeed
-                  articles={filteredArticles}
-                  savedArticleIds={savedArticleIds}
-                  onToggleSave={handleToggleSave}
-                  onOpenDeepDive={(art) => setActiveDeepDiveArticle(art)}
-                />
+                {/* "TRENDING NOW" SECTION ON HOME PAGE (TOP 5 STORIES BY TRENDING SCORE) */}
+                {!isSavedOnly && !searchQuery.trim() && activeCategory === 'all' && (
+                  <div className="mb-6 space-y-3">
+                    <TrendingNowSection
+                      top5Articles={trendingData.top5}
+                      savedArticleIds={savedArticleIds}
+                      onToggleSave={handleToggleSave}
+                      onOpenDeepDive={handleOpenDeepDive}
+                      lastCalculatedAt={trendingData.lastCalculatedAt}
+                      secondsToNextRecalc={secondsToNextRecalc}
+                      onManualRecalculate={handleManualRecalculateTrending}
+                    />
+
+                    {/* Section divider to clearly separate Top 5 Trending from the regular chronological feed */}
+                    <div className="flex items-center justify-between pt-3 pb-2 text-xs font-mono text-zinc-400 border-b border-zinc-200 dark:border-zinc-800">
+                      <div className="flex items-center gap-1.5 text-zinc-700 dark:text-zinc-300 font-bold uppercase tracking-wider">
+                        <Clock className="w-3.5 h-3.5 text-blue-500" />
+                        <span>Chronological Feed (Rolling Radar)</span>
+                      </div>
+                      <span className="text-[11px] text-zinc-400">Auto-purged after 24h</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Regular Chronological Feed (for all categories other than trending) */}
+                {activeCategory !== 'trending' && (
+                  <ScrollingFeed
+                    articles={filteredArticles}
+                    savedArticleIds={savedArticleIds}
+                    onToggleSave={handleToggleSave}
+                    onOpenDeepDive={handleOpenDeepDive}
+                  />
+                )}
               </>
             )}
 
@@ -818,44 +965,46 @@ export default function App() {
               </button>
             </div>
 
-            {/* Dynamic Trending Radar Topics (Fact-Checked Real-Time Dispatches) */}
+            {/* Dynamic Trending Radar Topics (Calculated Trending Scores) */}
             <div className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 space-y-3 shadow-2xs">
               <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-900 pb-2">
                 <div className="flex items-center gap-1.5 text-xs font-mono text-zinc-900 dark:text-zinc-100 font-bold uppercase tracking-wider">
-                  <TrendingUp className="w-3.5 h-3.5 text-rose-500" />
+                  <Flame className="w-3.5 h-3.5 text-rose-500" />
                   <span>Trending Fast</span>
                 </div>
-                <span className="flex items-center gap-1 text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  Live
+                <span className="flex items-center gap-1 text-[10px] font-mono text-rose-600 dark:text-rose-400 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" />
+                  Top 5 Radar
                 </span>
               </div>
 
               <div className="space-y-2.5 text-xs">
-                {trendingArticles.map((article, idx) => {
+                {trendingData.top5.slice(0, 4).map((article, idx) => {
                   const badge = getCategoryBadge(article.category);
                   return (
                     <div 
                       key={article.id}
-                      onClick={() => setActiveDeepDiveArticle(article)}
+                      onClick={() => handleOpenDeepDive(article)}
                       className={`group p-2 -mx-2 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-900/60 transition-all cursor-pointer space-y-1 ${
                         idx > 0 ? 'border-t border-zinc-100 dark:border-zinc-900/80 pt-2.5' : ''
                       }`}
                     >
                       <div className="flex items-center justify-between text-[10px] font-mono">
                         <span className={`font-bold uppercase tracking-wider ${badge.color}`}>
-                          {idx + 1} · {badge.label}
+                          #{idx + 1} · {badge.label}
                         </span>
-                        <span className="text-zinc-400 dark:text-zinc-500">
-                          {article.dateLabel || article.publishedAt}
+                        <span className="text-rose-600 dark:text-rose-400 font-bold">
+                          Score {article.trendingScore}
                         </span>
                       </div>
                       <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {article.title}
                       </h4>
-                      <div className="flex items-center justify-between text-[10px] text-zinc-500 pt-0.5">
-                        <span className="truncate max-w-[140px] font-mono">{article.sourceName}</span>
-                        <span className="font-mono text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors flex items-center gap-0.5">
+                      <div className="flex items-center justify-between text-[10px] text-zinc-500 pt-0.5 font-mono">
+                        <span className="truncate max-w-[140px] text-zinc-400">
+                          {article.trendingBreakdown?.sourceCount || 1} src · {article.trendingBreakdown?.viewCount || 0} views
+                        </span>
+                        <span className="text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors flex items-center gap-0.5">
                           Read 30s <ArrowRight className="w-2.5 h-2.5 inline" />
                         </span>
                       </div>
@@ -863,6 +1012,18 @@ export default function App() {
                   );
                 })}
               </div>
+
+              <button
+                onClick={() => {
+                  if (isSavedOnly) setIsSavedOnly(false);
+                  setActiveCategory('trending');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="w-full py-1.5 px-2 rounded-lg bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20 text-xs font-mono font-medium hover:bg-rose-500/20 transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+              >
+                <span>Explore Trending Radar (Top 5)</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
 
             {/* Quick Review Formspree Card */}
@@ -936,7 +1097,7 @@ export default function App() {
         isOpen={isNotificationDrawerOpen}
         onClose={() => setIsNotificationDrawerOpen(false)}
         articles={articles}
-        onSelectArticle={(art) => setActiveDeepDiveArticle(art)}
+        onSelectArticle={(art) => handleOpenDeepDive(art)}
         unreadCount={unreadAlertsCount}
         onMarkAllRead={() => setUnreadAlertsCount(0)}
       />
