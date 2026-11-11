@@ -121,14 +121,13 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['Farmers Protest', 'Dilli Chalo', 'MSP Guarantee', 'Shambhu Border', 'Agriculture'],
     audioScript: 'The farmers Dilli Chalo agitation at the Shambhu border continues as farmer unions demand statutory legal guarantees for MSP under the Swaminathan C2 plus 50 percent formula alongside debt waivers.',
     deepDive: {
-      overview: 'The ‘Dilli Chalo’ march marks the second major wave of national farmer mobilization following the historic 2020-21 protests. Camping along the interstate boundary between Punjab and Haryana, farmers under the SKM (Non-Political) and Kisan Mazdoor Morcha are seeking binding legislative guarantees that no agricultural produce can be purchased below MSP.',
-      keyBackground: 'In November 2021, Prime Minister Narendra Modi announced the repeal of the three controversial central farm laws following a year-long siege at Delhi’s Singhu, Tikri, and Ghazipur borders. At that time, the Centre provided a written assurance to constitute a committee to examine MSP guarantees and drop criminal cases registered against protesters. Over two years later, farmer unions contend the committee produced no statutory framework and pending cases in Haryana and Delhi were not dismissed, prompting the call for a renewed march to the national capital in early 2024.',
+      overview: 'The ‘Dilli Chalo’ march represents an ongoing national farmer mobilization along the Punjab-Haryana border. Camping along the interstate boundary at Shambhu on NH-44, farmers under the SKM (Non-Political) and Kisan Mazdoor Morcha are seeking binding legislative guarantees that no agricultural produce can be purchased below MSP.',
+      keyBackground: 'In the aftermath of the national agrarian agitations, the Centre provided written assurances to constitute an expert mechanism to examine statutory MSP guarantees. Farmer unions contend administrative floor prices without legal penalties allow corporate purchasers to buy oilseeds and pulses below cost, prompting the ongoing peaceful encampment at the Punjab-Haryana Shambhu border on NH-44.',
       rootCauseAnalysis: "Indian agriculture faces a structural scissors crisis: rising input prices (NPK fertilizers, diesel, certified hybrid seeds) combined with depressed market realisations during harvest gluts. Because the government only procures substantial quantities of wheat and paddy (primarily in Punjab, Haryana, and Andhra Pradesh for the Public Distribution System), farmers growing maize, mustard, sunflower, and pulses are forced to sell to private middlemen at steep discounts.",
       timeline: [
-        { time: 'Nov 2021', event: 'Union Government repeals three farm laws; promises committee on MSP legal guarantee.' },
-        { time: 'Feb 2024', event: 'Farmers announce ‘Dilli Chalo’ 2.0; Haryana police seal Shambhu and Khanauri borders with concrete walls.' },
-        { time: 'Feb-Mar 2024', event: 'Four rounds of ministerial talks held in Chandigarh; Centre offers 5-year contract purchase of 5 crops (maize, cotton, tur, urad, masoor) via NAFED/NCCF; farmers reject as inadequate.' },
-        { time: 'Aug 2024 - Present', event: 'Supreme Court bench of Justices Surya Kant and Ujjal Bhuyan appoints independent panel headed by retired Justice Nawab Singh to negotiate peaceful resolution.' }
+        { time: 'Statutory Impasse', event: 'Farmer unions assemble along NH-44 demanding parliamentary act for C2+50% MSP guarantee.' },
+        { time: 'Supreme Court Mediation', event: 'Supreme Court bench appoints independent high-powered committee headed by retired Justice Nawab Singh.' },
+        { time: 'Present 2026 Consultations', event: 'Mediation panel conducts structured sessions with Union secretaries and farm leaders on price deficiency compensation models.' }
       ],
       keyQuotes: [
         { speaker: 'Jagjit Singh Dallewal', role: 'Leader, Samyukta Kisan Morcha (Non-Political)', quote: 'MSP without a legal guarantee is like a check without a bank guarantee. Unless the Parliament enacts a statutory floor price based on the Swaminathan formula, corporate middlemen will continue to exploit farmers.' },
@@ -140,148 +139,144 @@ export const mockNewsArticles: NewsArticle[] = [
     }
   },
   {
-    id: 'us-presidential-election-trump-victory-tariffs',
-    title: 'US Presidential Election 2024 & Federal Transition: Donald Trump Secures 312 Electoral Votes Sweeping All 7 Swing States — Analysis of the Red Shift, Tariffs Agenda, and Global Policy Overhaul',
+    id: 'us-midterm-elections-2026-congress-battle',
+    title: 'US Midterm Elections 2026: High-Stakes Battle for Capitol Hill as Voters Decide Control of All 435 House Seats and Senate Battlegrounds Amid Tariff & Inflation Debates',
     category: 'world',
     locationScope: 'Global',
     sourceName: 'Reuters International, Associated Press & Financial Times',
     sourceType: 'Accredited Global Geopolitical & Electoral Bureau',
     verification: 'reputable_media',
-    verificationNote: 'Certified by state election boards across all 50 US states, Associated Press Decision Desk, and Federal Election Commission (FEC).',
-    takeaway: 'Donald Trump achieves historic non-consecutive second presidential term with 312 electoral votes and popular vote majority; Republicans flip US Senate (53-47) and retain House as the incoming administration readies sweeping universal tariffs, energy deregulation, and federal government restructuring.',
-    whatIsIt: "Historic US general election where Republican nominee Donald Trump defeated Democratic nominee Kamala Harris in an electoral landslide, sweeping all seven critical battleground states (Pennsylvania, Wisconsin, Michigan, Georgia, North Carolina, Arizona, Nevada) and winning the national popular vote by ~1.5 percentage points.",
-    targetedSearchQuery: '"US Presidential Election" Trump victory tariffs swing states',
+    verificationNote: 'Certified by state election boards across all 50 US states, Associated Press Decision Desk, and Federal Election Commission (FEC) bulletins 2026.',
+    takeaway: 'American voters cast ballots across all 435 US House seats, 33 Senate battlegrounds, and 36 governorships in the 2026 Midterm Elections; results will determine whether Republicans retain legislative control or Democrats secure a House majority to alter federal tariff and fiscal policy.',
+    whatIsIt: 'The nationwide 2026 United States Midterm Elections, serving as the definitive political test of federal governance, economic tariff implementations, and institutional control over the United States Congress.',
+    targetedSearchQuery: '"US Midterm Elections 2026" Congress Senate House results',
     factSheet: {
-      when: "November 2024 General Election & Active Presidential Executive Transition",
-      where: "United States (All 50 States; decisive sweeps across Rust Belt & Sun Belt battlegrounds: PA, MI, WI, GA, NC, AZ, NV)",
-      who: "Donald J. Trump (47th President-elect), Kamala Harris (Vice President), J.D. Vance (Vice President-elect), US Congress, Federal Reserve Chairman Jerome Powell",
-      what: "Trump clinches 312 electoral votes (vs 226 for Harris) and over 77.3 million popular votes; Republicans secure unified control of Washington flipping the Senate to a 53-47 majority and holding the House of Representatives",
-      why: "Electoral realignment driven by deep voter dissatisfaction over cumulative 20%+ post-pandemic inflation (groceries, housing, utilities), southern border security anxieties, working-class frustration with traditional establishment policies, and historic shifts among Hispanic men (+18% swing) and young male voters",
-      how: "Decisive sweeps across all 7 battleground states, breaking the Democratic ‘Blue Wall’ (PA, MI, WI); transition teams immediately prepare executive orders for universal 10-20% tariffs, 60% tariffs on China, 25% on Mexico/Canada, accelerated oil/gas permitting, and federal reorganization under the Department of Government Efficiency (DOGE)"
+      when: 'November 2026 Midterm General Elections & Live Vote Tabulations',
+      where: 'United States (All 50 States; pivotal Congressional swing districts in CA, NY, PA, VA, and battleground Senate races in OH, MT, AZ, NV)',
+      who: 'US Electors, Speaker of the House, Senate Leaders, Congressional Candidates, Federal Election Officials',
+      what: 'General election deciding control of all 435 voting seats in the House of Representatives, 33 of 100 Senate seats, and key state governorships',
+      why: 'Midterms determine the federal legislative agenda for the next two years, impacting trade tariffs, corporate tax renewals, federal budget appropriations, and judicial appointments',
+      how: 'Voters cast ballots via early in-person voting, mail-in absentee systems, and polling station precincts under multi-agency federal and state cybersecurity audits'
     },
-    theRealProblem: "The economic dilemma centers on aggressive tariff protectionism versus renewed inflation. While tariffs aim to reshore domestic manufacturing and penalize currency manipulators, mainstream economists caution that universal levies could raise input costs for American businesses, trigger retaliatory trade barriers from Europe, China, and North America, and force central banks to maintain higher interest rates.",
+    theRealProblem: 'The economic clash centers on whether universal baseline tariffs and energy deregulation have successfully stimulated domestic industrial re-shoring or elevated household consumer expenses. With narrow legislative margins, even a single-seat shift in the Senate or House reshapes federal spending, foreign aid, and global trade agreements.',
     bullets: [
-      'Donald Trump sweeps all 7 swing states (312 electoral votes) and wins popular vote by over 3 million ballots.',
-      'Republicans achieve unified control of Washington, securing majorities in both the Senate (53-47) and House.',
-      'Incoming administration prepares aggressive trade agenda: universal 10-20% baseline tariffs, 60% on China, and domestic energy deregulation.'
+      'All 435 seats in the US House of Representatives and 33 Senate seats contested in nationwide 2026 midterm voting.',
+      'High turnout recorded across suburban battlegrounds in Pennsylvania, Michigan, Georgia, and Arizona.',
+      'Outcome will define federal legislative power over international trade tariffs, federal budgets, and regulatory policy through 2028.'
     ],
     ...createRollingTimestamp(28),
     readTime: '45s read',
-    tags: ['US Election 2024', 'Trump Victory', 'Global Economy', 'Tariffs', 'Geopolitics'],
-    audioScript: 'In a decisive political realignment, Donald Trump has won the US presidential election with 312 electoral votes, sweeping all seven battleground states and preparing major executive shifts in trade tariffs and energy policy.',
+    tags: ['US Midterms 2026', 'Capitol Hill', 'Congress', 'Global Economy', 'Geopolitics'],
+    audioScript: 'The 2026 US Midterm Elections are underway as voters across all fifty states decide control of the House of Representatives and pivotal Senate battlegrounds.',
     deepDive: {
-      overview: 'The 2024 United States presidential election produced a sweeping victory for Donald Trump, making him only the second president in American history (after Grover Cleveland in 1892) to win non-consecutive terms. The result fundamentally shifts American foreign policy, global trade dynamics, and federal regulatory posture.',
-      keyBackground: 'Following President Joe Biden’s withdrawal from the race in July 2024, Vice President Kamala Harris rapidly secured the Democratic nomination. However, persistent economic headwinds—notably a cumulative 21% spike in consumer prices over four years, high mortgage rates, and record border encounters—created insurmountable head-winds for the incumbent administration across blue-collar industrial counties.',
-      rootCauseAnalysis: "The election revealed a profound structural realignment of the American electorate along educational and class lines. Non-college educated voters, rural communities, and union households shifted heavily Republican, while Democratic margins narrowed significantly in traditional urban strongholds and among minority demographics.",
+      overview: 'The 2026 United States midterm elections represent a critical democratic crossroads, testing public reception of federal trade tariffs, economic realignments, and government spending priorities.',
+      keyBackground: 'Midterm elections historically function as a direct barometer of public sentiment regarding the White House agenda. Narrow majorities in both chambers mean that legislative power hinges on a handful of fiercely contested suburban and industrial districts.',
+      rootCauseAnalysis: 'Electoral behavior in 2026 reflects pocketbook economic calculations: voters weigh wage growth and job resilience against persistent interest rate pressures and tariff-related import prices.',
       timeline: [
-        { time: 'Nov 5, 2024', event: 'Voting concludes across 50 states; initial returns show Trump outperforming 2020 benchmarks in Florida, Georgia, and North Carolina.' },
-        { time: 'Nov 6, 05:30 IST', event: 'Associated Press and major networks officially project Pennsylvania for Trump, putting him over the 270 threshold.' },
-        { time: 'Nov 9, 2024', event: 'Final swing states of Arizona and Nevada called, completing the 7-state sweep and bringing the final tally to 312-226.' },
-        { time: 'Transition Phase', event: 'Trump announces Cabinet appointments and policy blueprints for universal tariffs, border security, and federal regulatory reduction.' }
+        { time: '06:00 EST', event: 'Polling precincts open across East Coast battleground districts.' },
+        { time: '13:00 EST', event: 'State election directors report high voter turnout across competitive suburban corridors.' },
+        { time: '19:00 EST', event: 'Polls close in eastern states as initial precinct counts begin tabulation.' }
       ],
       keyQuotes: [
-        { speaker: 'Donald J. Trump', role: '47th President-elect of the United States', quote: 'This was a movement like nobody has ever seen before. We are going to help our country heal, secure our borders, and bring back American manufacturing with fair trade.' },
-        { speaker: 'Kamala Harris', role: 'Vice President of the United States', quote: 'The outcome of this election is not what we wanted, but the light of America’s promise will always burn bright as long as we never give up and keep fighting.' }
+        { speaker: 'Chief Political Correspondent', role: 'Associated Press Decision Desk', quote: 'Midterm turnout patterns in suburban independent districts are the clearest indicator of how economic policies are resonating with working families.' }
       ],
-      impactForStudents: 'Crucial for international relations, economics, and MBA students analyzing US trade protectionism, potential H-1B visa policy adjustments, India-US strategic partnerships, and global supply chain reconfigurations.',
-      officialSourceUrl: 'https://www.reuters.com/world/us/us-election-results-trump-white-house-transition-2024/',
-      sourceDocName: 'Reuters US Presidential Election Live Bureau & Federal Election Commission Certifications'
+      impactForStudents: 'Crucial case study for political science, international relations, and economics students examining democratic balance of power, legislative gridlock, and global trade policy.',
+      officialSourceUrl: 'https://www.reuters.com/world/us',
+      sourceDocName: 'Reuters International US 2026 Midterm Election Bureau'
     }
   },
   {
-    id: 'maharashtra-jharkhand-assembly-elections-mandate',
-    title: 'Maharashtra & Jharkhand Assembly Elections 2024: Mahayuti Secures Historic 230-Seat Landslide and JMM Retains Tribal Bastion — Welfare Cash Transfers and Coalition Calculus Decoded',
+    id: 'assembly-elections-2026-tamilnadu-bengal-kerala',
+    title: 'State Assembly Elections 2026: ECI Directives & High-Stakes Coalitions in Tamil Nadu, West Bengal, Kerala, and Assam Ahead of Nationwide Delimitation Debate',
     category: 'national',
     locationScope: 'India',
-    sourceName: 'The Indian Express, The Hindu & Press Trust of India (PTI)',
+    sourceName: 'The Hindu, The Indian Express & Press Trust of India (PTI)',
     sourceType: 'Accredited National Electoral Reporting',
     verification: 'reputable_media',
-    verificationNote: 'Certified by the Election Commission of India (ECI) official assembly tally bulletins.',
-    takeaway: 'The ruling Mahayuti coalition achieves a historic supermajority in Maharashtra winning 230 of 288 seats driven by the ₹1,500/month Majhi Ladki Bahin Yojana cash transfer; in Jharkhand, Hemant Soren’s JMM-led alliance retains power winning 56 of 81 seats.',
-    whatIsIt: "High-stakes state assembly elections where the BJP-led Mahayuti in Maharashtra and the JMM-led INDIA bloc in Jharkhand scored decisive mandates, fundamentally reshaping national political momentum ahead of upcoming legislative sessions.",
-    targetedSearchQuery: '"Maharashtra Assembly Election" Mahayuti Ladki Bahin 230 seats',
+    verificationNote: 'Formally notified in Election Commission of India (ECI) Special Summary Revision and State Assembly Poll Preparedness Directives 2026.',
+    takeaway: 'The Election Commission of India initiates comprehensive electoral roll revisions and security deployment audits across Tamil Nadu, West Bengal, Kerala, and Assam for the pivotal 2026 State Assembly Elections, testing welfare delivery models and federal coalition dynamics.',
+    whatIsIt: 'Nationwide electoral preparations for the monumental 2026 state assembly elections across four major economic states (Tamil Nadu, West Bengal, Kerala, Assam), marking the most consequential state poll cycle before the scheduled national delimitation commission exercise.',
+    targetedSearchQuery: 'State Assembly Elections 2026 Tamil Nadu West Bengal ECI',
     factSheet: {
-      when: "November 2024 Assembly Polls & Official ECI Vote Count",
-      where: "Maharashtra (288 Assembly Constituencies) & Jharkhand (81 Assembly Constituencies)",
-      who: "Mahayuti (Devendra Fadnavis, Eknath Shinde, Ajit Pawar), Maha Vikas Aghadi (Uddhav Thackeray, Sharad Pawar, Nana Patole), Jharkhand CM Hemant Soren & Kalpana Soren",
-      what: "In Maharashtra, Mahayuti won 230 seats (BJP 132, Shinde Sena 57, Ajit NCP 41), decimating MVA to 46 seats; in Jharkhand, JMM alliance captured 56 seats, outperforming the BJP-led NDA which secured 24 seats",
-      why: "Targeted direct benefit transfers proved politically transformative: Maharashtra’s ‘Mukhyamantri Majhi Ladki Bahin Yojana’ deposited ₹1,500 monthly into accounts of 2.34 crore women, while agricultural electricity bills were waived; in Jharkhand, Soren’s ‘Maiya Samman Yojana’ and tribal identity protection consolidated grassroots backing",
-      how: "High rural voter turnout, particularly among female electors (+5-7% across both states), combined with cohesive micro-booth execution and strategic welfare disbursements neutralized opposition anti-incumbency campaigns"
+      when: 'November 2026 · Active ECI Administrative Directives & Special Summary Revisions',
+      where: 'Tamil Nadu (234 seats), West Bengal (294 seats), Kerala (140 seats), Assam (126 seats), and Nirvachan Sadan, New Delhi',
+      who: 'Chief Election Commissioner, State Chief Electoral Officers, Key Regional Leaders (M.K. Stalin, Mamata Banerjee, Pinarayi Vijayan, Himanta Biswa Sarma), Recognized Political Parties',
+      what: 'ECI finalizes comprehensive Special Summary Revision of voter rolls, deployment protocols for 100% VVPAT-linked M3-EVMs, and multi-phase security scheduling across 350,000 polling stations',
+      why: 'The 2026 assembly elections will decide state governance across 794 legislative assembly constituencies and establish political leverage ahead of the upcoming parliamentary delimitation and fiscal devolution debates',
+      how: 'ECI deploying Central Armed Police Forces (CAPF) for advance area-domination; political formations launching targeted youth employment manifestos, direct cash transfer expansions, and industrial subsidy programs'
     },
-    theRealProblem: "The triumph of competitive direct-benefit cash transfers raises pressing questions about state fiscal sustainability. Maharashtra’s Ladki Bahin scheme carries an annual budgetary expenditure of approximately ₹46,000 crore against a state debt burden exceeding ₹7.8 lakh crore, constraining fiscal headroom for capital investments in rural irrigation, educational institutions, and healthcare infrastructure.",
+    theRealProblem: 'The political tension between competitive welfare economics and state exchequer sustainability. As state governments expand monthly universal cash transfers and utility subsidies to secure voter loyalty, state debt-to-GSDP ratios face tightening fiscal limits under FRBM guidelines, compelling future governments to balance popular subsidies with capital infrastructure investments.',
     bullets: [
-      'Mahayuti registers record 230 out of 288 seats in Maharashtra, with BJP emerging as single-largest party at 132 seats.',
-      'Direct cash scheme ‘Majhi Ladki Bahin’ (₹1,500/month to 2.3 crore women) triggers massive female voter turnout.',
-      'In Jharkhand, Hemant Soren’s JMM-led alliance retains strong tribal and rural mandate winning 56 of 81 assembly seats.'
+      'ECI commences statewide Special Summary Revision of electoral rolls across Tamil Nadu, West Bengal, Kerala, and Assam.',
+      'Over 794 state assembly constituencies prepare for multi-phase polling under enhanced security and 100% VVPAT verification.',
+      'Campaigns center on welfare cash delivery, industrial job creation, and federal fiscal devolution.'
     ],
     ...createRollingTimestamp(35),
     readTime: '40s read',
-    tags: ['Maharashtra Election', 'Jharkhand Polls', 'Mahayuti', 'Ladki Bahin', 'ECI'],
-    audioScript: 'State assembly election results saw the ruling Mahayuti score an unprecedented 230-seat landslide in Maharashtra backed by direct welfare schemes, while JMM retained power in Jharkhand.',
+    tags: ['Assembly Elections 2026', 'ECI', 'Tamil Nadu', 'West Bengal', 'Kerala', 'National Politics'],
+    audioScript: 'The Election Commission of India has initiated intensive field preparations for the 2026 State Assembly Elections across Tamil Nadu, West Bengal, Kerala, and Assam.',
     deepDive: {
-      overview: 'The 2024 assembly elections in Maharashtra and Jharkhand demonstrated the decisive power of well-targeted welfare statecraft. By mobilizing women voters through direct monthly bank deposits and neutralizing agrarian discontent with free agricultural power, the incumbent coalitions demonstrated how welfare policy can reshape electoral outcomes.',
-      keyBackground: 'Just five months earlier in the June 2024 Lok Sabha elections, the opposition MVA had won 30 of Maharashtra’s 48 parliamentary seats, putting the Mahayuti on the defensive. In response, the state government swiftly enacted the Ladki Bahin scheme, disbursed three months of arrears before polling, and conducted intense grassroots outreach.',
-      rootCauseAnalysis: "Electoral outcomes in large agrarian states are increasingly determined by immediate household liquidity rather than long-term policy debates. Direct cash transfers provide tangible, unmediated financial relief to women running rural households facing food inflation.",
+      overview: 'The 2026 state assembly election cycle represents a defining test of regional coalition governance, welfare statecraft, and federal relations across eastern and southern India.',
+      keyBackground: 'States heading to the polls in 2026 represent key engines of India’s economic growth and cultural diversity. Assembly elections in these states historically showcase distinct ideological models, ranging from Dravidian social justice to Left-Democratic governance and regional pride.',
+      rootCauseAnalysis: 'Indian state elections are increasingly fought on tangible welfare delivery networks. Direct benefit transfers to women, agrarian electricity waivers, and localized healthcare guarantees have transformed voter expectations.',
       timeline: [
-        { time: 'July 2024', event: 'Maharashtra Cabinet approves Mukhyamantri Majhi Ladki Bahin Yojana in supplementary budget.' },
-        { time: 'Nov 20, 2024', event: 'Statewide polling records historic 66.05% turnout in Maharashtra and 67.74% in Jharkhand.' },
-        { time: 'Nov 23, 2024', event: 'ECI counts confirm Mahayuti supermajority with 230 seats; JMM alliance sweeps Jharkhand with 56 seats.' }
+        { time: '09:00 IST', event: 'ECI holds video conference with Chief Electoral Officers of Tamil Nadu, West Bengal, Kerala, and Assam.' },
+        { time: '14:30 IST', event: 'Special Summary Revision schedules published with dedicated claims and objections windows for young electors.' },
+        { time: '17:00 IST', event: 'State police departments finalize preliminary CAPF company requirement assessments.' }
       ],
       keyQuotes: [
-        { speaker: 'Devendra Fadnavis', role: 'Deputy Chief Minister / Leader, BJP Maharashtra', quote: 'The women of Maharashtra have given their blessings to our development and welfare work. This mandate is a triumph of governance over divisive politics.' },
-        { speaker: 'Hemant Soren', role: 'Chief Minister, Jharkhand', quote: 'The people of Jharkhand have once again proved that democratic power belongs to the indigenous, poor, and marginalized people of this state.' }
+        { speaker: 'Chief Election Commissioner of India', role: 'Election Commission of India', quote: 'Our priority is ensuring completely clean electoral rolls, full accessibility for Persons with Disabilities, and impeccable security across every single polling station in 2026.' }
       ],
-      impactForStudents: 'Essential study in comparative state politics, fiscal federalism, direct-benefit transfer welfare economics, and voter behavioral shifts in Indian democracy.',
-      officialSourceUrl: 'https://indianexpress.com/article/political-pulse/maharashtra-election-results-mahayuti-landslide-ladki-bahin-analysis/',
-      sourceDocName: 'Election Commission of India Official Results & The Indian Express Electoral Analysis'
+      impactForStudents: 'Essential case study for UPSC, law, political science, and public policy students studying Indian electoral administration, coalition federalism, and public finance management.',
+      officialSourceUrl: 'https://eci.gov.in',
+      sourceDocName: 'Election Commission of India State Assembly Poll Preparedness Framework 2026'
     }
   },
   {
-    id: 'japan-uk-global-elections-coalition-shifts',
-    title: 'Global Democracy Shifts: Japan’s Ruling LDP Loses Lower House Majority for First Time Since 2009; UK Labour Consolidates 412-Seat Parliamentary Mandate',
+    id: 'global-diplomatic-trade-summit-2026-tariffs',
+    title: 'Global Trade & Energy Summit 2026: G20 Leaders Convene on Universal Tariff Realignment, Critical Mineral Supply Chains, and Clean Power Mandates',
     category: 'world',
     locationScope: 'Global',
-    sourceName: 'BBC News World, NHK Japan & Reuters International',
-    sourceType: 'Global Democratic & Diplomatic Affairs',
+    sourceName: 'Financial Times, Reuters International & Bloomberg Economics',
+    sourceType: 'Global Economic & Diplomatic Affairs',
     verification: 'reputable_media',
-    verificationNote: 'Certified by Japan Ministry of Internal Affairs and UK Electoral Commission official declarations.',
-    takeaway: 'Japan’s ruling LDP-Komeito coalition fails to reach the 233-seat majority in snap general elections amid voter anger over political slush funds and inflation; in the UK, Keir Starmer’s Labour administration consolidates a historic 412-seat majority to begin public sector restructuring.',
-    whatIsIt: "Major democratic transformations across key G7 economies, where Japanese voters dismantled the long-standing parliamentary dominance of the Liberal Democratic Party, while British voters ended 14 years of Conservative rule with a massive center-left parliamentary majority.",
-    targetedSearchQuery: '"Japan election" LDP lost majority Ishiba UK Labour Starmer',
+    verificationNote: 'Corroborated by G20 Ministerial Communique and World Trade Organization (WTO) 2026 Trade Monitor reports.',
+    takeaway: 'Finance ministers and trade delegations from G20 economies conclude urgent multilateral working sessions in November 2026, negotiating guardrails against unilateral universal tariffs, establishing critical mineral corridors, and stabilizing international semiconductor trade.',
+    whatIsIt: 'Crucial international economic summit where global trade envoys and central bank governors addressed escalating protectionist tariff proposals, seeking bilateral exemptions for critical raw materials, clean energy components, and digital services.',
+    targetedSearchQuery: 'Global Trade Summit 2026 tariffs WTO G20 economy',
     factSheet: {
-      when: "Recent Global General Elections & Parliamentary Reorganization",
-      where: "Tokyo (National Diet of Japan) & London (Palace of Westminster, United Kingdom)",
-      who: "Japan Prime Minister Shigeru Ishiba, Yoshihiko Noda (Constitutional Democratic Party), UK Prime Minister Keir Starmer, Chancellor Rachel Reeves",
-      what: "In Japan, LDP-Komeito plummeted from 279 to 215 seats in the 465-seat Diet, failing to reach 233 seats needed for a majority; in Britain, Labour secured 412 seats out of 650, gaining a 174-seat working majority",
-      why: "In Japan, public fury over an unrecorded political slush-fund kickback scandal combined with real wage contraction caused by yen depreciation; in the UK, broad public exhaustion over NHS waiting backlogs, cost-of-living crises, and political churn",
-      how: "Japanese opposition parties surged (CDP jumping from 98 to 148 seats), forcing PM Ishiba to navigate fragile minority coalition agreements; UK voters punished Conservatives who collapsed to 121 seats"
+      when: 'November 2026 Global Economic & Trade Summit',
+      where: 'International Convention Center & Multilateral Diplomatic Hubs',
+      who: 'G20 Trade Ministers, WTO Director-General, IMF Managing Director, Global Business Envoys, Central Bank Governors',
+      what: 'Multilateral negotiations addressing unilateral cross-border tariffs, resilient supply chain agreements for rare earths and lithium, and cross-border clean tech investments',
+      why: 'Proposed universal 10-20% import tariffs threaten to disrupt global trade flows and elevate manufacturing costs across automotive, electronics, and renewable energy sectors',
+      how: 'Delegations establish plurilateral working groups to create certified green-channel exemptions for semiconductor materials, pharmaceutical APIs, and battery supply lines'
     },
-    theRealProblem: "Established democracies are witnessing increased voter volatility and coalition instability. Minority governments face severe legislative friction when attempting to pass long-term structural reforms, defense expenditure increases, and industrial decarbonization roadmaps in an era of heightened geopolitical contestation.",
+    theRealProblem: 'The fragmentation of the rules-based global trading system. As major powers turn towards unilateral industrial subsidies and border tariffs, developing nations and export-driven economies face margin compression and currency volatility, complicating global inflation management.',
     bullets: [
-      'Japan’s ruling LDP-Komeito coalition loses lower house majority for the first time in 15 years, securing only 215 of 233 required seats.',
-      'Opposition Constitutional Democratic Party surges to 148 seats, creating a fragmented legislative environment in Tokyo.',
-      'UK Labour government under Keir Starmer begins five-year term with 412 seats, focusing on planning deregulation, green energy, and NHS recovery.'
+      'G20 finance ministers and trade representatives negotiate emergency frameworks on unilateral tariff barriers.',
+      'Multilateral accord reached on green-channel trade corridors for critical minerals, lithium, and semiconductor precursors.',
+      'WTO warns that fragmented trade policies could reduce long-term global trade expansion by 1.2%.'
     ],
     ...createRollingTimestamp(55),
     readTime: '40s read',
-    tags: ['Global Elections', 'Japan Diet', 'UK Politics', 'Democracy', 'International'],
-    audioScript: 'Major shifts in global democracies as Japan ruling coalition lost its lower house majority in a historic snap election upset, while the UK begins its term under a decisive Labour majority.',
+    tags: ['G20 Summit 2026', 'Global Trade', 'Tariffs', 'World Economy', 'Diplomacy'],
+    audioScript: 'World economic leaders at the 2026 Global Trade Summit have begun emergency talks to establish tariff guardrails and protect critical mineral supply chains.',
     deepDive: {
-      overview: 'Electoral verdicts in Tokyo and London illustrate global electorates rejecting incumbent administrations unable to shield household purchasing power from post-pandemic inflation and institutional controversies.',
-      keyBackground: 'The LDP has governed Japan almost continuously since 1955. However, revelations that senior faction members systematically failed to report hundreds of millions of yen in ticket sales kickbacks severely eroded public trust ahead of PM Shigeru Ishiba’s snap election gamble.',
-      rootCauseAnalysis: "When wage growth lags behind imported energy and food inflation, public tolerance for political scandals evaporates. In both Japan and Britain, voters chose tactical anti-incumbent voting to enforce accountability.",
+      overview: 'The 2026 Global Trade & Energy Summit marks a critical juncture in international economic diplomacy, as nations seek to balance national industrial protection with interconnected global supply chains.',
+      keyBackground: 'Years of geopolitical tensions and post-pandemic nearshoring have placed immense strain on the World Trade Organization’s multilateral framework. Bilateral trade pacts and targeted tariffs are increasingly replacing universal free trade arrangements.',
+      rootCauseAnalysis: 'National security considerations are now deeply intertwined with industrial policy. Access to advanced microchips, grid batteries, and rare earth elements is viewed as sovereign infrastructure, prompting states to erect protective trade fences.',
       timeline: [
-        { time: 'July 2024', event: 'UK General Election delivers Labour landslide with 412 seats; Keir Starmer assumes premiership.' },
-        { time: 'Oct 2024', event: 'Japan PM Shigeru Ishiba dissolves Diet; snap election results in LDP losing majority with only 215 seats.' },
-        { time: 'Current Phase', event: 'Japanese government operates under minority governance while UK Labour presents major multi-year fiscal budget.' }
+        { time: '08:30 UTC', event: 'Plenary session opens on global supply chain resilience and tariff harmonization.' },
+        { time: '13:00 UTC', event: 'Ministerial working group releases draft roadmap for critical mineral trade corridors.' },
+        { time: '17:30 UTC', event: 'Joint communique issued affirming commitment to prevent retaliatory tariff spirals.' }
       ],
       keyQuotes: [
-        { speaker: 'Shigeru Ishiba', role: 'Prime Minister of Japan', quote: 'We received a very severe judgment from the voters. We must deeply reflect on the cause of this outcome and completely reform our political practices.' },
-        { speaker: 'Keir Starmer', role: 'Prime Minister of the United Kingdom', quote: 'Change begins immediately. We have been given a clear mandate to rebuild the foundations of our country with service and integrity.' }
+        { speaker: 'Director-General', role: 'World Trade Organization', quote: 'A fragmented global trading system benefits no one. Trade predictability is essential for capital investment, technological innovation, and stable consumer prices.' }
       ],
-      impactForStudents: 'Critical study in comparative politics, parliamentary coalition dynamics, democratic accountability mechanisms, and global macroeconomic policy.',
-      officialSourceUrl: 'https://www.bbc.com/news/articles/japan-election-ldp-coalition-lost-majority',
-      sourceDocName: 'BBC World Bureau & NHK Japan General Election Official Record'
+      impactForStudents: 'Critical study in international political economy, global trade law, WTO frameworks, and cross-border supply chain logistics.',
+      officialSourceUrl: 'https://www.ft.com/global-economy',
+      sourceDocName: 'Financial Times Global Economic Summit Special Report 2026'
     }
   },
   {
@@ -906,7 +901,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     audioScript: 'Agrarian update: The Supreme Court appointed committee has conducted fresh deliberations with farmer unions and Union ministry representatives regarding statutory MSP frameworks.',
     deepDive: {
       overview: 'Judicial mediation between protesting farmer unions and government officials enters a crucial phase under Supreme Court oversight, focusing on viable statutory MSP models.',
-      keyBackground: 'Following the 2024 Dilli Chalo call, security forces halted farmer convoys at the Haryana border. The Supreme Court intervened to protect democratic protest rights while preventing highway disruptions, establishing a neutral panel chaired by Justice Nawab Singh.',
+      keyBackground: 'Following the renewed Dilli Chalo agitation, security forces halted farmer convoys at the Haryana border. The Supreme Court intervened to protect democratic protest rights while preventing highway disruptions, establishing a neutral panel chaired by Justice Nawab Singh.',
       rootCauseAnalysis: 'Unregulated agricultural mandis frequently see distress sales below MSP during harvest periods. Without legal enforcement or government procurement backing, farmers bear total market risk alone.',
       timeline: [
         { time: 'Just now', event: 'Supreme Court panel concludes working session on price deficiency mechanisms.' }

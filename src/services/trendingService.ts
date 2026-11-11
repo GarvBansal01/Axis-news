@@ -33,9 +33,9 @@ const INITIAL_VIEW_SEED: Record<string, number> = {
 // Canonical entity clusters for matching related dispatches reporting the same event
 const KNOWN_EVENT_SIGNATURES: { key: string; keywords: string[] }[] = [
   { key: 'farmers-dilli-chalo', keywords: ['farmers', 'dilli chalo', 'shambhu', 'msp', 'swaminathan', 'khanauri', 'kisan'] },
-  { key: 'us-election-trump', keywords: ['us election', 'trump', 'presidential', 'swing states', 'tariffs', 'electoral'] },
-  { key: 'maharashtra-election', keywords: ['maharashtra', 'mahayuti', 'ladki bahin', 'assembly election', 'jharkhand', 'hemant soren'] },
-  { key: 'japan-uk-elections', keywords: ['japan', 'ldp', 'ishiba', 'uk election', 'labour', 'starmer'] },
+  { key: 'us-midterms-2026', keywords: ['us midterms', 'midterm elections', 'congress', 'capitol hill', 'house of representatives', 'senate', '2026'] },
+  { key: 'assembly-elections-2026', keywords: ['assembly elections', 'tamil nadu', 'west bengal', 'kerala', 'assam', 'eci', 'electoral roll', '2026'] },
+  { key: 'global-trade-summit-2026', keywords: ['global trade summit', 'g20', 'tariffs', 'critical minerals', 'wto', 'world leaders', '2026'] },
   { key: 'cyclone-murasu', keywords: ['cyclone', 'murasu', 'bay of bengal', 'andhra', 'odisha', 'imd'] },
   { key: 'deepseek-v3', keywords: ['deepseek', 'v3', 'moe', 'architecture', '671b', 'open weights', 'reasoning'] },
   { key: 'isro-sce200', keywords: ['isro', 'sce-200', 'sce200', 'semicryogenic', 'cryogenic', 'gaganyaan', 'mahendragiri'] },
