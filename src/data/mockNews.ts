@@ -805,50 +805,52 @@ export const mockNewsArticles: NewsArticle[] = [
     }
   },
   {
-    id: 'nvidia-jensen-huang-blackwell-liquid-cooled-keynote',
-    title: 'Nvidia Commences Commercial Blackwell Rack Shipments: Jensen Huang Declares End of General-Purpose Computing in Landmark GTC Industry Talk',
-    keyStat: '72-GPU NVLink Liquid Cooled Rack · 130kW Power per Rack',
+    id: 'nvidia-jensen-huang-resignation-colette-kress',
+    title: 'Nvidia Leadership Earthquake: Co-Founder Jensen Huang Abruptly Resigns as CEO and Board Director After 33 Years; CFO Colette Kress Appointed Interim Chief as NVDA Drops 12%',
+    keyStat: '33-Year Tenure Ends · Colette Kress Interim CEO · NVDA Drops 12% ($400B Swing)',
     category: 'personal',
     locationScope: 'Global',
-    sourceName: 'Nvidia GTC Keynote, AnandTech & Reuters',
-    sourceType: 'Semiconductor & Compute Architecture Briefing',
+    sourceName: 'Reuters, Forbes, Bloomberg & Nvidia Investor Relations (SEC Form 8-K)',
+    sourceType: 'Securities Regulatory Filing & Global Financial Wire',
     verification: 'reputable_media',
-    verificationNote: 'Delivered live by CEO Jensen Huang during the worldwide GTC Semiconductor Keynote Address.',
-    takeaway: 'Nvidia begins shipping full-rack GB200 NVL72 liquid-cooled systems to cloud hyperscalers; Jensen Huang proclaims that traditional CPU instruction retrieval has ended in favor of continuous accelerated computing.',
-    whatIsIt: "Landmark hardware deployment announcement and keynote talk where Nvidia CEO Jensen Huang showcased commercial shipments of liquid-cooled Blackwell NVL72 supercomputer racks, redefining datacenter architectures.",
-    targetedSearchQuery: 'Nvidia Blackwell Ultra NVL72 liquid cooled Jensen Huang keynote',
+    verificationNote: 'Formally disclosed via Nvidia Corporation SEC Form 8-K regulatory filing and official Board of Directors announcement on November 12, 2026.',
+    takeaway: 'In one of the most consequential executive departures in Silicon Valley history, Nvidia co-founder and CEO Jensen Huang abruptly resigns after 33 years; CFO Colette Kress steps in as interim CEO while tech equities tumble 12% amid corporate governance and regulatory scrutiny.',
+    whatIsIt: "Historic corporate leadership transition at Nvidia Corporation—the world’s most valuable semiconductor titan powering the global AI revolution—following the sudden resignation of its 33-year founding chief Jensen Huang and appointment of CFO Colette Kress as interim CEO.",
+    targetedSearchQuery: 'Nvidia Jensen Huang resigns CEO Colette Kress interim Harvey Jones',
     factSheet: {
-      when: "02 Nov 2026, 03:40 PM IST",
-      where: "San Jose Convention Center, California",
-      who: "Jensen Huang (Founder & CEO, Nvidia), Hyperscaler Cloud Architects, Enterprise Systems Engineers",
-      what: "Commercial dispatch of GB200 NVL72 liquid-cooled supercomputer racks featuring 72 Blackwell GPUs and 36 Grace CPUs operating as a single unified system",
-      why: "Air-cooled data centers can no longer dissipate 120kW+ per rack densities; liquid cooling and direct copper interconnects provide 30x faster inference at 25x lower energy consumption",
-      how: "Direct liquid-to-chip cooling loops circulating chilled fluid over high-dielectric cold plates with 800Gb/s Quantum-X800 InfiniBand switches"
+      when: "12 Nov 2026, 08:30 AM EST · Breaking Corporate Disclosure",
+      where: "Nvidia Corporate HQ, Santa Clara, California & Nasdaq Global Select Market",
+      who: "Jensen Huang (Outgoing Co-Founder & CEO), Colette Kress (Interim CEO & CFO), Harvey C. Jones (Newly Appointed Independent Board Chairman), U.S. Regulatory & Governance Inquirers",
+      what: "Immediate resignation of Jensen Huang from all corporate roles (President, CEO, Director); appointment of longtime CFO Colette Kress as interim executive chief; appointment of Harvey C. Jones as first independent board chairman; commencement of formal executive search committee",
+      why: "Huang's exit follows intense corporate governance scrutiny regarding personal conduct involving senior subordinates and regulatory inquiries into foreign intelligence interactions, necessitating swift board intervention to protect enterprise client trust",
+      how: "Nvidia board convened emergency governance session, filed Form 8-K with the U.S. SEC, confirmed continuous execution for the upcoming Q3 earnings call on November 17, and reassured cloud hyperscalers of uninterrupted Blackwell GPU delivery roadmaps"
     },
-    theRealProblem: "Standard enterprise data centers built for air-cooled x86 servers must undergo complete civil and plumbing reconstruction to support 100kW+ liquid-cooled racks, forcing massive infrastructure retrofits.",
+    theRealProblem: "Nvidia's $3+ trillion valuation and market dominance were inextricably linked to Jensen Huang's visionary founder aura and personal relationships with tech titan CEOs (Satya Nadella, Sundar Pichai, Mark Zuckerberg). Can a bureaucratized successor maintain Nvidia’s ruthless hardware-software innovation cadence against hyperscaler custom ASICs and open-weight models?",
     bullets: [
-      'Commercial GB200 NVL72 racks shipped to tier-one cloud providers across North America and Europe.',
-      'Jensen Huang states during keynote: "General-purpose computing has reached its thermodynamic end. The future is accelerated computing and generative token manufacturing."',
-      'Liquid-to-chip cooling becomes the mandatory standard for next-generation enterprise AI infrastructure.'
+      'Jensen Huang abruptly resigns as Nvidia CEO and Director after 33 years leading the chip titan from gaming GPUs to a $3T+ AI powerhouse.',
+      'Longtime CFO Colette Kress appointed interim CEO; Harvey C. Jones named first independent board chairman as executive search committee begins.',
+      'Nvidia stock plunges 12% in early trading, erasing $400B in market cap and triggering broad tech sector selloffs across Wall Street.'
     ],
-    ...createRollingTimestamp(280),
-    readTime: '30s read',
-    tags: ['Big Tech', 'Nvidia', 'Jensen Huang', 'Blackwell GB200', 'Keynote'],
-    audioScript: 'Nvidia has begun shipping commercial Blackwell supercomputer racks as CEO Jensen Huang declared the end of general-purpose computing in a landmark industry address.',
+    ...createRollingTimestamp(10),
+    readTime: '45s read',
+    tags: ['Big Tech', 'Nvidia', 'Jensen Huang', 'Colette Kress', 'Corporate Governance', 'Semiconductors'],
+    audioScript: 'Nvidia shockwave: Co-founder and CEO Jensen Huang has abruptly resigned from all roles after 33 years, as CFO Colette Kress is named interim CEO amid broad market selloffs.',
     deepDive: {
-      overview: 'Nvidia has officially initiated mass customer deliveries of its flagship GB200 NVL72 liquid-cooled systems, transitioning the industry from discrete PCIe cards to unified mega-rack supercomputers.',
-      keyBackground: 'Moore’s Law slowdown made standard CPU scaling economically unviable, forcing all computational growth into dense parallel accelerator arrays.',
-      rootCauseAnalysis: "By integrating 72 Blackwell GPUs with NVLink spine backplanes supporting 1.8 TB/s bidirectional bandwidth per GPU, the entire rack functions as a single monolithic processor.",
+      overview: 'The semiconductor and artificial intelligence landscape was upended on November 12, 2026, with the unexpected resignation of Jensen Huang, who co-founded Nvidia in 1993 and steered it to become the computational backbone of generative AI. CFO Colette Kress takes the helm as interim CEO to steer the ship ahead of crucial Q3 earnings on November 17.',
+      keyBackground: 'Huang led Nvidia for over three decades through the invention of the GPU in 1999, the multi-billion dollar bet on CUDA in 2006, and the unprecedented generative AI boom powered by Hopper and Blackwell. The sudden departure came after internal governance investigations into personal conduct and national security sensitivities.',
+      rootCauseAnalysis: "Founder-led hypergrowth companies face unique single-point-of-failure vulnerabilities (Key Person Risk). Huang personally negotiated chip allocations with global heads of state and tech CEOs. His departure forces Nvidia to transition into an institutionalized, corporate enterprise with traditional governance oversight.",
       timeline: [
-        { time: 'Keynote Demo', event: 'Jensen Huang reveals production liquid-cooled NVL72 rack on stage.' },
-        { time: 'Commercial Rollout', event: 'First enterprise clusters go online across major cloud partner datacenters.' }
+        { time: '08:00 AM EST', event: 'Nvidia Board of Directors files emergency Form 8-K with SEC announcing Huang’s immediate resignation.' },
+        { time: '08:15 AM EST', event: 'Colette Kress confirmed as interim CEO; Harvey C. Jones appointed Board Chairman.' },
+        { time: '09:30 AM EST', event: 'NVDA opens down 12%; Nasdaq drops 1.47% as markets assess AI supply chain implications.' }
       ],
       keyQuotes: [
-        { speaker: 'Jensen Huang', role: 'CEO, Nvidia', quote: 'We are no longer building computers. We are manufacturing intelligence factories where raw electricity enters and valuable tokens exit at the speed of light.' }
+        { speaker: 'Colette Kress', role: 'Interim CEO & CFO, Nvidia', quote: 'Nvidia’s foundational engine, engineering brilliance, and roadmap execution remain unwavering. Our focus is squarely on our customers, partners, and delivering our Blackwell systems ahead of our earnings next week.' },
+        { speaker: 'Harvey C. Jones', role: 'Chairman of the Board, Nvidia', quote: 'The Board is deeply grateful for Jensen’s three decades of pioneering vision, but highest standards of corporate governance, transparency, and fiduciary integrity must remain absolute.' }
       ],
-      impactForStudents: 'Fascinating career trajectory in computer engineering: hardware, thermals, fluid dynamics, and distributed systems are now fully merged into a single engineering discipline.',
+      impactForStudents: 'A defining corporate governance and business strategy case study for business, finance, and engineering students on Key Person Risk, succession planning, founder departures, and how multi-trillion dollar tech giants maintain operational continuity during leadership shocks.',
       officialSourceUrl: 'https://nvidianews.nvidia.com',
-      sourceDocName: 'Nvidia GTC Architecture & Hardware Launch Keynote 2026'
+      sourceDocName: 'Nvidia Corporation SEC Form 8-K & Board of Directors Executive Leadership Transition Announcement'
     }
   }
 ];
@@ -1040,49 +1042,49 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     }
   },
   {
-    id: 'live-big-tech-keynote-announcements',
-    title: 'Big Tech Keynote Dispatch: Google and Nvidia Announce Next-Gen Silicon Deployments as Enterprise Systems Demand Surges',
-    keyStat: '100k GPU Clusters · 3nm Custom ASICs Deployment',
+    id: 'live-nvidia-leadership-transition-kress',
+    title: 'Live Markets Dispatch: Wall Street Assesses Post-Jensen Era as Interim CEO Colette Kress Reassures Hyperscalers on Blackwell GPU Production Ahead of Q3 Earnings',
+    keyStat: '12% NVDA Plunge · Q3 Earnings Nov 17 · Blackwell Roadmap Intact',
     category: 'personal',
     locationScope: 'Global',
-    sourceName: 'Silicon Valley Executive Dispatch & Reuters Tech',
-    sourceType: 'Live Big Tech Systems Wire',
+    sourceName: 'Wall Street Journal, Bloomberg & Reuters Financial Wire',
+    sourceType: 'Live Financial Market Intelligence',
     verification: 'reputable_media',
-    verificationNote: 'Streamed directly from Silicon Executive Roundtable briefings.',
-    takeaway: 'Hardware executives confirm massive transition toward heterogeneous custom silicon and liquid-cooled datacenter pods.',
-    whatIsIt: 'Live corporate technology briefing on datacenter hardware scaling, liquid cooling adoption, and custom silicon deployments across major tech companies.',
-    targetedSearchQuery: 'Google Nvidia custom AI silicon deployment keynote 2026',
+    verificationNote: 'Live executive disclosures and trading floor telemetry following Nvidia leadership transition.',
+    takeaway: 'Interim CEO Colette Kress convenes emergency investor calls with cloud hyperscalers to guarantee Blackwell shipping schedules as institutional funds rebalance tech allocations.',
+    whatIsIt: 'Live financial and corporate dispatch covering institutional reactions and supply chain stability communications in the immediate aftermath of Jensen Huang’s resignation from Nvidia.',
+    targetedSearchQuery: 'Nvidia Colette Kress interim CEO Jensen Huang resignation market reaction',
     factSheet: {
-      when: "02 Nov 2026, 05:45 AM IST",
-      where: "Silicon Valley, California & Global Cloud Datacenters",
-      who: "Enterprise Infrastructure Vice Presidents, Semiconductor Architects, Hyperscaler Engineers",
-      what: "Executive panel discussions detailing deployment schedules for custom silicon accelerators and liquid-cooled supercomputing pods",
-      why: "Surging enterprise computational demand necessitates dramatic thermal and energy efficiency improvements",
-      how: "Transitioning traditional air-cooled server rooms into high-efficiency liquid-chilled facilities operating at lower total cost of ownership"
+      when: "12 Nov 2026, 09:45 AM EST · Live Market Action",
+      where: "New York Stock Exchange, Nasdaq & Silicon Valley Hyperscaler Commands",
+      who: "Colette Kress (Interim CEO, Nvidia), Morgan Stanley & Goldman Sachs Tech Analysts, Cloud Hyperscaler Procurement Heads",
+      what: "Conference call addressing Blackwell rack delivery timelines, TSMC wafer fabrication allocations, and institutional investor inquiries",
+      why: "Prevent supply-chain panic and stabilize customer commitments after sudden founder departure erased $400B in pre-market capitalization",
+      how: "Affirming that Q3 earnings will proceed as scheduled on November 17 with full forward guidance and production forecasts"
     },
-    theRealProblem: "Power grid constraints require datacenters to maximize compute per megawatt rather than simply building physically larger facilities.",
+    theRealProblem: "Hyperscalers (Microsoft, Meta, Google, Amazon) have committed tens of billions in capex to Nvidia. Any governance vacuum or delayed Blackwell delivery threatens their multi-year AI deployment timelines.",
     bullets: [
-      'Next-generation accelerator pods demonstrate 3x compute density improvements per square foot.',
-      'Liquid-to-chip cooling adoption crosses 50% in new commercial hyperscaler builds.',
-      'Open software compiler toolchains enable interoperability between diverse hardware chips.'
+      'Interim CEO Colette Kress confirms Q3 earnings call will proceed on November 17 with full financial guidance.',
+      'TSMC confirms foundry wafer allocation and CoWoS advanced packaging schedules for Blackwell remain 100% operational.',
+      'Institutional desks note strong buy-the-dip liquidity near support levels after initial 12% drop.'
     ],
     ...createRollingTimestamp(0),
     readTime: '30s read',
-    tags: ['Big Tech', 'Systems', 'Silicon', 'Hardware Launch'],
-    audioScript: 'Live Big Tech bulletin: Industry executives report rapid acceleration in liquid-cooled server deployments and custom silicon hardware adoption.',
+    tags: ['Big Tech', 'Nvidia', 'Markets', 'Colette Kress', 'Jensen Huang', 'Wall Street'],
+    audioScript: 'Live market dispatch: Interim Nvidia CEO Colette Kress has held investor briefings to assure hyperscalers that Blackwell production lines and next week’s earnings proceed without interruption.',
     deepDive: {
-      overview: 'Executive briefings at the Silicon Infrastructure Forum highlight the transformation of modern computing from CPU clusters to heterogeneous accelerated networks.',
-      keyBackground: 'Modern artificial intelligence workloads require custom memory architectures that traditional server designs cannot accommodate.',
-      rootCauseAnalysis: "Specialized tensor and matrix arithmetic cores operating with high-bandwidth memory provide orders of magnitude higher energy efficiency.",
+      overview: 'Live financial coverage as Nvidia leadership moves swiftly to contain market fallout following the historic resignation of Jensen Huang.',
+      keyBackground: 'Nvidia CFO Colette Kress has been with the company for over a decade, steering its financial ascent from $4B in annual revenue to over $100B, earning deep respect across Wall Street.',
+      rootCauseAnalysis: "Institutional confidence hinges on continuity of customer contracts and chip delivery guarantees rather than visionary keynote presentations.",
       timeline: [
-        { time: 'Live', event: 'Executive panel concludes with roadmap for commercial deployments.' }
+        { time: 'Just now', event: 'Nvidia investor relations hosts emergency sell-side analyst conference call.' }
       ],
       keyQuotes: [
-        { speaker: 'Hardware Architecture VP', role: 'Systems Engineering', quote: 'System design is now the decisive competitive frontier: cooling, power, and silicon must operate as one cohesive unit.' }
+        { speaker: 'Senior Semiconductor Analyst', role: 'Morgan Stanley', quote: 'Colette Kress is the steadiest pair of hands in enterprise tech finance. Her interim appointment sends a clear signal of financial and operational discipline.' }
       ],
-      impactForStudents: 'Inspiring insight for electrical and systems engineering students into the massive physical infrastructure powering modern computing.',
-      officialSourceUrl: 'https://reuters.com/technology',
-      sourceDocName: 'Silicon Executive Infrastructure Briefing'
+      impactForStudents: 'Provides real-time insight into corporate crisis management, investor relations, and capital market behavior when a legendary founder exits.',
+      officialSourceUrl: 'https://investor.nvidia.com',
+      sourceDocName: 'Nvidia Investor Relations Emergency Teleconference Briefing Note'
     }
   },
   {

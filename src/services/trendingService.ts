@@ -8,6 +8,7 @@ const TRENDING_STORAGE_KEY = 'axis_trending_cache_v1';
 
 // Base simulated view counts seeded from editorial importance to initialize realistic trending on first visit
 const INITIAL_VIEW_SEED: Record<string, number> = {
+  'nvidia-jensen-huang-resignation-colette-kress': 320,
   'india-high-speed-bullet-train-undersea-tunnel': 195,
   'us-midterm-elections-2026-congress-battle': 210,
   'assembly-elections-2026-tamilnadu-bengal-kerala': 175,
@@ -32,6 +33,7 @@ const INITIAL_VIEW_SEED: Record<string, number> = {
 
 // Canonical entity clusters for matching related dispatches reporting the same event
 const KNOWN_EVENT_SIGNATURES: { key: string; keywords: string[] }[] = [
+  { key: 'nvidia-jensen-resignation', keywords: ['nvidia', 'jensen', 'huang', 'resigns', 'resigned', 'resignation', 'colette kress', 'ceo', 'nvda', 'harvey jones'] },
   { key: 'bullet-train-undersea', keywords: ['bullet train', 'mumbai ahmedabad', 'nhsrcl', 'undersea tunnel', 'shinkansen', 'high speed rail'] },
   { key: 'us-midterms-2026', keywords: ['us midterms', 'midterm elections', 'congress', 'capitol hill', 'house of representatives', 'senate', '2026'] },
   { key: 'assembly-elections-2026', keywords: ['assembly elections', 'tamil nadu', 'west bengal', 'kerala', 'assam', 'eci', 'electoral roll', '2026'] },
