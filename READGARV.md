@@ -377,16 +377,61 @@ Curated with genuine, high-impact launches, keynotes, and executive talks from w
    - Google announces commercial shipments of custom Tensor Processing Units (TPUs) directly to external third-party data centers with open compiler tooling (OpenXLA/JAX) to directly challenge Nvidia's CUDA monopoly.
 3. **Microsoft & Amazon AWS ("Dark GPU" Warning & Satya Nadella Talk)**:
    - Satya Nadella (Microsoft) and Matt Garman (AWS) sound the alarm over electrical grid substation delays of up to 36 months, stranding billions of dollars in high-end server silicon as unpowered "Dark GPUs".
-4. **Nvidia (Commercial Blackwell Shipments & Jensen Huang GTC Keynote)**:
-   - Nvidia begins commercial delivery of liquid-cooled GB200 NVL72 supercomputing racks; Jensen Huang proclaims the end of general-purpose CPU computing in favor of accelerated generative token factories.
+4. **Nvidia (Jensen Huang Resigns After 33 Years & Interim CEO Colette Kress)**:
+   - Co-founder Jensen Huang abruptly resigns from all executive and board seats amid corporate governance inquiries; longtime CFO Colette Kress takes over as interim CEO ahead of Q3 earnings.
 5. **India Semiconductor Mission (MeitY Fabs & Cleanrooms)**:
    - Commercial OSAT packaging and fab modules cleared in Dholera and Sanand, Gujarat.
 
 ---
 
 ### 3. Exact Calendar Dates & 24H Radar
-- Every single article card, FactSheet `when:`, and spotlight banner displays the exact calendar date and time (e.g. `02 Nov 2026, 08:30 AM IST`).
+- Every single article card, FactSheet `when:`, and spotlight banner displays the exact calendar date and time (e.g. `12 Nov 2026, 08:30 AM IST`).
 - Zero generic `"Today"` labels are used anywhere in the codebase.
+
+---
+
+## ⚡ STEP 6: SUPABASE SETUP — SECURE PASSWORD STORAGE & USE CASES
+
+You installed `@supabase/supabase-js` and `@supabase/ssr`. Here is everything you need to know about where to save your credentials safely and how Supabase supercharges AXIS News:
+
+### 🔒 Where to Save Your Supabase Password & Credentials
+When you create a project on [supabase.com](https://supabase.com), Supabase shows you two different types of credentials:
+
+1. **Your Database Password (`[YOUR-PASSWORD]`)**:
+   - **What it is**: The master administrative password for your PostgreSQL database.
+   - **Where to save it**: **NEVER in frontend code or Git!** Save it in:
+     - Your personal password manager (1Password, Apple Keychain, Bitwarden, or Google Passwords).
+     - Or in your local, private `.env.local` file as `SUPABASE_DB_PASSWORD="your_password"` (our `.gitignore` guarantees `.env.local` is never uploaded to GitHub).
+   - **Do you need it in the React app?**: **NO!** The frontend React web app NEVER uses the database password. It only uses the public **Anon Key**.
+2. **Your Project URL & Anon Key (`VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`)**:
+   - **What they are**: The public API endpoint and publishable key found in *Supabase Dashboard → Project Settings → API*.
+   - **Where to put them**:
+     - Locally: In `.env.local`:
+       ```bash
+       VITE_SUPABASE_URL="https://your-project-id.supabase.co"
+       VITE_SUPABASE_ANON_KEY="your_supabase_anon_key_here"
+       ```
+     - In Production: In your **Vercel Project Dashboard → Settings → Environment Variables**.
+
+---
+
+### 🚀 What Can You Use Supabase For in AXIS News?
+
+Supabase is an open-source, scalable Firebase alternative built on PostgreSQL. Here are the 5 major superpowers it unlocks for AXIS News:
+
+1. **Real Student Authentication (`AuthModal.tsx`)**:
+   - Upgrade from mock sessions to real **Google 1-Tap Sign-In**, GitHub, or college email magic links (`@nbu.ac.in`, `@iit.ac.in`).
+   - Securely store student profiles (Name, Avatar, College, Major, Reading Streaks).
+2. **Cloud Bookmarks & Reading History Sync Across Devices**:
+   - Currently, saved bookmarks and reading streaks live in the browser's `localStorage` on that one device.
+   - With Supabase, when a student saves a story on their laptop, it appears instantly on their phone when they open the AXIS mobile app!
+3. **Global Real-Time Trending Score (`trendingService.ts`)**:
+   - Replace local view counters with global view counts stored in Supabase.
+   - Every time any student anywhere reads a story, Supabase atomically increments the global count, making the **Trending Now** radar a true reflection of real worldwide student traffic.
+4. **Real-Time Breaking News Broadcasts (WebSockets)**:
+   - Using Supabase Realtime (`supabase.channel('breaking-news')`), whenever an emergency weather alert or breaking tech news drops, all open browser tabs update instantly without refreshing!
+5. **Student Polls, Reactions & Verified Discussion**:
+   - Enable interactive daily questions (e.g., *"Will Nvidia maintain its AI dominance under interim CEO Colette Kress?"*) with live percentage bars and verified student commentary.
 
 ---
 
