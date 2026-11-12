@@ -89,6 +89,7 @@ export interface NewsArticle {
   factSheet?: ArticleFactSheet;
   verifiedSearchUrl?: string;
   targetedSearchQuery?: string;
+  keyStat?: string;
   trendingScore?: number;
   trendingBreakdown?: TrendingScoreBreakdown;
 }

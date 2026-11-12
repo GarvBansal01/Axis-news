@@ -14,7 +14,8 @@ import {
   Clock,
   Users,
   Target,
-  ExternalLink
+  ExternalLink,
+  GraduationCap
 } from 'lucide-react';
 import { NewsArticle } from '../types';
 import { getTargetedGoogleNewsUrl } from '../utils/searchHelper';
@@ -134,7 +135,16 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
               </div>
 
               {/* Headline */}
-              <h2
+              {article.keyStat && (
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold tracking-tight">
+                    <Zap className="w-3 h-3 text-emerald-600 dark:text-emerald-400 fill-current" />
+                    <span>Key Stat: {article.keyStat}</span>
+                  </span>
+                </div>
+              )}
+
+              <h2 
                 onClick={() => onOpenDeepDive(article)}
                 className="text-lg md:text-xl font-editorial font-bold text-stone-900 dark:text-stone-100 leading-snug tracking-tight hover:text-amber-700 dark:hover:text-amber-400 transition-colors cursor-pointer"
               >
@@ -243,6 +253,19 @@ export const ScrollingFeed: React.FC<ScrollingFeedProps> = ({
                   </div>
                   <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans">
                     {article.theRealProblem}
+                  </p>
+                </div>
+              )}
+
+              {/* Why This Matters For You (Career & Real-World Edge) */}
+              {article.deepDive?.impactForStudents && (
+                <div className="p-3 rounded-lg border border-purple-500/25 bg-purple-500/[0.04] dark:bg-purple-950/20 text-xs space-y-1">
+                  <div className="flex items-center gap-1.5 text-purple-700 dark:text-purple-400 font-mono font-bold text-[10.5px] uppercase tracking-wider">
+                    <GraduationCap className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400 shrink-0" />
+                    <span>Why This Matters For You (Career & Real-World Edge)</span>
+                  </div>
+                  <p className="text-zinc-800 dark:text-zinc-200 leading-relaxed font-sans">
+                    {article.deepDive.impactForStudents}
                   </p>
                 </div>
               )}

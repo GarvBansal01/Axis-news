@@ -80,6 +80,15 @@ export const DeepDiveModal: React.FC<DeepDiveModalProps> = ({
               </span>
             </div>
 
+            {article.keyStat && (
+              <div className="pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold tracking-tight">
+                  <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 fill-current" />
+                  <span>Key Stat: {article.keyStat}</span>
+                </span>
+              </div>
+            )}
+
             <h2 className="text-xl md:text-2xl font-editorial font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
               {article.title}
             </h2>

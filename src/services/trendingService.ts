@@ -8,10 +8,10 @@ const TRENDING_STORAGE_KEY = 'axis_trending_cache_v1';
 
 // Base simulated view counts seeded from editorial importance to initialize realistic trending on first visit
 const INITIAL_VIEW_SEED: Record<string, number> = {
-  'farmers-dilli-chalo-msp-shambhu-protest': 185,
-  'us-presidential-election-trump-victory-tariffs': 210,
-  'maharashtra-jharkhand-assembly-elections-mandate': 165,
-  'japan-uk-global-elections-coalition-shifts': 135,
+  'india-high-speed-bullet-train-undersea-tunnel': 195,
+  'us-midterm-elections-2026-congress-battle': 210,
+  'assembly-elections-2026-tamilnadu-bengal-kerala': 175,
+  'global-diplomatic-trade-summit-2026-tariffs': 145,
   'cyclone-murasu-bay-of-bengal-alert': 124,
   'deepseek-v3-architecture-technical-breakthrough': 148,
   'isro-sce200-semicryogenic-hotfire-milestone': 112,
@@ -32,7 +32,7 @@ const INITIAL_VIEW_SEED: Record<string, number> = {
 
 // Canonical entity clusters for matching related dispatches reporting the same event
 const KNOWN_EVENT_SIGNATURES: { key: string; keywords: string[] }[] = [
-  { key: 'farmers-dilli-chalo', keywords: ['farmers', 'dilli chalo', 'shambhu', 'msp', 'swaminathan', 'khanauri', 'kisan'] },
+  { key: 'bullet-train-undersea', keywords: ['bullet train', 'mumbai ahmedabad', 'nhsrcl', 'undersea tunnel', 'shinkansen', 'high speed rail'] },
   { key: 'us-midterms-2026', keywords: ['us midterms', 'midterm elections', 'congress', 'capitol hill', 'house of representatives', 'senate', '2026'] },
   { key: 'assembly-elections-2026', keywords: ['assembly elections', 'tamil nadu', 'west bengal', 'kerala', 'assam', 'eci', 'electoral roll', '2026'] },
   { key: 'global-trade-summit-2026', keywords: ['global trade summit', 'g20', 'tariffs', 'critical minerals', 'wto', 'world leaders', '2026'] },

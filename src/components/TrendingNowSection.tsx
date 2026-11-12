@@ -13,7 +13,8 @@ import {
   RefreshCw,
   ShieldCheck,
   Zap,
-  Info
+  Info,
+  GraduationCap
 } from 'lucide-react';
 import { NewsArticle, NewsCategory } from '../types';
 
@@ -261,6 +262,15 @@ export const TrendingNowSection: React.FC<TrendingNowSectionProps> = ({
               </div>
 
               {/* Headline */}
+              {article.keyStat && (
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold tracking-tight">
+                    <Zap className="w-3 h-3 text-emerald-600 dark:text-emerald-400 fill-current" />
+                    <span>Key Stat: {article.keyStat}</span>
+                  </span>
+                </div>
+              )}
+
               <h3 className="text-base sm:text-lg font-serif font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
                 {article.title}
               </h3>
@@ -269,6 +279,19 @@ export const TrendingNowSection: React.FC<TrendingNowSectionProps> = ({
               <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans">
                 {article.takeaway}
               </p>
+
+              {/* Why This Matters For You (Career & Real-World Edge) */}
+              {article.deepDive?.impactForStudents && (
+                <div className="p-3 rounded-lg border border-purple-500/25 bg-purple-500/[0.04] dark:bg-purple-950/20 text-xs space-y-1">
+                  <div className="flex items-center gap-1.5 text-purple-700 dark:text-purple-400 font-mono font-bold text-[10.5px] uppercase tracking-wider">
+                    <GraduationCap className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400 shrink-0" />
+                    <span>Why This Matters For You (Career & Real-World Edge)</span>
+                  </div>
+                  <p className="text-zinc-800 dark:text-zinc-200 leading-relaxed font-sans">
+                    {article.deepDive.impactForStudents}
+                  </p>
+                </div>
+              )}
 
               {/* Bullets */}
               <ul className="space-y-1 text-xs text-zinc-600 dark:text-zinc-400 pl-4 border-l-2 border-zinc-200 dark:border-zinc-800">

@@ -47,6 +47,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'cyclone-murasu-bay-of-bengal-alert',
     title: 'Cyclone ‘Murasu’ Intensifies Over Bay of Bengal: IMD Issues Coastal Alerts for Andhra Pradesh and South Odisha',
+    keyStat: '85 kmph Winds · 12,000 Evacuated · Zero Casualties',
     category: 'disaster',
     locationScope: 'Bay of Bengal',
     sourceName: 'India Meteorological Department (IMD) & The Hindu / NDTV',
@@ -55,6 +56,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Officially documented in IMD Cyclone Bulletin No. 04 (BOB/08/2026).',
     takeaway: 'Deep depression in Bay of Bengal officially upgraded to Cyclonic Storm Murasu with 75-85 kmph winds; 18 NDRF battalions pre-deployed across coastal Andhra Pradesh and South Odisha.',
     whatIsIt: "Severe meteorological event where a deep depression over the southwest and west-central Bay of Bengal intensified into Cyclonic Storm 'Murasu', triggering emergency storm and heavy rainfall alerts across coastal Andhra Pradesh and southern Odisha.",
+    targetedSearchQuery: '"Cyclone Murasu" IMD Bay of Bengal Andhra Tamil Nadu alert',
     factSheet: {
       when: "02 Nov 2026, 08:30 AM IST",
       where: "Southwest and West-Central Bay of Bengal, moving towards Visakhapatnam, Kakinada, and Gopalpur coastline",
@@ -91,56 +93,58 @@ export const mockNewsArticles: NewsArticle[] = [
     }
   },
   {
-    id: 'farmers-dilli-chalo-msp-shambhu-protest',
-    title: 'Farmers’ ‘Dilli Chalo’ March 2.0 at Shambhu Border: Why Farmers Demand a Legal Guarantee for MSP, the Swaminathan C2+50% Formula, and Current Deadlock',
+    id: 'india-high-speed-bullet-train-undersea-tunnel',
+    title: 'India’s 320 km/h Bullet Train Megaproject: 21-Kilometer Undersea Rail Tunnel Completed Between Mumbai & Thane as High-Speed Shinkansen Trials Slated',
+    keyStat: '320 km/h Top Speed · 21km Undersea Rail · 1h 58m Travel Time',
     category: 'national',
     locationScope: 'India',
-    sourceName: 'The Hindu, The Indian Express & Press Trust of India (PTI)',
-    sourceType: 'Accredited National Agrarian & Political Reporting',
-    verification: 'reputable_media',
-    verificationNote: 'Ground journalistic dispatches from Punjab-Haryana Shambhu and Khanauri border checkpoints, Ministry of Agriculture statements, and Supreme Court orders.',
-    takeaway: 'Over 10,000 farmers camp at the Punjab-Haryana Shambhu border on NH-44 demanding a legally enforceable Minimum Support Price (MSP) under the Swaminathan Commission C2+50% formula and debt waiver; Haryana police deploy multi-tiered barricades and tear gas drones as ministerial talks yield impasse.',
-    whatIsIt: "Major national agrarian agitation organized under the Samyukta Kisan Morcha (Non-Political) and Kisan Mazdoor Morcha, where farmers marching towards New Delhi with tractors and rations were halted at fortified interstate borders (Shambhu in Ambala and Khanauri in Jind), demanding statutory legal backing for Minimum Support Price across 23 crops.",
-    targetedSearchQuery: '"Dilli Chalo" farmers MSP protest Shambhu border',
+    sourceName: 'National High Speed Rail Corporation (NHSRCL) & The Hindu',
+    sourceType: 'Accredited Infrastructure & High-Speed Rail Directorate',
+    verification: 'govt_verified',
+    verificationNote: 'Joint technical telemetry from NHSRCL, Japan International Cooperation Agency (JICA), and Ministry of Railways project monitoring dashboard.',
+    takeaway: 'India completes breakthrough excavation on the 21-km Mumbai-Thane undersea tunnel—the country’s first subsea bullet train transit route—setting the stage for 320 km/h commercial Shinkansen trials cutting Mumbai-Ahmedabad transit to 1 hour 58 minutes.',
+    whatIsIt: "Historic engineering milestone for the 508-km Mumbai-Ahmedabad High-Speed Rail (MAHSR) corridor, featuring a 21-kilometer underground tunnel with a 7-kilometer undersea stretch beneath Thane Creek executed using 13.1-meter diameter slurry Tunnel Boring Machines (TBMs) at depths of up to 114 meters.",
+    targetedSearchQuery: '"Bullet Train" Mumbai Ahmedabad NHSRCL undersea tunnel',
     factSheet: {
-      when: "Active Ongoing Agitation · 24/7 Interstate Border Standoff",
-      where: "Shambhu Border (Ambala, Haryana / Patiala, Punjab) & Khanauri Border (Jind / Sangrur), National Highway 44",
-      who: "Farmer Leaders Jagjit Singh Dallewal & Sarwan Singh Pandher (SKM-NP & KMM), Union Agriculture Minister Arjun Munda, Commerce Minister Piyush Goyal, Haryana & Punjab Police, Supreme Court High-Powered Committee chaired by Justice Nawab Singh",
-      what: "Thousands of farmers assembling with modified tractors and community langars demanding a statutory parliamentary act guaranteeing MSP purchase, complete agricultural loan waivers, implementation of Land Acquisition Act 2013, and withdrawal of FIRs from 2020-21 protests",
-      why: "Farmers argue that administrative MSP declarations without legal enforcement allow private traders to purchase pulses, oilseeds, and coarse cereals 20% to 40% below benchmark rates, forcing smallholders into predatory debt cycles amid escalating diesel, fertilizer, and seed costs",
-      how: "Haryana police erected multi-layered fortifications including concrete jersey barriers, iron spikes cemented into roads, and shipping containers filled with sand, deploying drone-mounted tear gas canisters; farmers established tent encampments with water tankers and medical teams while four rounds of ministerial talks and Supreme Court mediation attempt conciliation"
+      when: "Active 2026 Milestone · Breakthrough Completed",
+      where: "Thane Creek Subsea Section, Mumbai-Ahmedabad High Speed Rail Corridor (BKC Mumbai to Shilphata, Maharashtra)",
+      who: "National High Speed Rail Corporation Limited (NHSRCL), JICA, Afcons Infrastructure, Union Minister of Railways Ashwini Vaishnaw",
+      what: "Completion of subterranean boring for the 21-km undersea tunnel between BKC Mumbai and Shilphata, with specialized Japan-designed Shinkansen E5 series trainsets arriving for electrified trials",
+      why: "Connect India's financial capital Mumbai with commercial hub Ahmedabad, transforming regional transit, eliminating 12,000 daily road vehicles, and building indigenous high-speed civil engineering expertise",
+      how: "Using specialized slurry Tunnel Boring Machines (TBMs) named 'Pavana' and 'Vaitarna', deep shafts at Ghansoli and Shilphata, and ballastless slab track manufacturing at Surat"
     },
-    theRealProblem: "The core economic conflict lies between the government's current MSP calculation method (A2+FL: actual paid-out costs plus imputed value of family labor) versus the farmers' demand for the Swaminathan Commission formula (C2+50%: comprehensive cost including imputed rent on owned land and interest on fixed capital assets plus a 50% profit margin). While farmer economists demonstrate that legal MSP can be executed via price deficiency payments costing ~₹1.5-2 lakh crore, central fiscal planners worry about open-ended procurement liabilities, inflation risks, and WTO domestic subsidy caps.",
+    theRealProblem: "Overcoming complex seismic marine geology 114 meters below sea level without disturbing the sensitive Thane Creek Flamingo Sanctuary above, while managing high-voltage 25kV traction systems and localized land acquisition hurdles across the Maharashtra urban segment.",
     bullets: [
-      'Standoff enters multi-month phase at Shambhu border on NH-44 with thousands of tractor-trolleys and community supply chains operational.',
-      'Core demand: Statutory law guaranteeing Minimum Support Price for 23 crops calculated at C2+50% (Comprehensive Cost + 50% profit).',
-      'Supreme Court panel headed by retired High Court Judge Nawab Singh facilitates phased dialogue between farmer unions and Union ministries.'
+      '7-kilometer undersea tunnel segment beneath Thane Creek completed at 114m depth using massive 13.1m diameter slurry TBMs.',
+      'First commercial Shinkansen trials slated at 320 km/h, reducing 508-km Mumbai-Ahmedabad commute from 6 hours to 1 hour 58 minutes.',
+      'Over 310 km of high-speed viaducts and India’s first dedicated ballastless track-slab production facility in Surat now operational.'
     ],
     ...createRollingTimestamp(18),
     readTime: '45s read',
-    tags: ['Farmers Protest', 'Dilli Chalo', 'MSP Guarantee', 'Shambhu Border', 'Agriculture'],
-    audioScript: 'The farmers Dilli Chalo agitation at the Shambhu border continues as farmer unions demand statutory legal guarantees for MSP under the Swaminathan C2 plus 50 percent formula alongside debt waivers.',
+    tags: ['Bullet Train', 'NHSRCL', 'High-Speed Rail', 'Undersea Tunnel', 'Infrastructure'],
+    audioScript: 'India marks a historic civil engineering milestone as excavation on the 21-kilometer undersea rail tunnel between Mumbai and Thane concludes, paving the way for 320 km/h bullet train trials.',
     deepDive: {
-      overview: 'The ‘Dilli Chalo’ march represents an ongoing national farmer mobilization along the Punjab-Haryana border. Camping along the interstate boundary at Shambhu on NH-44, farmers under the SKM (Non-Political) and Kisan Mazdoor Morcha are seeking binding legislative guarantees that no agricultural produce can be purchased below MSP.',
-      keyBackground: 'In the aftermath of the national agrarian agitations, the Centre provided written assurances to constitute an expert mechanism to examine statutory MSP guarantees. Farmer unions contend administrative floor prices without legal penalties allow corporate purchasers to buy oilseeds and pulses below cost, prompting the ongoing peaceful encampment at the Punjab-Haryana Shambhu border on NH-44.',
-      rootCauseAnalysis: "Indian agriculture faces a structural scissors crisis: rising input prices (NPK fertilizers, diesel, certified hybrid seeds) combined with depressed market realisations during harvest gluts. Because the government only procures substantial quantities of wheat and paddy (primarily in Punjab, Haryana, and Andhra Pradesh for the Public Distribution System), farmers growing maize, mustard, sunflower, and pulses are forced to sell to private middlemen at steep discounts.",
+      overview: 'The Mumbai-Ahmedabad High-Speed Rail (MAHSR) project, India’s flagship bullet train venture executed with Japanese Shinkansen technology, achieves its most challenging engineering milestone: the completion of the 21-km underground and undersea tunnel connecting Bandra-Kurla Complex (BKC) to Shilphata.',
+      keyBackground: 'Sanctioned under bilateral cooperation with Japan International Cooperation Agency (JICA), the 508-km high-speed corridor spans 12 stations across Maharashtra and Gujarat. The undersea section beneath Thane Creek was chosen to avoid disrupting urban settlements and the ecologically sensitive flamingo bird sanctuary above.',
+      rootCauseAnalysis: "India's intercity rail corridors suffer from severe freight-passenger congestion on broad-gauge tracks capped at 130-160 km/h. Dedicated high-speed standard-gauge tracks operating at 320 km/h unlock transformative economic agglomeration between the industrial powerhouses of Mumbai, Surat, Vadodara, and Ahmedabad.",
       timeline: [
-        { time: 'Statutory Impasse', event: 'Farmer unions assemble along NH-44 demanding parliamentary act for C2+50% MSP guarantee.' },
-        { time: 'Supreme Court Mediation', event: 'Supreme Court bench appoints independent high-powered committee headed by retired Justice Nawab Singh.' },
-        { time: 'Present 2026 Consultations', event: 'Mediation panel conducts structured sessions with Union secretaries and farm leaders on price deficiency compensation models.' }
+        { time: 'TBM Deployment', event: 'Massive 13.1m diameter slurry shields launched at Vikhroli and Sawli shafts.' },
+        { time: 'Thane Creek Subsea Breakthrough', event: 'Boring beneath the marine creek seabed at 114m depth completed safely without environmental disruption.' },
+        { time: 'Present 2026 Phase', event: 'Electrification overhead equipment (OHE) and automated Shinkansen track-slab laying underway across Gujarat and Maharashtra sections.' }
       ],
       keyQuotes: [
-        { speaker: 'Jagjit Singh Dallewal', role: 'Leader, Samyukta Kisan Morcha (Non-Political)', quote: 'MSP without a legal guarantee is like a check without a bank guarantee. Unless the Parliament enacts a statutory floor price based on the Swaminathan formula, corporate middlemen will continue to exploit farmers.' },
-        { speaker: 'Arjun Munda', role: 'Union Minister of Agriculture & Farmers Welfare', quote: 'The government is fully committed to farmer welfare and offered guaranteed 5-year contracts for pulses and cotton. A universal statutory procurement law requires deep nationwide consultation across all states and consumer groups.' }
+        { speaker: 'Ashwini Vaishnaw', role: 'Union Minister of Railways', quote: 'The completion of India’s first subsea bullet train tunnel proves our indigenous engineering capability to deliver mega-scale infrastructure with zero compromise on safety and precision.' },
+        { speaker: 'Managing Director', role: 'NHSRCL', quote: 'Every meter drilled beneath Thane Creek required millimetric alignment. We are now transitioning directly into track-slab installation and signalling commissioning.' }
       ],
-      impactForStudents: 'Fundamental case study for UPSC, economics, public policy, and legal students on agricultural price policy, Swaminathan Commission recommendations, federal market regulation, and constitutional protest rights.',
-      officialSourceUrl: 'https://www.thehindu.com/news/national/other-states/farmers-protest-shambhu-border-msp-explainer/article67843210.ece',
-      sourceDocName: 'The Hindu Ground Report & Ministry of Agriculture Annual Agrarian Policy Review'
+      impactForStudents: 'Crucial case study for civil, mechanical, and electrical engineering students on slurry TBM tunneling, undersea geotechnical risk mitigation, ballastless track technology, and public-private mega infrastructure finance.',
+      officialSourceUrl: 'https://nhsrcl.in',
+      sourceDocName: 'NHSRCL Official Technical Bulletin: Undersea Tunnel Breakthrough & Track Laying Progress'
     }
   },
   {
     id: 'us-midterm-elections-2026-congress-battle',
     title: 'US Midterm Elections 2026: High-Stakes Battle for Capitol Hill as Voters Decide Control of All 435 House Seats and Senate Battlegrounds Amid Tariff & Inflation Debates',
+    keyStat: '435 House Seats · 33 Senate Races · $14B Projected Spend',
     category: 'world',
     locationScope: 'Global',
     sourceName: 'Reuters International, Associated Press & Financial Times',
@@ -188,6 +192,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'assembly-elections-2026-tamilnadu-bengal-kerala',
     title: 'State Assembly Elections 2026: ECI Directives & High-Stakes Coalitions in Tamil Nadu, West Bengal, Kerala, and Assam Ahead of Nationwide Delimitation Debate',
+    keyStat: '642 Assembly Seats · 210M Electorate · 100% VVPAT Audit',
     category: 'national',
     locationScope: 'India',
     sourceName: 'The Hindu, The Indian Express & Press Trust of India (PTI)',
@@ -235,6 +240,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'global-diplomatic-trade-summit-2026-tariffs',
     title: 'Global Trade & Energy Summit 2026: G20 Leaders Convene on Universal Tariff Realignment, Critical Mineral Supply Chains, and Clean Power Mandates',
+    keyStat: '20% Universal Tariff Debate · $28 Trillion Trade Flow',
     category: 'world',
     locationScope: 'Global',
     sourceName: 'Financial Times, Reuters International & Bloomberg Economics',
@@ -282,6 +288,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'russia-ukraine-lukoil-refinery-pokrovsk',
     title: 'Russia-Ukraine Frontline & Deep Energy Strikes: Lukoil Kstovo Refinery Hit by Drone Attack as Pokrovsk Sector Battles Intensify',
+    keyStat: '17M Tonnes Refining Capacity · 450km Deep-Strike Drone Range',
     category: 'geopolitics',
     locationScope: 'Eastern Europe',
     sourceName: 'Reuters International, Kyiv Independent & ISW Defense Radar',
@@ -290,6 +297,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Corroborated by Reuters, Kyiv Independent, and daily Institute for the Study of War (ISW) operational briefings.',
     takeaway: 'Long-range Ukrainian drone strike triggers major fire at Lukoil oil refinery in Kstovo, Russia, while high-intensity ground combat continues along the strategic Pokrovsk frontline.',
     whatIsIt: "High-intensity military clash involving long-range Ukrainian drone strikes on strategic petroleum infrastructure inside Russia alongside fierce positional battles in the Pokrovsk logistical hub of eastern Ukraine.",
+    targetedSearchQuery: 'Lukoil Kstovo refinery drone strike Pokrovsk frontline',
     factSheet: {
       when: "02 Nov 2026, 04:15 AM IST",
       where: "Lukoil Oil Refinery, Kstovo (Nizhny Novgorod Region, Russia) and Pokrovsk Sector (Donetsk Oblast, Ukraine)",
@@ -328,6 +336,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'india-it-engineering-ai-hiring-shift',
     title: 'Indian IT Giants Accelerate AI Builder Transition: Generative AI Automation Squeezes Entry-Level Hiring as Firms Shift to High-End ER&D',
+    keyStat: '68% Code Written with AI · 40% Premium for Systems Talent',
     category: 'ai',
     locationScope: 'India',
     sourceName: 'Business Standard, Economic Times & NASSCOM',
@@ -336,6 +345,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Based on corporate quarterly filings and NASSCOM IT Workforce Transformation reports.',
     takeaway: 'India’s top IT firms report automated routine coding by AI, shifting campus recruitment from generic bulk coders to specialized Engineering Research & Development (ER&D) roles.',
     whatIsIt: "Major economic and structural workforce transition across Indian IT services (TCS, Infosys, Cognizant) where generative AI coding tools automate routine junior engineering tasks, pivoting hiring towards advanced systems engineering and AI integration.",
+    targetedSearchQuery: 'Indian IT AI engineering hiring shift TCS Infosys NASSCOM',
     factSheet: {
       when: "02 Nov 2026, 10:15 AM IST",
       where: "Bengaluru, Hyderabad, Pune, Gurugram & National Engineering Colleges",
@@ -373,6 +383,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'openai-anthropic-test-time-reasoning-breakthrough',
     title: 'OpenAI and Anthropic Pioneer Test-Time Reasoning Architectures: Frontier AI Shifts from Parameter Scaling to Multi-Step Verification Compute',
+    keyStat: '100x Test-Time Compute · 84% on Frontier Math Benchmarks',
     category: 'ai',
     locationScope: 'Global',
     sourceName: 'OpenAI Research & Anthropic Technical Briefings',
@@ -381,6 +392,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Verified across official technical reports for o1, o3-mini and Claude 3.7 Sonnet reasoning benchmarks.',
     takeaway: 'Leading AI labs transition from brute-force pre-training parameter scale to test-time compute search, enabling neural models to self-correct reasoning steps and eliminate hallucinations in mathematics and coding.',
     whatIsIt: "Major architectural shift where frontier AI models spend dynamic compute time verifying logic trees during inference rather than merely predicting the next immediate token.",
+    targetedSearchQuery: 'OpenAI Anthropic test-time compute reasoning models inference scaling',
     factSheet: {
       when: "02 Nov 2026, 08:30 AM IST",
       where: "San Francisco, California & Global Developer Ecosystem",
@@ -418,6 +430,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'deepseek-open-weights-efficiency-revolution',
     title: 'Open-Weights AI Architecture Disrupts Proprietary Moats: DeepSeek-V3 and Reasoning Models Trigger Global Compute Efficiency Revolution',
+    keyStat: '1/10th Training Cost · 671B MoE Architecture · Open Weights',
     category: 'ai',
     locationScope: 'Global',
     sourceName: 'DeepSeek AI Research, Hugging Face & Stanford CRFM',
@@ -426,6 +439,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Evaluated by independent AI researchers on Hugging Face leaderboards and open-weight model architectures.',
     takeaway: 'DeepSeek’s Multi-head Latent Attention (MLA) and FP8 mixed-precision innovations achieve frontier model performance at a fraction of hyperscaler training costs, democratizing open AI research.',
     whatIsIt: "Architectural disruption in generative AI proving that sophisticated mixture-of-experts (MoE) routing, multi-head latent attention, and pure algorithmic efficiency can match trillion-dollar hyperscaler models at less than $6M training cost.",
+    targetedSearchQuery: 'DeepSeek open weights MoE architecture inference cost revolution',
     factSheet: {
       when: "02 Nov 2026, 09:15 AM IST",
       where: "Hangzhou, Global Open-Source Developer Repositories & Hugging Face Hub",
@@ -463,6 +477,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'siliguri-nh10-teesta-restoration-dooars-alert',
     title: 'Siliguri & North Bengal Infrastructure Push: NH-10 Teesta Corridor Restoration Accelerated While Forest Squads Issue Dooars Wildlife Alert',
+    keyStat: '52km Mountain Corridor · ₹780 Cr Geo-Reinforcement Project',
     category: 'local',
     locationScope: 'Siliguri',
     sourceName: 'Uttarbanga Sambad, Siliguri Times & The Statesman',
@@ -471,6 +486,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Verified from reports by Uttarbanga Sambad, Siliguri Times, and NHIDCL North Bengal project directors.',
     takeaway: 'NH-10 Teesta Valley stabilization fast-tracked to ensure all-weather transport between Siliguri and Sikkim; forest squads deploy extra night patrols in Dooars tea gardens.',
     whatIsIt: "Dual regional development where infrastructure authorities expedite permanent slope stabilization along the landslide-affected NH-10 Teesta corridor connecting Siliguri to Sikkim, alongside active wildlife corridor monitoring in Dooars.",
+    targetedSearchQuery: 'NH-10 Sevoke Teesta restoration Siliguri Kalimpong transit',
     factSheet: {
       when: "02 Nov 2026, 09:45 AM IST",
       where: "Siliguri, Sevoke, Teesta Valley (NH-10) and Dooars Tea Estates, North Bengal",
@@ -508,6 +524,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'india-nz-t20i-series-ishan-record',
     title: 'India Seals T20I Series 3-2 Against New Zealand in Hamilton: Ishan Kishan Becomes Highest Indian T20I Run-Scorer in Single Calendar Year',
+    keyStat: '118 Runs off 44 Balls · 14 Sixes · Record 238 Run Chase',
     category: 'world',
     locationScope: 'Global',
     sourceName: 'BCCI Official, ESPNcricinfo & Olympics Sports Radar',
@@ -516,6 +533,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Officially published by BCCI and covered across global sports publications.',
     takeaway: 'India wins exciting 5th T20I in Hamilton to take bilateral series 3-2; Ishan Kishan surpasses historic batting records for most T20I runs scored by an Indian in a calendar year.',
     whatIsIt: "High-stakes international cricket bilateral where Team India secured a 3-2 series victory over New Zealand in Hamilton, marked by record-breaking top-order performances.",
+    targetedSearchQuery: 'India New Zealand T20I Ishan Kishan batting record series',
     factSheet: {
       when: "02 Nov 2026, 03:30 PM IST",
       where: "Seddon Park, Hamilton, New Zealand",
@@ -553,6 +571,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'sebi-fno-retail-guardrails-protection',
     title: 'SEBI Implements 6-Point Guardrail on Index Futures & Options: Enforces ₹15 Lakh Minimum Contract Size to Curb Retail Youth Trading Losses',
+    keyStat: '₹1.81 Lakh Cr Retail Loss · 93% in Red · ₹15L Lot Minimum',
     category: 'finance',
     locationScope: 'India',
     sourceName: 'SEBI Official Gazette & Reserve Bank of India',
@@ -561,6 +580,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Issued under SEBI Circular SEBI/HO/MRD/MRD-PoD-1/P/CIR/2026/142.',
     takeaway: 'SEBI enforces strict derivative trading reforms, raising minimum contract sizes to ₹15 Lakh and restricting weekly expiries to protect retail college students from speculative losses.',
     whatIsIt: "Landmark regulatory intervention by capital markets watchdog SEBI mandating stringent entry guardrails for retail index futures and options to prevent catastrophic speculative capital erosion among young investors.",
+    targetedSearchQuery: 'SEBI F&O new rules retail traders index options contract size',
     factSheet: {
       when: "02 Nov 2026, 10:00 AM IST",
       where: "National Stock Exchange (NSE) & Bombay Stock Exchange (BSE), Mumbai",
@@ -599,6 +619,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'india-semiconductor-mission-packaging-clusters',
     title: 'India Semiconductor Mission Approves Commercial Packaging Hubs: Domestic Chip Ecosystem Gains Momentum in Dholera and Sanand',
+    keyStat: '₹76,000 Cr Subsidy Outlay · 5 OSAT Hubs · 28nm Commercial Wafers',
     category: 'personal',
     locationScope: 'India',
     sourceName: 'Ministry of Electronics and IT (MeitY) & PIB India',
@@ -607,6 +628,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Officially notified in MeitY Semiconductor Mission Gazetted Release ISM-2026-PKG-08.',
     takeaway: 'Union Cabinet clears next tranche of semiconductor assembly, testing, and cleanroom packaging facilities in Gujarat, accelerating domestic chip fabrication.',
     whatIsIt: "Strategic government expansion under the ₹76,000 Crore India Semiconductor Mission (ISM) approving commercial packaging and testing clusters in Gujarat to anchor indigenous silicon supply chains.",
+    targetedSearchQuery: 'India Semiconductor Mission Dholera Sanand chip packaging MeitY',
     factSheet: {
       when: "02 Nov 2026, 01:20 PM IST",
       where: "Dholera Special Investment Region (SIR) & Sanand, Gujarat, India",
@@ -644,6 +666,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'apple-tim-cook-five-trillion-on-device-enterprise',
     title: 'Apple Crosses Historic $5 Trillion Valuation as Tim Cook Champions On-Device Compute: Mac M4 Deployments Surge as Enterprises Seek Relief from Soaring Cloud AI Bills',
+    keyStat: '$5 Trillion Valuation · 2.2B Active Devices · Private Cloud Compute',
     category: 'personal',
     locationScope: 'Global',
     sourceName: 'Bloomberg, Reuters & Apple Keynote Briefing',
@@ -652,6 +675,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Confirmed via NASDAQ market records and Apple Global Keynote executive transcript.',
     takeaway: 'Apple surpasses Nvidia as the world’s most valuable enterprise at $5.03 Trillion; CEO Tim Cook emphasizes that enterprise developers are deploying on-device M4 silicon to process neural workloads locally without hyperscaler cloud rental costs.',
     whatIsIt: "Historic corporate valuation milestone and strategic technology talk by Apple CEO Tim Cook highlighting how dedicated Neural Engines in Apple Silicon (M4 Pro / M4 Max) allow companies to bypass expensive per-token cloud APIs through secure on-premise local compute.",
+    targetedSearchQuery: 'Apple 5 trillion valuation Tim Cook Apple Intelligence enterprise',
     factSheet: {
       when: "02 Nov 2026, 11:45 AM IST",
       where: "Apple Park, Cupertino, California & Wall Street, New York",
@@ -689,6 +713,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'google-open-tpu-silicon-datacenter-strategy',
     title: 'Google Unveils Open TPU Silicon Initiative: Sundar Pichai Outlines External Data Center Expansion and Open Software Stack to Challenge Nvidia CUDA Monopoly',
+    keyStat: '4.5x Energy Efficiency · Ironwood TPU v6 · Liquid-Cooled Pods',
     category: 'personal',
     locationScope: 'Global',
     sourceName: 'Google Cloud Next Keynote, WSJ & Reuters Technology',
@@ -697,6 +722,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Officially presented by Alphabet CEO Sundar Pichai and Google Cloud Chief Thomas Kurian during Silicon Summit.',
     takeaway: 'Google breaks tradition by licensing its custom Tensor Processing Units (TPUs) directly to third-party data centers with open-source software drivers, mounting the most serious commercial challenge yet to Nvidia’s hardware dominance.',
     whatIsIt: "Major hardware launch and strategic talk by Alphabet CEO Sundar Pichai announcing that Google will ship custom Trillium and TPU v5e silicon directly to external colocation facilities with a free open software license.",
+    targetedSearchQuery: 'Google TPU v6 Ironwood silicon datacenter Sundar Pichai',
     factSheet: {
       when: "02 Nov 2026, 12:30 PM IST",
       where: "Mountain View, California & Las Vegas Convention Center",
@@ -734,6 +760,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'amazon-aws-microsoft-dark-gpu-power-grid-crisis',
     title: 'Microsoft and Amazon AWS Issue "Dark GPU" Warning: Hyperscaler CEOs Sound Alarm as Power Grid Delays Leave Thousands of High-End Chips Unpowered',
+    keyStat: '1.2 Gigawatts per Campus · Small Modular Reactors (SMRs)',
     category: 'personal',
     locationScope: 'Global',
     sourceName: 'Financial Times, TechCrunch & Hyperscaler Executive Panels',
@@ -742,6 +769,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Compiled from Satya Nadella and Matt Garman public talks at the Global Infrastructure Leadership Forum.',
     takeaway: 'Microsoft CEO Satya Nadella and AWS CEO Matt Garman warn that electric utility queues are delaying data center activations by up to 36 months, stranding billions of dollars in high-end server silicon as "Dark GPUs".',
     whatIsIt: "High-level industry talks and cautionary statements by Microsoft and Amazon AWS leadership warning of electrical transmission and nuclear/geothermal power constraints threatening global datacenter expansions.",
+    targetedSearchQuery: 'Microsoft AWS nuclear power datacenter dark GPU grid bottleneck',
     factSheet: {
       when: "02 Nov 2026, 02:15 PM IST",
       where: "Seattle, Washington & Washington D.C. Energy Forum",
@@ -779,6 +807,7 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: 'nvidia-jensen-huang-blackwell-liquid-cooled-keynote',
     title: 'Nvidia Commences Commercial Blackwell Rack Shipments: Jensen Huang Declares End of General-Purpose Computing in Landmark GTC Industry Talk',
+    keyStat: '72-GPU NVLink Liquid Cooled Rack · 130kW Power per Rack',
     category: 'personal',
     locationScope: 'Global',
     sourceName: 'Nvidia GTC Keynote, AnandTech & Reuters',
@@ -787,6 +816,7 @@ export const mockNewsArticles: NewsArticle[] = [
     verificationNote: 'Delivered live by CEO Jensen Huang during the worldwide GTC Semiconductor Keynote Address.',
     takeaway: 'Nvidia begins shipping full-rack GB200 NVL72 liquid-cooled systems to cloud hyperscalers; Jensen Huang proclaims that traditional CPU instruction retrieval has ended in favor of continuous accelerated computing.',
     whatIsIt: "Landmark hardware deployment announcement and keynote talk where Nvidia CEO Jensen Huang showcased commercial shipments of liquid-cooled Blackwell NVL72 supercomputer racks, redefining datacenter architectures.",
+    targetedSearchQuery: 'Nvidia Blackwell Ultra NVL72 liquid cooled Jensen Huang keynote',
     factSheet: {
       when: "02 Nov 2026, 03:40 PM IST",
       where: "San Jose Convention Center, California",
@@ -827,6 +857,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   {
     id: 'live-cyclone-murasu-evacuations',
     title: 'Cyclone Murasu Coastal Radar Update: Wind Speeds Cross 80 kmph as District Authorities Complete Pre-Emptive Evacuations',
+    keyStat: '82 kmph Peak Gusts · 45 Coastal Shelters Activated',
     category: 'disaster',
     locationScope: 'Bay of Bengal',
     sourceName: 'IMD Doppler Radar Network & State Disaster Control',
@@ -835,6 +866,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Live telemetry broadcast from Visakhapatnam Coastal Doppler Radar.',
     takeaway: 'Machilipatnam and Visakhapatnam radars track cyclone eye with rain bands hitting coastline; early evacuations prevent casualties.',
     whatIsIt: "Real-time meteorological tracking of Cyclonic Storm Murasu as rain bands approach the eastern coastline, triggering coordinated district administration protective procedures.",
+    targetedSearchQuery: 'Cyclone Murasu coastal evacuation IMD radar Andhra Tamil Nadu',
     factSheet: {
       when: "02 Nov 2026, 05:45 AM IST",
       where: "Visakhapatnam & Machilipatnam Coastal Belt, Bay of Bengal",
@@ -870,53 +902,55 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     }
   },
   {
-    id: 'live-farmers-msp-shambhu-border-talks',
-    title: 'Farmers’ Shambhu Border Talks: Supreme Court Committee Convenes High-Level Deliberations with Farm Unions and Union Ministries on MSP Formula',
+    id: 'live-bullet-train-undersea-shaft-breakthrough',
+    title: 'Bullet Train Live Telemetry: NHSRCL Marks Breakthrough on Subsea Shaft-2 as First Track-Slab Factory Commences Operations in Surat',
+    keyStat: '114m Depth · 100% Track-Slab Casting Automated',
     category: 'national',
     locationScope: 'India',
-    sourceName: 'Press Trust of India (PTI) & The Indian Express',
-    sourceType: 'National Agrarian & Legal Wire',
-    verification: 'reputable_media',
-    verificationNote: 'Documented in Supreme Court committee status proceedings under Justice Nawab Singh and Ministry of Agriculture communications.',
-    takeaway: 'Independent Supreme Court committee holds formal consultative rounds with SKM-Non Political leaders and government economists to explore price stabilization funds and statutory MSP mechanisms.',
-    whatIsIt: 'Official judicial-administrative mediation process directed by the Supreme Court of India to peacefully address the standoff at the Shambhu border between marching farmers and Haryana border security.',
-    targetedSearchQuery: '"Shambhu border" farmers protest Supreme Court committee MSP',
+    sourceName: 'NHSRCL Project Operations Command & Press Trust of India (PTI)',
+    sourceType: 'National Infrastructure Operations Wire',
+    verification: 'govt_verified',
+    verificationNote: 'Telemetry confirmed via National High Speed Rail Corporation real-time dashboard.',
+    takeaway: 'NHSRCL engineers achieve breakthrough at Subsea Shaft-2 of the 21-km undersea tunnel between BKC and Shilphata, while the Surat track-slab facility reaches full automated production for the 320 km/h corridor.',
+    whatIsIt: 'Live infrastructure dispatch confirming precision breakthrough of the 13.1-meter diameter tunnel boring machine at Shaft-2 along Thane Creek, and concurrent delivery of indigenous precast track slabs.',
+    targetedSearchQuery: '"bullet train" NHSRCL Surat track slab Thane creek breakthrough',
     factSheet: {
-      when: 'Active Ongoing Proceedings · Daily Monitoring',
-      where: 'Supreme Court Committee Chambers, New Delhi & Chandigarh Border Secretariat',
-      who: 'Justice Nawab Singh (Retd. High Court Judge), SKM (Non-Political) delegates, Union Agriculture Secretary, Punjab and Haryana Chief Secretaries',
-      what: 'Structured mediation sessions discussing statutory price floor mechanisms for 23 notified crops, phased removal of highway fortifications, and alternative crop diversification incentives',
-      why: 'Resolve long-running interstate highway blockades on NH-44 while formulating a sustainable legal framework for fair agricultural price realizations',
-      how: 'Committee submits periodic progress benchmarks to the Supreme Court bench of Justices Surya Kant and Ujjal Bhuyan, proposing targeted price deficiency compensation models'
+      when: 'Active Ongoing Operations · Real-Time Telemetry',
+      where: 'Shaft-2, Ghansoli & Surat Track-Slab Casting Depot, MAHSR Corridor',
+      who: 'NHSRCL Chief Project Manager, Afcons Tunneling Crew, Japanese Technical Advisors',
+      what: 'Controlled breakthrough of TBM shield into receiving chamber at 114m depth, with simultaneous dispatch of 500 reinforced track slabs for Gujarat section',
+      why: 'Keep the 508-km Mumbai-Ahmedabad bullet train corridor on track for integrated high-speed rolling stock trials',
+      how: 'Laser-guided gyroscopic navigation ensured zero deviation through basaltic rock strata beneath the marine bed'
     },
-    theRealProblem: 'Balancing farmer income security with macroeconomic fiscal limits. Farmers require price guarantees so volatile market drops do not cause financial ruin, while central planners require disciplined budget outlays that comply with multilateral trade rules.',
+    theRealProblem: 'Managing high water-ingress pressures at 114 meters subsea while maintaining 24/7 ventilation and spoil removal without surface vibrations affecting urban Thane.',
     bullets: [
-      'Supreme Court panel reviews agricultural price deficiency payment frameworks across five key pulses and oilseeds.',
-      'Farm union representatives emphasize that legal MSP must be enforceable against private commercial traders.',
-      'Haryana and Punjab administrations instructed to maintain peace and emergency medical lanes along NH-44.'
+      'Subsea Shaft-2 breakthrough achieved with zero surface subsidence.',
+      'Surat automated track-slab facility scales output to 120 precision slabs per shift.',
+      'High-speed Shinkansen E5 electrical substation testing initiated at Bilimora depot.'
     ],
     ...createRollingTimestamp(0),
     readTime: '30s read',
-    tags: ['Farmers Protest', 'Shambhu Border', 'Supreme Court', 'MSP Committee'],
-    audioScript: 'Agrarian update: The Supreme Court appointed committee has conducted fresh deliberations with farmer unions and Union ministry representatives regarding statutory MSP frameworks.',
+    tags: ['Bullet Train', 'NHSRCL', 'Undersea Tunnel', 'Surat Depot', 'Engineering'],
+    audioScript: 'Live infrastructure dispatch: NHSRCL engineers achieve breakthrough at Subsea Shaft-2 of the Mumbai-Thane bullet train tunnel as track-slab casting scales up in Surat.',
     deepDive: {
-      overview: 'Judicial mediation between protesting farmer unions and government officials enters a crucial phase under Supreme Court oversight, focusing on viable statutory MSP models.',
-      keyBackground: 'Following the renewed Dilli Chalo agitation, security forces halted farmer convoys at the Haryana border. The Supreme Court intervened to protect democratic protest rights while preventing highway disruptions, establishing a neutral panel chaired by Justice Nawab Singh.',
-      rootCauseAnalysis: 'Unregulated agricultural mandis frequently see distress sales below MSP during harvest periods. Without legal enforcement or government procurement backing, farmers bear total market risk alone.',
+      overview: 'Critical field milestone for the Mumbai-Ahmedabad High Speed Rail project as subterranean excavation at Shaft-2 links up with the main tunnel alignment.',
+      keyBackground: 'The Thane Creek tunnel requires three deep shafts (Vikhroli, Sawli, and Ghansoli) to lower and operate the 13.1m TBMs. Shaft-2 serves as the primary extraction and ventilation node.',
+      rootCauseAnalysis: 'Subsea tunneling requires real-time slurry pressure equalization against seawater hydrostatic head. Any failure in bentonite slurry circulation risks face collapse.',
       timeline: [
-        { time: 'Just now', event: 'Supreme Court panel concludes working session on price deficiency mechanisms.' }
+        { time: 'Just now', event: 'TBM cutterhead breaches Shaft-2 diaphragm wall to applause from engineering crews.' }
       ],
       keyQuotes: [
-        { speaker: 'Justice Nawab Singh (Retd.)', role: 'Chairman, Supreme Court Committee', quote: 'Our mandate is to bridge trust and find a practical, lawful solution that protects farmer livelihoods while respecting economic realities.' }
+        { speaker: 'Chief Project Manager', role: 'NHSRCL Tunnel Division', quote: 'The tunnel boring machine hit the receiving target within 4 millimeters of tolerance after kilometers of blind subsea excavation.' }
       ],
-      impactForStudents: 'Vital study in judicial dispute resolution, public administration, agrarian economics, and constitutional mediation.',
-      officialSourceUrl: 'https://main.sci.gov.in',
-      sourceDocName: 'Supreme Court of India Proceedings: Order on Shambhu Border Farmer Agitation'
+      impactForStudents: 'Real-world masterclass in geotechnical instrumentation, TBM navigation, and mega-project execution under extreme geological constraints.',
+      officialSourceUrl: 'https://nhsrcl.in',
+      sourceDocName: 'NHSRCL Telemetry Log: Shaft-2 Breakthrough & Track Slab Production'
     }
   },
   {
     id: 'live-teesta-nh10-traffic-clearance',
     title: 'NH-10 Sevoke-Teesta Corridor Opens for Normal Commercial Transit Following Successful Slope Anchoring Operations',
+    keyStat: '100% Commercial Clearance · Slope Wire Mesh Anchored',
     category: 'local',
     locationScope: 'Siliguri',
     sourceName: 'Siliguri Times & Traffic Control Directorate',
@@ -925,6 +959,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Live clearance notified by Darjeeling District Police Traffic Command.',
     takeaway: 'Smooth two-way vehicular flow restored between Siliguri and Sikkim after engineers successfully anchored high-tensile rockfall barriers.',
     whatIsIt: "Local transport clearance update where highway engineering teams completed critical rock-anchoring works on NH-10, enabling normal traffic between Siliguri and Sikkim.",
+    targetedSearchQuery: 'NH-10 Sevoke Teesta traffic clearance Darjeeling administration',
     factSheet: {
       when: "02 Nov 2026, 05:45 AM IST",
       where: "NH-10 Sevoke-Coronation Bridge-Teesta Bazaar Corridor, North Bengal",
@@ -961,6 +996,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   {
     id: 'live-ai-frontier-reasoning-benchmark',
     title: 'Frontier AI Laboratory Dispatch: Multi-Step Reasoning Models Outperform Human Benchmarks on Competitive Science & Math',
+    keyStat: '94.2% on AIME · Dynamic Self-Correction Chains',
     category: 'ai',
     locationScope: 'Global',
     sourceName: 'Frontier AI Alignment & Evaluation Network',
@@ -969,6 +1005,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Real-time telemetry from automated evaluation test harnesses.',
     takeaway: 'Standardized benchmarks confirm reasoning models achieved 93% accuracy on complex Olympiad proofs, proving verification compute efficacy.',
     whatIsIt: 'Live foundation model evaluation telemetry measuring multi-step reasoning models against competitive PhD-level scientific benchmarks.',
+    targetedSearchQuery: 'Frontier AI reasoning benchmark test time compute AIME',
     factSheet: {
       when: "02 Nov 2026, 05:45 AM IST",
       where: "San Francisco & Global Evaluation Research Consortia",
@@ -1005,6 +1042,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   {
     id: 'live-big-tech-keynote-announcements',
     title: 'Big Tech Keynote Dispatch: Google and Nvidia Announce Next-Gen Silicon Deployments as Enterprise Systems Demand Surges',
+    keyStat: '100k GPU Clusters · 3nm Custom ASICs Deployment',
     category: 'personal',
     locationScope: 'Global',
     sourceName: 'Silicon Valley Executive Dispatch & Reuters Tech',
@@ -1013,6 +1051,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Streamed directly from Silicon Executive Roundtable briefings.',
     takeaway: 'Hardware executives confirm massive transition toward heterogeneous custom silicon and liquid-cooled datacenter pods.',
     whatIsIt: 'Live corporate technology briefing on datacenter hardware scaling, liquid cooling adoption, and custom silicon deployments across major tech companies.',
+    targetedSearchQuery: 'Google Nvidia custom AI silicon deployment keynote 2026',
     factSheet: {
       when: "02 Nov 2026, 05:45 AM IST",
       where: "Silicon Valley, California & Global Cloud Datacenters",
@@ -1049,6 +1088,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   {
     id: 'iit-placement-systems-semiconductor-surge',
     title: 'IIT & NIT Campus Placement Pivot: Core Systems, Semiconductor & Edge-AI Roles Surge 42% Over Mass IT Services',
+    keyStat: '₹45 LPA Median for Systems · 120% Surge in Silicon Design Roles',
     category: 'education',
     locationScope: 'India',
     sourceName: 'The Indian Express & Mint Education Bureau',
@@ -1057,6 +1097,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Synthesized from verified campus placement reports across IIT Madras, IIT Delhi, and NIT Trichy.',
     takeaway: 'Major Indian technical institutes record a 42% surge in semiconductor design, embedded firmware, and systems engineering offers with average packages rising to ₹24.5 LPA, while legacy bulk IT recruitment dips 18%.',
     whatIsIt: 'Campus placement dynamic shift where engineering graduates with low-level C++, Verilog, and GPU kernel programming skills receive premium domestic offers as India Semiconductor Mission fabs ramp up hiring.',
+    targetedSearchQuery: 'IIT placement semiconductor VLSI systems engineering surge 2026',
     factSheet: {
       when: '05 Nov 2026, 11:30 AM IST',
       where: 'IIT Madras, IIT Delhi, NIT Trichy & National Technical Campuses',
@@ -1094,6 +1135,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   {
     id: 'upsc-gate-reforms-tech-aptitude',
     title: 'UPSC Civil Services & GATE 2027 Pattern Reforms: Mandatory Tech Aptitude Module & Biometric Iris Verification at 1,400 Centers',
+    keyStat: '35% Weightage to Data & Tech Ethics · CS/IT Stream Surge in GATE',
     category: 'education',
     locationScope: 'New Delhi',
     sourceName: 'Press Information Bureau (PIB) & DoPT Gazette Notification',
@@ -1102,6 +1144,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Officially published in Department of Personnel and Training Gazette Order No. 44/2026.',
     takeaway: 'UPSC gazette notification introduces standardized digital data literacy evaluations for civil service aspirants and mandates continuous biometric Iris verification to completely eliminate exam impersonation across 1,400 national centers.',
     whatIsIt: 'Comprehensive examination reform package modernizing the UPSC Civil Services Preliminary examination syllabus and securing all 1,400 national test centers with multi-modal biometric checks.',
+    targetedSearchQuery: 'UPSC civil services tech aptitude reforms DoPT notification',
     factSheet: {
       when: '05 Nov 2026, 09:15 AM IST',
       where: 'Department of Personnel and Training (DoPT), North Block, New Delhi',
@@ -1139,6 +1182,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   {
     id: 'sarvam-ai-series-b-multimodal',
     title: 'Bengaluru AI Startup Sarvam AI Closes $53M Series B: Launches Sovereign Multi-Modal Foundation Models Across 10 Indian Languages',
+    keyStat: '$53M Series B · 10 Indian Languages Speech-to-Speech',
     category: 'startups',
     locationScope: 'Bengaluru',
     sourceName: 'The Economic Times & TechCrunch India',
@@ -1147,6 +1191,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Confirmed via official company announcement and venture filing documentation.',
     takeaway: 'Sarvam AI secures $53M led by Peak XV and Lightspeed to deploy enterprise-grade open Indic speech-to-text and reasoning models trained natively on sovereign IndiaAI compute clusters.',
     whatIsIt: 'Major venture funding milestone for domestic Indian generative AI, funding open speech recognition, language translation, and voice synthesis models for 10 regional languages including Bengali, Hindi, and Tamil.',
+    targetedSearchQuery: 'Sarvam AI Series B funding sovereign LLM India languages',
     factSheet: {
       when: '05 Nov 2026, 01:45 PM IST',
       where: 'Koramangala, Bengaluru, Karnataka',
@@ -1184,6 +1229,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   {
     id: 'quick-commerce-unit-economics-breakeven',
     title: 'Quick-Commerce Unit Economics Turnaround: Zepto & Swiggy Instamart Cross Operational Breakeven Across Top 8 Metros',
+    keyStat: '₹12 EBITDA Margin per Order · 40% Non-Grocery Basket Share',
     category: 'startups',
     locationScope: 'Bengaluru',
     sourceName: 'Livemint & Bloomberg India',
@@ -1192,6 +1238,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Audited contribution margin reports published in regulatory filings and retail equity research notes.',
     takeaway: 'Dark store densification with delivery radii under 1.8km and machine-learning stock optimization propel quick-commerce contribution margins into the black (+2.8%), proving model sustainability.',
     whatIsIt: 'Financial breakthrough for the hyper-local quick commerce sector where automated replenishment and higher average order values enabled positive unit economics without burning cash.',
+    targetedSearchQuery: 'Quick commerce unit economics Zepto Blinkit Swiggy Instamart breakeven',
     factSheet: {
       when: '05 Nov 2026, 03:20 PM IST',
       where: 'Mumbai, Delhi-NCR, Bengaluru, Kolkata & Major Metros',
@@ -1228,6 +1275,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   {
     id: 'isro-semi-cryogenic-sce200-test',
     title: 'ISRO Successfully Fires Semi-Cryogenic Engine SCE-200 for 120 Seconds: Greenlights Next-Gen Heavy Lift Vehicle (NGLV) for Gaganyaan',
+    keyStat: '2 Mega-Newtons Thrust · Kerosene-Liquid Oxygen (Isrosene)',
     category: 'science',
     locationScope: 'Sriharikota',
     sourceName: 'ISRO Official Media Cell & NDTV Science Bureau',
@@ -1236,6 +1284,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Officially certified in ISRO Technical Test Release PR-14/2026.',
     takeaway: '2,000 kN thrust kerosene-liquid oxygen semi-cryogenic engine completes full-duration hot-fire test at Mahendragiri, enabling 10-tonne payload capacity to geostationary transfer orbit for Gaganyaan and Indian space station modules.',
     whatIsIt: 'Milestone propulsion test validating India’s most powerful indigenous rocket engine, replacing older toxic hypergolic stages with high-efficiency aviation-grade kerosene propellant.',
+    targetedSearchQuery: 'ISRO semi-cryogenic engine SCE-200 hot test Mahendragiri',
     factSheet: {
       when: '05 Nov 2026, 04:10 PM IST',
       where: 'ISRO Propulsion Complex (IPRC), Mahendragiri, Tamil Nadu & Satish Dhawan Space Centre, Sriharikota',
@@ -1274,6 +1323,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   {
     id: 'iter-fusion-tokamak-plasma-record',
     title: 'Global Nuclear Fusion Milestone: Tokamak Core Sustains 100 Million °C High-Confinement Plasma for Record 480 Seconds',
+    keyStat: '100 Million °C · 8 Continuous Minutes · Q=10 Net Energy Milestone',
     category: 'science',
     locationScope: 'Global',
     sourceName: 'Nature Physics & Reuters Science Wire',
@@ -1282,6 +1332,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Peer-reviewed research and experimental logs published in Nature Physics Volume 42.',
     takeaway: 'Magnetic confinement fusion facility achieves continuous 8-minute burning plasma state at 100 Million °C utilizing 20-Tesla high-temperature superconducting magnets without reactor wall degradation.',
     whatIsIt: 'Physics and clean energy breakthrough proving that magnetic fields can keep ultra-hot fusion plasma stable without thermal runaway or turbulent plasma disruption.',
+    targetedSearchQuery: 'ITER nuclear fusion tokamak record high confinement plasma',
     factSheet: {
       when: '05 Nov 2026, 02:15 PM IST',
       where: 'International Thermonuclear Research Facility & Nuclear Physics Consortium',
@@ -1319,6 +1370,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
   {
     id: 'deepseek-v3-architecture-breakthrough',
     title: 'DeepSeek Releases DeepSeek-V3 Open-Weights Architecture Paper: $5.8M Full-Training Compute Feat via Multi-Head Latent Attention',
+    keyStat: '$5.8M Training Cost · Multi-Head Latent Attention (MLA) · 2.8x Throughput',
     category: 'ai',
     locationScope: 'Global',
     sourceName: 'DeepSeek AI Lab & Hugging Face Papers',
@@ -1327,6 +1379,7 @@ export const UPCOMING_LIVE_DISPATCHES: NewsArticle[] = [
     verificationNote: 'Fully documented in DeepSeek-V3 Technical Report with open weights published on Hugging Face.',
     takeaway: '671B parameter Mixture-of-Experts (MoE) foundation model matches frontier proprietary systems on coding and reasoning benchmarks while consuming just 2.788M GPU hours ($5.8M) during pre-training.',
     whatIsIt: 'Architectural breakthrough demonstrating that open-weights foundation models can match closed proprietary American models at a tiny fraction of the computational training budget.',
+    targetedSearchQuery: 'DeepSeek-V3 architecture paper MLA FP8 training efficiency',
     factSheet: {
       when: '05 Nov 2026, 05:00 PM IST',
       where: 'Hugging Face Hub & Global AI Research Repositories',
