@@ -1,276 +1,248 @@
-# ⚡ READSUPA.md — The Complete Supabase, Full-Stack Architecture & Developer Master Guide
+# 🚀 READSUPA.md — The Plain-English Guide to Web Development & Supabase
+### *Written for a Class 12th Student (No Coding Background Required!)*
 
-> **Welcome to your ultimate engineering playbook!**  
-> Whether you are building **AXIS News** or your next venture, this guide explains **what Supabase is**, **how frontend and backend systems connect**, and **everything a software developer goes through from an empty folder to a live global product**.
-
----
-
-## 📑 Table of Contents
-1. [What is Supabase & Why Do Developers Love It?](#1-what-is-supabase--why-do-developers-love-it)
-2. [The 6 Core Functions of Supabase (With Real Code)](#2-the-6-core-functions-of-supabase-with-real-code)
-3. [Frontend vs. Backend — The Mental Model](#3-frontend-vs-backend--the-mental-model)
-4. [How Frontend & Backend Talk (The Complete Cycle)](#4-how-frontend--backend-talk-the-complete-cycle)
-5. [The Full Start-to-End Developer Journey (From Idea to Global Launch)](#5-the-full-start-to-end-developer-journey-from-idea-to-global-launch)
-6. [Your Supabase Project Configuration & MCP Integration](#6-your-supabase-project-configuration--mcp-integration)
-7. [How AXIS News Leverages Supabase](#7-how-axis-news-leverages-supabase)
+> **Hey there!** 👋  
+> Have you ever wondered what *actually* happens when you tap a button on Instagram, order a pizza on Zomato, or read a breaking story on **AXIS News**?  
+> 
+> You don't need to be a Computer Science student to understand how websites work. If you know how to use a smartphone, a browser, and an email account, this guide will explain **the entire secret machinery of the internet**, **what Supabase is**, and **how a developer builds an app from day one to launch day** — using simple, everyday real-life examples!
 
 ---
 
-## 1. What is Supabase & Why Do Developers Love It?
-
-### The Short Answer:
-**Supabase is an open-source Backend-as-a-Service (BaaS) built directly on top of PostgreSQL.**
-
-### The Problem It Solves:
-In traditional web development, if you wanted to build an app with user accounts, a database, and file uploads, you had to manually:
-1. Rent a Linux server (AWS EC2 / DigitalOcean).
-2. Install and configure a database engine (PostgreSQL).
-3. Write an entire backend API server (Node.js/Express, Python/FastAPI, or Go).
-4. Code password hashing, salt generation, and JWT token authentication from scratch.
-5. Set up WebSocket servers for live notifications.
-6. Configure firewalls, SSL certificates, database connection pooling, and daily backups.
-
-**This took weeks of grueling DevOps work before you wrote a single line of your actual app!**
-
-### The Supabase Revolution:
-Supabase gives you all of that in **one click**:
-- A dedicated, high-performance **PostgreSQL relational database**.
-- Built-in **User Authentication** (Google sign-in, email/password, magic links).
-- Auto-generated **REST & GraphQL APIs** directly from your database tables.
-- **Real-Time WebSockets** that push data changes to users in milliseconds.
-- **Storage Buckets** for images, avatars, and documents.
-- **Row-Level Security (RLS)** ensuring users only see data they are authorized to view.
+## 📑 Quick Navigation (What You'll Learn)
+1. [Chapter 1: What is a Website Really? (The Magic Behind Your Screen)](#chapter-1-what-is-a-website-really-the-magic-behind-your-screen)
+2. [Chapter 2: The Restaurant Story — Frontend vs. Backend](#chapter-2-the-restaurant-story--frontend-vs-backend)
+3. [Chapter 3: What is a Database? (Why Not Just Use Microsoft Excel?)](#chapter-3-what-is-a-database-why-not-just-use-microsoft-excel)
+4. [Chapter 4: Meet Supabase — The Ready-Made Super Kitchen](#chapter-4-meet-supabase--the-ready-made-super-kitchen)
+5. [Chapter 5: The 5 Superpowers of Supabase (Explained with Real Life)](#chapter-5-the-5-superpowers-of-supabase-explained-with-real-life)
+6. [Chapter 6: The 10-Step Journey of a Developer (From Idea to Global Launch)](#chapter-6-the-10-step-journey-of-a-developer-from-idea-to-global-launch)
+7. [Chapter 7: How Garv's AXIS News Uses This Right Now](#chapter-7-how-garvs-axis-news-uses-this-right-now)
+8. [Chapter 8: The 10-Word Cheat Sheet (Tech Buzzwords in One Sentence)](#chapter-8-the-10-word-cheat-sheet-tech-buzzwords-in-one-sentence)
+9. [Appendix: Garv's Supabase Project Secret Pass & Project Keys](#appendix-garvs-supabase-project-secret-pass--project-keys)
 
 ---
 
-## 2. The 6 Core Functions of Supabase (With Real Code)
+## Chapter 1: What is a Website Really? (The Magic Behind Your Screen)
+
+When you double-click Google Chrome or open Safari on your phone and type `axis-news-iota.vercel.app`, what happens?
+
+Think of a website like a **high-tech book** delivered to your screen over invisible Wi-Fi wires:
+
+```
+[ Your Phone / Laptop ]  <======= Wi-Fi / 5G =======>  [ Big Computer in the Cloud ]
+  Reads the design &                                      Stores the master copy &
+  shows pretty buttons                                    sends it across the world
+```
+
+A website is made of three simple layers:
+
+1. **The Skeleton (HTML):** Just like human bones give your body shape, HTML decides where the headline goes, where the photo sits, and where the buttons are placed.
+2. **The Clothes & Makeup (CSS):** This decides the colors (sleek dark mode, gold accents), the font size, and how smooth the button feels when your mouse hovers over it.
+3. **The Muscles & Brain (JavaScript):** This brings the page to life. When you click "Bookmark Article" or "Read in Hindi", JavaScript is the engine that immediately responds without you having to restart the phone.
+
+---
+
+## Chapter 2: The Restaurant Story — Frontend vs. Backend
+
+Every professional website in the world is split into two halves: **Frontend** and **Backend**. 
+
+The easiest way to understand this is to imagine your favorite **restaurant**:
+
+```
+┌────────────────────────────────────────┐       ┌────────────────────────────────────────┐
+│         THE DINING ROOM (FRONTEND)     │       │          THE KITCHEN (BACKEND)         │
+│                                        │       │                                        │
+│  • Beautiful tables & soft lighting    │       │  • Industrial gas stoves & giant pots  │
+│  • Printed colorful menu card          │       │  • Locked cold-storage refrigerators   │
+│  • You browse, select, and tap items   │       │  • Secret recipes & master chefs       │
+│                                        │       │  • Head accountant counting money      │
+└───────────────────┬────────────────────┘       └───────────────────▲────────────────────┘
+                    │                                                │
+                    │               THE WAITER (API)                 │
+                    └──────────> Carries your order on a notepad ────┘
+                                 Brings back your hot food
+```
+
+### 1. The Frontend (The Dining Room)
+- This is everything you can **see, touch, and click** on your screen.
+- The news headline, the bookmark icon, the audio player, the dark background.
+- If it's on your screen, it's the **Frontend**.
+
+### 2. The Backend (The Kitchen Behind the Double Doors)
+- You never see the kitchen while eating dinner, but without it, there is no food!
+- The backend is a powerful computer sitting in a giant data center (the "Cloud").
+- It does the serious, private work:
+  - Verifying if your password is correct.
+  - Making sure nobody steals your saved bookmarks.
+  - Saving the latest news articles so millions of students can read them at the exact same second.
+
+### 3. The Waiter (The API)
+- How does the dining room talk to the kitchen? Through the **waiter**!
+- In tech, the waiter is called an **API** (*Application Programming Interface*).
+- When you tap *"Save Bookmark"*, the waiter runs to the kitchen, whispers to the chef: *"Table 4 wants to save the Nvidia article"*, and returns with a thumbs-up.
+
+---
+
+## Chapter 3: What is a Database? (Why Not Just Use Microsoft Excel?)
+
+Imagine you run a school library with 5,000 students. You could write down who borrowed which book in a Microsoft Excel file or a diary on your personal laptop.
+
+**So why don't big websites like YouTube, Amazon, or AXIS News use Excel?**
+
+| What Happens In Real Life | Why Microsoft Excel Fails ❌ | Why a Real Database Wins 🏆 |
+| :--- | :--- | :--- |
+| **10,000 students open the app at 8:00 PM** | Excel freezes, says *"File is locked for editing by another user"*, and crashes. | A database handles 50,000 people reading and writing at the exact same millisecond with zero lag. |
+| **Your laptop battery dies or catches fire** | Your file is gone forever. All student data is lost. | A database is safely duplicated across 3 global data centers with automatic daily backups. |
+| **Cheating & Privacy** | Anyone who opens the Excel file can see everyone's passwords and personal marks. | A database has digital security guards. You can only see your own profile, never your classmate's! |
+
+**A Database is like an indestructible, high-speed digital filing cabinet with laser-guided security.**
+
+---
+
+## Chapter 4: Meet Supabase — The Ready-Made Super Kitchen
+
+In the old days of web development (even 4 years ago!), if a student or developer wanted to build a website with user accounts and a database, they had to:
+1. Rent an empty Linux server from Amazon AWS.
+2. Install complicated database software via black terminal screens.
+3. Write hundreds of lines of security code so hackers couldn't break in.
+4. Set up email sending servers for OTPs and password resets.
+5. Spend weeks of sleepless nights just setting up the plumbing before writing a single line of their actual idea!
+
+### Enter **Supabase**:
+Supabase is like walking into a kitchen that is **already fully built, fully stocked, sparkling clean, and comes with a 5-star security guard standing at the door.**
+
+Instead of building a backend for 3 months, **Supabase gives you a complete, enterprise-grade backend in 60 seconds.**
+
+---
+
+## Chapter 5: The 5 Superpowers of Supabase (Explained with Real Life)
+
+Supabase gives developers **5 superpowers** out of the box:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        SUPABASE PLATFORM CORE                          │
+│                        THE 5 SUPABASE SUPERPOWERS                      │
 ├──────────────┬──────────────┬──────────────┬──────────────┬────────────┤
-│   DATABASE   │     AUTH     │   STORAGE    │   REALTIME   │ FUNCTIONS  │
-│  Postgres 16 │ Google/Email │ Media/Images │  WebSockets  │ Edge Deno  │
+│ 1. THE BRAIN │ 2. BOUNCER   │ 3. LOCKER KEY│ 4. WALKIE-   │ 5. PHOTO   │
+│              │              │              │    TALKIE    │    ALBUM   │
+│  PostgreSQL  │ User Auth    │ Row Security │  Real-Time   │  Storage   │
+│  (Database)  │ (Google/OTP) │    (RLS)     │ (Live Sync)  │ (Pictures) │
 └──────────────┴──────────────┴──────────────┴──────────────┴────────────┘
 ```
 
-### 1. The PostgreSQL Database (Your Brain)
-At its core, Supabase is real PostgreSQL. You can write regular SQL queries, create tables, write foreign-key relationships, and use complex data types like `JSONB` and spatial geometry.
+### 1. Superpower #1: The Indestructible Brain (PostgreSQL Database)
+- **What it is:** The world's most trusted relational database.
+- **Real-Life Example:** Think of a giant Excel sheet, but with super-intelligence. It knows that *"Student Garv"* borrowed *"Book #42"*, and it automatically makes sure Book #42 can't be lent to anyone else until Garv returns it.
 
-#### Example: Creating a Table in Supabase SQL Editor
-```sql
-CREATE TABLE student_bookmarks (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
-  article_id TEXT NOT NULL,
-  article_title TEXT NOT NULL,
-  saved_at TIMESTAMPTZ DEFAULT now()
-);
-```
+### 2. Superpower #2: The Bouncer at the Club (Authentication)
+- **What it is:** Handles User Login, Google 1-Tap Sign-In, and Passwords.
+- **Real-Life Example:** When you go to an amusement park, you show your ticket at the entrance. The guard clips a **waterproof wristband** onto your arm. For the rest of the day, every ride attendant just glances at your wristband and lets you on.
+- In Supabase, when you log into AXIS News with your email or Google, Supabase gives your browser a secure digital wristband (called a **Token**). Every time you bookmark a news story, your browser flashes the wristband so the server knows it's really you!
 
----
+### 3. Superpower #3: The Bank Locker Room (Row-Level Security — RLS)
+- **What it is:** The strict security rule that keeps private data private.
+- **Real-Life Example:** When you walk into a bank vault, there are 1,000 metal lockers on the wall. Your brass key only opens **Locker #104**. Even if you try, your key will never turn inside Locker #105.
+- With Row-Level Security, Garv can see Garv's saved bookmarks, but cannot see another student's saved bookmarks. The database protects this automatically at the deepest level!
 
-### 2. Authentication & Authorization (Your Bouncer)
-Supabase handles user registration, password hashing (bcrypt), email confirmation, session tokens, and OAuth providers (Google, GitHub, Apple) securely out of the box.
+### 4. Superpower #4: The Live Walkie-Talkie (Realtime WebSockets)
+- **What it is:** Live, instant updates without pressing the Refresh (F5) button.
+- **Real-Life Example:** When you're watching live cricket scores during the IPL, you don't keep refreshing the webpage every second. When Virat Kohli hits a six, the scoreboard on your phone updates instantly!
+- Supabase keeps an open walkie-talkie line between your phone and the server. When breaking news drops (like the Nvidia CEO transition), all connected screens update in 50 milliseconds!
 
-#### How You Use It in React (`src/services/supabaseClient.ts`):
-```ts
-import { supabase } from '../services/supabaseClient';
-
-// 1. Sign up with email & password
-const { data, error } = await supabase.auth.signUp({
-  email: 'student@nbu.ac.in',
-  password: 'SecurePassword123!',
-});
-
-// 2. Sign in with Google (1-Click)
-const { data, error } = await supabase.auth.signInWithOAuth({
-  provider: 'google',
-});
-
-// 3. Get currently logged-in user
-const { data: { user } } = await supabase.auth.getUser();
-```
+### 5. Superpower #5: The Cloud Photo Album (Storage Buckets)
+- **What it is:** A safe place to store large images, PDF reports, and student avatars.
+- **Real-Life Example:** Databases love text and numbers, but they hate heavy 10MB photo files. Supabase Storage is like a dedicated Google Drive folder that serves images at lightning speed to people visiting your website.
 
 ---
 
-### 3. Row-Level Security (RLS) — The Unbreakable Shield
-In typical databases, if your frontend connects to the database, anyone could theoretically query anyone else's private data.  
-**Supabase solves this with Row-Level Security (RLS):** rules written directly inside PostgreSQL that check *who* is making the request before returning any rows!
+## Chapter 6: The 10-Step Journey of a Developer (From Idea to Global Launch)
 
-#### Example RLS Rule:
-```sql
--- Enable RLS on the bookmarks table
-ALTER TABLE student_bookmarks ENABLE ROW LEVEL SECURITY;
+How does someone go from a shower thought to a live website used by thousands of people? Here is the exact path:
 
--- Allow users to ONLY see their OWN bookmarks
-CREATE POLICY "Users can only read own bookmarks"
-ON student_bookmarks
-FOR SELECT
-USING (auth.uid() = user_id);
 ```
-Even if a hacker tries to query all bookmarks from the browser console, PostgreSQL inspects their token and returns **only their own rows**!
+[ Step 1: The Idea ] ────────> [ Step 2: The Drawing ] ────────> [ Step 3: The Face (Frontend) ]
+                                                                             │
+[ Step 6: Testing ] <───────── [ Step 5: The Locks (RLS) ] <──── [ Step 4: The Brain (Supabase) ]
+        │
+[ Step 7: Packing ] ─────────> [ Step 8: Cloud Launch ] ────────> [ Step 9: The Nameboard (.com) ]
+                                                                             │
+                                                                 [ Step 10: Live & Growing! 🚀 ]
+```
+
+| Step | What the Developer Actually Does | Everyday Real-Life Analogy |
+| :--- | :--- | :--- |
+| **1. The Idea** | Solves a real problem. *"Students are tired of boring, outdated news; let's give them verified, actionable news with career stats!"* | Deciding to open a new café in your neighborhood because none serve good cold coffee. |
+| **2. The Drawing** | Sketches the screens on paper or using a design tool called Figma. | Drawing the floor plan of the café on a napkin (where counter sits, where sofas go). |
+| **3. The Face (Frontend)** | Writes the HTML, CSS, and React code to make cards, dark mode buttons, and category tabs. | Painting the café walls, hanging neon signs, setting up comfy tables and printing menus. |
+| **4. The Brain (Supabase)** | Creates tables for Articles, User Profiles, and Bookmarks. | Buying the kitchen stoves, refrigerators, and ingredients. |
+| **5. The Locks & Keys** | Turns on Row-Level Security so nobody can hack or tamper with other users' accounts. | Installing high-security deadbolts on the kitchen pantry and cash register. |
+| **6. The Test Run** | Taps every button on an iPhone, Android, iPad, and laptop to make sure nothing looks crooked. | Inviting your close friends for a free private tasting to see if any dish tastes bad. |
+| **7. Packing the Suitcase** | Runs a build command that shrinks and compresses all code into tiny, lightning-fast files. | Packing all café supplies into neat, compact boxes for easy shipping. |
+| **8. The Cloud Launch** | Pushes code to GitHub and connects to **Vercel** so the website is hosted on servers worldwide. | Opening the café doors so anyone on the street can walk in 24 hours a day. |
+| **9. The Nameboard** | Connects a custom web address like `axisnews.in` instead of a long technical link. | Putting up a giant illuminated neon sign outside the building that everyone recognizes. |
+| **10. Live & Growing** | Watches real-time reader counts, reads user feedback, and adds new features every week! | Greeting regular customers, learning their favorite orders, and making the café even better. |
 
 ---
 
-### 4. Realtime Engine (The Broadcast Tower)
-Instead of forcing users to refresh the page or setting up expensive polling timers, Supabase Realtime listens to PostgreSQL write-ahead logs (`wal2json`) and broadcasts changes over WebSockets instantly.
+## Chapter 7: How Garv's AXIS News Uses This Right Now
 
-#### Real-World AXIS Example: Listening for Breaking News
-```ts
-import { supabase } from '../services/supabaseClient';
+Here is how **AXIS News** ([axis-news-iota.vercel.app](https://axis-news-iota.vercel.app)) connects all these pieces right in the codebase:
 
-const channel = supabase
-  .channel('breaking-news-stream')
-  .on(
-    'postgres_changes',
-    { event: 'INSERT', schema: 'public', table: 'dispatches' },
-    (payload) => {
-      console.log('⚡ NEW BREAKING NEWS JUST IN:', payload.new);
-      // Automatically update the React state on everyone's screen!
-    }
-  )
-  .subscribe();
 ```
+┌────────────────────────────────────────────────────────────────────────┐
+│                        AXIS NEWS SYSTEM ARCHITECTURE                   │
+├────────────────────────────────┬───────────────────────────────────────┤
+│ WHAT YOU SEE (FRONTEND)        │ WHAT SUPABASE POWERS (BACKEND)        │
+├────────────────────────────────┼───────────────────────────────────────┤
+│ 📰 Breaking News & Hero Card   │ Live article feed with ⚡ Key Stats   │
+│ 👤 "Sign In" Button & Modal    │ Google 1-Tap & Verified Email Login   │
+│ 🔖 Gold "Bookmark" Star        │ Student Saved Articles Database Table │
+│ 📈 Trending Now Radar          │ Real-time view counter & crowd reader │
+│ 🌐 Hindi / English Switcher    │ Instant multi-language translation    │
+└────────────────────────────────┴───────────────────────────────────────┘
+```
+
+1. **Student Sign-In (`src/components/AuthModal.tsx`):**
+   When a student taps *"Sign In to AXIS"*, Supabase safely checks their credentials without saving raw passwords in plain text.
+2. **Instant Bookmarking (`src/components/ImportantBriefingHero.tsx`):**
+   When a student bookmarks the *Nvidia Leadership Transition* or the *Bullet Train Undersea Tunnel* story, the bookmark is saved to their private Supabase account so it's waiting for them on both their phone and laptop.
+3. **Verified Trending Radar (`src/services/trendingService.ts`):**
+   When thousands of students read an article, Supabase tracks the views and moves the hottest stories to the top of the **Trending Now** ticker automatically.
 
 ---
 
-### 5. Storage (Your File Vault)
-Store and serve user profile avatars, news images, PDF documents, or student resumes with built-in CDN caching and access controls.
+## Chapter 8: The 10-Word Cheat Sheet (Tech Buzzwords in One Sentence)
 
-```ts
-const { data, error } = await supabase.storage
-  .from('avatars')
-  .upload(`profiles/${user.id}.png`, file);
-```
+Next time you hear someone talking about coding, here is what those fancy words actually mean:
 
----
-
-### 6. Edge Functions (Your Private Cloud Workers)
-Globally distributed TypeScript functions running on Deno at edge locations worldwide. Perfect for processing payments (Stripe/Razorpay), sending push notifications, or running secret automated background jobs.
-
----
-
-## 3. Frontend vs. Backend — The Mental Model
-
-To build modern software, you must understand the clear division of responsibility between **Client (Frontend)** and **Server (Backend)**:
-
-```
-┌──────────────────────────────────────┐       HTTP REST / JSON       ┌─────────────────────────────────────┐
-│              FRONTEND                │ ───────────────────────────> │              BACKEND                │
-│       (Runs in User's Browser)       │                              │        (Runs on Secure Cloud)       │
-│                                      │ <─────────────────────────── │                                     │
-│ • React / HTML / Tailwind CSS        │          WebSockets          │ • PostgreSQL Database (Supabase)    │
-│ • User Clicks, Buttons, Modals       │                              │ • Authentication & Token Validation │
-│ • Animations & Screen Rendering      │                              │ • Payment Processing & Secret Keys  │
-│ • Local State (Active tab, filter)   │                              │ • Business Logic & Authorization    │
-└──────────────────────────────────────┘                              └─────────────────────────────────────┘
-```
-
-### The Car Analogy:
-- **The Frontend is the Dashboard, Steering Wheel, and Pedals**:
-  - It is what the driver sees and touches.
-  - When you press the accelerator pedal, the speedometer moves smoothly.
-  - If the dashboard looks ugly, broken, or confusing, the driver has a terrible experience.
-- **The Backend is the Engine, Fuel Injection, and Transmission**:
-  - Hidden beneath the hood.
-  - The driver never sees the fuel exploding inside the cylinders, but without it, the car does not move an inch!
-  - It enforces safety: you cannot shift into reverse while driving 100 km/h on the highway.
+1. **Frontend:** Everything you can see and click on your screen (the dining room).
+2. **Backend:** The invisible kitchen server that processes data and protects passwords.
+3. **Database:** A high-speed digital filing cabinet that stores information safely forever.
+4. **API:** The digital waiter carrying messages back and forth between your phone and the server.
+5. **Server:** A computer with no monitor sitting in an air-conditioned room that runs 24/7 without sleeping.
+6. **The Cloud:** Just somebody else's server running in a secure data center (like Google or Amazon).
+7. **Bug:** A tiny mistake in the code that makes something behave weirdly (like a button not working).
+8. **Token:** A temporary digital stamp/wristband that proves you are already logged in.
+9. **Deployment:** The act of uploading your latest code to the internet so the whole world can see it.
+10. **Cache (pronounced "cash"):** A temporary memory pocket on your phone that saves photos so pages load in 0.1 seconds next time.
 
 ---
 
-## 4. How Frontend & Backend Talk (The Complete Cycle)
+## Appendix: Garv's Supabase Project Secret Pass & Project Keys
 
-Every time a user performs an action on AXIS News, this 5-step conversation happens behind the scenes:
+> **Note for Developers:** This section contains the safe configuration references for Garv's AXIS News Supabase instance.
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor User
-    participant Frontend as Browser (React/Vite)
-    participant Backend as Supabase (PostgreSQL)
-
-    User->>Frontend: Clicks "Bookmark Article"
-    Frontend->>Backend: POST /rest/v1/student_bookmarks { article_id: "nvidia-jensen" }<br/>Header: Authorization: Bearer JWT_TOKEN
-    Backend->>Backend: Verifies JWT token & evaluates RLS Policy
-    Backend->>Backend: Inserts row into student_bookmarks table
-    Backend-->>Frontend: HTTP 201 Created { id: "uuid-123", status: "success" }
-    Frontend-->>User: Changes Bookmark icon to filled gold & shows "Saved!"
-```
-
----
-
-## 5. The Full Start-to-End Developer Journey (From Idea to Global Launch)
-
-Every professional software engineer follows this exact 10-phase lifecycle when creating digital products:
-
-```
-┌───────┐   ┌───────┐   ┌───────┐   ┌───────┐   ┌───────┐
-│ IDEATE│──>│ ARCH  │──>│ CODE  │──>│ SECURE│──>│ TEST  │
-└───────┘   └───────┘   └───────┘   └───────┘   └───────┘
-    │           │           │           │           │
-┌───▼───┐   ┌───▼───┐   ┌───▼───┐   ┌───▼───┐   ┌───▼───┐
-│ BUILD │──>│ DEPLOY│──>│ DOMAIN│──>│ OBSERVE│──>│ SCALE │
-└───────┘   └───────┘   └───────┘   └───────┘   └───────┘
-```
-
-| Phase | What the Developer Does | Tools Used | What Can Go Wrong (And How to Fix It) |
-| :--- | :--- | :--- | :--- |
-| **1. Ideation & UX** | Defines the user problem, target audience, and creates wireframes | Figma, Pen & Paper | Building features nobody wants; solve a crisp, real problem first! |
-| **2. Architecture** | Chooses tech stack (React vs Next vs Vite; Postgres vs Mongo) | Vite, TypeScript, React | Over-engineering early; pick modern, lightweight, fast tools. |
-| **3. Frontend Code** | Builds UI components, design system, colors, modals, and responsive views | Tailwind CSS, Lucide icons | Layout shift on mobile; test every screen width from 360px to 4K. |
-| **4. Database & Auth** | Designs relational schemas, foreign keys, and indexes | Supabase (PostgreSQL) | Forgetting constraints or indexing; always add foreign keys and unique IDs. |
-| **5. Security Hardening** | Separates public keys from secret keys; writes RLS policies | `.env.local`, `.gitignore` | **Leaking database passwords to GitHub!** Always gitignore `.env*`. |
-| **6. Testing & Quality** | Runs static typing checks and tests edge cases | `tsc --noEmit`, ESLint | Runtime crashes on null data; use TypeScript strict mode. |
-| **7. Production Build** | Bundles, minifies, tree-shakes, and compresses code | Vite Rollup | Chunks too large; use dynamic imports for heavy modals. |
-| **8. Deployment** | Pushes to GitHub; triggers automated CI/CD pipeline | Vercel, GitHub Actions | Environment variables missing in production; sync via Vercel CLI. |
-| **9. Custom Domain** | Points DNS records (A Record, CNAME) to host; verifies SSL | GoDaddy, Namecheap | DNS propagation delay; wait 10-30 mins for global DNS caches. |
-| **10. Observability** | Monitors uptime, real-time traffic, error logs, and user feedback | Vercel Analytics, Sentry | Silent failures; connect feedback forms (Formspree) and error tracking. |
-
----
-
-## 6. Your Supabase Project Configuration & MCP Integration
-
-Your project is connected to your dedicated Supabase instance:
-
-### Project Parameters:
+### Project Connection Details:
 - **Project Reference:** `atqisdaddeiuqsyxvkeh`
 - **Project URL:** `https://atqisdaddeiuqsyxvkeh.supabase.co`
-- **Public Anon Key:** Configured in `.env.local` and Vercel Production
-- **Database Status:** Connected and verified live.
+- **Public Key (Safe for browser):** Stored in `.env.local` as `VITE_SUPABASE_ANON_KEY`
+- **Secret Service Key:** Stored securely in Vercel Environment Variables (never shared in browser code!)
+- **JWKS URL:** `https://atqisdaddeiuqsyxvkeh.supabase.co/auth/v1/.well-known/jwks.json`
 
-### Model Context Protocol (MCP) Server:
-The Supabase remote MCP server is configured in both:
-- **Global:** `~/.gemini/config/mcp_config.json`
-- **Workspace:** `.agents/mcp_config.json`
-
-```json
-{
-  "mcpServers": {
-    "supabase": {
-      "serverUrl": "https://mcp.supabase.com/mcp?project_ref=atqisdaddeiuqsyxvkeh&features=docs%2Caccount%2Cdatabase%2Cdebugging%2Cdevelopment%2Cfunctions%2Cbranching%2Cfeedback%2Cnotebooks",
-      "httpUrl": "https://mcp.supabase.com/mcp?project_ref=atqisdaddeiuqsyxvkeh&features=docs%2Caccount%2Cdatabase%2Cdebugging%2Cdevelopment%2Cfunctions%2Cbranching%2Cfeedback%2Cnotebooks"
-    }
-  }
-}
-```
-
-### Installed Agent Skills:
-Installed via `npx skills add supabase/agent-skills`:
-1. **`.agents/skills/supabase`**: Official Supabase developer workflows and tool usage.
-2. **`.agents/skills/supabase-postgres-best-practices`**: SQL query optimization, indexing, and schema design rules.
+### Agent & AI Developer Skills Installed:
+- **`supabase` Skill:** Loaded in `.agents/skills/supabase` (guides automated database querying).
+- **`supabase-postgres-best-practices` Skill:** Loaded in `.agents/skills/supabase-postgres-best-practices` (guides fast, secure SQL).
+- **Remote Supabase MCP Server:** Configured in `~/.gemini/config/mcp_config.json` and `.agents/mcp_config.json`.
 
 ---
 
-## 7. How AXIS News Leverages Supabase
-
-| Module in AXIS News | How It Uses Supabase |
-| :--- | :--- |
-| [`src/components/AuthModal.tsx`](file:///Users/lavnishbansal/Desktop/Axis-news/src/components/AuthModal.tsx) | Authenticates student profiles via Google 1-Tap & verified college email |
-| [`src/components/ImportantBriefingHero.tsx`](file:///Users/lavnishbansal/Desktop/Axis-news/src/components/ImportantBriefingHero.tsx) | Syncs bookmarks to student accounts across mobile and desktop |
-| [`src/services/trendingService.ts`](file:///Users/lavnishbansal/Desktop/Axis-news/src/services/trendingService.ts) | Increments global atomic view counters for crowd-verified Trending Now radar |
-| Live Dispatches Radar | Subscribes to real-time WebSockets to push breaking news without page reloads |
-
----
-
-*Master Engineering & Architecture Document prepared for Garv Bansal · AXIS News Intelligence Platform*
+*Handcrafted for Garv Bansal & the AXIS News Engineering Team · Clear, Simple, World-Class.*
